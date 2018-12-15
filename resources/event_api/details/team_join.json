@@ -10,23 +10,24 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "team_join": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
-              "user": {
-                "$ref": "#/definitions/core/user"
+              "team_user": {
+                "$ref": "#/definitions/core/definitions/team_user"
               }
             }
           }

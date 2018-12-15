@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "emoji_name": {
+          "type": "string"
+        },
+        "reaction_item_type": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "reaction_item": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/reaction_item_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "reaction_added": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "reaction": {
+              "$ref": "#/definitions/core/definitions/emoji_name"
+            },
+            "item_user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "reaction_item": {
+              "$ref": "#/definitions/core/definitions/reaction_item"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        }
+      }
+    }
+  }
+}

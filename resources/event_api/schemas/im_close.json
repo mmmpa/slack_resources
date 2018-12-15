@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "im_close": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "subscription_subtype": {
+          "type": "string"
+        },
+        "emoji_name": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "emoji_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subtype": {
+              "$ref": "#/definitions/core/definitions/subscription_subtype"
+            },
+            "names": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/emoji_name"
+              }
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        }
+      }
+    }
+  }
+}

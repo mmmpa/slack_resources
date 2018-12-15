@@ -14,56 +14,53 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "channel_id": {
-            "description": "",
             "type": "string"
           },
           "channel_name": {
-            "description": "",
             "type": "string"
           },
           "time_integer": {
-            "description": "",
             "type": "number"
           },
           "user_id": {
-            "description": "",
             "type": "string"
           },
           "channel": {
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/channel_id"
+                "$ref": "#/definitions/core/definitions/channel_id"
               },
               "name": {
-                "$ref": "#/definitions/core/channel_name"
+                "$ref": "#/definitions/core/definitions/channel_name"
               },
               "created": {
-                "$ref": "#/definitions/core/time_integer"
+                "$ref": "#/definitions/core/definitions/time_integer"
               },
               "creator": {
-                "$ref": "#/definitions/core/user_id"
+                "$ref": "#/definitions/core/definitions/user_id"
               }
             }
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "channel_created": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "channel": {
-                "$ref": "#/definitions/core/channel"
+                "$ref": "#/definitions/core/definitions/channel"
               }
             }
           }

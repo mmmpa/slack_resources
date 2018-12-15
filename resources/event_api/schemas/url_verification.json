@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "challenge": {
+          "type": "string"
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "url_verification": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "challenge": {
+              "type": "string"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            }
+          }
+        }
+      }
+    }
+  }
+}

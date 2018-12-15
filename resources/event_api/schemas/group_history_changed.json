@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "group_history_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "latest": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        }
+      }
+    }
+  }
+}

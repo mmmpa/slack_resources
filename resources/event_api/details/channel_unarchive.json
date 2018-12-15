@@ -10,34 +10,33 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "channel_id": {
-            "description": "",
             "type": "string"
           },
           "user_id": {
-            "description": "",
             "type": "string"
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "channel_unarchive": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "channel": {
-                "$ref": "#/definitions/core/channel_id"
+                "$ref": "#/definitions/core/definitions/channel_id"
               },
               "user": {
-                "$ref": "#/definitions/core/user_id"
+                "$ref": "#/definitions/core/definitions/user_id"
               }
             }
           }

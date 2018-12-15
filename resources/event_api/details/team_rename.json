@@ -9,27 +9,27 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
-          "team_name": {
-            "description": "",
+          "root_name": {
             "type": "string"
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "team_rename": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "name": {
-                "$ref": "#/definitions/core/team_name"
+                "$ref": "#/definitions/core/definitions/root_name"
               }
             }
           }

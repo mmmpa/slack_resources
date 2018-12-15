@@ -25,11 +25,8 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "token": {
-            "description": "",
-            "type": "string"
-          },
           "team_id": {
             "type": "string"
           },
@@ -37,95 +34,92 @@
             "type": "string"
           },
           "event_type": {
-            "description": "",
             "type": "string"
           },
           "channel_id": {
-            "description": "",
             "type": "string"
           },
           "user_id": {
-            "description": "",
             "type": "string"
           },
           "timestamp": {
-            "description": "",
             "type": "string"
           },
-          "channel_type": {
-            "description": "",
-            "type": "string"
-          },
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "event_id": {
             "type": "string"
           },
           "time_integer": {
-            "description": "",
             "type": "number"
+          },
+          "token": {
+            "type": "string"
+          },
+          "channel_type": {
+            "type": "string"
           },
           "message_event": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/event_type"
+                "$ref": "#/definitions/core/definitions/event_type"
               },
               "channel": {
-                "$ref": "#/definitions/core/channel_id"
+                "$ref": "#/definitions/core/definitions/channel_id"
               },
               "user": {
-                "$ref": "#/definitions/core/user_id"
+                "$ref": "#/definitions/core/definitions/user_id"
               },
               "text": {
                 "type": "string"
               },
               "ts": {
-                "$ref": "#/definitions/core/timestamp"
+                "$ref": "#/definitions/core/definitions/timestamp"
               },
               "event_ts": {
-                "$ref": "#/definitions/core/timestamp"
+                "$ref": "#/definitions/core/definitions/timestamp"
               },
               "channel_type": {
-                "$ref": "#/definitions/core/channel_type"
+                "type": "string"
               }
             }
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "message.channels": {
             "type": "object",
             "properties": {
               "token": {
-                "$ref": "#/definitions/core/token"
+                "type": "string"
               },
               "team_id": {
-                "$ref": "#/definitions/core/team_id"
+                "$ref": "#/definitions/core/definitions/team_id"
               },
               "api_app_id": {
-                "$ref": "#/definitions/core/api_app_id"
+                "$ref": "#/definitions/core/definitions/api_app_id"
               },
               "message_event": {
-                "$ref": "#/definitions/core/message_event"
+                "$ref": "#/definitions/core/definitions/message_event"
               },
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "authed_teams": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/team_id"
+                  "$ref": "#/definitions/core/definitions/team_id"
                 }
               },
               "event_id": {
-                "$ref": "#/definitions/core/event_id"
+                "$ref": "#/definitions/core/definitions/event_id"
               },
               "event_time": {
-                "$ref": "#/definitions/core/time_integer"
+                "$ref": "#/definitions/core/definitions/time_integer"
               }
             }
           }

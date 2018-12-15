@@ -10,30 +10,30 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "timestamp": {
-            "description": "",
             "type": "string"
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "email_domain_changed": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "email_domain": {
                 "type": "string"
               },
               "event_ts": {
-                "$ref": "#/definitions/core/timestamp"
+                "$ref": "#/definitions/core/definitions/timestamp"
               }
             }
           }

@@ -22,9 +22,9 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "subteam_id": {
@@ -34,56 +34,54 @@
             "type": "string"
           },
           "time_integer": {
-            "description": "",
             "type": "number"
           },
           "user_id": {
-            "description": "",
             "type": "string"
           },
           "user_count": {
-            "description": "",
             "type": "string"
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "subteam_members_changed": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "subteam_id": {
-                "$ref": "#/definitions/core/subteam_id"
+                "$ref": "#/definitions/core/definitions/subteam_id"
               },
               "team_id": {
-                "$ref": "#/definitions/core/team_id"
+                "$ref": "#/definitions/core/definitions/team_id"
               },
               "date_previous_update": {
-                "$ref": "#/definitions/core/time_integer"
+                "$ref": "#/definitions/core/definitions/time_integer"
               },
               "date_update": {
-                "$ref": "#/definitions/core/time_integer"
+                "$ref": "#/definitions/core/definitions/time_integer"
               },
               "added_users": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/user_id"
+                  "$ref": "#/definitions/core/definitions/user_id"
                 }
               },
               "added_users_count": {
-                "$ref": "#/definitions/core/user_count"
+                "$ref": "#/definitions/core/definitions/user_count"
               },
               "removed_users": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/user_id"
+                  "$ref": "#/definitions/core/definitions/user_id"
                 }
               },
               "removed_users_count": {
-                "$ref": "#/definitions/core/user_count"
+                "$ref": "#/definitions/core/definitions/user_count"
               }
             }
           }

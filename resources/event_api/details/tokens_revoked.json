@@ -24,11 +24,8 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "token": {
-            "description": "",
-            "type": "string"
-          },
           "team_id": {
             "type": "string"
           },
@@ -36,34 +33,25 @@
             "type": "string"
           },
           "event_type": {
-            "description": "",
             "type": "string"
           },
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "event_id": {
             "type": "string"
           },
           "time_integer": {
-            "description": "",
             "type": "number"
           },
+          "token": {
+            "type": "string"
+          },
           "tokens": {
-            "type": "object",
-            "properties": {
-              "oauth": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/core/string"
-                }
-              },
-              "bot": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/core/string"
-                }
+            "oauth": {
+              "type": "array",
+              "items": {
+                "type": "string"
               }
             }
           },
@@ -71,40 +59,41 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/event_type"
+                "$ref": "#/definitions/core/definitions/event_type"
               },
               "tokens": {
-                "$ref": "#/definitions/core/tokens"
+                "$ref": "#/definitions/core/definitions/tokens"
               }
             }
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "tokens_revoked": {
             "type": "object",
             "properties": {
               "token": {
-                "$ref": "#/definitions/core/token"
+                "type": "string"
               },
               "team_id": {
-                "$ref": "#/definitions/core/team_id"
+                "$ref": "#/definitions/core/definitions/team_id"
               },
               "api_app_id": {
-                "$ref": "#/definitions/core/api_app_id"
+                "$ref": "#/definitions/core/definitions/api_app_id"
               },
               "tokens_revoked_event": {
-                "$ref": "#/definitions/core/tokens_revoked_event"
+                "$ref": "#/definitions/core/definitions/tokens_revoked_event"
               },
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "event_id": {
-                "$ref": "#/definitions/core/event_id"
+                "$ref": "#/definitions/core/definitions/event_id"
               },
               "event_time": {
-                "$ref": "#/definitions/core/time_integer"
+                "$ref": "#/definitions/core/definitions/time_integer"
               }
             }
           }

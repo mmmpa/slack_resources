@@ -13,45 +13,44 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "comment_id": {
-            "description": "",
             "type": "string"
           },
           "file_id": {
-            "description": "",
             "type": "string"
           },
           "file": {
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/file_id"
+                "$ref": "#/definitions/core/definitions/file_id"
               }
             }
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "file_comment_deleted": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "comment": {
-                "$ref": "#/definitions/core/comment_id"
+                "$ref": "#/definitions/core/definitions/comment_id"
               },
               "file_id": {
-                "$ref": "#/definitions/core/file_id"
+                "$ref": "#/definitions/core/definitions/file_id"
               },
               "file": {
-                "$ref": "#/definitions/core/file"
+                "$ref": "#/definitions/core/definitions/file"
               }
             }
           }

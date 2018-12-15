@@ -1,0 +1,1826 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "time_integer": {
+          "type": "number"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "reaction_item_type": {
+          "type": "string"
+        },
+        "auto_type": {
+          "type": "string"
+        },
+        "user_count": {
+          "type": "string"
+        },
+        "subscription_type": {
+          "type": "string"
+        },
+        "subteam_id": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "string"
+        },
+        "subteam_name": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "prefs": {
+          "type": "object",
+          "properties": {
+            "channels": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/channel_id"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/group_id"
+              }
+            }
+          }
+        },
+        "subteam": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/core/definitions/subteam_id"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "is_usergroup": {
+              "type": "boolean"
+            },
+            "name": {
+              "$ref": "#/definitions/core/definitions/subteam_name"
+            },
+            "description": {
+              "type": "string"
+            },
+            "handle": {
+              "type": "string"
+            },
+            "is_external": {
+              "type": "boolean"
+            },
+            "date_create": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "date_update": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "date_delete": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "auto_type": {
+              "$ref": "#/definitions/core/definitions/auto_type"
+            },
+            "created_by": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "updated_by": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "deleted_by": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "prefs": {
+              "$ref": "#/definitions/core/definitions/prefs"
+            },
+            "user_count": {
+              "$ref": "#/definitions/core/definitions/user_count"
+            }
+          }
+        },
+        "channel_name": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "name": {
+              "$ref": "#/definitions/core/definitions/channel_name"
+            },
+            "created": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "token": {
+          "type": "string"
+        },
+        "api_app_id": {
+          "type": "string"
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "tokens": {
+          "oauth": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "tokens_revoked_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "tokens": {
+              "$ref": "#/definitions/core/definitions/tokens"
+            }
+          }
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "file_id": {
+          "type": "string"
+        },
+        "file": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            }
+          }
+        },
+        "dnd_status": {
+          "type": "object",
+          "properties": {
+            "dnd_enabled": {
+              "type": "boolean"
+            },
+            "next_dnd_start_ts": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "next_dnd_end_ts": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "scope": {
+          "type": "string"
+        },
+        "trigger_id": {
+          "type": "string"
+        },
+        "scope_granted_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "scopes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/scope"
+              }
+            },
+            "trigger_id": {
+              "$ref": "#/definitions/core/definitions/trigger_id"
+            }
+          }
+        },
+        "channel_type": {
+          "type": "string"
+        },
+        "message_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "text": {
+              "type": "string"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "channel_type": {
+              "type": "string"
+            }
+          }
+        },
+        "enterprise_id": {
+          "type": "string"
+        },
+        "grid_migration_finished_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "enterprise_id": {
+              "$ref": "#/definitions/core/definitions/enterprise_id"
+            }
+          }
+        },
+        "challenge": {
+          "type": "string"
+        },
+        "root_name": {
+          "type": "string"
+        },
+        "user_resource_denied_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "scopes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/scope"
+              }
+            },
+            "trigger_id": {
+              "$ref": "#/definitions/core/definitions/trigger_id"
+            }
+          }
+        },
+        "app_uninstalled_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            }
+          }
+        },
+        "subscription_subtype": {
+          "type": "string"
+        },
+        "emoji_name": {
+          "type": "string"
+        },
+        "comment_id": {
+          "type": "string"
+        },
+        "user_resource_granted_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "scopes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/scope"
+              }
+            },
+            "trigger_id": {
+              "$ref": "#/definitions/core/definitions/trigger_id"
+            }
+          }
+        },
+        "link": {
+          "type": "object",
+          "properties": {
+            "domain": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        },
+        "link_shared_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "message_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "thread_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "links": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/link"
+              }
+            }
+          }
+        },
+        "resource_type": {
+          "type": "string"
+        },
+        "grant_type": {
+          "type": "string"
+        },
+        "resource_id": {
+          "type": "string"
+        },
+        "grant": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/grant_type"
+            },
+            "resource_id": {
+              "$ref": "#/definitions/core/definitions/resource_id"
+            }
+          }
+        },
+        "resource": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/resource_type"
+            },
+            "grant": {
+              "$ref": "#/definitions/core/definitions/grant"
+            }
+          }
+        },
+        "resource_item": {
+          "type": "object",
+          "properties": {
+            "resource": {
+              "$ref": "#/definitions/core/definitions/resource"
+            },
+            "scopes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/scope"
+              }
+            }
+          }
+        },
+        "resources_added_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "resources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/resource_item"
+              }
+            }
+          }
+        },
+        "user_resource_removed_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "trigger_id": {
+              "$ref": "#/definitions/core/definitions/trigger_id"
+            }
+          }
+        },
+        "resources_removed_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "resources": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/resource_item"
+              }
+            }
+          }
+        },
+        "scope_denied_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "scopes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/scope"
+              }
+            },
+            "trigger_id": {
+              "$ref": "#/definitions/core/definitions/trigger_id"
+            }
+          }
+        },
+        "grid_migration_started_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "enterprise_id": {
+              "$ref": "#/definitions/core/definitions/enterprise_id"
+            }
+          }
+        },
+        "reaction_item": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/reaction_item_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "subteam_created": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subteam": {
+              "$ref": "#/definitions/core/definitions/subteam"
+            }
+          }
+        },
+        "subteam_members_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subteam_id": {
+              "$ref": "#/definitions/core/definitions/subteam_id"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "date_previous_update": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "date_update": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "added_users": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/user_id"
+              }
+            },
+            "added_users_count": {
+              "$ref": "#/definitions/core/definitions/user_count"
+            },
+            "removed_users": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/user_id"
+              }
+            },
+            "removed_users_count": {
+              "$ref": "#/definitions/core/definitions/user_count"
+            }
+          }
+        },
+        "channel_rename": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel"
+            }
+          }
+        },
+        "tokens_revoked": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "tokens_revoked_event": {
+              "$ref": "#/definitions/core/definitions/tokens_revoked_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "app_mention": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "text": {
+              "type": "string"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "file_shared": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "channel_archive": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            }
+          }
+        },
+        "subteam_updated": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subteam": {
+              "$ref": "#/definitions/core/definitions/subteam"
+            }
+          }
+        },
+        "group_open": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "dnd_updated_user": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "dnd_status": {
+              "$ref": "#/definitions/core/definitions/dnd_status"
+            }
+          }
+        },
+        "subteam_self_added": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subteam_id": {
+              "$ref": "#/definitions/core/definitions/subteam_id"
+            }
+          }
+        },
+        "channel_unarchive": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            }
+          }
+        },
+        "scope_granted": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "scope_granted_event": {
+              "$ref": "#/definitions/core/definitions/scope_granted_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "message.app_home": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "message_event": {
+              "$ref": "#/definitions/core/definitions/message_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "group_archive": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "im_open": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "pin_removed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel_id": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "pin_item": {
+              "$ref": "#/definitions/core/definitions/pin_item"
+            },
+            "has_pins": {
+              "type": "boolean"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "grid_migration_finished": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "grid_migration_finished_event": {
+              "$ref": "#/definitions/core/definitions/grid_migration_finished_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "url_verification": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "challenge": {
+              "type": "string"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            }
+          }
+        },
+        "team_rename": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "name": {
+              "$ref": "#/definitions/core/definitions/root_name"
+            }
+          }
+        },
+        "group_rename": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel"
+            }
+          }
+        },
+        "user_resource_denied": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "user_resource_denied_event": {
+              "$ref": "#/definitions/core/definitions/user_resource_denied_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "subteam_self_removed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subteam_id": {
+              "$ref": "#/definitions/core/definitions/subteam_id"
+            }
+          }
+        },
+        "pin_added": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel_id": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "pin_item": {
+              "$ref": "#/definitions/core/definitions/pin_item"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "app_uninstalled": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "app_uninstalled_event": {
+              "$ref": "#/definitions/core/definitions/app_uninstalled_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "emoji_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subtype": {
+              "$ref": "#/definitions/core/definitions/subscription_subtype"
+            },
+            "names": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/emoji_name"
+              }
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "file_public": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "file_comment_deleted": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "comment": {
+              "$ref": "#/definitions/core/definitions/comment_id"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "channel_created": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel"
+            }
+          }
+        },
+        "member_left_channel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "channel_type": {
+              "type": "string"
+            },
+            "team": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            }
+          }
+        },
+        "email_domain_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "email_domain": {
+              "type": "string"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "message.im": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "message_event": {
+              "$ref": "#/definitions/core/definitions/message_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "file_unshared": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "group_deleted": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "user_resource_granted": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "user_resource_granted_event": {
+              "$ref": "#/definitions/core/definitions/user_resource_granted_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "user_change": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user_user": {
+              "$ref": "#/definitions/core/definitions/user_user"
+            }
+          }
+        },
+        "channel_left": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "channel_history_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "latest": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "group_left": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "file_comment_added": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_comment": {
+              "$ref": "#/definitions/core/definitions/file_comment"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "group_close": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "link_shared": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "link_shared_event": {
+              "$ref": "#/definitions/core/definitions/link_shared_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_users": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/user_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "im_created": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "im_channel": {
+              "$ref": "#/definitions/core/definitions/im_channel"
+            }
+          }
+        },
+        "channel_deleted": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "message.channels": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "message_event": {
+              "$ref": "#/definitions/core/definitions/message_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "app_rate_limited": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "minute_rate_limited": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            }
+          }
+        },
+        "im_close": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "resources_added": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "resources_added_event": {
+              "$ref": "#/definitions/core/definitions/resources_added_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "team_join": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "team_user": {
+              "$ref": "#/definitions/core/definitions/team_user"
+            }
+          }
+        },
+        "user_resource_removed": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "user_resource_removed_event": {
+              "$ref": "#/definitions/core/definitions/user_resource_removed_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "im_history_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "latest": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "dnd_updated": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "dnd_status": {
+              "$ref": "#/definitions/core/definitions/dnd_status"
+            }
+          }
+        },
+        "message.groups": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "message_event": {
+              "$ref": "#/definitions/core/definitions/message_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "star_added": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "star_item": {
+              "$ref": "#/definitions/core/definitions/star_item"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "group_history_changed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "latest": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "resources_removed": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "resources_removed_event": {
+              "$ref": "#/definitions/core/definitions/resources_removed_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "scope_denied": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "scope_denied_event": {
+              "$ref": "#/definitions/core/definitions/scope_denied_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "group_unarchive": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            }
+          }
+        },
+        "message.mpim": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "message_event": {
+              "$ref": "#/definitions/core/definitions/message_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "star_removed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "star_item": {
+              "$ref": "#/definitions/core/definitions/star_item"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "file_change": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "team_domain_change": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "url": {
+              "type": "string"
+            },
+            "domain": {
+              "type": "string"
+            }
+          }
+        },
+        "grid_migration_started": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "grid_migration_started_event": {
+              "$ref": "#/definitions/core/definitions/grid_migration_started_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        },
+        "reaction_added": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "reaction": {
+              "$ref": "#/definitions/core/definitions/emoji_name"
+            },
+            "item_user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "reaction_item": {
+              "$ref": "#/definitions/core/definitions/reaction_item"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "file_comment_edited": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_comment": {
+              "$ref": "#/definitions/core/definitions/file_comment"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "reaction_removed": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "reaction": {
+              "$ref": "#/definitions/core/definitions/emoji_name"
+            },
+            "item_user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "reaction_item": {
+              "$ref": "#/definitions/core/definitions/reaction_item"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "member_joined_channel": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "channel_type": {
+              "type": "string"
+            },
+            "team": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "inviter": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            }
+          }
+        },
+        "file_created": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        },
+        "file_deleted": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        },
+        "message": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "text": {
+              "type": "string"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            }
+          }
+        }
+      }
+    }
+  }
+}

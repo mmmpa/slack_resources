@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "subteam_id": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "string"
+        },
+        "subteam_name": {
+          "type": "string"
+        },
+        "time_integer": {
+          "type": "number"
+        },
+        "auto_type": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        },
+        "group_id": {
+          "type": "string"
+        },
+        "user_count": {
+          "type": "string"
+        },
+        "prefs": {
+          "type": "object",
+          "properties": {
+            "channels": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/channel_id"
+              }
+            },
+            "groups": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/group_id"
+              }
+            }
+          }
+        },
+        "subteam": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/core/definitions/subteam_id"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "is_usergroup": {
+              "type": "boolean"
+            },
+            "name": {
+              "$ref": "#/definitions/core/definitions/subteam_name"
+            },
+            "description": {
+              "type": "string"
+            },
+            "handle": {
+              "type": "string"
+            },
+            "is_external": {
+              "type": "boolean"
+            },
+            "date_create": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "date_update": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "date_delete": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "auto_type": {
+              "$ref": "#/definitions/core/definitions/auto_type"
+            },
+            "created_by": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "updated_by": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "deleted_by": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "prefs": {
+              "$ref": "#/definitions/core/definitions/prefs"
+            },
+            "users": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/user_id"
+              }
+            },
+            "user_count": {
+              "$ref": "#/definitions/core/definitions/user_count"
+            }
+          }
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "subteam_updated": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "subteam": {
+              "$ref": "#/definitions/core/definitions/subteam"
+            }
+          }
+        }
+      }
+    }
+  }
+}

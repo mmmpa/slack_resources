@@ -1,0 +1,106 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "team_id": {
+          "type": "string"
+        },
+        "api_app_id": {
+          "type": "string"
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "subscription_type": {
+          "type": "string"
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "time_integer": {
+          "type": "number"
+        },
+        "token": {
+          "type": "string"
+        },
+        "channel_type": {
+          "type": "string"
+        },
+        "message_event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/event_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "text": {
+              "type": "string"
+            },
+            "ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/core/definitions/timestamp"
+            },
+            "channel_type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "message.groups": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string"
+            },
+            "team_id": {
+              "$ref": "#/definitions/core/definitions/team_id"
+            },
+            "api_app_id": {
+              "$ref": "#/definitions/core/definitions/api_app_id"
+            },
+            "message_event": {
+              "$ref": "#/definitions/core/definitions/message_event"
+            },
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "authed_teams": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/core/definitions/team_id"
+              }
+            },
+            "event_id": {
+              "$ref": "#/definitions/core/definitions/event_id"
+            },
+            "event_time": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        }
+      }
+    }
+  }
+}

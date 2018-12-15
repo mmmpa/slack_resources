@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "comment_id": {
+          "type": "string"
+        },
+        "file_id": {
+          "type": "string"
+        },
+        "file": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            }
+          }
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "file_comment_deleted": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "comment": {
+              "$ref": "#/definitions/core/definitions/comment_id"
+            },
+            "file_id": {
+              "$ref": "#/definitions/core/definitions/file_id"
+            },
+            "file": {
+              "$ref": "#/definitions/core/definitions/file"
+            }
+          }
+        }
+      }
+    }
+  }
+}

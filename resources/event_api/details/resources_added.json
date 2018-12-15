@@ -36,11 +36,8 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "token": {
-            "description": "",
-            "type": "string"
-          },
           "team_id": {
             "type": "string"
           },
@@ -48,57 +45,54 @@
             "type": "string"
           },
           "event_type": {
-            "description": "",
             "type": "string"
           },
           "resource_type": {
-            "description": "",
             "type": "string"
           },
           "grant_type": {
-            "description": "",
             "type": "string"
           },
           "resource_id": {
             "type": "string"
           },
           "scope": {
-            "description": "",
             "type": "string"
           },
           "resource_item": {
             "type": "object",
             "properties": {
               "resource": {
-                "$ref": "#/definitions/core/resource"
+                "$ref": "#/definitions/core/definitions/resource"
               },
               "scopes": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/scope"
+                  "$ref": "#/definitions/core/definitions/scope"
                 }
               }
             }
           },
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "event_id": {
             "type": "string"
           },
           "time_integer": {
-            "description": "",
             "type": "number"
+          },
+          "token": {
+            "type": "string"
           },
           "grant": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/grant_type"
+                "$ref": "#/definitions/core/definitions/grant_type"
               },
               "resource_id": {
-                "$ref": "#/definitions/core/resource_id"
+                "$ref": "#/definitions/core/definitions/resource_id"
               }
             }
           },
@@ -106,10 +100,10 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/resource_type"
+                "$ref": "#/definitions/core/definitions/resource_type"
               },
               "grant": {
-                "$ref": "#/definitions/core/grant"
+                "$ref": "#/definitions/core/definitions/grant"
               }
             }
           },
@@ -117,12 +111,12 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/event_type"
+                "$ref": "#/definitions/core/definitions/event_type"
               },
               "resources": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/resource_item"
+                  "$ref": "#/definitions/core/definitions/resource_item"
                 }
               }
             }
@@ -130,36 +124,37 @@
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "resources_added": {
             "type": "object",
             "properties": {
               "token": {
-                "$ref": "#/definitions/core/token"
+                "type": "string"
               },
               "team_id": {
-                "$ref": "#/definitions/core/team_id"
+                "$ref": "#/definitions/core/definitions/team_id"
               },
               "api_app_id": {
-                "$ref": "#/definitions/core/api_app_id"
+                "$ref": "#/definitions/core/definitions/api_app_id"
               },
               "resources_added_event": {
-                "$ref": "#/definitions/core/resources_added_event"
+                "$ref": "#/definitions/core/definitions/resources_added_event"
               },
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "authed_teams": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/team_id"
+                  "$ref": "#/definitions/core/definitions/team_id"
                 }
               },
               "event_id": {
-                "$ref": "#/definitions/core/event_id"
+                "$ref": "#/definitions/core/definitions/event_id"
               },
               "event_time": {
-                "$ref": "#/definitions/core/time_integer"
+                "$ref": "#/definitions/core/definitions/time_integer"
               }
             }
           }

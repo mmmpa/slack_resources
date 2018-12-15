@@ -10,34 +10,33 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
+          "subscription_type": {
+            "type": "string"
+          },
           "token": {
-            "description": "",
             "type": "string"
           },
           "challenge": {
-            "description": "",
-            "type": "string"
-          },
-          "response_type": {
-            "description": "",
             "type": "string"
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "url_verification": {
             "type": "object",
             "properties": {
               "token": {
-                "$ref": "#/definitions/core/token"
+                "type": "string"
               },
               "challenge": {
-                "$ref": "#/definitions/core/challenge"
+                "type": "string"
               },
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               }
             }
           }

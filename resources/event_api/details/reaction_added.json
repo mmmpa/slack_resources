@@ -17,69 +17,65 @@
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
       "core": {
+        "type": "object",
         "definitions": {
-          "response_type": {
-            "description": "",
+          "subscription_type": {
             "type": "string"
           },
           "user_id": {
-            "description": "",
             "type": "string"
           },
           "emoji_name": {
-            "description": "",
             "type": "string"
           },
           "reaction_item_type": {
-            "description": "",
             "type": "string"
           },
           "channel_id": {
-            "description": "",
             "type": "string"
           },
           "timestamp": {
-            "description": "",
             "type": "string"
           },
           "reaction_item": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/reaction_item_type"
+                "$ref": "#/definitions/core/definitions/reaction_item_type"
               },
               "channel": {
-                "$ref": "#/definitions/core/channel_id"
+                "$ref": "#/definitions/core/definitions/channel_id"
               },
               "ts": {
-                "$ref": "#/definitions/core/timestamp"
+                "$ref": "#/definitions/core/definitions/timestamp"
               }
             }
           }
         }
       },
       "event_api_subscription": {
+        "type": "object",
         "definitions": {
           "reaction_added": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/response_type"
+                "$ref": "#/definitions/core/definitions/subscription_type"
               },
               "user": {
-                "$ref": "#/definitions/core/user_id"
+                "$ref": "#/definitions/core/definitions/user_id"
               },
               "reaction": {
-                "$ref": "#/definitions/core/emoji_name"
+                "$ref": "#/definitions/core/definitions/emoji_name"
               },
               "item_user": {
-                "$ref": "#/definitions/core/user_id"
+                "$ref": "#/definitions/core/definitions/user_id"
               },
               "reaction_item": {
-                "$ref": "#/definitions/core/reaction_item"
+                "$ref": "#/definitions/core/definitions/reaction_item"
               },
               "event_ts": {
-                "$ref": "#/definitions/core/timestamp"
+                "$ref": "#/definitions/core/definitions/timestamp"
               }
             }
           }

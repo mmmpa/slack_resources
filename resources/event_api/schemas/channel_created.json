@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "channel_id": {
+          "type": "string"
+        },
+        "channel_name": {
+          "type": "string"
+        },
+        "time_integer": {
+          "type": "number"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/definitions/core/definitions/channel_id"
+            },
+            "name": {
+              "$ref": "#/definitions/core/definitions/channel_name"
+            },
+            "created": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "creator": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            }
+          }
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "channel_created": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel"
+            }
+          }
+        }
+      }
+    }
+  }
+}

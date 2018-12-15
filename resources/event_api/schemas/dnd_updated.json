@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "core": {
+      "type": "object",
+      "definitions": {
+        "subscription_type": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "time_integer": {
+          "type": "number"
+        },
+        "dnd_status": {
+          "type": "object",
+          "properties": {
+            "dnd_enabled": {
+              "type": "boolean"
+            },
+            "next_dnd_start_ts": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "next_dnd_end_ts": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            },
+            "snooze_enabled": {
+              "type": "boolean"
+            },
+            "snooze_endtime": {
+              "$ref": "#/definitions/core/definitions/time_integer"
+            }
+          }
+        }
+      }
+    },
+    "event_api_subscription": {
+      "type": "object",
+      "definitions": {
+        "dnd_updated": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/definitions/core/definitions/subscription_type"
+            },
+            "user": {
+              "$ref": "#/definitions/core/definitions/user_id"
+            },
+            "dnd_status": {
+              "$ref": "#/definitions/core/definitions/dnd_status"
+            }
+          }
+        }
+      }
+    }
+  }
+}
