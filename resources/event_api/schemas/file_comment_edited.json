@@ -10,6 +10,11 @@
         "file_id": {
           "type": "string"
         },
+        "comment": {
+          "type": "object",
+          "properties": {
+          }
+        },
         "file": {
           "type": "object",
           "properties": {
@@ -29,8 +34,8 @@
             "type": {
               "$ref": "#/definitions/core/definitions/subscription_type"
             },
-            "file_comment": {
-              "$ref": "#/definitions/core/definitions/file_comment"
+            "comment": {
+              "$ref": "#/definitions/core/definitions/comment"
             },
             "file_id": {
               "$ref": "#/definitions/core/definitions/file_id"

@@ -235,6 +235,11 @@
             }
           }
         },
+        "pin_item": {
+          "type": "object",
+          "properties": {
+          }
+        },
         "enterprise_id": {
           "type": "string"
         },
@@ -310,6 +315,16 @@
             "trigger_id": {
               "$ref": "#/definitions/core/definitions/trigger_id"
             }
+          }
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+          }
+        },
+        "comment": {
+          "type": "object",
+          "properties": {
           }
         },
         "link": {
@@ -420,6 +435,11 @@
             "trigger_id": {
               "$ref": "#/definitions/core/definitions/trigger_id"
             }
+          }
+        },
+        "star_item": {
+          "type": "object",
+          "properties": {
           }
         },
         "resources_removed_event": {
@@ -1138,8 +1158,8 @@
             "type": {
               "$ref": "#/definitions/core/definitions/subscription_type"
             },
-            "user_user": {
-              "$ref": "#/definitions/core/definitions/user_user"
+            "user": {
+              "$ref": "#/definitions/core/definitions/user"
             }
           }
         },
@@ -1188,8 +1208,8 @@
             "type": {
               "$ref": "#/definitions/core/definitions/subscription_type"
             },
-            "file_comment": {
-              "$ref": "#/definitions/core/definitions/file_comment"
+            "comment": {
+              "$ref": "#/definitions/core/definitions/comment"
             },
             "file_id": {
               "$ref": "#/definitions/core/definitions/file_id"
@@ -1254,8 +1274,8 @@
             "user": {
               "$ref": "#/definitions/core/definitions/user_id"
             },
-            "im_channel": {
-              "$ref": "#/definitions/core/definitions/im_channel"
+            "channel": {
+              "$ref": "#/definitions/core/definitions/channel"
             }
           }
         },
@@ -1374,8 +1394,8 @@
             "type": {
               "$ref": "#/definitions/core/definitions/subscription_type"
             },
-            "team_user": {
-              "$ref": "#/definitions/core/definitions/team_user"
+            "user": {
+              "$ref": "#/definitions/core/definitions/user"
             }
           }
         },
@@ -1715,8 +1735,8 @@
             "type": {
               "$ref": "#/definitions/core/definitions/subscription_type"
             },
-            "file_comment": {
-              "$ref": "#/definitions/core/definitions/file_comment"
+            "comment": {
+              "$ref": "#/definitions/core/definitions/comment"
             },
             "file_id": {
               "$ref": "#/definitions/core/definitions/file_id"

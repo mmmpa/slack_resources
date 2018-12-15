@@ -14,6 +14,11 @@
         "definitions": {
           "subscription_type": {
             "type": "string"
+          },
+          "user": {
+            "type": "object",
+            "properties": {
+            }
           }
         }
       },
@@ -26,8 +31,8 @@
               "type": {
                 "$ref": "#/definitions/core/definitions/subscription_type"
               },
-              "user_user": {
-                "$ref": "#/definitions/core/definitions/user_user"
+              "user": {
+                "$ref": "#/definitions/core/definitions/user"
               }
             }
           }

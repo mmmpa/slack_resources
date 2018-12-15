@@ -26,6 +26,11 @@
           },
           "timestamp": {
             "type": "string"
+          },
+          "pin_item": {
+            "type": "object",
+            "properties": {
+            }
           }
         }
       },

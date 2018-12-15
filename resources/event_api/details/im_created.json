@@ -18,6 +18,11 @@
           },
           "user_id": {
             "type": "string"
+          },
+          "channel": {
+            "type": "object",
+            "properties": {
+            }
           }
         }
       },
@@ -33,8 +38,8 @@
               "user": {
                 "$ref": "#/definitions/core/definitions/user_id"
               },
-              "im_channel": {
-                "$ref": "#/definitions/core/definitions/im_channel"
+              "channel": {
+                "$ref": "#/definitions/core/definitions/channel"
               }
             }
           }

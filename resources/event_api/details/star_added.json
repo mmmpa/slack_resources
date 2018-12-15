@@ -22,6 +22,11 @@
           },
           "timestamp": {
             "type": "string"
+          },
+          "star_item": {
+            "type": "object",
+            "properties": {
+            }
           }
         }
       },

@@ -1418,6 +1418,11 @@
             },
             "timestamp": {
               "type": "string"
+            },
+            "pin_item": {
+              "type": "object",
+              "properties": {
+              }
             }
           }
         },
@@ -1930,6 +1935,11 @@
             },
             "timestamp": {
               "type": "string"
+            },
+            "pin_item": {
+              "type": "object",
+              "properties": {
+              }
             }
           }
         },
@@ -2839,6 +2849,11 @@
           "definitions": {
             "subscription_type": {
               "type": "string"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+              }
             }
           }
         },
@@ -2851,8 +2866,8 @@
                 "type": {
                   "$ref": "#/definitions/core/definitions/subscription_type"
                 },
-                "user_user": {
-                  "$ref": "#/definitions/core/definitions/user_user"
+                "user": {
+                  "$ref": "#/definitions/core/definitions/user"
                 }
               }
             }
@@ -3043,6 +3058,11 @@
             "file_id": {
               "type": "string"
             },
+            "comment": {
+              "type": "object",
+              "properties": {
+              }
+            },
             "file": {
               "type": "object",
               "properties": {
@@ -3062,8 +3082,8 @@
                 "type": {
                   "$ref": "#/definitions/core/definitions/subscription_type"
                 },
-                "file_comment": {
-                  "$ref": "#/definitions/core/definitions/file_comment"
+                "comment": {
+                  "$ref": "#/definitions/core/definitions/comment"
                 },
                 "file_id": {
                   "$ref": "#/definitions/core/definitions/file_id"
@@ -3316,6 +3336,11 @@
             },
             "user_id": {
               "type": "string"
+            },
+            "channel": {
+              "type": "object",
+              "properties": {
+              }
             }
           }
         },
@@ -3331,8 +3356,8 @@
                 "user": {
                   "$ref": "#/definitions/core/definitions/user_id"
                 },
-                "im_channel": {
-                  "$ref": "#/definitions/core/definitions/im_channel"
+                "channel": {
+                  "$ref": "#/definitions/core/definitions/channel"
                 }
               }
             }
@@ -3839,6 +3864,11 @@
           "definitions": {
             "subscription_type": {
               "type": "string"
+            },
+            "user": {
+              "type": "object",
+              "properties": {
+              }
             }
           }
         },
@@ -3851,8 +3881,8 @@
                 "type": {
                   "$ref": "#/definitions/core/definitions/subscription_type"
                 },
-                "team_user": {
-                  "$ref": "#/definitions/core/definitions/team_user"
+                "user": {
+                  "$ref": "#/definitions/core/definitions/user"
                 }
               }
             }
@@ -4277,6 +4307,11 @@
             },
             "timestamp": {
               "type": "string"
+            },
+            "star_item": {
+              "type": "object",
+              "properties": {
+              }
             }
           }
         },
@@ -4866,6 +4901,11 @@
             },
             "timestamp": {
               "type": "string"
+            },
+            "star_item": {
+              "type": "object",
+              "properties": {
+              }
             }
           }
         },
@@ -5225,6 +5265,11 @@
             "file_id": {
               "type": "string"
             },
+            "comment": {
+              "type": "object",
+              "properties": {
+              }
+            },
             "file": {
               "type": "object",
               "properties": {
@@ -5244,8 +5289,8 @@
                 "type": {
                   "$ref": "#/definitions/core/definitions/subscription_type"
                 },
-                "file_comment": {
-                  "$ref": "#/definitions/core/definitions/file_comment"
+                "comment": {
+                  "$ref": "#/definitions/core/definitions/comment"
                 },
                 "file_id": {
                   "$ref": "#/definitions/core/definitions/file_id"

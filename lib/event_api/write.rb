@@ -28,36 +28,26 @@ end
 def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined_used = [], parent = {})
   types = JSON.parse(responce.to_json)
 
-  return key.camelize if responce.blank?
+  # return key.camelize if responce.blank?
 
   def_string = ->(id_key) { id_key.tap { defined.merge!(id_key => { "type" => "string" }) } }
 
   properties = types.inject({}) do |a, (k, v)|
     if v.is_a?(Hash)
-      if !v.blank?
-        k =
-          if k == 'item'
-            if types['type'].match(/reaction_.+/)
-              'reaction_item'
-            else
-              'item'
-            end
-          elsif types['type'] == 'event_callback' && k == 'event'
-            "#{v['type']}_event"
-          else
-            k
-          end
+      k =
+        if k == 'item'
+          t = types['type'].split('_').shift
+          "#{t}_item"
+        elsif types['type'] == 'event_callback' && k == 'event'
+          "#{v['type']}_event"
+        else
+          k
+        end
 
 
-        schema, _ = to_schema_support(v, k, preset, defined, defined_used, types)
-        defined.merge!(k => schema)
-        next a.merge(k => { "$ref" => "#/definitions/core/definitions/#{k}" })
-      elsif responce['type']
-        nested_key = "#{responce['type'].split('_').shift}_#{k}"
-        next a.merge(nested_key => { "$ref" => "#/definitions/core/definitions/#{nested_key}" })
-      else
-        next a.merge(k => { "$ref" => "#/definitions/core/definitions/#{k}" })
-      end
+      schema, _ = to_schema_support(v, k, preset, defined, defined_used, types)
+      defined.merge!(k => schema)
+      next a.merge(k => { "$ref" => "#/definitions/core/definitions/#{k}" })
     end
 
     type =
