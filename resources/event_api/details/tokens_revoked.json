@@ -35,7 +35,10 @@
           "api_app_id": {
             "type": "string"
           },
-          "tokens_revoked": null,
+          "event_type": {
+            "description": "",
+            "type": "string"
+          },
           "response_type": {
             "description": "",
             "type": "string"
@@ -47,7 +50,7 @@
             "description": "",
             "type": "number"
           },
-          "": {
+          "tokens": {
             "type": "object",
             "properties": {
               "oauth": {
@@ -68,10 +71,10 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/tokens_revoked"
+                "$ref": "#/definitions/core/event_type"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "tokens": {
+                "$ref": "#/definitions/core/tokens"
               }
             }
           }

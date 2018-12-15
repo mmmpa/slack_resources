@@ -29,7 +29,7 @@
             "description": "",
             "type": "number"
           },
-          "": {
+          "dnd_status": {
             "type": "object",
             "properties": {
               "dnd_enabled": {
@@ -62,8 +62,8 @@
               "user": {
                 "$ref": "#/definitions/core/user_id"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "dnd_status": {
+                "$ref": "#/definitions/core/dnd_status"
               }
             }
           }

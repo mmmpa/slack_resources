@@ -166,7 +166,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "app_uninstalled": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "response_type": {
               "description": "",
               "type": "string"
@@ -182,7 +185,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/app_uninstalled"
+                  "$ref": "#/definitions/core/event_type"
                 }
               }
             }
@@ -303,8 +306,14 @@
               "description": "",
               "type": "string"
             },
-            "C024BE91L": null,
-            "fun": null,
+            "channel_id": {
+              "description": "",
+              "type": "string"
+            },
+            "channel_name": {
+              "description": "",
+              "type": "string"
+            },
             "time_integer": {
               "description": "",
               "type": "number"
@@ -313,14 +322,14 @@
               "description": "",
               "type": "string"
             },
-            "": {
+            "channel": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/C024BE91L"
+                  "$ref": "#/definitions/core/channel_id"
                 },
                 "name": {
-                  "$ref": "#/definitions/core/fun"
+                  "$ref": "#/definitions/core/channel_name"
                 },
                 "created": {
                   "$ref": "#/definitions/core/time_integer"
@@ -340,8 +349,8 @@
                 "type": {
                   "$ref": "#/definitions/core/response_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "channel": {
+                  "$ref": "#/definitions/core/channel"
                 }
               }
             }
@@ -528,20 +537,26 @@
               "description": "",
               "type": "string"
             },
-            "C02ELGNBH": null,
-            "new_name": null,
+            "channel_id": {
+              "description": "",
+              "type": "string"
+            },
+            "channel_name": {
+              "description": "",
+              "type": "string"
+            },
             "time_integer": {
               "description": "",
               "type": "number"
             },
-            "": {
+            "channel": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/C02ELGNBH"
+                  "$ref": "#/definitions/core/channel_id"
                 },
                 "name": {
-                  "$ref": "#/definitions/core/new_name"
+                  "$ref": "#/definitions/core/channel_name"
                 },
                 "created": {
                   "$ref": "#/definitions/core/time_integer"
@@ -558,8 +573,8 @@
                 "type": {
                   "$ref": "#/definitions/core/response_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "channel": {
+                  "$ref": "#/definitions/core/channel"
                 }
               }
             }
@@ -661,7 +676,7 @@
               "description": "",
               "type": "number"
             },
-            "": {
+            "dnd_status": {
               "type": "object",
               "properties": {
                 "dnd_enabled": {
@@ -694,8 +709,8 @@
                 "user": {
                   "$ref": "#/definitions/core/user_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "dnd_status": {
+                  "$ref": "#/definitions/core/dnd_status"
                 }
               }
             }
@@ -740,7 +755,7 @@
               "description": "",
               "type": "number"
             },
-            "": {
+            "dnd_status": {
               "type": "object",
               "properties": {
                 "dnd_enabled": {
@@ -767,8 +782,8 @@
                 "user": {
                   "$ref": "#/definitions/core/user_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "dnd_status": {
+                  "$ref": "#/definitions/core/dnd_status"
                 }
               }
             }
@@ -926,12 +941,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -948,8 +962,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -990,12 +1004,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -1015,8 +1028,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -1060,12 +1073,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -1085,8 +1097,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -1127,12 +1139,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -1152,8 +1163,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -1192,12 +1203,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -1214,8 +1224,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -1309,12 +1319,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -1331,8 +1340,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -1371,12 +1380,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -1393,8 +1401,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -1433,12 +1441,11 @@
               "description": "",
               "type": "string"
             },
-            "F2147483862": null,
-            "": {
+            "file": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/F2147483862"
+                  "$ref": "#/definitions/core/file_id"
                 }
               }
             }
@@ -1455,8 +1462,8 @@
                 "file_id": {
                   "$ref": "#/definitions/core/file_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "file": {
+                  "$ref": "#/definitions/core/file"
                 }
               }
             }
@@ -1502,7 +1509,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "grid_migration_finished": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "enterprise_id": {
               "type": "string"
             },
@@ -1521,7 +1531,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/grid_migration_finished"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "enterprise_id": {
                   "$ref": "#/definitions/core/enterprise_id"
@@ -1599,7 +1609,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "grid_migration_started": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "enterprise_id": {
               "type": "string"
             },
@@ -1618,7 +1631,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/grid_migration_started"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "enterprise_id": {
                   "$ref": "#/definitions/core/enterprise_id"
@@ -1992,20 +2005,26 @@
               "description": "",
               "type": "string"
             },
-            "G02ELGNBH": null,
-            "new_name": null,
+            "channel_id": {
+              "description": "",
+              "type": "string"
+            },
+            "channel_name": {
+              "description": "",
+              "type": "string"
+            },
             "time_integer": {
               "description": "",
               "type": "number"
             },
-            "": {
+            "channel": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/G02ELGNBH"
+                  "$ref": "#/definitions/core/channel_id"
                 },
                 "name": {
-                  "$ref": "#/definitions/core/new_name"
+                  "$ref": "#/definitions/core/channel_name"
                 },
                 "created": {
                   "$ref": "#/definitions/core/time_integer"
@@ -2022,8 +2041,8 @@
                 "type": {
                   "$ref": "#/definitions/core/response_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "channel": {
+                  "$ref": "#/definitions/core/channel"
                 }
               }
             }
@@ -2354,7 +2373,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "link_shared": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "channel_id": {
               "description": "",
               "type": "string"
@@ -2393,7 +2415,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/link_shared"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "channel": {
                   "$ref": "#/definitions/core/channel_id"
@@ -2718,7 +2740,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "message": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "user_id": {
               "description": "",
               "type": "string"
@@ -2750,7 +2775,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/message"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "user": {
                   "$ref": "#/definitions/core/user_id"
@@ -2857,7 +2882,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "message": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "channel_id": {
               "description": "",
               "type": "string"
@@ -2889,7 +2917,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/message"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "channel": {
                   "$ref": "#/definitions/core/channel_id"
@@ -2996,7 +3024,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "message": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "channel_id": {
               "description": "",
               "type": "string"
@@ -3028,7 +3059,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/message"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "channel": {
                   "$ref": "#/definitions/core/channel_id"
@@ -3135,7 +3166,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "message": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "channel_id": {
               "description": "",
               "type": "string"
@@ -3167,7 +3201,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/message"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "channel": {
                   "$ref": "#/definitions/core/channel_id"
@@ -3274,7 +3308,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "message": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "channel_id": {
               "description": "",
               "type": "string"
@@ -3306,7 +3343,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/message"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "channel": {
                   "$ref": "#/definitions/core/channel_id"
@@ -3756,9 +3793,18 @@
             "api_app_id": {
               "type": "string"
             },
-            "resources_added": null,
-            "im": null,
-            "specific": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
+            "resource_type": {
+              "description": "",
+              "type": "string"
+            },
+            "grant_type": {
+              "description": "",
+              "type": "string"
+            },
             "resource_id": {
               "type": "string"
             },
@@ -3769,8 +3815,8 @@
             "resource_item": {
               "type": "object",
               "properties": {
-                "": {
-                  "$ref": "#/definitions/core/"
+                "resource": {
+                  "$ref": "#/definitions/core/resource"
                 },
                 "scopes": {
                   "type": "array",
@@ -3791,14 +3837,25 @@
               "description": "",
               "type": "number"
             },
-            "": {
+            "grant": {
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/im"
+                  "$ref": "#/definitions/core/grant_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "resource_id": {
+                  "$ref": "#/definitions/core/resource_id"
+                }
+              }
+            },
+            "resource": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/definitions/core/resource_type"
+                },
+                "grant": {
+                  "$ref": "#/definitions/core/grant"
                 }
               }
             },
@@ -3806,7 +3863,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/resources_added"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "resources": {
                   "type": "array",
@@ -3912,9 +3969,18 @@
             "api_app_id": {
               "type": "string"
             },
-            "resources_removed": null,
-            "im": null,
-            "specific": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
+            "resource_type": {
+              "description": "",
+              "type": "string"
+            },
+            "grant_type": {
+              "description": "",
+              "type": "string"
+            },
             "resource_id": {
               "type": "string"
             },
@@ -3925,8 +3991,8 @@
             "resource_item": {
               "type": "object",
               "properties": {
-                "": {
-                  "$ref": "#/definitions/core/"
+                "resource": {
+                  "$ref": "#/definitions/core/resource"
                 },
                 "scopes": {
                   "type": "array",
@@ -3947,14 +4013,25 @@
               "description": "",
               "type": "number"
             },
-            "": {
+            "grant": {
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/im"
+                  "$ref": "#/definitions/core/grant_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "resource_id": {
+                  "$ref": "#/definitions/core/resource_id"
+                }
+              }
+            },
+            "resource": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "$ref": "#/definitions/core/resource_type"
+                },
+                "grant": {
+                  "$ref": "#/definitions/core/grant"
                 }
               }
             },
@@ -3962,7 +4039,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/resources_removed"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "resources": {
                   "type": "array",
@@ -4057,7 +4134,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "scope_denied": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "scope": {
               "description": "",
               "type": "string"
@@ -4080,7 +4160,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/scope_denied"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "scopes": {
                   "type": "array",
@@ -4178,7 +4258,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "scope_granted": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "scope": {
               "description": "",
               "type": "string"
@@ -4201,7 +4284,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/scope_granted"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "scopes": {
                   "type": "array",
@@ -4421,11 +4504,17 @@
               "description": "",
               "type": "string"
             },
-            "S0615G0KT": null,
+            "subteam_id": {
+              "description": "",
+              "type": "string"
+            },
             "team_id": {
               "type": "string"
             },
-            "Marketing Team": null,
+            "subteam_name": {
+              "description": "",
+              "type": "string"
+            },
             "time_integer": {
               "description": "",
               "type": "number"
@@ -4450,11 +4539,28 @@
               "description": "",
               "type": "string"
             },
-            "": {
+            "prefs": {
+              "type": "object",
+              "properties": {
+                "channels": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/core/channel_id"
+                  }
+                },
+                "groups": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/core/group_id"
+                  }
+                }
+              }
+            },
+            "subteam": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/S0615G0KT"
+                  "$ref": "#/definitions/core/subteam_id"
                 },
                 "team_id": {
                   "$ref": "#/definitions/core/team_id"
@@ -4463,7 +4569,7 @@
                   "type": "boolean"
                 },
                 "name": {
-                  "$ref": "#/definitions/core/Marketing Team"
+                  "$ref": "#/definitions/core/subteam_name"
                 },
                 "description": {
                   "type": "string"
@@ -4495,8 +4601,8 @@
                 "deleted_by": {
                   "$ref": "#/definitions/core/user_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "prefs": {
+                  "$ref": "#/definitions/core/prefs"
                 },
                 "user_count": {
                   "$ref": "#/definitions/core/user_count"
@@ -4513,8 +4619,8 @@
                 "type": {
                   "$ref": "#/definitions/core/response_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "subteam": {
+                  "$ref": "#/definitions/core/subteam"
                 }
               }
             }
@@ -4769,11 +4875,17 @@
               "description": "",
               "type": "string"
             },
-            "S0614TZR7": null,
+            "subteam_id": {
+              "description": "",
+              "type": "string"
+            },
             "team_id": {
               "type": "string"
             },
-            "Team Admins": null,
+            "subteam_name": {
+              "description": "",
+              "type": "string"
+            },
             "time_integer": {
               "description": "",
               "type": "number"
@@ -4798,11 +4910,28 @@
               "description": "",
               "type": "string"
             },
-            "": {
+            "prefs": {
+              "type": "object",
+              "properties": {
+                "channels": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/core/channel_id"
+                  }
+                },
+                "groups": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/core/group_id"
+                  }
+                }
+              }
+            },
+            "subteam": {
               "type": "object",
               "properties": {
                 "id": {
-                  "$ref": "#/definitions/core/S0614TZR7"
+                  "$ref": "#/definitions/core/subteam_id"
                 },
                 "team_id": {
                   "$ref": "#/definitions/core/team_id"
@@ -4811,7 +4940,7 @@
                   "type": "boolean"
                 },
                 "name": {
-                  "$ref": "#/definitions/core/Team Admins"
+                  "$ref": "#/definitions/core/subteam_name"
                 },
                 "description": {
                   "type": "string"
@@ -4843,8 +4972,8 @@
                 "deleted_by": {
                   "$ref": "#/definitions/core/user_id"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "prefs": {
+                  "$ref": "#/definitions/core/prefs"
                 },
                 "users": {
                   "type": "array",
@@ -4867,8 +4996,8 @@
                 "type": {
                   "$ref": "#/definitions/core/response_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "subteam": {
+                  "$ref": "#/definitions/core/subteam"
                 }
               }
             }
@@ -5059,7 +5188,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "tokens_revoked": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "response_type": {
               "description": "",
               "type": "string"
@@ -5071,7 +5203,7 @@
               "description": "",
               "type": "number"
             },
-            "": {
+            "tokens": {
               "type": "object",
               "properties": {
                 "oauth": {
@@ -5092,10 +5224,10 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/tokens_revoked"
+                  "$ref": "#/definitions/core/event_type"
                 },
-                "": {
-                  "$ref": "#/definitions/core/"
+                "tokens": {
+                  "$ref": "#/definitions/core/tokens"
                 }
               }
             }
@@ -5276,7 +5408,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "user_resource_denied": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "user_id": {
               "description": "",
               "type": "string"
@@ -5303,7 +5438,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/user_resource_denied"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "user": {
                   "$ref": "#/definitions/core/user_id"
@@ -5404,7 +5539,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "user_resource_granted": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "user_id": {
               "description": "",
               "type": "string"
@@ -5431,7 +5569,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/user_resource_granted"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "user": {
                   "$ref": "#/definitions/core/user_id"
@@ -5528,7 +5666,10 @@
             "api_app_id": {
               "type": "string"
             },
-            "user_resource_removed": null,
+            "event_type": {
+              "description": "",
+              "type": "string"
+            },
             "user_id": {
               "description": "",
               "type": "string"
@@ -5551,7 +5692,7 @@
               "type": "object",
               "properties": {
                 "type": {
-                  "$ref": "#/definitions/core/user_resource_removed"
+                  "$ref": "#/definitions/core/event_type"
                 },
                 "user": {
                   "$ref": "#/definitions/core/user_id"

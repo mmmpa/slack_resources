@@ -65,7 +65,9 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
                 'item'
               end
             elsif types['type'] == 'event_callback' && k == 'event'
-              p "#{v['type']}_event"
+              "#{v['type']}_event"
+            else
+              k
             end
 
 
@@ -87,6 +89,8 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
       when key == 'root' && 'subtype'
         'response_subtype'
       when key == 'event' && 'type'
+        'event_type'
+      when key.match(/.+_event$/) && 'type'
         'event_type'
       when key == 'resource' && 'type'
         'resource_type'

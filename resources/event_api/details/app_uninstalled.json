@@ -27,7 +27,10 @@
           "api_app_id": {
             "type": "string"
           },
-          "app_uninstalled": null,
+          "event_type": {
+            "description": "",
+            "type": "string"
+          },
           "response_type": {
             "description": "",
             "type": "string"
@@ -43,7 +46,7 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/app_uninstalled"
+                "$ref": "#/definitions/core/event_type"
               }
             }
           }

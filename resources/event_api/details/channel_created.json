@@ -19,8 +19,14 @@
             "description": "",
             "type": "string"
           },
-          "C024BE91L": null,
-          "fun": null,
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_name": {
+            "description": "",
+            "type": "string"
+          },
           "time_integer": {
             "description": "",
             "type": "number"
@@ -29,14 +35,14 @@
             "description": "",
             "type": "string"
           },
-          "": {
+          "channel": {
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/C024BE91L"
+                "$ref": "#/definitions/core/channel_id"
               },
               "name": {
-                "$ref": "#/definitions/core/fun"
+                "$ref": "#/definitions/core/channel_name"
               },
               "created": {
                 "$ref": "#/definitions/core/time_integer"
@@ -56,8 +62,8 @@
               "type": {
                 "$ref": "#/definitions/core/response_type"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "channel": {
+                "$ref": "#/definitions/core/channel"
               }
             }
           }

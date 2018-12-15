@@ -38,11 +38,17 @@
             "description": "",
             "type": "string"
           },
-          "S0615G0KT": null,
+          "subteam_id": {
+            "description": "",
+            "type": "string"
+          },
           "team_id": {
             "type": "string"
           },
-          "Marketing Team": null,
+          "subteam_name": {
+            "description": "",
+            "type": "string"
+          },
           "time_integer": {
             "description": "",
             "type": "number"
@@ -67,11 +73,28 @@
             "description": "",
             "type": "string"
           },
-          "": {
+          "prefs": {
+            "type": "object",
+            "properties": {
+              "channels": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/channel_id"
+                }
+              },
+              "groups": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/group_id"
+                }
+              }
+            }
+          },
+          "subteam": {
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/S0615G0KT"
+                "$ref": "#/definitions/core/subteam_id"
               },
               "team_id": {
                 "$ref": "#/definitions/core/team_id"
@@ -80,7 +103,7 @@
                 "type": "boolean"
               },
               "name": {
-                "$ref": "#/definitions/core/Marketing Team"
+                "$ref": "#/definitions/core/subteam_name"
               },
               "description": {
                 "type": "string"
@@ -112,8 +135,8 @@
               "deleted_by": {
                 "$ref": "#/definitions/core/user_id"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "prefs": {
+                "$ref": "#/definitions/core/prefs"
               },
               "user_count": {
                 "$ref": "#/definitions/core/user_count"
@@ -130,8 +153,8 @@
               "type": {
                 "$ref": "#/definitions/core/response_type"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "subteam": {
+                "$ref": "#/definitions/core/subteam"
               }
             }
           }

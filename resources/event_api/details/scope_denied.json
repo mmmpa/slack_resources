@@ -36,7 +36,10 @@
           "api_app_id": {
             "type": "string"
           },
-          "scope_denied": null,
+          "event_type": {
+            "description": "",
+            "type": "string"
+          },
           "scope": {
             "description": "",
             "type": "string"
@@ -59,7 +62,7 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/scope_denied"
+                "$ref": "#/definitions/core/event_type"
               },
               "scopes": {
                 "type": "array",

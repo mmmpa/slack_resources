@@ -49,7 +49,10 @@
           "api_app_id": {
             "type": "string"
           },
-          "link_shared": null,
+          "event_type": {
+            "description": "",
+            "type": "string"
+          },
           "channel_id": {
             "description": "",
             "type": "string"
@@ -88,7 +91,7 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/link_shared"
+                "$ref": "#/definitions/core/event_type"
               },
               "channel": {
                 "$ref": "#/definitions/core/channel_id"

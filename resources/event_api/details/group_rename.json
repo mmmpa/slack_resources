@@ -18,20 +18,26 @@
             "description": "",
             "type": "string"
           },
-          "G02ELGNBH": null,
-          "new_name": null,
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_name": {
+            "description": "",
+            "type": "string"
+          },
           "time_integer": {
             "description": "",
             "type": "number"
           },
-          "": {
+          "channel": {
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/G02ELGNBH"
+                "$ref": "#/definitions/core/channel_id"
               },
               "name": {
-                "$ref": "#/definitions/core/new_name"
+                "$ref": "#/definitions/core/channel_name"
               },
               "created": {
                 "$ref": "#/definitions/core/time_integer"
@@ -48,8 +54,8 @@
               "type": {
                 "$ref": "#/definitions/core/response_type"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "channel": {
+                "$ref": "#/definitions/core/channel"
               }
             }
           }

@@ -47,9 +47,18 @@
           "api_app_id": {
             "type": "string"
           },
-          "resources_removed": null,
-          "im": null,
-          "specific": null,
+          "event_type": {
+            "description": "",
+            "type": "string"
+          },
+          "resource_type": {
+            "description": "",
+            "type": "string"
+          },
+          "grant_type": {
+            "description": "",
+            "type": "string"
+          },
           "resource_id": {
             "type": "string"
           },
@@ -60,8 +69,8 @@
           "resource_item": {
             "type": "object",
             "properties": {
-              "": {
-                "$ref": "#/definitions/core/"
+              "resource": {
+                "$ref": "#/definitions/core/resource"
               },
               "scopes": {
                 "type": "array",
@@ -82,14 +91,25 @@
             "description": "",
             "type": "number"
           },
-          "": {
+          "grant": {
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/im"
+                "$ref": "#/definitions/core/grant_type"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "resource_id": {
+                "$ref": "#/definitions/core/resource_id"
+              }
+            }
+          },
+          "resource": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/resource_type"
+              },
+              "grant": {
+                "$ref": "#/definitions/core/grant"
               }
             }
           },
@@ -97,7 +117,7 @@
             "type": "object",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/resources_removed"
+                "$ref": "#/definitions/core/event_type"
               },
               "resources": {
                 "type": "array",

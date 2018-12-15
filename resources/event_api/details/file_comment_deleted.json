@@ -26,12 +26,11 @@
             "description": "",
             "type": "string"
           },
-          "F2147483862": null,
-          "": {
+          "file": {
             "type": "object",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/F2147483862"
+                "$ref": "#/definitions/core/file_id"
               }
             }
           }
@@ -51,8 +50,8 @@
               "file_id": {
                 "$ref": "#/definitions/core/file_id"
               },
-              "": {
-                "$ref": "#/definitions/core/"
+              "file": {
+                "$ref": "#/definitions/core/file"
               }
             }
           }
