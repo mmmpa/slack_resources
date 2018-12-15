@@ -1,0 +1,47 @@
+{
+  "url": "https://api.slack.com/events/group_unarchive",
+  "type": "group_unarchive",
+  "responce": {
+    "type": "group_unarchive",
+    "channel": "G024BE91L"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "group_unarchive": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "groups:read\n"
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "url": "https://api.slack.com/events/member_left_channel",
+  "type": "member_left_channel",
+  "responce": {
+    "type": "member_left_channel",
+    "user": "W06GH7XHN",
+    "channel": "C0698JE0H",
+    "channel_type": "C",
+    "team": "T024BE7LD"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_type": {
+            "description": "",
+            "type": "string"
+          },
+          "team_id": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "member_left_channel": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              },
+              "channel_type": {
+                "$ref": "#/definitions/core/channel_type"
+              },
+              "team": {
+                "$ref": "#/definitions/core/team_id"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "channels:read\n",
+    "groups:read\n"
+  ]
+}

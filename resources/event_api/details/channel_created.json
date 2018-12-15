@@ -1,0 +1,75 @@
+{
+  "url": "https://api.slack.com/events/channel_created",
+  "type": "channel_created",
+  "responce": {
+    "type": "channel_created",
+    "channel": {
+      "id": "C024BE91L",
+      "name": "fun",
+      "created": 1360782804,
+      "creator": "U024BE7LH"
+    }
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "C024BE91L": null,
+          "fun": null,
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/core/C024BE91L"
+              },
+              "name": {
+                "$ref": "#/definitions/core/fun"
+              },
+              "created": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "creator": {
+                "$ref": "#/definitions/core/user_id"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "channel_created": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "channels:read\n"
+  ]
+}

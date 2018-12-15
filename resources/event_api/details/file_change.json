@@ -1,0 +1,62 @@
+{
+  "url": "https://api.slack.com/events/file_change",
+  "type": "file_change",
+  "responce": {
+    "type": "file_change",
+    "file_id": "F2147483862",
+    "file": {
+      "id": "F2147483862"
+    }
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "file_id": {
+            "description": "",
+            "type": "string"
+          },
+          "F2147483862": null,
+          "": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/core/F2147483862"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "file_change": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "file_id": {
+                "$ref": "#/definitions/core/file_id"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "files:read\n"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "url": "https://api.slack.com/events/dnd_updated",
+  "type": "dnd_updated",
+  "responce": {
+    "type": "dnd_updated",
+    "user": "U1234",
+    "dnd_status": {
+      "dnd_enabled": true,
+      "next_dnd_start_ts": 1450387800,
+      "next_dnd_end_ts": 1450423800,
+      "snooze_enabled": true,
+      "snooze_endtime": 1450373897
+    }
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "": {
+            "type": "object",
+            "properties": {
+              "dnd_enabled": {
+                "type": "boolean"
+              },
+              "next_dnd_start_ts": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "next_dnd_end_ts": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "snooze_enabled": {
+                "type": "boolean"
+              },
+              "snooze_endtime": {
+                "$ref": "#/definitions/core/time_integer"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "dnd_updated": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "dnd:read\n"
+  ]
+}

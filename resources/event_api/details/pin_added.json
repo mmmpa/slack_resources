@@ -1,0 +1,67 @@
+{
+  "url": "https://api.slack.com/events/pin_added",
+  "type": "pin_added",
+  "responce": {
+    "type": "pin_added",
+    "user": "U024BE7LH",
+    "channel_id": "C02ELGNBH",
+    "item": {
+    },
+    "event_ts": "1360782804.083113"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "pin_added": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "channel_id": {
+                "$ref": "#/definitions/core/channel_id"
+              },
+              "pin_item": {
+                "$ref": "#/definitions/core/pin_item"
+              },
+              "event_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "pins:read\n"
+  ]
+}

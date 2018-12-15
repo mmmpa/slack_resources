@@ -1,0 +1,149 @@
+{
+  "url": "https://api.slack.com/events/subteam_created",
+  "type": "subteam_created",
+  "responce": {
+    "type": "subteam_created",
+    "subteam": {
+      "id": "S0615G0KT",
+      "team_id": "T060RNRCH",
+      "is_usergroup": true,
+      "name": "Marketing Team",
+      "description": "Marketing gurus, PR experts and product advocates.",
+      "handle": "marketing-team",
+      "is_external": false,
+      "date_create": 1446746793,
+      "date_update": 1446746793,
+      "date_delete": 0,
+      "auto_type": null,
+      "created_by": "U060RNRCZ",
+      "updated_by": "U060RNRCZ",
+      "deleted_by": null,
+      "prefs": {
+        "channels": [
+
+        ],
+        "groups": [
+
+        ]
+      },
+      "user_count": "0"
+    }
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "S0615G0KT": null,
+          "team_id": {
+            "type": "string"
+          },
+          "Marketing Team": null,
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "auto_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "group_id": {
+            "description": "",
+            "type": "string"
+          },
+          "user_count": {
+            "description": "",
+            "type": "string"
+          },
+          "": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/core/S0615G0KT"
+              },
+              "team_id": {
+                "$ref": "#/definitions/core/team_id"
+              },
+              "is_usergroup": {
+                "type": "boolean"
+              },
+              "name": {
+                "$ref": "#/definitions/core/Marketing Team"
+              },
+              "description": {
+                "type": "string"
+              },
+              "handle": {
+                "type": "string"
+              },
+              "is_external": {
+                "type": "boolean"
+              },
+              "date_create": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "date_update": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "date_delete": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "auto_type": {
+                "$ref": "#/definitions/core/auto_type"
+              },
+              "created_by": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "updated_by": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "deleted_by": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              },
+              "user_count": {
+                "$ref": "#/definitions/core/user_count"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "subteam_created": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "usergroups:read\n"
+  ]
+}

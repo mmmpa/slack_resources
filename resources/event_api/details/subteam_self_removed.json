@@ -1,0 +1,46 @@
+{
+  "url": "https://api.slack.com/events/subteam_self_removed",
+  "type": "subteam_self_removed",
+  "responce": {
+    "type": "subteam_self_removed",
+    "subteam_id": "S0615G0KT"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "subteam_id": {
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "subteam_self_removed": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "subteam_id": {
+                "$ref": "#/definitions/core/subteam_id"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "usergroups:read\n"
+  ]
+}

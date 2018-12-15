@@ -1,0 +1,67 @@
+{
+  "url": "https://api.slack.com/events/group_rename",
+  "type": "group_rename",
+  "responce": {
+    "type": "group_rename",
+    "channel": {
+      "id": "G02ELGNBH",
+      "name": "new_name",
+      "created": 1360782804
+    }
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "G02ELGNBH": null,
+          "new_name": null,
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/core/G02ELGNBH"
+              },
+              "name": {
+                "$ref": "#/definitions/core/new_name"
+              },
+              "created": {
+                "$ref": "#/definitions/core/time_integer"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "group_rename": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "groups:read\n"
+  ]
+}

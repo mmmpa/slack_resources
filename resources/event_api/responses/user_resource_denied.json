@@ -1,0 +1,20 @@
+{
+  "token": "XXYYZZ",
+  "team_id": "TXXXXXXXX",
+  "api_app_id": "AXXXXXXXXX",
+  "event": {
+    "type": "user_resource_denied",
+    "user": "WXXXXXXXX",
+    "scopes": [
+      "reminders:write:user",
+      "reminders:read:user"
+    ],
+    "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606"
+  },
+  "type": "event_callback",
+  "authed_teams": [
+
+  ],
+  "event_id": "EvXXXXXXXX",
+  "event_time": 1234567890
+}

@@ -1,0 +1,47 @@
+{
+  "url": "https://api.slack.com/events/group_deleted",
+  "type": "group_deleted",
+  "responce": {
+    "type": "group_deleted",
+    "channel": "G0QN9RGTT"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "group_deleted": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "groups:read\n"
+  ]
+}

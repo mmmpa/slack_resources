@@ -1,0 +1,139 @@
+{
+  "url": "https://api.slack.com/events/message.channels",
+  "type": "message.channels",
+  "responce": {
+    "token": "one-long-verification-token",
+    "team_id": "T061EG9R6",
+    "api_app_id": "A0PNCHHK2",
+    "event": {
+      "type": "message",
+      "channel": "C024BE91L",
+      "user": "U2147483697",
+      "text": "Live long and prospect.",
+      "ts": "1355517523.000005",
+      "event_ts": "1355517523.000005",
+      "channel_type": "channel"
+    },
+    "type": "event_callback",
+    "authed_teams": [
+      "T061EG9R6"
+    ],
+    "event_id": "Ev0PV52K21",
+    "event_time": 1355517523
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "token": {
+            "description": "",
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "api_app_id": {
+            "type": "string"
+          },
+          "message": null,
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_type": {
+            "description": "",
+            "type": "string"
+          },
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "message_event": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/message"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "text": {
+                "type": "string"
+              },
+              "ts": {
+                "$ref": "#/definitions/core/timestamp"
+              },
+              "event_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              },
+              "channel_type": {
+                "$ref": "#/definitions/core/channel_type"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "message.channels": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "$ref": "#/definitions/core/token"
+              },
+              "team_id": {
+                "$ref": "#/definitions/core/team_id"
+              },
+              "api_app_id": {
+                "$ref": "#/definitions/core/api_app_id"
+              },
+              "message_event": {
+                "$ref": "#/definitions/core/message_event"
+              },
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "authed_teams": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/team_id"
+                }
+              },
+              "event_id": {
+                "$ref": "#/definitions/core/event_id"
+              },
+              "event_time": {
+                "$ref": "#/definitions/core/time_integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "Events API\n"
+  ],
+  "scopes": [
+    "channels:history\n"
+  ]
+}

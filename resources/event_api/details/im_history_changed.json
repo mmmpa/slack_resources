@@ -1,0 +1,55 @@
+{
+  "url": "https://api.slack.com/events/im_history_changed",
+  "type": "im_history_changed",
+  "responce": {
+    "type": "im_history_changed",
+    "latest": "1358877455.000010",
+    "ts": "1361482916.000003",
+    "event_ts": "1361482916.000004"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "im_history_changed": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "latest": {
+                "$ref": "#/definitions/core/timestamp"
+              },
+              "ts": {
+                "$ref": "#/definitions/core/timestamp"
+              },
+              "event_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "im:history\n"
+  ]
+}

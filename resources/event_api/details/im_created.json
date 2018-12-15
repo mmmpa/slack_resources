@@ -1,0 +1,52 @@
+{
+  "url": "https://api.slack.com/events/im_created",
+  "type": "im_created",
+  "responce": {
+    "type": "im_created",
+    "user": "U024BE7LH",
+    "channel": {
+    }
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "im_created": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "im:read\n"
+  ]
+}

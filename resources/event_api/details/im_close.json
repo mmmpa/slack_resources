@@ -1,0 +1,55 @@
+{
+  "url": "https://api.slack.com/events/im_close",
+  "type": "im_close",
+  "responce": {
+    "type": "im_close",
+    "user": "U024BE7LH",
+    "channel": "D024BE91L"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "im_close": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "im:read\n"
+  ]
+}

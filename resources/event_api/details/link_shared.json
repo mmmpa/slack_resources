@@ -1,0 +1,159 @@
+{
+  "url": "https://api.slack.com/events/link_shared",
+  "type": "link_shared",
+  "responce": {
+    "token": "XXYYZZ",
+    "team_id": "TXXXXXXXX",
+    "api_app_id": "AXXXXXXXXX",
+    "event": {
+      "type": "link_shared",
+      "channel": "Cxxxxxx",
+      "user": "Uxxxxxxx",
+      "message_ts": "123456789.9875",
+      "thread_ts": "123456621.1855",
+      "links": [
+        {
+          "domain": "example.com",
+          "url": "https://example.com/12345"
+        },
+        {
+          "domain": "example.com",
+          "url": "https://example.com/67890"
+        },
+        {
+          "domain": "another-example.com",
+          "url": "https://yet.another-example.com/v/abcde"
+        }
+      ]
+    },
+    "type": "event_callback",
+    "authed_users": [
+      "UXXXXXXX1",
+      "UXXXXXXX2"
+    ],
+    "event_id": "Ev08MFMKH6",
+    "event_time": 123456789
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "token": {
+            "description": "",
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "api_app_id": {
+            "type": "string"
+          },
+          "link_shared": null,
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          },
+          "link": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+          },
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "link_shared_event": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/link_shared"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "message_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              },
+              "thread_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              },
+              "links": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/link"
+                }
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "link_shared": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "$ref": "#/definitions/core/token"
+              },
+              "team_id": {
+                "$ref": "#/definitions/core/team_id"
+              },
+              "api_app_id": {
+                "$ref": "#/definitions/core/api_app_id"
+              },
+              "link_shared_event": {
+                "$ref": "#/definitions/core/link_shared_event"
+              },
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "authed_users": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/user_id"
+                }
+              },
+              "event_id": {
+                "$ref": "#/definitions/core/event_id"
+              },
+              "event_time": {
+                "$ref": "#/definitions/core/time_integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "Events API\n"
+  ],
+  "scopes": [
+    "links:read\n"
+  ]
+}

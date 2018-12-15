@@ -1,0 +1,128 @@
+{
+  "url": "https://api.slack.com/events/user_resource_granted",
+  "type": "user_resource_granted",
+  "responce": {
+    "token": "XXYYZZ",
+    "team_id": "TXXXXXXXX",
+    "api_app_id": "AXXXXXXXXX",
+    "event": {
+      "type": "user_resource_granted",
+      "user": "WXXXXXXXX",
+      "scopes": [
+        "reminders:write:user",
+        "reminders:read:user"
+      ],
+      "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606"
+    },
+    "type": "event_callback",
+    "authed_teams": [
+
+    ],
+    "event_id": "EvXXXXXXXX",
+    "event_time": 1234567890
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "token": {
+            "description": "",
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string"
+          },
+          "api_app_id": {
+            "type": "string"
+          },
+          "user_resource_granted": null,
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "scope": {
+            "description": "",
+            "type": "string"
+          },
+          "trigger_id": {
+            "type": "string"
+          },
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "event_id": {
+            "type": "string"
+          },
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "user_resource_granted_event": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/user_resource_granted"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "scopes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/scope"
+                }
+              },
+              "trigger_id": {
+                "$ref": "#/definitions/core/trigger_id"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "user_resource_granted": {
+            "type": "object",
+            "properties": {
+              "token": {
+                "$ref": "#/definitions/core/token"
+              },
+              "team_id": {
+                "$ref": "#/definitions/core/team_id"
+              },
+              "api_app_id": {
+                "$ref": "#/definitions/core/api_app_id"
+              },
+              "user_resource_granted_event": {
+                "$ref": "#/definitions/core/user_resource_granted_event"
+              },
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "authed_teams": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/team_id"
+                }
+              },
+              "event_id": {
+                "$ref": "#/definitions/core/event_id"
+              },
+              "event_time": {
+                "$ref": "#/definitions/core/time_integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "Events API\n"
+  ],
+  "scopes": [
+
+  ]
+}

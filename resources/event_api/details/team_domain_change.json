@@ -1,0 +1,47 @@
+{
+  "url": "https://api.slack.com/events/team_domain_change",
+  "type": "team_domain_change",
+  "responce": {
+    "type": "team_domain_change",
+    "url": "https://my.slack.com",
+    "domain": "my"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "team_domain_change": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "url": {
+                "type": "string"
+              },
+              "domain": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "team:read\n"
+  ]
+}

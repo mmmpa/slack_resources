@@ -1,0 +1,68 @@
+{
+  "url": "https://api.slack.com/events/emoji_changed",
+  "type": "emoji_changed",
+  "responce": {
+    "type": "emoji_changed",
+    "subtype": "remove",
+    "names": [
+      "picard_facepalm"
+    ],
+    "event_ts": "1361482916.000004"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "response_subtype": {
+            "description": "",
+            "type": "string"
+          },
+          "emoji_name": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "emoji_changed": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "subtype": {
+                "$ref": "#/definitions/core/response_subtype"
+              },
+              "names": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/emoji_name"
+                }
+              },
+              "event_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "emoji:read\n"
+  ]
+}

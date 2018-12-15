@@ -1,0 +1,161 @@
+{
+  "url": "https://api.slack.com/events/subteam_updated",
+  "type": "subteam_updated",
+  "responce": {
+    "type": "subteam_updated",
+    "subteam": {
+      "id": "S0614TZR7",
+      "team_id": "T060RNRCH",
+      "is_usergroup": true,
+      "name": "Team Admins",
+      "description": "A group of all Administrators on your team.",
+      "handle": "admins",
+      "is_external": false,
+      "date_create": 1446598059,
+      "date_update": 1446670362,
+      "date_delete": 0,
+      "auto_type": "admin",
+      "created_by": "USLACKBOT",
+      "updated_by": "U060RNRCZ",
+      "deleted_by": null,
+      "prefs": {
+        "channels": [
+
+        ],
+        "groups": [
+
+        ]
+      },
+      "users": [
+        "U060RNRCZ",
+        "U060ULRC0",
+        "U06129G2V",
+        "U061309JM"
+      ],
+      "user_count": "4"
+    }
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "S0614TZR7": null,
+          "team_id": {
+            "type": "string"
+          },
+          "Team Admins": null,
+          "time_integer": {
+            "description": "",
+            "type": "number"
+          },
+          "auto_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "group_id": {
+            "description": "",
+            "type": "string"
+          },
+          "user_count": {
+            "description": "",
+            "type": "string"
+          },
+          "": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "$ref": "#/definitions/core/S0614TZR7"
+              },
+              "team_id": {
+                "$ref": "#/definitions/core/team_id"
+              },
+              "is_usergroup": {
+                "type": "boolean"
+              },
+              "name": {
+                "$ref": "#/definitions/core/Team Admins"
+              },
+              "description": {
+                "type": "string"
+              },
+              "handle": {
+                "type": "string"
+              },
+              "is_external": {
+                "type": "boolean"
+              },
+              "date_create": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "date_update": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "date_delete": {
+                "$ref": "#/definitions/core/time_integer"
+              },
+              "auto_type": {
+                "$ref": "#/definitions/core/auto_type"
+              },
+              "created_by": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "updated_by": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "deleted_by": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              },
+              "users": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/core/user_id"
+                }
+              },
+              "user_count": {
+                "$ref": "#/definitions/core/user_count"
+              }
+            }
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "subteam_updated": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "": {
+                "$ref": "#/definitions/core/"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "usergroups:read\n"
+  ]
+}

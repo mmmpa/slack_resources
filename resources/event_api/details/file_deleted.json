@@ -1,0 +1,55 @@
+{
+  "url": "https://api.slack.com/events/file_deleted",
+  "type": "file_deleted",
+  "responce": {
+    "type": "file_deleted",
+    "file_id": "F2147483862",
+    "event_ts": "1361482916.000004"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "file_id": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "file_deleted": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "file_id": {
+                "$ref": "#/definitions/core/file_id"
+              },
+              "event_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "files:read\n"
+  ]
+}

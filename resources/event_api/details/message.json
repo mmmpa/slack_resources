@@ -1,0 +1,70 @@
+{
+  "url": "https://api.slack.com/events/message",
+  "type": "message",
+  "responce": {
+    "type": "message",
+    "channel": "C2147483705",
+    "user": "U2147483697",
+    "text": "Hello world",
+    "ts": "1355517523.000005"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "message": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "text": {
+                "type": "string"
+              },
+              "ts": {
+                "$ref": "#/definitions/core/timestamp"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "channels:history\n",
+    "groups:history\n",
+    "im:history\n",
+    "mpim:history\n"
+  ]
+}

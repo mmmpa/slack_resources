@@ -1,0 +1,70 @@
+{
+  "url": "https://api.slack.com/events/app_mention",
+  "type": "app_mention",
+  "responce": {
+    "type": "app_mention",
+    "user": "U061F7AUR",
+    "text": "<@U0LAN0Z89> is it everything a river should be?",
+    "ts": "1515449522.000016",
+    "channel": "C0LAN2Q65",
+    "event_ts": "1515449522000016"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "app_mention": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              },
+              "text": {
+                "type": "string"
+              },
+              "ts": {
+                "$ref": "#/definitions/core/timestamp"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              },
+              "event_ts": {
+                "$ref": "#/definitions/core/timestamp"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "Events API\n"
+  ],
+  "scopes": [
+
+  ]
+}

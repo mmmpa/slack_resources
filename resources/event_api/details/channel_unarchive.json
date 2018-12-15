@@ -1,0 +1,55 @@
+{
+  "url": "https://api.slack.com/events/channel_unarchive",
+  "type": "channel_unarchive",
+  "responce": {
+    "type": "channel_unarchive",
+    "channel": "C024BE91L",
+    "user": "U024BE7LH"
+  },
+  "schema": {
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+      "core": {
+        "definitions": {
+          "response_type": {
+            "description": "",
+            "type": "string"
+          },
+          "channel_id": {
+            "description": "",
+            "type": "string"
+          },
+          "user_id": {
+            "description": "",
+            "type": "string"
+          }
+        }
+      },
+      "event_api_subscription": {
+        "definitions": {
+          "channel_unarchive": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/core/response_type"
+              },
+              "channel": {
+                "$ref": "#/definitions/core/channel_id"
+              },
+              "user": {
+                "$ref": "#/definitions/core/user_id"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "compatibility": [
+    "RTM\n",
+    "Events API\n"
+  ],
+  "scopes": [
+    "channels:read\n"
+  ]
+}
