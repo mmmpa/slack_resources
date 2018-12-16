@@ -1,73 +1,63 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "reaction_added"
+      ]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "emoji_name": {
+      "type": "string"
+    },
+    "reaction_item_type": {
+      "type": "string"
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "reaction_item": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "reaction_added"
-          ]
+      "description": "(defined by script)",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/reaction_item_type"
         },
-        "user_id": {
-          "type": "string"
+        "channel": {
+          "$ref": "#/definitions/channel_id"
         },
-        "emoji_name": {
-          "type": "string"
-        },
-        "reaction_item_type": {
-          "type": "string"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "reaction_item": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/reaction_item_type"
-            },
-            "channel": {
-              "$ref": "#/definitions/refs/definitions/channel_id"
-            },
-            "ts": {
-              "$ref": "#/definitions/refs/definitions/timestamp"
-            }
-          }
+        "ts": {
+          "$ref": "#/definitions/timestamp"
         }
       }
     },
-    "event_api_subscription": {
+    "reaction_added": {
       "type": "object",
-      "definitions": {
-        "reaction_added": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/reaction_added",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "user": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "reaction": {
-              "$ref": "#/definitions/refs/definitions/emoji_name"
-            },
-            "item_user": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "reaction_item": {
-              "$ref": "#/definitions/refs/definitions/reaction_item"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/refs/definitions/timestamp"
-            }
-          }
+      "description": "learn more: https://api.slack.com/events/reaction_added",
+      "properties": {
+        "type": {
+          "const": "reaction_added"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        },
+        "reaction": {
+          "$ref": "#/definitions/emoji_name"
+        },
+        "item_user": {
+          "$ref": "#/definitions/user_id"
+        },
+        "reaction_item": {
+          "$ref": "#/definitions/reaction_item"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
         }
       }
     }

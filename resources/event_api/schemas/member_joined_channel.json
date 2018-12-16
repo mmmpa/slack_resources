@@ -1,55 +1,45 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "member_joined_channel"
+      ]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "channel_type": {
+      "type": "string"
+    },
+    "team_id": {
+      "type": "string"
+    },
+    "member_joined_channel": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "member_joined_channel"
-          ]
+      "description": "learn more: https://api.slack.com/events/member_joined_channel",
+      "properties": {
+        "type": {
+          "const": "member_joined_channel"
         },
-        "user_id": {
-          "type": "string"
+        "user": {
+          "$ref": "#/definitions/user_id"
         },
-        "channel_id": {
-          "type": "string"
+        "channel": {
+          "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "type": "string"
+          "$ref": "#/definitions/channel_type"
         },
-        "team_id": {
-          "type": "string"
-        }
-      }
-    },
-    "event_api_subscription": {
-      "type": "object",
-      "definitions": {
-        "member_joined_channel": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/member_joined_channel",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "user": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "channel": {
-              "$ref": "#/definitions/refs/definitions/channel_id"
-            },
-            "channel_type": {
-              "$ref": "#/definitions/refs/definitions/channel_type"
-            },
-            "team": {
-              "$ref": "#/definitions/refs/definitions/team_id"
-            },
-            "inviter": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            }
-          }
+        "team": {
+          "$ref": "#/definitions/team_id"
+        },
+        "inviter": {
+          "$ref": "#/definitions/user_id"
         }
       }
     }

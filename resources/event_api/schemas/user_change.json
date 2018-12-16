@@ -1,37 +1,27 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "user_change"
+      ]
+    },
+    "user": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "user_change"
-          ]
-        },
-        "user": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
-          "properties": {
-          }
-        }
+      "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
+      "properties": {
       }
     },
-    "event_api_subscription": {
+    "user_change": {
       "type": "object",
-      "definitions": {
-        "user_change": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/user_change",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "user": {
-              "$ref": "#/definitions/refs/definitions/user"
-            }
-          }
+      "description": "learn more: https://api.slack.com/events/user_change",
+      "properties": {
+        "type": {
+          "const": "user_change"
+        },
+        "user": {
+          "$ref": "#/definitions/user"
         }
       }
     }

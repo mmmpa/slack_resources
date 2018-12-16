@@ -6,36 +6,26 @@
     "name": "New Team Name Inc."
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
-        "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "team_rename"
-            ]
-          },
-          "root_name": {
-            "type": "string"
-          }
-        }
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "team_rename"
+        ]
       },
-      "event_api_subscription": {
+      "root_name": {
+        "type": "string"
+      },
+      "team_rename": {
         "type": "object",
-        "definitions": {
-          "team_rename": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/team_rename",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "name": {
-                "$ref": "#/definitions/refs/definitions/root_name"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/team_rename",
+        "properties": {
+          "type": {
+            "const": "team_rename"
+          },
+          "name": {
+            "$ref": "#/definitions/root_name"
           }
         }
       }

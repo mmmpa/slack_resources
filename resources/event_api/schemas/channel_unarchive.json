@@ -1,40 +1,30 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
-      "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_unarchive"
-          ]
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        }
-      }
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "channel_unarchive"
+      ]
     },
-    "event_api_subscription": {
+    "channel_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "channel_unarchive": {
       "type": "object",
-      "definitions": {
-        "channel_unarchive": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_unarchive",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "channel": {
-              "$ref": "#/definitions/refs/definitions/channel_id"
-            },
-            "user": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            }
-          }
+      "description": "learn more: https://api.slack.com/events/channel_unarchive",
+      "properties": {
+        "type": {
+          "const": "channel_unarchive"
+        },
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
         }
       }
     }

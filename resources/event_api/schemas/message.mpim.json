@@ -1,112 +1,102 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "message.mpim"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "message"
+      ]
+    },
+    "token": {
+      "type": "string"
+    },
+    "team_id": {
+      "type": "string"
+    },
+    "api_app_id": {
+      "type": "string"
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "channel_type": {
+      "type": "string"
+    },
+    "message_event": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "message.mpim"
-          ]
+      "description": "(defined by script)",
+      "properties": {
+        "type": {
+          "const": "message"
         },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "message"
-          ]
+        "user": {
+          "$ref": "#/definitions/user_id"
         },
-        "token": {
+        "text": {
           "type": "string"
         },
-        "team_id": {
-          "type": "string"
+        "ts": {
+          "$ref": "#/definitions/timestamp"
         },
-        "api_app_id": {
-          "type": "string"
+        "channel": {
+          "$ref": "#/definitions/channel_id"
         },
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
         },
         "channel_type": {
           "type": "string"
-        },
-        "message_event": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/event_type"
-            },
-            "user": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "text": {
-              "type": "string"
-            },
-            "ts": {
-              "$ref": "#/definitions/refs/definitions/timestamp"
-            },
-            "channel": {
-              "$ref": "#/definitions/refs/definitions/channel_id"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/refs/definitions/timestamp"
-            },
-            "channel_type": {
-              "type": "string"
-            }
-          }
-        },
-        "event_id": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
         }
       }
     },
-    "event_api_subscription": {
+    "event_id": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "message.mpim": {
       "type": "object",
-      "definitions": {
-        "message.mpim": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/message.mpim",
-          "properties": {
-            "token": {
-              "$ref": "#/definitions/refs/definitions/token"
-            },
-            "team_id": {
-              "$ref": "#/definitions/refs/definitions/team_id"
-            },
-            "api_app_id": {
-              "$ref": "#/definitions/refs/definitions/api_app_id"
-            },
-            "message_event": {
-              "$ref": "#/definitions/refs/definitions/message_event"
-            },
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "authed_teams": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/refs/definitions/team_id"
-              }
-            },
-            "event_id": {
-              "$ref": "#/definitions/refs/definitions/event_id"
-            },
-            "event_time": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            }
+      "description": "learn more: https://api.slack.com/events/message.mpim",
+      "properties": {
+        "token": {
+          "$ref": "#/definitions/token"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "api_app_id": {
+          "$ref": "#/definitions/api_app_id"
+        },
+        "event": {
+          "$ref": "#/definitions/message_event"
+        },
+        "type": {
+          "const": "event_callback"
+        },
+        "authed_teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/team_id"
           }
+        },
+        "event_id": {
+          "$ref": "#/definitions/event_id"
+        },
+        "event_time": {
+          "$ref": "#/definitions/time_integer"
         }
       }
     }

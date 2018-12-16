@@ -1,136 +1,126 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "subteam_created"
+      ]
+    },
+    "subteam_id": {
+      "type": "string"
+    },
+    "team_id": {
+      "type": "string"
+    },
+    "subteam_name": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "auto_type": {
+      "type": "string",
+      "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+      "enum": [
+        "admins",
+        "owners",
+        null
+      ]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "group_id": {
+      "type": "string"
+    },
+    "prefs": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "subteam_created"
-          ]
-        },
-        "subteam_id": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "subteam_name": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
-        "auto_type": {
-          "type": "string",
-          "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
-          "enum": [
-            "admins",
-            "owners",
-            null
-          ]
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "group_id": {
-          "type": "string"
-        },
-        "prefs": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "channels": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/refs/definitions/channel_id"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/refs/definitions/group_id"
-              }
-            }
+      "description": "(defined by script)",
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/channel_id"
           }
         },
-        "user_count": {
-          "type": "string"
-        },
-        "subteam": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/refs/definitions/subteam_id"
-            },
-            "team_id": {
-              "$ref": "#/definitions/refs/definitions/team_id"
-            },
-            "is_usergroup": {
-              "type": "boolean"
-            },
-            "name": {
-              "$ref": "#/definitions/refs/definitions/subteam_name"
-            },
-            "description": {
-              "type": "string"
-            },
-            "handle": {
-              "type": "string"
-            },
-            "is_external": {
-              "type": "boolean"
-            },
-            "date_create": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            },
-            "date_update": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            },
-            "date_delete": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            },
-            "auto_type": {
-              "$ref": "#/definitions/refs/definitions/auto_type"
-            },
-            "created_by": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "updated_by": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "deleted_by": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "prefs": {
-              "$ref": "#/definitions/refs/definitions/prefs"
-            },
-            "user_count": {
-              "$ref": "#/definitions/refs/definitions/user_count"
-            }
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/group_id"
           }
         }
       }
     },
-    "event_api_subscription": {
+    "user_count": {
+      "type": "string"
+    },
+    "subteam": {
       "type": "object",
-      "definitions": {
-        "subteam_created": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/subteam_created",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "subteam": {
-              "$ref": "#/definitions/refs/definitions/subteam"
-            }
-          }
+      "description": "(defined by script)",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/subteam_id"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "is_usergroup": {
+          "type": "boolean"
+        },
+        "name": {
+          "$ref": "#/definitions/subteam_name"
+        },
+        "description": {
+          "type": "string"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "is_external": {
+          "type": "boolean"
+        },
+        "date_create": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "date_update": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "date_delete": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "auto_type": {
+          "$ref": "#/definitions/auto_type"
+        },
+        "created_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "updated_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "deleted_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "prefs": {
+          "$ref": "#/definitions/prefs"
+        },
+        "user_count": {
+          "$ref": "#/definitions/user_count"
+        }
+      }
+    },
+    "subteam_created": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/subteam_created",
+      "properties": {
+        "type": {
+          "const": "subteam_created"
+        },
+        "subteam": {
+          "$ref": "#/definitions/subteam"
         }
       }
     }

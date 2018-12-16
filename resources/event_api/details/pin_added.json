@@ -10,57 +10,47 @@
     "event_ts": "1360782804.083113"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "pin_added"
+        ]
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "pin_item": {
         "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "pin_added"
-            ]
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "channel_id": {
-            "type": "string"
-          },
-          "pin_item": {
-            "type": "object",
-            "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
-            "properties": {
-            }
-          },
-          "timestamp": {
-            "type": "string"
-          }
+        "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
+        "properties": {
         }
       },
-      "event_api_subscription": {
+      "timestamp": {
+        "type": "string"
+      },
+      "pin_added": {
         "type": "object",
-        "definitions": {
-          "pin_added": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/pin_added",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "user": {
-                "$ref": "#/definitions/refs/definitions/user_id"
-              },
-              "channel_id": {
-                "$ref": "#/definitions/refs/definitions/channel_id"
-              },
-              "pin_item": {
-                "$ref": "#/definitions/refs/definitions/pin_item"
-              },
-              "event_ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/pin_added",
+        "properties": {
+          "type": {
+            "const": "pin_added"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          },
+          "channel_id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "pin_item": {
+            "$ref": "#/definitions/pin_item"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           }
         }
       }

@@ -10,51 +10,41 @@
     "event_ts": "1361482916.000004"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
-        "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "emoji_changed"
-            ]
-          },
-          "subscription_subtype": {
-            "type": "string"
-          },
-          "emoji_name": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "string"
-          }
-        }
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "emoji_changed"
+        ]
       },
-      "event_api_subscription": {
+      "subscription_subtype": {
+        "type": "string"
+      },
+      "emoji_name": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "emoji_changed": {
         "type": "object",
-        "definitions": {
-          "emoji_changed": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/emoji_changed",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "subtype": {
-                "$ref": "#/definitions/refs/definitions/subscription_subtype"
-              },
-              "names": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/refs/definitions/emoji_name"
-                }
-              },
-              "event_ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              }
+        "description": "learn more: https://api.slack.com/events/emoji_changed",
+        "properties": {
+          "type": {
+            "const": "emoji_changed"
+          },
+          "subtype": {
+            "$ref": "#/definitions/subscription_subtype"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/emoji_name"
             }
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           }
         }
       }

@@ -35,123 +35,113 @@
     "event_time": 123456789
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "link_shared"
+        ]
+      },
+      "event_type": {
+        "type": "string",
+        "enum": [
+          "link_shared"
+        ]
+      },
+      "token": {
+        "type": "string"
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "api_app_id": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "link": {
         "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "link_shared"
-            ]
-          },
-          "event_type": {
-            "type": "string",
-            "enum": [
-              "link_shared"
-            ]
-          },
-          "token": {
+        "description": "(defined by script)",
+        "properties": {
+          "domain": {
             "type": "string"
           },
-          "team_id": {
+          "url": {
             "type": "string"
-          },
-          "api_app_id": {
-            "type": "string"
-          },
-          "channel_id": {
-            "type": "string"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "string"
-          },
-          "link": {
-            "type": "object",
-            "description": "(defined by script)",
-            "properties": {
-              "domain": {
-                "type": "string"
-              },
-              "url": {
-                "type": "string"
-              }
-            }
-          },
-          "link_shared_event": {
-            "type": "object",
-            "description": "(defined by script)",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/event_type"
-              },
-              "channel": {
-                "$ref": "#/definitions/refs/definitions/channel_id"
-              },
-              "user": {
-                "$ref": "#/definitions/refs/definitions/user_id"
-              },
-              "message_ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              },
-              "thread_ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              },
-              "links": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/refs/definitions/link"
-                }
-              }
-            }
-          },
-          "event_id": {
-            "type": "string"
-          },
-          "time_integer": {
-            "type": "number"
           }
         }
       },
-      "event_api_subscription": {
+      "link_shared_event": {
         "type": "object",
-        "definitions": {
-          "link_shared": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/link_shared",
-            "properties": {
-              "token": {
-                "$ref": "#/definitions/refs/definitions/token"
-              },
-              "team_id": {
-                "$ref": "#/definitions/refs/definitions/team_id"
-              },
-              "api_app_id": {
-                "$ref": "#/definitions/refs/definitions/api_app_id"
-              },
-              "link_shared_event": {
-                "$ref": "#/definitions/refs/definitions/link_shared_event"
-              },
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "authed_users": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/refs/definitions/user_id"
-                }
-              },
-              "event_id": {
-                "$ref": "#/definitions/refs/definitions/event_id"
-              },
-              "event_time": {
-                "$ref": "#/definitions/refs/definitions/time_integer"
-              }
+        "description": "(defined by script)",
+        "properties": {
+          "type": {
+            "const": "link_shared"
+          },
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          },
+          "message_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "thread_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/link"
             }
+          }
+        }
+      },
+      "event_id": {
+        "type": "string"
+      },
+      "time_integer": {
+        "type": "number"
+      },
+      "link_shared": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/link_shared",
+        "properties": {
+          "token": {
+            "$ref": "#/definitions/token"
+          },
+          "team_id": {
+            "$ref": "#/definitions/team_id"
+          },
+          "api_app_id": {
+            "$ref": "#/definitions/api_app_id"
+          },
+          "event": {
+            "$ref": "#/definitions/link_shared_event"
+          },
+          "type": {
+            "const": "event_callback"
+          },
+          "authed_users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/user_id"
+            }
+          },
+          "event_id": {
+            "$ref": "#/definitions/event_id"
+          },
+          "event_time": {
+            "$ref": "#/definitions/time_integer"
           }
         }
       }

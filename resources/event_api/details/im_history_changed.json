@@ -8,42 +8,32 @@
     "event_ts": "1361482916.000004"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
-        "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "im_history_changed"
-            ]
-          },
-          "timestamp": {
-            "type": "string"
-          }
-        }
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "im_history_changed"
+        ]
       },
-      "event_api_subscription": {
+      "timestamp": {
+        "type": "string"
+      },
+      "im_history_changed": {
         "type": "object",
-        "definitions": {
-          "im_history_changed": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/im_history_changed",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "latest": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              },
-              "ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              },
-              "event_ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/im_history_changed",
+        "properties": {
+          "type": {
+            "const": "im_history_changed"
+          },
+          "latest": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           }
         }
       }

@@ -6,36 +6,26 @@
     "subteam_id": "S0615G0KT"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "subteam_self_added"
+        ]
+      },
+      "subteam_id": {
+        "type": "string"
+      },
+      "subteam_self_added": {
         "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "subteam_self_added"
-            ]
+        "description": "learn more: https://api.slack.com/events/subteam_self_added",
+        "properties": {
+          "type": {
+            "const": "subteam_self_added"
           },
           "subteam_id": {
-            "type": "string"
-          }
-        }
-      },
-      "event_api_subscription": {
-        "type": "object",
-        "definitions": {
-          "subteam_self_added": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/subteam_self_added",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "subteam_id": {
-                "$ref": "#/definitions/refs/definitions/subteam_id"
-              }
-            }
+            "$ref": "#/definitions/subteam_id"
           }
         }
       }

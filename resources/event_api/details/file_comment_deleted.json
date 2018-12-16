@@ -10,54 +10,44 @@
     }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "file_comment_deleted"
+        ]
+      },
+      "comment_id": {
+        "type": "string"
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file": {
         "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "file_comment_deleted"
-            ]
-          },
-          "comment_id": {
-            "type": "string"
-          },
-          "file_id": {
-            "type": "string"
-          },
-          "file": {
-            "type": "object",
-            "description": "(defined by script)",
-            "properties": {
-              "id": {
-                "$ref": "#/definitions/refs/definitions/file_id"
-              }
-            }
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
           }
         }
       },
-      "event_api_subscription": {
+      "file_comment_deleted": {
         "type": "object",
-        "definitions": {
-          "file_comment_deleted": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/file_comment_deleted",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "comment": {
-                "$ref": "#/definitions/refs/definitions/comment_id"
-              },
-              "file_id": {
-                "$ref": "#/definitions/refs/definitions/file_id"
-              },
-              "file": {
-                "$ref": "#/definitions/refs/definitions/file"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/file_comment_deleted",
+        "properties": {
+          "type": {
+            "const": "file_comment_deleted"
+          },
+          "comment": {
+            "$ref": "#/definitions/comment_id"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "file": {
+            "$ref": "#/definitions/file"
           }
         }
       }

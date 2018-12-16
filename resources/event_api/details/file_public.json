@@ -9,48 +9,38 @@
     }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "file_public"
+        ]
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file": {
         "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "file_public"
-            ]
-          },
-          "file_id": {
-            "type": "string"
-          },
-          "file": {
-            "type": "object",
-            "description": "(defined by script)",
-            "properties": {
-              "id": {
-                "$ref": "#/definitions/refs/definitions/file_id"
-              }
-            }
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
           }
         }
       },
-      "event_api_subscription": {
+      "file_public": {
         "type": "object",
-        "definitions": {
-          "file_public": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/file_public",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "file_id": {
-                "$ref": "#/definitions/refs/definitions/file_id"
-              },
-              "file": {
-                "$ref": "#/definitions/refs/definitions/file"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/file_public",
+        "properties": {
+          "type": {
+            "const": "file_public"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "file": {
+            "$ref": "#/definitions/file"
           }
         }
       }

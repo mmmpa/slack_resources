@@ -7,42 +7,32 @@
     "channel": "G024BE91L"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
-        "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "group_close"
-            ]
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "channel_id": {
-            "type": "string"
-          }
-        }
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "group_close"
+        ]
       },
-      "event_api_subscription": {
+      "user_id": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "group_close": {
         "type": "object",
-        "definitions": {
-          "group_close": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/group_close",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "user": {
-                "$ref": "#/definitions/refs/definitions/user_id"
-              },
-              "channel": {
-                "$ref": "#/definitions/refs/definitions/channel_id"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/group_close",
+        "properties": {
+          "type": {
+            "const": "group_close"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          },
+          "channel": {
+            "$ref": "#/definitions/channel_id"
           }
         }
       }

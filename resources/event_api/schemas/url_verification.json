@@ -1,40 +1,30 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "url_verification"
+      ]
+    },
+    "token": {
+      "type": "string"
+    },
+    "challenge": {
+      "type": "string"
+    },
+    "url_verification": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "url_verification"
-          ]
-        },
+      "description": "learn more: https://api.slack.com/events/url_verification",
+      "properties": {
         "token": {
-          "type": "string"
+          "$ref": "#/definitions/token"
         },
         "challenge": {
           "type": "string"
-        }
-      }
-    },
-    "event_api_subscription": {
-      "type": "object",
-      "definitions": {
-        "url_verification": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/url_verification",
-          "properties": {
-            "token": {
-              "$ref": "#/definitions/refs/definitions/token"
-            },
-            "challenge": {
-              "type": "string"
-            },
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            }
-          }
+        },
+        "type": {
+          "const": "url_verification"
         }
       }
     }

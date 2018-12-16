@@ -1,122 +1,112 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "user_resource_denied"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "user_resource_denied"
+      ]
+    },
+    "token": {
+      "type": "string"
+    },
+    "team_id": {
+      "type": "string"
+    },
+    "api_app_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "channels:read",
+        "channels:history",
+        "groups:history",
+        "mpim:history",
+        "dnd:read",
+        "team:read",
+        "emoji:read",
+        "files:read",
+        "groups:read",
+        "im:read",
+        "im:history",
+        "links:read",
+        "pins:read",
+        "reactions:read",
+        "stars:read",
+        "usergroups:read",
+        "users:read"
+      ]
+    },
+    "trigger_id": {
+      "type": "string"
+    },
+    "user_resource_denied_event": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_denied"
-          ]
+      "description": "(defined by script)",
+      "properties": {
+        "type": {
+          "const": "user_resource_denied"
         },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_denied"
-          ]
+        "user": {
+          "$ref": "#/definitions/user_id"
         },
-        "token": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "api_app_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "scope": {
-          "type": "string",
-          "enum": [
-            "channels:read",
-            "channels:history",
-            "groups:history",
-            "mpim:history",
-            "dnd:read",
-            "team:read",
-            "emoji:read",
-            "files:read",
-            "groups:read",
-            "im:read",
-            "im:history",
-            "links:read",
-            "pins:read",
-            "reactions:read",
-            "stars:read",
-            "usergroups:read",
-            "users:read"
-          ]
-        },
-        "trigger_id": {
-          "type": "string"
-        },
-        "user_resource_denied_event": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/event_type"
-            },
-            "user": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "scopes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/refs/definitions/scope"
-              }
-            },
-            "trigger_id": {
-              "$ref": "#/definitions/refs/definitions/trigger_id"
-            }
+        "scopes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/scope"
           }
         },
-        "event_id": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
+        "trigger_id": {
+          "$ref": "#/definitions/trigger_id"
         }
       }
     },
-    "event_api_subscription": {
+    "event_id": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "user_resource_denied": {
       "type": "object",
-      "definitions": {
-        "user_resource_denied": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/user_resource_denied",
-          "properties": {
-            "token": {
-              "$ref": "#/definitions/refs/definitions/token"
-            },
-            "team_id": {
-              "$ref": "#/definitions/refs/definitions/team_id"
-            },
-            "api_app_id": {
-              "$ref": "#/definitions/refs/definitions/api_app_id"
-            },
-            "user_resource_denied_event": {
-              "$ref": "#/definitions/refs/definitions/user_resource_denied_event"
-            },
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "authed_teams": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/refs/definitions/team_id"
-              }
-            },
-            "event_id": {
-              "$ref": "#/definitions/refs/definitions/event_id"
-            },
-            "event_time": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            }
+      "description": "learn more: https://api.slack.com/events/user_resource_denied",
+      "properties": {
+        "token": {
+          "$ref": "#/definitions/token"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "api_app_id": {
+          "$ref": "#/definitions/api_app_id"
+        },
+        "event": {
+          "$ref": "#/definitions/user_resource_denied_event"
+        },
+        "type": {
+          "const": "event_callback"
+        },
+        "authed_teams": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/team_id"
           }
+        },
+        "event_id": {
+          "$ref": "#/definitions/event_id"
+        },
+        "event_time": {
+          "$ref": "#/definitions/time_integer"
         }
       }
     }

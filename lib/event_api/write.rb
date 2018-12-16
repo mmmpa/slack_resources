@@ -16,6 +16,22 @@ FileUtils.mkdir_p(SCHEMAS_DIR)
 PRESET_SCHEMA = JSON.parse(File.read('lib/schema.json'))
 PRESET_DEFINITIONS = PRESET_SCHEMA['definitions']
 
+class Hash
+  def protect_merge!(b)
+    (b.keys - keys).map do |new_key|
+      self[new_key] = b[new_key]
+    end
+
+    self
+  end
+
+  def key_ordered
+    keys.sort.inject({}) do |a, k|
+      a.merge!(k => self[k])
+    end
+  end
+end
+
 def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
   schema, defined, defined_used = to_schema_support(response, url, 'root', preset_schema)
 
@@ -39,27 +55,31 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
         if k == 'item'
           t = types['type'].split('_').shift
           "#{t}_item"
-        elsif types['type'] == 'event_callback' && k == 'event'
+        else
+          k
+        end
+
+      def_k =
+        if types['type'] == 'event_callback' && k == 'event'
           "#{v['type']}_event"
         else
           k
         end
 
-
       schema, _ = to_schema_support(v, url, k, preset, defined, defined_used, types)
-      defined_used << k
-      defined.merge!(k => schema)
-      next a.merge(k => { "$ref" => "#/definitions/refs/definitions/#{k}" })
+      defined_used << def_k
+      defined.merge!(def_k => schema)
+      next a.merge(k => { "$ref" => "#/definitions/#{def_k}" })
     end
 
     type =
       case k
       when key == 'root' && 'type'
-        def_string.('subscription_type')
+        { 'const' => v }
       when key == 'root' && 'subtype'
         def_string.('subscription_subtype')
-      when key.match(/.+_event$/) && 'type'
-        def_string.('event_type')
+      when key == 'event' && 'type'
+        { 'const' => v }
       when key.match(/^reaction_.+/) && 'type'
         'reaction_item_type'
 
@@ -150,6 +170,8 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
 
     if default_type?(type)
       a.merge(k => { "type" => type })
+    elsif type.is_a?(Hash)
+      a.merge(k => type)
     elsif type && type[0..1] == '[]'
       item = type[2..-1]
       if default_type?(item)
@@ -175,7 +197,7 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
         k => {
           "type" => 'array',
           'items' => {
-            "$ref" => "#/definitions/refs/definitions/#{item}"
+            "$ref" => "#/definitions/#{item}"
           }
         }
       )
@@ -183,7 +205,7 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
       defined_used << type
       a.merge(
         k => {
-          "$ref" => "#/definitions/refs/definitions/#{type}"
+          "$ref" => "#/definitions/#{type}"
         }
       )
     end
@@ -248,12 +270,12 @@ def write_event_api_summary
     schema, defined, used = to_schema(response, url, preset)
     schema.merge!(description: "learn more: #{url}")
 
-    pre = safe_merge(preset, defined)
+    pre = preset.protect_merge!(defined)
 
-    safe_merge(all_defined, defined)
+    all_defined.protect_merge!(defined)
 
     base = used.uniq.inject({}) do |a, pre_key|
-      pre[pre_key] ? safe_merge(a, { pre_key => pre[pre_key] }) : a
+      pre[pre_key] ? a.protect_merge!(pre_key => pre[pre_key]) : a
     end
 
     additional = {
@@ -274,20 +296,17 @@ def write_event_api_summary
 
     base if defined['pin_item']
 
+    additional.
+      protect_merge!(base).
+      protect_merge!(defined).
+      protect_merge!(type => schema)
+
     schema_data = {
-      "$schema": "http://json-schema.org/draft-04/schema",
-      "definitions" => {
-        refs: {
-          "type": "object",
-          "definitions" => safe_merge(safe_merge(additional, base), defined)
-        },
-        event_api_subscription: {
-          "type": "object",
-          "definitions" => {
-            type => schema
-          }
-        }
-      }
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "definitions" => additional.
+        protect_merge!(base).
+        protect_merge!(defined).
+        protect_merge!(type => schema)
     }
 
     all_schema[type] = schema
@@ -305,18 +324,10 @@ def write_event_api_summary
     end
   end
 
+
   File.write(BASE_DIR.join('schema.json').to_s, JSON.pretty_generate({
-    "$schema": "http://json-schema.org/draft-04/schema",
-    "definitions" => {
-      refs: {
-        "type": "object",
-        "definitions" => all_defined
-      },
-      event_api_subscription: {
-        "type": "object",
-        "definitions" => all_schema
-      }
-    }
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions" => all_defined.protect_merge!(all_schema).key_ordered
   }))
   File.write(BASE_DIR.join('summary.json').to_s, JSON.pretty_generate(data))
 end

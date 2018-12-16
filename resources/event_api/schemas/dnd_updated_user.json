@@ -1,55 +1,45 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "dnd_updated_user"
+      ]
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "dnd_status": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "dnd_updated_user"
-          ]
+      "description": "(defined by script)",
+      "properties": {
+        "dnd_enabled": {
+          "type": "boolean"
         },
-        "user_id": {
-          "type": "string"
+        "next_dnd_start_ts": {
+          "$ref": "#/definitions/time_integer"
         },
-        "time_integer": {
-          "type": "number"
-        },
-        "dnd_status": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "dnd_enabled": {
-              "type": "boolean"
-            },
-            "next_dnd_start_ts": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            },
-            "next_dnd_end_ts": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            }
-          }
+        "next_dnd_end_ts": {
+          "$ref": "#/definitions/time_integer"
         }
       }
     },
-    "event_api_subscription": {
+    "dnd_updated_user": {
       "type": "object",
-      "definitions": {
-        "dnd_updated_user": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/dnd_updated_user",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "user": {
-              "$ref": "#/definitions/refs/definitions/user_id"
-            },
-            "dnd_status": {
-              "$ref": "#/definitions/refs/definitions/dnd_status"
-            }
-          }
+      "description": "learn more: https://api.slack.com/events/dnd_updated_user",
+      "properties": {
+        "type": {
+          "const": "dnd_updated_user"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        },
+        "dnd_status": {
+          "$ref": "#/definitions/dnd_status"
         }
       }
     }

@@ -9,51 +9,41 @@
     "ts": "1355517523.000005"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
-        "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "message"
-            ]
-          },
-          "channel_id": {
-            "type": "string"
-          },
-          "user_id": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "string"
-          }
-        }
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "message"
+        ]
       },
-      "event_api_subscription": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "message": {
         "type": "object",
-        "definitions": {
-          "message": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/message",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "channel": {
-                "$ref": "#/definitions/refs/definitions/channel_id"
-              },
-              "user": {
-                "$ref": "#/definitions/refs/definitions/user_id"
-              },
-              "text": {
-                "type": "string"
-              },
-              "ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/message",
+        "properties": {
+          "type": {
+            "const": "message"
+          },
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
           }
         }
       }

@@ -1,55 +1,45 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "refs": {
+    "subscription_type": {
+      "type": "string",
+      "enum": [
+        "group_rename"
+      ]
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "channel_name": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "channel": {
       "type": "object",
-      "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_rename"
-          ]
+      "description": "(defined by script)",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/channel_id"
         },
-        "channel_id": {
-          "type": "string"
+        "name": {
+          "$ref": "#/definitions/channel_name"
         },
-        "channel_name": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
-        "channel": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/refs/definitions/channel_id"
-            },
-            "name": {
-              "$ref": "#/definitions/refs/definitions/channel_name"
-            },
-            "created": {
-              "$ref": "#/definitions/refs/definitions/time_integer"
-            }
-          }
+        "created": {
+          "$ref": "#/definitions/time_integer"
         }
       }
     },
-    "event_api_subscription": {
+    "group_rename": {
       "type": "object",
-      "definitions": {
-        "group_rename": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_rename",
-          "properties": {
-            "type": {
-              "$ref": "#/definitions/refs/definitions/subscription_type"
-            },
-            "channel": {
-              "$ref": "#/definitions/refs/definitions/channel"
-            }
-          }
+      "description": "learn more: https://api.slack.com/events/group_rename",
+      "properties": {
+        "type": {
+          "const": "group_rename"
+        },
+        "channel": {
+          "$ref": "#/definitions/channel"
         }
       }
     }

@@ -7,36 +7,26 @@
     "domain": "my"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
-        "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "team_domain_change"
-            ]
-          }
-        }
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "team_domain_change"
+        ]
       },
-      "event_api_subscription": {
+      "team_domain_change": {
         "type": "object",
-        "definitions": {
-          "team_domain_change": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/team_domain_change",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "url": {
-                "type": "string"
-              },
-              "domain": {
-                "type": "string"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/team_domain_change",
+        "properties": {
+          "type": {
+            "const": "team_domain_change"
+          },
+          "url": {
+            "type": "string"
+          },
+          "domain": {
+            "type": "string"
           }
         }
       }

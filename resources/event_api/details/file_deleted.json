@@ -7,42 +7,32 @@
     "event_ts": "1361482916.000004"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "file_deleted"
+        ]
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "file_deleted": {
         "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "file_deleted"
-            ]
+        "description": "learn more: https://api.slack.com/events/file_deleted",
+        "properties": {
+          "type": {
+            "const": "file_deleted"
           },
           "file_id": {
-            "type": "string"
+            "$ref": "#/definitions/file_id"
           },
-          "timestamp": {
-            "type": "string"
-          }
-        }
-      },
-      "event_api_subscription": {
-        "type": "object",
-        "definitions": {
-          "file_deleted": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/file_deleted",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "file_id": {
-                "$ref": "#/definitions/refs/definitions/file_id"
-              },
-              "event_ts": {
-                "$ref": "#/definitions/refs/definitions/timestamp"
-              }
-            }
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           }
         }
       }

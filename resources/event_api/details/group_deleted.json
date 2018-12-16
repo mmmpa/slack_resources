@@ -6,36 +6,26 @@
     "channel": "G0QN9RGTT"
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-04/schema",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "refs": {
-        "type": "object",
-        "definitions": {
-          "subscription_type": {
-            "type": "string",
-            "enum": [
-              "group_deleted"
-            ]
-          },
-          "channel_id": {
-            "type": "string"
-          }
-        }
+      "subscription_type": {
+        "type": "string",
+        "enum": [
+          "group_deleted"
+        ]
       },
-      "event_api_subscription": {
+      "channel_id": {
+        "type": "string"
+      },
+      "group_deleted": {
         "type": "object",
-        "definitions": {
-          "group_deleted": {
-            "type": "object",
-            "description": "learn more: https://api.slack.com/events/group_deleted",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/refs/definitions/subscription_type"
-              },
-              "channel": {
-                "$ref": "#/definitions/refs/definitions/channel_id"
-              }
-            }
+        "description": "learn more: https://api.slack.com/events/group_deleted",
+        "properties": {
+          "type": {
+            "const": "group_deleted"
+          },
+          "channel": {
+            "$ref": "#/definitions/channel_id"
           }
         }
       }
