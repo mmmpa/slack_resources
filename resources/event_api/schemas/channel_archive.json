@@ -1,12 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "subscription_type": {
-      "type": "string",
-      "enum": [
-        "channel_archive"
-      ]
-    },
     "channel_id": {
       "type": "string"
     },

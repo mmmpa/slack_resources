@@ -16,18 +16,6 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "subscription_type": {
-        "type": "string",
-        "enum": [
-          "grid_migration_started"
-        ]
-      },
-      "event_type": {
-        "type": "string",
-        "enum": [
-          "grid_migration_started"
-        ]
-      },
       "token": {
         "type": "string"
       },

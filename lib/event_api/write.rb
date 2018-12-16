@@ -278,33 +278,15 @@ def write_event_api_summary
       pre[pre_key] ? a.protect_merge!(pre_key => pre[pre_key]) : a
     end
 
-    additional = {
-      'subscription_type' => {
-        "type": "string",
-        "enum": [type],
-      }
-    }
-
-    if response['type'] == 'event_callback'
-      additional.merge!(
-        'event_type' => {
-          "type": "string",
-          "enum": [response['event']['type']],
-        }
-      )
-    end
-
     base if defined['pin_item']
 
-    additional.
-      protect_merge!(base).
+    base.
       protect_merge!(defined).
       protect_merge!(type => schema)
 
     schema_data = {
       "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions" => additional.
-        protect_merge!(base).
+      "definitions" => base.
         protect_merge!(defined).
         protect_merge!(type => schema)
     }

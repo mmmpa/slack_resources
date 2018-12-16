@@ -8,12 +8,6 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "subscription_type": {
-        "type": "string",
-        "enum": [
-          "team_rename"
-        ]
-      },
       "root_name": {
         "type": "string"
       },

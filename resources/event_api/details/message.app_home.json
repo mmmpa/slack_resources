@@ -24,18 +24,6 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "subscription_type": {
-        "type": "string",
-        "enum": [
-          "message.app_home"
-        ]
-      },
-      "event_type": {
-        "type": "string",
-        "enum": [
-          "message"
-        ]
-      },
       "token": {
         "type": "string"
       },

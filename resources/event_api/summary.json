@@ -33,12 +33,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "subteam_created"
-          ]
-        },
         "subteam_id": {
           "type": "string"
         },
@@ -189,12 +183,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "subteam_members_changed"
-          ]
-        },
         "subteam_id": {
           "type": "string"
         },
@@ -273,12 +261,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_rename"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -350,18 +332,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "tokens_revoked"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "tokens_revoked"
-          ]
-        },
         "team_id": {
           "type": "string"
         },
@@ -447,12 +417,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "app_mention"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -508,12 +472,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_shared"
-          ]
-        },
         "file_id": {
           "type": "string"
         },
@@ -562,12 +520,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_archive"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -639,12 +591,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "subteam_updated"
-          ]
-        },
         "subteam_id": {
           "type": "string"
         },
@@ -783,12 +729,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_open"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -835,12 +775,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "dnd_updated_user"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -897,12 +831,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "subteam_self_added"
-          ]
-        },
         "subteam_id": {
           "type": "string"
         },
@@ -939,12 +867,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_unarchive"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -1002,18 +924,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "scope_granted"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "scope_granted"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -1140,18 +1050,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "message.app_home"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "message"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -1258,12 +1156,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_archive"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -1300,12 +1192,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "im_open"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -1352,12 +1238,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "pin_removed"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -1425,18 +1305,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "grid_migration_finished"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "grid_migration_finished"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -1514,12 +1382,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "url_verification"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -1560,12 +1422,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "team_rename"
-          ]
-        },
         "root_name": {
           "type": "string"
         },
@@ -1605,12 +1461,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_rename"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -1683,18 +1533,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_denied"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_denied"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -1811,12 +1649,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "subteam_self_removed"
-          ]
-        },
         "subteam_id": {
           "type": "string"
         },
@@ -1856,12 +1688,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "pin_added"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -1925,18 +1751,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "app_uninstalled"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "app_uninstalled"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -2011,12 +1825,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "emoji_changed"
-          ]
-        },
         "subscription_subtype": {
           "type": "string"
         },
@@ -2070,12 +1878,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_public"
-          ]
-        },
         "file_id": {
           "type": "string"
         },
@@ -2127,12 +1929,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_comment_deleted"
-          ]
-        },
         "comment_id": {
           "type": "string"
         },
@@ -2191,12 +1987,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_created"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -2259,12 +2049,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "member_left_channel"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -2320,12 +2104,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "email_domain_changed"
-          ]
-        },
         "timestamp": {
           "type": "string"
         },
@@ -2380,18 +2158,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "message.im"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "message"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -2501,12 +2267,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_unshared"
-          ]
-        },
         "file_id": {
           "type": "string"
         },
@@ -2554,12 +2314,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_deleted"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -2611,18 +2365,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_granted"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_granted"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -2740,12 +2482,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "user_change"
-          ]
-        },
         "user": {
           "type": "object",
           "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
@@ -2784,12 +2520,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_left"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -2827,12 +2557,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_history_changed"
-          ]
-        },
         "timestamp": {
           "type": "string"
         },
@@ -2876,12 +2600,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_left"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -2922,12 +2640,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_comment_added"
-          ]
-        },
         "comment": {
           "type": "object",
           "description": "definition snipped. learn more: https://api.slack.com/events/file_comment_added",
@@ -2985,12 +2697,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_close"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -3061,18 +2767,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "link_shared"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "link_shared"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -3190,12 +2884,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "im_created"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -3249,12 +2937,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "channel_deleted"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -3306,18 +2988,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "message.channels"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "message"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -3427,12 +3097,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "app_rate_limited"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -3486,12 +3150,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "im_close"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -3560,18 +3218,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "resources_added"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "resources_added"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -3725,12 +3371,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "team_join"
-          ]
-        },
         "user": {
           "type": "object",
           "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
@@ -3781,18 +3421,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_removed"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "user_resource_removed"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -3883,12 +3511,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "im_history_changed"
-          ]
-        },
         "timestamp": {
           "type": "string"
         },
@@ -3937,12 +3559,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "dnd_updated"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -4015,18 +3631,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "message.groups"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "message"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -4136,12 +3740,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "star_added"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -4194,12 +3792,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_history_changed"
-          ]
-        },
         "timestamp": {
           "type": "string"
         },
@@ -4268,18 +3860,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "resources_removed"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "resources_removed"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -4448,18 +4028,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "scope_denied"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "scope_denied"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -4570,12 +4138,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "group_unarchive"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },
@@ -4627,18 +4189,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "message.mpim"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "message"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -4748,12 +4298,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "star_removed"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -4807,12 +4351,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_change"
-          ]
-        },
         "file_id": {
           "type": "string"
         },
@@ -4861,12 +4399,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "team_domain_change"
-          ]
-        },
         "team_domain_change": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/team_domain_change",
@@ -4910,18 +4442,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "grid_migration_started"
-          ]
-        },
-        "event_type": {
-          "type": "string",
-          "enum": [
-            "grid_migration_started"
-          ]
-        },
         "token": {
           "type": "string"
         },
@@ -5006,12 +4526,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "reaction_added"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -5091,12 +4605,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_comment_edited"
-          ]
-        },
         "comment": {
           "type": "object",
           "description": "definition snipped. learn more: https://api.slack.com/events/file_comment_added",
@@ -5161,12 +4669,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "reaction_removed"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -5245,12 +4747,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "member_joined_channel"
-          ]
-        },
         "user_id": {
           "type": "string"
         },
@@ -5311,12 +4807,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_created"
-          ]
-        },
         "file_id": {
           "type": "string"
         },
@@ -5365,12 +4855,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "file_deleted"
-          ]
-        },
         "file_id": {
           "type": "string"
         },
@@ -5415,12 +4899,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_type": {
-          "type": "string",
-          "enum": [
-            "message"
-          ]
-        },
         "channel_id": {
           "type": "string"
         },

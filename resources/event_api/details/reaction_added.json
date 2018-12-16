@@ -16,12 +16,6 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "subscription_type": {
-        "type": "string",
-        "enum": [
-          "reaction_added"
-        ]
-      },
       "user_id": {
         "type": "string"
       },
