@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/scope_granted",
   "type": "scope_granted",
-  "responce": {
+  "response": {
     "token": "verification-token",
     "team_id": "T1DD3JH3K",
     "api_app_id": "A7449NRUL",
@@ -24,52 +24,78 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
+          "subscription_type": {
+            "type": "string",
+            "enum": [
+              "scope_granted"
+            ]
+          },
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "scope_granted"
+            ]
+          },
+          "token": {
+            "type": "string"
+          },
           "team_id": {
             "type": "string"
           },
           "api_app_id": {
             "type": "string"
           },
-          "event_type": {
-            "type": "string"
-          },
           "scope": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "channels:read",
+              "channels:history",
+              "groups:history",
+              "mpim:history",
+              "dnd:read",
+              "team:read",
+              "emoji:read",
+              "files:read",
+              "groups:read",
+              "im:read",
+              "im:history",
+              "links:read",
+              "pins:read",
+              "reactions:read",
+              "stars:read",
+              "usergroups:read",
+              "users:read"
+            ]
           },
           "trigger_id": {
             "type": "string"
           },
-          "subscription_type": {
-            "type": "string"
+          "scope_granted_event": {
+            "type": "object",
+            "description": "(defined by script)",
+            "properties": {
+              "type": {
+                "$ref": "#/definitions/refs/definitions/event_type"
+              },
+              "scopes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/refs/definitions/scope"
+                }
+              },
+              "trigger_id": {
+                "$ref": "#/definitions/refs/definitions/trigger_id"
+              }
+            }
           },
           "event_id": {
             "type": "string"
           },
           "time_integer": {
             "type": "number"
-          },
-          "token": {
-            "type": "string"
-          },
-          "scope_granted_event": {
-            "type": "object",
-            "properties": {
-              "type": {
-                "$ref": "#/definitions/core/definitions/event_type"
-              },
-              "scopes": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/core/definitions/scope"
-                }
-              },
-              "trigger_id": {
-                "$ref": "#/definitions/core/definitions/trigger_id"
-              }
-            }
           }
         }
       },
@@ -78,33 +104,34 @@
         "definitions": {
           "scope_granted": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/scope_granted",
             "properties": {
               "token": {
-                "type": "string"
+                "$ref": "#/definitions/refs/definitions/token"
               },
               "team_id": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               },
               "api_app_id": {
-                "$ref": "#/definitions/core/definitions/api_app_id"
+                "$ref": "#/definitions/refs/definitions/api_app_id"
               },
               "scope_granted_event": {
-                "$ref": "#/definitions/core/definitions/scope_granted_event"
+                "$ref": "#/definitions/refs/definitions/scope_granted_event"
               },
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "authed_teams": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/definitions/team_id"
+                  "$ref": "#/definitions/refs/definitions/team_id"
                 }
               },
               "event_id": {
-                "$ref": "#/definitions/core/definitions/event_id"
+                "$ref": "#/definitions/refs/definitions/event_id"
               },
               "event_time": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               }
             }
           }
@@ -113,7 +140,7 @@
     }
   },
   "compatibility": [
-    "Events API\n"
+    "Events API"
   ],
   "scopes": [
 

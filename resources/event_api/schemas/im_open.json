@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "im_open"
+          ]
         },
         "user_id": {
           "type": "string"
@@ -20,15 +23,16 @@
       "definitions": {
         "im_open": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/im_open",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         }

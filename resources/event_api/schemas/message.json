@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "message"
+          ]
         },
         "channel_id": {
           "type": "string"
@@ -23,21 +26,22 @@
       "definitions": {
         "message": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/message",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "text": {
               "type": "string"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

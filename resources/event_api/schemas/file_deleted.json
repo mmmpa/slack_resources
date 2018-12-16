@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "file_deleted"
+          ]
         },
         "file_id": {
           "type": "string"
@@ -20,15 +23,16 @@
       "definitions": {
         "file_deleted": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_deleted",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/group_history_changed",
   "type": "group_history_changed",
-  "responce": {
+  "response": {
     "type": "group_history_changed",
     "latest": "1358877455.000010",
     "ts": "1361482916.000003",
@@ -10,11 +10,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "group_history_changed"
+            ]
           },
           "timestamp": {
             "type": "string"
@@ -26,18 +29,19 @@
         "definitions": {
           "group_history_changed": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/group_history_changed",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "latest": {
-                "$ref": "#/definitions/core/definitions/timestamp"
+                "$ref": "#/definitions/refs/definitions/timestamp"
               },
               "ts": {
-                "$ref": "#/definitions/core/definitions/timestamp"
+                "$ref": "#/definitions/refs/definitions/timestamp"
               },
               "event_ts": {
-                "$ref": "#/definitions/core/definitions/timestamp"
+                "$ref": "#/definitions/refs/definitions/timestamp"
               }
             }
           }
@@ -46,10 +50,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "groups:history\n"
+    "groups:history"
   ]
 }

@@ -1,18 +1,21 @@
 {
   "url": "https://api.slack.com/events/team_rename",
   "type": "team_rename",
-  "responce": {
+  "response": {
     "type": "team_rename",
     "name": "New Team Name Inc."
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "team_rename"
+            ]
           },
           "root_name": {
             "type": "string"
@@ -24,12 +27,13 @@
         "definitions": {
           "team_rename": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/team_rename",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "name": {
-                "$ref": "#/definitions/core/definitions/root_name"
+                "$ref": "#/definitions/refs/definitions/root_name"
               }
             }
           }
@@ -38,10 +42,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "team:read\n"
+    "team:read"
   ]
 }

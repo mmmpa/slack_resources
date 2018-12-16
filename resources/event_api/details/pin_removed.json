@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/pin_removed",
   "type": "pin_removed",
-  "responce": {
+  "response": {
     "type": "pin_removed",
     "user": "U024BE7LH",
     "channel_id": "C02ELGNBH",
@@ -13,11 +13,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "pin_removed"
+            ]
           },
           "user_id": {
             "type": "string"
@@ -25,13 +28,14 @@
           "channel_id": {
             "type": "string"
           },
-          "timestamp": {
-            "type": "string"
-          },
           "pin_item": {
             "type": "object",
+            "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
             "properties": {
             }
+          },
+          "timestamp": {
+            "type": "string"
           }
         }
       },
@@ -40,24 +44,25 @@
         "definitions": {
           "pin_removed": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/pin_removed",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "user": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               },
               "channel_id": {
-                "$ref": "#/definitions/core/definitions/channel_id"
+                "$ref": "#/definitions/refs/definitions/channel_id"
               },
               "pin_item": {
-                "$ref": "#/definitions/core/definitions/pin_item"
+                "$ref": "#/definitions/refs/definitions/pin_item"
               },
               "has_pins": {
                 "type": "boolean"
               },
               "event_ts": {
-                "$ref": "#/definitions/core/definitions/timestamp"
+                "$ref": "#/definitions/refs/definitions/timestamp"
               }
             }
           }
@@ -66,10 +71,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "pins:read\n"
+    "pins:read"
   ]
 }

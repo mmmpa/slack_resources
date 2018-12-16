@@ -1,18 +1,31 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "im_created"
+          ]
         },
         "user_id": {
           "type": "string"
         },
         "channel": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
+            "id": {
+              "$ref": "#/definitions/refs/definitions/channel_id"
+            },
+            "name": {
+              "$ref": "#/definitions/refs/definitions/channel_name"
+            },
+            "created": {
+              "$ref": "#/definitions/refs/definitions/time_integer"
+            }
           }
         }
       }
@@ -22,15 +35,16 @@
       "definitions": {
         "im_created": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/im_created",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel"
+              "$ref": "#/definitions/refs/definitions/channel"
             }
           }
         }

@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "pin_added"
+          ]
         },
         "user_id": {
           "type": "string"
@@ -13,13 +16,14 @@
         "channel_id": {
           "type": "string"
         },
-        "timestamp": {
-          "type": "string"
-        },
         "pin_item": {
           "type": "object",
+          "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
           "properties": {
           }
+        },
+        "timestamp": {
+          "type": "string"
         }
       }
     },
@@ -28,21 +32,22 @@
       "definitions": {
         "pin_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/pin_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel_id": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "pin_item": {
-              "$ref": "#/definitions/core/definitions/pin_item"
+              "$ref": "#/definitions/refs/definitions/pin_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

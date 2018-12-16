@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/subteam_members_changed",
   "type": "subteam_members_changed",
-  "responce": {
+  "response": {
     "type": "subteam_members_changed",
     "subteam_id": "S0614TZR7",
     "team_id": "T060RNRCH",
@@ -21,11 +21,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "subteam_members_changed"
+            ]
           },
           "subteam_id": {
             "type": "string"
@@ -49,39 +52,40 @@
         "definitions": {
           "subteam_members_changed": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/subteam_members_changed",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "subteam_id": {
-                "$ref": "#/definitions/core/definitions/subteam_id"
+                "$ref": "#/definitions/refs/definitions/subteam_id"
               },
               "team_id": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               },
               "date_previous_update": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               },
               "date_update": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               },
               "added_users": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/definitions/user_id"
+                  "$ref": "#/definitions/refs/definitions/user_id"
                 }
               },
               "added_users_count": {
-                "$ref": "#/definitions/core/definitions/user_count"
+                "$ref": "#/definitions/refs/definitions/user_count"
               },
               "removed_users": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/definitions/user_id"
+                  "$ref": "#/definitions/refs/definitions/user_id"
                 }
               },
               "removed_users_count": {
-                "$ref": "#/definitions/core/definitions/user_count"
+                "$ref": "#/definitions/refs/definitions/user_count"
               }
             }
           }
@@ -90,10 +94,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "usergroups:read\n"
+    "usergroups:read"
   ]
 }

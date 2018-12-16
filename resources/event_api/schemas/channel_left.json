@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "channel_left"
+          ]
         },
         "channel_id": {
           "type": "string"
@@ -17,12 +20,13 @@
       "definitions": {
         "channel_left": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_left",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         }

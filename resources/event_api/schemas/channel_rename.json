@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "channel_rename"
+          ]
         },
         "channel_id": {
           "type": "string"
@@ -18,15 +21,16 @@
         },
         "channel": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "id": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "name": {
-              "$ref": "#/definitions/core/definitions/channel_name"
+              "$ref": "#/definitions/refs/definitions/channel_name"
             },
             "created": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         }
@@ -37,12 +41,13 @@
       "definitions": {
         "channel_rename": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_rename",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel"
+              "$ref": "#/definitions/refs/definitions/channel"
             }
           }
         }

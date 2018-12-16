@@ -1,22 +1,26 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "star_added"
+          ]
         },
         "user_id": {
           "type": "string"
         },
-        "timestamp": {
-          "type": "string"
-        },
         "star_item": {
           "type": "object",
+          "description": "definition snipped. learn more: https://api.slack.com/events/star_added",
           "properties": {
           }
+        },
+        "timestamp": {
+          "type": "string"
         }
       }
     },
@@ -25,18 +29,19 @@
       "definitions": {
         "star_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/star_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "star_item": {
-              "$ref": "#/definitions/core/definitions/star_item"
+              "$ref": "#/definitions/refs/definitions/star_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

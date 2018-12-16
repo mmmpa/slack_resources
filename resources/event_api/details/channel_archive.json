@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/channel_archive",
   "type": "channel_archive",
-  "responce": {
+  "response": {
     "type": "channel_archive",
     "channel": "C024BE91L",
     "user": "U024BE7LH"
@@ -9,11 +9,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "channel_archive"
+            ]
           },
           "channel_id": {
             "type": "string"
@@ -28,15 +31,16 @@
         "definitions": {
           "channel_archive": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/channel_archive",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "channel": {
-                "$ref": "#/definitions/core/definitions/channel_id"
+                "$ref": "#/definitions/refs/definitions/channel_id"
               },
               "user": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               }
             }
           }
@@ -45,10 +49,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "channels:read\n"
+    "channels:read"
   ]
 }

@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "channel_history_changed"
+          ]
         },
         "timestamp": {
           "type": "string"
@@ -17,18 +20,19 @@
       "definitions": {
         "channel_history_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_history_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "latest": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/file_created",
   "type": "file_created",
-  "responce": {
+  "response": {
     "type": "file_created",
     "file_id": "F2147483862",
     "file": {
@@ -11,20 +11,24 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "file_created"
+            ]
           },
           "file_id": {
             "type": "string"
           },
           "file": {
             "type": "object",
+            "description": "(defined by script)",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/definitions/file_id"
+                "$ref": "#/definitions/refs/definitions/file_id"
               }
             }
           }
@@ -35,15 +39,16 @@
         "definitions": {
           "file_created": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/file_created",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "file_id": {
-                "$ref": "#/definitions/core/definitions/file_id"
+                "$ref": "#/definitions/refs/definitions/file_id"
               },
               "file": {
-                "$ref": "#/definitions/core/definitions/file"
+                "$ref": "#/definitions/refs/definitions/file"
               }
             }
           }
@@ -52,10 +57,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "files:read\n"
+    "files:read"
   ]
 }

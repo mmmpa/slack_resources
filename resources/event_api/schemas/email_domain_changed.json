@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "email_domain_changed"
+          ]
         },
         "timestamp": {
           "type": "string"
@@ -17,15 +20,16 @@
       "definitions": {
         "email_domain_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/email_domain_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "email_domain": {
               "type": "string"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

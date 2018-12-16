@@ -42,16 +42,26 @@ def analise(html)
 end
 
 def pick_response(doc)
-  responce_raw = doc.css('#api_main_content pre')[0].content
-  parse(responce_raw)
+  response_raw = doc.css('#api_main_content pre')[0].content
+  parse(response_raw)
 end
 
 def pick_compatibility(doc)
-  doc.css('#api_main_content .col.span_2_of_3.small')[0].content.gsub("\t\t", "\t").split("\t").select(&:present?)[1..-1] || []
+  doc.css('#api_main_content .col.span_2_of_3.small')[0].
+    content.
+    gsub("\t\t", "\t").
+    split("\t").
+    select(&:present?)[1..-1]&.
+    map(&:chomp) || []
 end
 
 def pick_scopes(doc)
-  doc.css('#api_main_content .col.span_1_of_3.small')[0]&.content.gsub("\t\t", "\t").split("\t").select(&:present?)[1..-1] || []
+  doc.css('#api_main_content .col.span_1_of_3.small')[0]&.
+    content.
+    gsub("\t\t", "\t").
+    split("\t").
+    select(&:present?)[1..-1]&.
+    map(&:chomp) || []
 end
 
 def parse(json)
@@ -68,18 +78,40 @@ rescue
 end
 
 def write_response_sample
-  urls = {}
+  types = []
+  on_event_api = []
+  on_rtm = []
+  event_types = []
+  all_scopes = []
+  subscriptions = {}
+
   event_api_pages.each do |url, type, page|
-    responce, compatibility, scopes = analise(page)
-    urls[type] = {
+    response, compatibility, scopes = analise(page)
+
+    types << type
+    on_event_api << type if compatibility.include?('Events API')
+    on_rtm << type if compatibility.include?('RTM')
+
+    event_types << response['event']['type'] if response['type'] == 'event_callback'
+
+    all_scopes += scopes
+
+    subscriptions[type] = {
       url: url,
       compatibility: compatibility,
       scopes: scopes,
     }
-    File.write(EXAMPLES_DIR.join("#{type}.json"), JSON.pretty_generate(responce))
+    File.write(EXAMPLES_DIR.join("#{type}.json"), JSON.pretty_generate(response))
   end
 
-  File.write(BASE_DIR.join("meta.json"), JSON.pretty_generate(urls))
+  File.write(BASE_DIR.join("meta.json"), JSON.pretty_generate({
+    types: types.uniq,
+    on_event_api: on_event_api.uniq,
+    on_rtm: on_rtm.uniq,
+    event_types: event_types.uniq,
+    scopes: all_scopes.uniq,
+    subscriptions: subscriptions,
+  }))
 end
 
 write_response_sample

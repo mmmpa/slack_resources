@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/team_join",
   "type": "team_join",
-  "responce": {
+  "response": {
     "type": "team_join",
     "user": {
     }
@@ -9,14 +9,18 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "team_join"
+            ]
           },
           "user": {
             "type": "object",
+            "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
             "properties": {
             }
           }
@@ -27,12 +31,13 @@
         "definitions": {
           "team_join": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/team_join",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "user": {
-                "$ref": "#/definitions/core/definitions/user"
+                "$ref": "#/definitions/refs/definitions/user"
               }
             }
           }
@@ -41,10 +46,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "users:read\n"
+    "users:read"
   ]
 }

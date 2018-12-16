@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/emoji_changed",
   "type": "emoji_changed",
-  "responce": {
+  "response": {
     "type": "emoji_changed",
     "subtype": "remove",
     "names": [
@@ -12,11 +12,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "emoji_changed"
+            ]
           },
           "subscription_subtype": {
             "type": "string"
@@ -34,21 +37,22 @@
         "definitions": {
           "emoji_changed": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/emoji_changed",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "subtype": {
-                "$ref": "#/definitions/core/definitions/subscription_subtype"
+                "$ref": "#/definitions/refs/definitions/subscription_subtype"
               },
               "names": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/definitions/emoji_name"
+                  "$ref": "#/definitions/refs/definitions/emoji_name"
                 }
               },
               "event_ts": {
-                "$ref": "#/definitions/core/definitions/timestamp"
+                "$ref": "#/definitions/refs/definitions/timestamp"
               }
             }
           }
@@ -57,10 +61,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "emoji:read\n"
+    "emoji:read"
   ]
 }

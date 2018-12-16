@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/dnd_updated_user",
   "type": "dnd_updated_user",
-  "responce": {
+  "response": {
     "type": "dnd_updated_user",
     "user": "U1234",
     "dnd_status": {
@@ -13,11 +13,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "dnd_updated_user"
+            ]
           },
           "user_id": {
             "type": "string"
@@ -27,15 +30,16 @@
           },
           "dnd_status": {
             "type": "object",
+            "description": "(defined by script)",
             "properties": {
               "dnd_enabled": {
                 "type": "boolean"
               },
               "next_dnd_start_ts": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               },
               "next_dnd_end_ts": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               }
             }
           }
@@ -46,15 +50,16 @@
         "definitions": {
           "dnd_updated_user": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/dnd_updated_user",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "user": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               },
               "dnd_status": {
-                "$ref": "#/definitions/core/definitions/dnd_status"
+                "$ref": "#/definitions/refs/definitions/dnd_status"
               }
             }
           }
@@ -63,10 +68,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "dnd:read\n"
+    "dnd:read"
   ]
 }

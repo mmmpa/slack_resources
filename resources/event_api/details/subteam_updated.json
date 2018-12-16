@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/subteam_updated",
   "type": "subteam_updated",
-  "responce": {
+  "response": {
     "type": "subteam_updated",
     "subteam": {
       "id": "S0614TZR7",
@@ -38,11 +38,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "subteam_updated"
+            ]
           },
           "subteam_id": {
             "type": "string"
@@ -57,7 +60,13 @@
             "type": "number"
           },
           "auto_type": {
-            "type": "string"
+            "type": "string",
+            "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+            "enum": [
+              "admins",
+              "owners",
+              null
+            ]
           },
           "user_id": {
             "type": "string"
@@ -68,40 +77,42 @@
           "group_id": {
             "type": "string"
           },
-          "user_count": {
-            "type": "string"
-          },
           "prefs": {
             "type": "object",
+            "description": "(defined by script)",
             "properties": {
               "channels": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/definitions/channel_id"
+                  "$ref": "#/definitions/refs/definitions/channel_id"
                 }
               },
               "groups": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/definitions/core/definitions/group_id"
+                  "$ref": "#/definitions/refs/definitions/group_id"
                 }
               }
             }
           },
+          "user_count": {
+            "type": "string"
+          },
           "subteam": {
             "type": "object",
+            "description": "(defined by script)",
             "properties": {
               "id": {
-                "$ref": "#/definitions/core/definitions/subteam_id"
+                "$ref": "#/definitions/refs/definitions/subteam_id"
               },
               "team_id": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               },
               "is_usergroup": {
                 "type": "boolean"
               },
               "name": {
-                "$ref": "#/definitions/core/definitions/subteam_name"
+                "$ref": "#/definitions/refs/definitions/subteam_name"
               },
               "description": {
                 "type": "string"
@@ -113,37 +124,31 @@
                 "type": "boolean"
               },
               "date_create": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               },
               "date_update": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               },
               "date_delete": {
-                "$ref": "#/definitions/core/definitions/time_integer"
+                "$ref": "#/definitions/refs/definitions/time_integer"
               },
               "auto_type": {
-                "$ref": "#/definitions/core/definitions/auto_type"
+                "$ref": "#/definitions/refs/definitions/auto_type"
               },
               "created_by": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               },
               "updated_by": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               },
               "deleted_by": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               },
               "prefs": {
-                "$ref": "#/definitions/core/definitions/prefs"
-              },
-              "users": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/definitions/core/definitions/user_id"
-                }
+                "$ref": "#/definitions/refs/definitions/prefs"
               },
               "user_count": {
-                "$ref": "#/definitions/core/definitions/user_count"
+                "$ref": "#/definitions/refs/definitions/user_count"
               }
             }
           }
@@ -154,12 +159,13 @@
         "definitions": {
           "subteam_updated": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/subteam_updated",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "subteam": {
-                "$ref": "#/definitions/core/definitions/subteam"
+                "$ref": "#/definitions/refs/definitions/subteam"
               }
             }
           }
@@ -168,10 +174,10 @@
     }
   },
   "compatibility": [
-    "RTM\n",
-    "Events API\n"
+    "RTM",
+    "Events API"
   ],
   "scopes": [
-    "usergroups:read\n"
+    "usergroups:read"
   ]
 }

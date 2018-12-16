@@ -1,7 +1,7 @@
 {
   "url": "https://api.slack.com/events/app_mention",
   "type": "app_mention",
-  "responce": {
+  "response": {
     "type": "app_mention",
     "user": "U061F7AUR",
     "text": "<@U0LAN0Z89> is it everything a river should be?",
@@ -12,11 +12,14 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions": {
-      "core": {
+      "refs": {
         "type": "object",
         "definitions": {
           "subscription_type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "app_mention"
+            ]
           },
           "user_id": {
             "type": "string"
@@ -34,24 +37,25 @@
         "definitions": {
           "app_mention": {
             "type": "object",
+            "description": "learn more: https://api.slack.com/events/app_mention",
             "properties": {
               "type": {
-                "$ref": "#/definitions/core/definitions/subscription_type"
+                "$ref": "#/definitions/refs/definitions/subscription_type"
               },
               "user": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               },
               "text": {
                 "type": "string"
               },
               "ts": {
-                "$ref": "#/definitions/core/definitions/timestamp"
+                "$ref": "#/definitions/refs/definitions/timestamp"
               },
               "channel": {
-                "$ref": "#/definitions/core/definitions/channel_id"
+                "$ref": "#/definitions/refs/definitions/channel_id"
               },
               "event_ts": {
-                "$ref": "#/definitions/core/definitions/timestamp"
+                "$ref": "#/definitions/refs/definitions/timestamp"
               }
             }
           }
@@ -60,7 +64,7 @@
     }
   },
   "compatibility": [
-    "Events API\n"
+    "Events API"
   ],
   "scopes": [
 

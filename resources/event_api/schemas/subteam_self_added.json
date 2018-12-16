@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "subteam_self_added"
+          ]
         },
         "subteam_id": {
           "type": "string"
@@ -17,12 +20,13 @@
       "definitions": {
         "subteam_self_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/subteam_self_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subteam_id": {
-              "$ref": "#/definitions/core/definitions/subteam_id"
+              "$ref": "#/definitions/refs/definitions/subteam_id"
             }
           }
         }

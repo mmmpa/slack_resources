@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "reaction_added"
+          ]
         },
         "user_id": {
           "type": "string"
@@ -24,15 +27,16 @@
         },
         "reaction_item": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/reaction_item_type"
+              "$ref": "#/definitions/refs/definitions/reaction_item_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }
@@ -43,24 +47,25 @@
       "definitions": {
         "reaction_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/reaction_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "reaction": {
-              "$ref": "#/definitions/core/definitions/emoji_name"
+              "$ref": "#/definitions/refs/definitions/emoji_name"
             },
             "item_user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "reaction_item": {
-              "$ref": "#/definitions/core/definitions/reaction_item"
+              "$ref": "#/definitions/refs/definitions/reaction_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

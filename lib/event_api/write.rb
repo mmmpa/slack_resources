@@ -14,9 +14,10 @@ FileUtils.mkdir_p(DETAILS_DIR)
 FileUtils.mkdir_p(SCHEMAS_DIR)
 
 PRESET_SCHEMA = JSON.parse(File.read('lib/schema.json'))
+PRESET_DEFINITIONS = PRESET_SCHEMA['definitions']
 
-def to_schema(responce, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
-  schema, defined, defined_used = to_schema_support(responce, 'root', preset_schema)
+def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
+  schema, defined, defined_used = to_schema_support(response, url, 'root', preset_schema)
 
   [schema, defined, defined_used]
 end
@@ -25,10 +26,10 @@ def string_k_v(k, v)
   (v.nil? || v.is_a?(String)) && k
 end
 
-def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined_used = [], parent = {})
-  types = JSON.parse(responce.to_json)
+def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, defined_used = [], parent = {})
+  types = JSON.parse(response.to_json)
 
-  # return key.camelize if responce.blank?
+  # return key.camelize if response.blank?
 
   def_string = ->(id_key) { id_key.tap { defined.merge!(id_key => { "type" => "string" }) } }
 
@@ -45,9 +46,10 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
         end
 
 
-      schema, _ = to_schema_support(v, k, preset, defined, defined_used, types)
+      schema, _ = to_schema_support(v, url, k, preset, defined, defined_used, types)
+      defined_used << k
       defined.merge!(k => schema)
-      next a.merge(k => { "$ref" => "#/definitions/core/definitions/#{k}" })
+      next a.merge(k => { "$ref" => "#/definitions/refs/definitions/#{k}" })
     end
 
     type =
@@ -118,7 +120,7 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
         'user_count'
 
       when 'resources'
-        defined.merge!('resource_item' => to_schema_support(v.first, k, preset, defined, defined_used, types))
+        defined.merge!('resource_item' => to_schema_support(v.first, url, k, preset, defined, defined_used, types))
         '[]resource_item'
 
       when v.is_a?(Integer) && k
@@ -133,7 +135,7 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
         '[]string'
       when 'latest', /.+_ts$/
         'timestamp'
-      when preset['definitions'][k] && k
+      when preset[k] && k
         k
       else
         if v.respond_to?(:to_f) && v == v.to_f.to_s
@@ -161,18 +163,19 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
         )
       else
         if v.first.is_a?(Hash)
-          schema, _ = to_schema_support(v.first, item, preset, defined, defined_used, types)
+          schema, _ = to_schema_support(v.first, url, item, preset, defined, defined_used, types)
           defined.merge!(item => schema)
         elsif v.first.is_a?(String)
           def_string.(item)
         end
+
         defined_used << item
       end
       a.merge(
         k => {
           "type" => 'array',
           'items' => {
-            "$ref" => "#/definitions/core/definitions/#{item}"
+            "$ref" => "#/definitions/refs/definitions/#{item}"
           }
         }
       )
@@ -180,7 +183,7 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
       defined_used << type
       a.merge(
         k => {
-          "$ref" => "#/definitions/core/definitions/#{type}"
+          "$ref" => "#/definitions/refs/definitions/#{type}"
         }
       )
     end
@@ -189,6 +192,7 @@ def to_schema_support(responce, key = 'root', preset = {}, defined = {}, defined
   [
     {
       "type" => "object",
+      description: properties.blank? ? "definition snipped. learn more: #{url}" : '(defined by script)',
       "properties" => properties
     },
     defined,
@@ -198,6 +202,14 @@ end
 
 def default_type?(type)
   type == 'string' || type == 'number' || type == 'object' || type == 'array' || type == 'boolean' || type == 'null'
+end
+
+def safe_merge(a, b)
+  (b.keys - a.keys).map do |new_key|
+    a[new_key] = b[new_key]
+  end
+
+  a
 end
 
 def write_event_api_summary
@@ -210,32 +222,64 @@ def write_event_api_summary
   end
 
   event_api_pages = examples.map do |type, data|
-    info = meta[type]
+    info = meta['subscriptions'][type]
     [info['url'], type, data, info['compatibility'], info['scopes']]
   end
 
-  all_defined = PRESET_SCHEMA['definitions'].merge({})
+  preset = PRESET_DEFINITIONS.merge(
+    'subscription_type' => {
+      "type": "string",
+      "enum": meta['types'],
+    },
+    'event_type' => {
+      "type": "string",
+      "enum": meta['event_types'],
+    },
+    'scope' => {
+      "type": "string",
+      "enum": meta['scopes'],
+    }
+  )
+
+  all_defined = JSON.parse(preset.to_json)
   all_schema = {}
 
-  data = event_api_pages.map do |url, type, responce, compatibility, scopes|
-    schema, defined, used = to_schema(responce)
+  data = event_api_pages.map do |url, type, response, compatibility, scopes|
+    schema, defined, used = to_schema(response, url, preset)
+    schema.merge!(description: "learn more: #{url}")
 
-    pre = PRESET_SCHEMA['definitions'].merge(defined)
+    pre = safe_merge(preset, defined)
 
-    (defined.keys - all_defined.keys).map do |new_key|
-      all_defined[new_key] = defined[new_key]
+    safe_merge(all_defined, defined)
+
+    base = used.uniq.inject({}) do |a, pre_key|
+      pre[pre_key] ? safe_merge(a, { pre_key => pre[pre_key] }) : a
     end
 
-    base = used.uniq.inject({}) do |a, preset|
-      a.merge!(preset => pre[preset])
+    additional = {
+      'subscription_type' => {
+        "type": "string",
+        "enum": [type],
+      }
+    }
+
+    if response['type'] == 'event_callback'
+      additional.merge!(
+        'event_type' => {
+          "type": "string",
+          "enum": [response['event']['type']],
+        }
+      )
     end
+
+    base if defined['pin_item']
 
     schema_data = {
       "$schema": "http://json-schema.org/draft-04/schema",
       "definitions" => {
-        core: {
+        refs: {
           "type": "object",
-          "definitions" => base.merge(defined)
+          "definitions" => safe_merge(safe_merge(additional, base), defined)
         },
         event_api_subscription: {
           "type": "object",
@@ -252,7 +296,7 @@ def write_event_api_summary
     {
       url: url,
       type: type,
-      responce: responce,
+      response: response,
       schema: schema_data,
       compatibility: compatibility,
       scopes: scopes,
@@ -264,7 +308,7 @@ def write_event_api_summary
   File.write(BASE_DIR.join('schema.json').to_s, JSON.pretty_generate({
     "$schema": "http://json-schema.org/draft-04/schema",
     "definitions" => {
-      core: {
+      refs: {
         "type": "object",
         "definitions" => all_defined
       },

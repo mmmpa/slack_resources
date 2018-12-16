@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "subteam_created"
+          ]
         },
         "subteam_id": {
           "type": "string"
@@ -20,7 +23,13 @@
           "type": "number"
         },
         "auto_type": {
-          "type": "string"
+          "type": "string",
+          "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+          "enum": [
+            "admins",
+            "owners",
+            null
+          ]
         },
         "user_id": {
           "type": "string"
@@ -31,40 +40,42 @@
         "group_id": {
           "type": "string"
         },
-        "user_count": {
-          "type": "string"
-        },
         "prefs": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "channels": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/channel_id"
+                "$ref": "#/definitions/refs/definitions/channel_id"
               }
             },
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/group_id"
+                "$ref": "#/definitions/refs/definitions/group_id"
               }
             }
           }
         },
+        "user_count": {
+          "type": "string"
+        },
         "subteam": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "id": {
-              "$ref": "#/definitions/core/definitions/subteam_id"
+              "$ref": "#/definitions/refs/definitions/subteam_id"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "is_usergroup": {
               "type": "boolean"
             },
             "name": {
-              "$ref": "#/definitions/core/definitions/subteam_name"
+              "$ref": "#/definitions/refs/definitions/subteam_name"
             },
             "description": {
               "type": "string"
@@ -76,31 +87,31 @@
               "type": "boolean"
             },
             "date_create": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "date_update": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "date_delete": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "auto_type": {
-              "$ref": "#/definitions/core/definitions/auto_type"
+              "$ref": "#/definitions/refs/definitions/auto_type"
             },
             "created_by": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "updated_by": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "deleted_by": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "prefs": {
-              "$ref": "#/definitions/core/definitions/prefs"
+              "$ref": "#/definitions/refs/definitions/prefs"
             },
             "user_count": {
-              "$ref": "#/definitions/core/definitions/user_count"
+              "$ref": "#/definitions/refs/definitions/user_count"
             }
           }
         }
@@ -111,12 +122,13 @@
       "definitions": {
         "subteam_created": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/subteam_created",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subteam": {
-              "$ref": "#/definitions/core/definitions/subteam"
+              "$ref": "#/definitions/refs/definitions/subteam"
             }
           }
         }

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "time_integer": {
@@ -14,13 +14,131 @@
           "type": "string"
         },
         "auto_type": {
-          "type": "string"
+          "type": "string",
+          "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+          "enum": [
+            "admins",
+            "owners",
+            null
+          ]
         },
         "user_count": {
           "type": "string"
         },
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "app_mention",
+            "app_rate_limited",
+            "app_uninstalled",
+            "channel_archive",
+            "channel_created",
+            "channel_deleted",
+            "channel_history_changed",
+            "channel_left",
+            "channel_rename",
+            "channel_unarchive",
+            "dnd_updated",
+            "dnd_updated_user",
+            "email_domain_changed",
+            "emoji_changed",
+            "file_change",
+            "file_comment_added",
+            "file_comment_deleted",
+            "file_comment_edited",
+            "file_created",
+            "file_deleted",
+            "file_public",
+            "file_shared",
+            "file_unshared",
+            "grid_migration_finished",
+            "grid_migration_started",
+            "group_archive",
+            "group_close",
+            "group_deleted",
+            "group_history_changed",
+            "group_left",
+            "group_open",
+            "group_rename",
+            "group_unarchive",
+            "im_close",
+            "im_created",
+            "im_history_changed",
+            "im_open",
+            "link_shared",
+            "member_joined_channel",
+            "member_left_channel",
+            "message",
+            "message.app_home",
+            "message.channels",
+            "message.groups",
+            "message.im",
+            "message.mpim",
+            "pin_added",
+            "pin_removed",
+            "reaction_added",
+            "reaction_removed",
+            "resources_added",
+            "resources_removed",
+            "scope_denied",
+            "scope_granted",
+            "star_added",
+            "star_removed",
+            "subteam_created",
+            "subteam_members_changed",
+            "subteam_self_added",
+            "subteam_self_removed",
+            "subteam_updated",
+            "team_domain_change",
+            "team_join",
+            "team_rename",
+            "tokens_revoked",
+            "url_verification",
+            "user_change",
+            "user_resource_denied",
+            "user_resource_granted",
+            "user_resource_removed"
+          ]
+        },
+        "event_type": {
+          "type": "string",
+          "enum": [
+            "app_uninstalled",
+            "grid_migration_finished",
+            "grid_migration_started",
+            "link_shared",
+            "message",
+            "resources_added",
+            "resources_removed",
+            "scope_denied",
+            "scope_granted",
+            "tokens_revoked",
+            "user_resource_denied",
+            "user_resource_granted",
+            "user_resource_removed"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "channels:read",
+            "channels:history",
+            "groups:history",
+            "mpim:history",
+            "dnd:read",
+            "team:read",
+            "emoji:read",
+            "files:read",
+            "groups:read",
+            "im:read",
+            "im:history",
+            "links:read",
+            "pins:read",
+            "reactions:read",
+            "stars:read",
+            "usergroups:read",
+            "users:read"
+          ]
         },
         "subteam_id": {
           "type": "string"
@@ -42,35 +160,37 @@
         },
         "prefs": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "channels": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/channel_id"
+                "$ref": "#/definitions/refs/definitions/channel_id"
               }
             },
             "groups": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/group_id"
+                "$ref": "#/definitions/refs/definitions/group_id"
               }
             }
           }
         },
         "subteam": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "id": {
-              "$ref": "#/definitions/core/definitions/subteam_id"
+              "$ref": "#/definitions/refs/definitions/subteam_id"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "is_usergroup": {
               "type": "boolean"
             },
             "name": {
-              "$ref": "#/definitions/core/definitions/subteam_name"
+              "$ref": "#/definitions/refs/definitions/subteam_name"
             },
             "description": {
               "type": "string"
@@ -82,31 +202,31 @@
               "type": "boolean"
             },
             "date_create": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "date_update": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "date_delete": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "auto_type": {
-              "$ref": "#/definitions/core/definitions/auto_type"
+              "$ref": "#/definitions/refs/definitions/auto_type"
             },
             "created_by": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "updated_by": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "deleted_by": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "prefs": {
-              "$ref": "#/definitions/core/definitions/prefs"
+              "$ref": "#/definitions/refs/definitions/prefs"
             },
             "user_count": {
-              "$ref": "#/definitions/core/definitions/user_count"
+              "$ref": "#/definitions/refs/definitions/user_count"
             }
           }
         },
@@ -115,15 +235,16 @@
         },
         "channel": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "id": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "name": {
-              "$ref": "#/definitions/core/definitions/channel_name"
+              "$ref": "#/definitions/refs/definitions/channel_name"
             },
             "created": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
@@ -131,9 +252,6 @@
           "type": "string"
         },
         "api_app_id": {
-          "type": "string"
-        },
-        "event_type": {
           "type": "string"
         },
         "tokens": {
@@ -146,12 +264,13 @@
         },
         "tokens_revoked_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "tokens": {
-              "$ref": "#/definitions/core/definitions/tokens"
+              "$ref": "#/definitions/refs/definitions/tokens"
             }
           }
         },
@@ -163,46 +282,46 @@
         },
         "file": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             }
           }
         },
         "dnd_status": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "dnd_enabled": {
               "type": "boolean"
             },
             "next_dnd_start_ts": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "next_dnd_end_ts": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
-        },
-        "scope": {
-          "type": "string"
         },
         "trigger_id": {
           "type": "string"
         },
         "scope_granted_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "scopes": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/scope"
+                "$ref": "#/definitions/refs/definitions/scope"
               }
             },
             "trigger_id": {
-              "$ref": "#/definitions/core/definitions/trigger_id"
+              "$ref": "#/definitions/refs/definitions/trigger_id"
             }
           }
         },
@@ -211,24 +330,25 @@
         },
         "message_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "text": {
               "type": "string"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "channel_type": {
               "type": "string"
@@ -237,6 +357,7 @@
         },
         "pin_item": {
           "type": "object",
+          "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
           "properties": {
           }
         },
@@ -245,12 +366,13 @@
         },
         "grid_migration_finished_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "enterprise_id": {
-              "$ref": "#/definitions/core/definitions/enterprise_id"
+              "$ref": "#/definitions/refs/definitions/enterprise_id"
             }
           }
         },
@@ -262,29 +384,31 @@
         },
         "user_resource_denied_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "scopes": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/scope"
+                "$ref": "#/definitions/refs/definitions/scope"
               }
             },
             "trigger_id": {
-              "$ref": "#/definitions/core/definitions/trigger_id"
+              "$ref": "#/definitions/refs/definitions/trigger_id"
             }
           }
         },
         "app_uninstalled_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             }
           }
         },
@@ -299,36 +423,40 @@
         },
         "user_resource_granted_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "scopes": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/scope"
+                "$ref": "#/definitions/refs/definitions/scope"
               }
             },
             "trigger_id": {
-              "$ref": "#/definitions/core/definitions/trigger_id"
+              "$ref": "#/definitions/refs/definitions/trigger_id"
             }
           }
         },
         "user": {
           "type": "object",
+          "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
           "properties": {
           }
         },
         "comment": {
           "type": "object",
+          "description": "definition snipped. learn more: https://api.slack.com/events/file_comment_added",
           "properties": {
           }
         },
         "link": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "domain": {
               "type": "string"
@@ -340,26 +468,27 @@
         },
         "link_shared_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "message_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "thread_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "links": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/link"
+                "$ref": "#/definitions/refs/definitions/link"
               }
             }
           }
@@ -375,126 +504,136 @@
         },
         "grant": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/grant_type"
+              "$ref": "#/definitions/refs/definitions/grant_type"
             },
             "resource_id": {
-              "$ref": "#/definitions/core/definitions/resource_id"
+              "$ref": "#/definitions/refs/definitions/resource_id"
             }
           }
         },
         "resource": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/resource_type"
+              "$ref": "#/definitions/refs/definitions/resource_type"
             },
             "grant": {
-              "$ref": "#/definitions/core/definitions/grant"
+              "$ref": "#/definitions/refs/definitions/grant"
             }
           }
         },
         "resource_item": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "resource": {
-              "$ref": "#/definitions/core/definitions/resource"
+              "$ref": "#/definitions/refs/definitions/resource"
             },
             "scopes": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/scope"
+                "$ref": "#/definitions/refs/definitions/scope"
               }
             }
           }
         },
         "resources_added_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "resources": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/resource_item"
+                "$ref": "#/definitions/refs/definitions/resource_item"
               }
             }
           }
         },
         "user_resource_removed_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "trigger_id": {
-              "$ref": "#/definitions/core/definitions/trigger_id"
+              "$ref": "#/definitions/refs/definitions/trigger_id"
             }
           }
         },
         "star_item": {
           "type": "object",
+          "description": "definition snipped. learn more: https://api.slack.com/events/star_added",
           "properties": {
           }
         },
         "resources_removed_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "resources": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/resource_item"
+                "$ref": "#/definitions/refs/definitions/resource_item"
               }
             }
           }
         },
         "scope_denied_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "scopes": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/scope"
+                "$ref": "#/definitions/refs/definitions/scope"
               }
             },
             "trigger_id": {
-              "$ref": "#/definitions/core/definitions/trigger_id"
+              "$ref": "#/definitions/refs/definitions/trigger_id"
             }
           }
         },
         "grid_migration_started_event": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/event_type"
+              "$ref": "#/definitions/refs/definitions/event_type"
             },
             "enterprise_id": {
-              "$ref": "#/definitions/core/definitions/enterprise_id"
+              "$ref": "#/definitions/refs/definitions/enterprise_id"
             }
           }
         },
         "reaction_item": {
           "type": "object",
+          "description": "(defined by script)",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/reaction_item_type"
+              "$ref": "#/definitions/refs/definitions/reaction_item_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }
@@ -505,1172 +644,1234 @@
       "definitions": {
         "subteam_created": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/subteam_created",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subteam": {
-              "$ref": "#/definitions/core/definitions/subteam"
+              "$ref": "#/definitions/refs/definitions/subteam"
             }
           }
         },
         "subteam_members_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/subteam_members_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subteam_id": {
-              "$ref": "#/definitions/core/definitions/subteam_id"
+              "$ref": "#/definitions/refs/definitions/subteam_id"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "date_previous_update": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "date_update": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "added_users": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               }
             },
             "added_users_count": {
-              "$ref": "#/definitions/core/definitions/user_count"
+              "$ref": "#/definitions/refs/definitions/user_count"
             },
             "removed_users": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               }
             },
             "removed_users_count": {
-              "$ref": "#/definitions/core/definitions/user_count"
+              "$ref": "#/definitions/refs/definitions/user_count"
             }
           }
         },
         "channel_rename": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_rename",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel"
+              "$ref": "#/definitions/refs/definitions/channel"
             }
           }
         },
         "tokens_revoked": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/tokens_revoked",
           "properties": {
             "token": {
               "type": "string"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "tokens_revoked_event": {
-              "$ref": "#/definitions/core/definitions/tokens_revoked_event"
+              "$ref": "#/definitions/refs/definitions/tokens_revoked_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "app_mention": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/app_mention",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "text": {
               "type": "string"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "file_shared": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_shared",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "channel_archive": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_archive",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             }
           }
         },
         "subteam_updated": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/subteam_updated",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subteam": {
-              "$ref": "#/definitions/core/definitions/subteam"
+              "$ref": "#/definitions/refs/definitions/subteam"
             }
           }
         },
         "group_open": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_open",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "dnd_updated_user": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/dnd_updated_user",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "dnd_status": {
-              "$ref": "#/definitions/core/definitions/dnd_status"
+              "$ref": "#/definitions/refs/definitions/dnd_status"
             }
           }
         },
         "subteam_self_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/subteam_self_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subteam_id": {
-              "$ref": "#/definitions/core/definitions/subteam_id"
+              "$ref": "#/definitions/refs/definitions/subteam_id"
             }
           }
         },
         "channel_unarchive": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_unarchive",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             }
           }
         },
         "scope_granted": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/scope_granted",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "scope_granted_event": {
-              "$ref": "#/definitions/core/definitions/scope_granted_event"
+              "$ref": "#/definitions/refs/definitions/scope_granted_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "message.app_home": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/message.app_home",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "message_event": {
-              "$ref": "#/definitions/core/definitions/message_event"
+              "$ref": "#/definitions/refs/definitions/message_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "group_archive": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_archive",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "im_open": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/im_open",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "pin_removed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/pin_removed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel_id": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "pin_item": {
-              "$ref": "#/definitions/core/definitions/pin_item"
+              "$ref": "#/definitions/refs/definitions/pin_item"
             },
             "has_pins": {
               "type": "boolean"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "grid_migration_finished": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/grid_migration_finished",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "grid_migration_finished_event": {
-              "$ref": "#/definitions/core/definitions/grid_migration_finished_event"
+              "$ref": "#/definitions/refs/definitions/grid_migration_finished_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "url_verification": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/url_verification",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "challenge": {
               "type": "string"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             }
           }
         },
         "team_rename": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/team_rename",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "name": {
-              "$ref": "#/definitions/core/definitions/root_name"
+              "$ref": "#/definitions/refs/definitions/root_name"
             }
           }
         },
         "group_rename": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_rename",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel"
+              "$ref": "#/definitions/refs/definitions/channel"
             }
           }
         },
         "user_resource_denied": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/user_resource_denied",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "user_resource_denied_event": {
-              "$ref": "#/definitions/core/definitions/user_resource_denied_event"
+              "$ref": "#/definitions/refs/definitions/user_resource_denied_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "subteam_self_removed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/subteam_self_removed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subteam_id": {
-              "$ref": "#/definitions/core/definitions/subteam_id"
+              "$ref": "#/definitions/refs/definitions/subteam_id"
             }
           }
         },
         "pin_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/pin_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel_id": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "pin_item": {
-              "$ref": "#/definitions/core/definitions/pin_item"
+              "$ref": "#/definitions/refs/definitions/pin_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "app_uninstalled": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/app_uninstalled",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "app_uninstalled_event": {
-              "$ref": "#/definitions/core/definitions/app_uninstalled_event"
+              "$ref": "#/definitions/refs/definitions/app_uninstalled_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "emoji_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/emoji_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "subtype": {
-              "$ref": "#/definitions/core/definitions/subscription_subtype"
+              "$ref": "#/definitions/refs/definitions/subscription_subtype"
             },
             "names": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/emoji_name"
+                "$ref": "#/definitions/refs/definitions/emoji_name"
               }
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "file_public": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_public",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "file_comment_deleted": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_comment_deleted",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "comment": {
-              "$ref": "#/definitions/core/definitions/comment_id"
+              "$ref": "#/definitions/refs/definitions/comment_id"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "channel_created": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_created",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel"
+              "$ref": "#/definitions/refs/definitions/channel"
             }
           }
         },
         "member_left_channel": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/member_left_channel",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "channel_type": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/channel_type"
             },
             "team": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             }
           }
         },
         "email_domain_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/email_domain_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "email_domain": {
               "type": "string"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "message.im": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/message.im",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "message_event": {
-              "$ref": "#/definitions/core/definitions/message_event"
+              "$ref": "#/definitions/refs/definitions/message_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "file_unshared": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_unshared",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "group_deleted": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_deleted",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "user_resource_granted": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/user_resource_granted",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "user_resource_granted_event": {
-              "$ref": "#/definitions/core/definitions/user_resource_granted_event"
+              "$ref": "#/definitions/refs/definitions/user_resource_granted_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "user_change": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/user_change",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user"
+              "$ref": "#/definitions/refs/definitions/user"
             }
           }
         },
         "channel_left": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_left",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "channel_history_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_history_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "latest": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "group_left": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_left",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "file_comment_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_comment_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "comment": {
-              "$ref": "#/definitions/core/definitions/comment"
+              "$ref": "#/definitions/refs/definitions/comment"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "group_close": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_close",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "link_shared": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/link_shared",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "link_shared_event": {
-              "$ref": "#/definitions/core/definitions/link_shared_event"
+              "$ref": "#/definitions/refs/definitions/link_shared_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_users": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/user_id"
+                "$ref": "#/definitions/refs/definitions/user_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "im_created": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/im_created",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel"
+              "$ref": "#/definitions/refs/definitions/channel"
             }
           }
         },
         "channel_deleted": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/channel_deleted",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "message.channels": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/message.channels",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "message_event": {
-              "$ref": "#/definitions/core/definitions/message_event"
+              "$ref": "#/definitions/refs/definitions/message_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "app_rate_limited": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/app_rate_limited",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "minute_rate_limited": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             }
           }
         },
         "im_close": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/im_close",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "resources_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/resources_added",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "resources_added_event": {
-              "$ref": "#/definitions/core/definitions/resources_added_event"
+              "$ref": "#/definitions/refs/definitions/resources_added_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "team_join": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/team_join",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user"
+              "$ref": "#/definitions/refs/definitions/user"
             }
           }
         },
         "user_resource_removed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/user_resource_removed",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "user_resource_removed_event": {
-              "$ref": "#/definitions/core/definitions/user_resource_removed_event"
+              "$ref": "#/definitions/refs/definitions/user_resource_removed_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "im_history_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/im_history_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "latest": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "dnd_updated": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/dnd_updated",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "dnd_status": {
-              "$ref": "#/definitions/core/definitions/dnd_status"
+              "$ref": "#/definitions/refs/definitions/dnd_status"
             }
           }
         },
         "message.groups": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/message.groups",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "message_event": {
-              "$ref": "#/definitions/core/definitions/message_event"
+              "$ref": "#/definitions/refs/definitions/message_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "star_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/star_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "star_item": {
-              "$ref": "#/definitions/core/definitions/star_item"
+              "$ref": "#/definitions/refs/definitions/star_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "group_history_changed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_history_changed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "latest": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "resources_removed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/resources_removed",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "resources_removed_event": {
-              "$ref": "#/definitions/core/definitions/resources_removed_event"
+              "$ref": "#/definitions/refs/definitions/resources_removed_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "scope_denied": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/scope_denied",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "scope_denied_event": {
-              "$ref": "#/definitions/core/definitions/scope_denied_event"
+              "$ref": "#/definitions/refs/definitions/scope_denied_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "group_unarchive": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_unarchive",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         },
         "message.mpim": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/message.mpim",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "message_event": {
-              "$ref": "#/definitions/core/definitions/message_event"
+              "$ref": "#/definitions/refs/definitions/message_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "authed_teams": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/core/definitions/team_id"
+                "$ref": "#/definitions/refs/definitions/team_id"
               }
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "star_removed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/star_removed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "star_item": {
-              "$ref": "#/definitions/core/definitions/star_item"
+              "$ref": "#/definitions/refs/definitions/star_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "file_change": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_change",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "team_domain_change": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/team_domain_change",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "url": {
               "type": "string"
@@ -1682,161 +1883,169 @@
         },
         "grid_migration_started": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/grid_migration_started",
           "properties": {
             "token": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/token"
             },
             "team_id": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "api_app_id": {
-              "$ref": "#/definitions/core/definitions/api_app_id"
+              "$ref": "#/definitions/refs/definitions/api_app_id"
             },
             "grid_migration_started_event": {
-              "$ref": "#/definitions/core/definitions/grid_migration_started_event"
+              "$ref": "#/definitions/refs/definitions/grid_migration_started_event"
             },
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "event_id": {
-              "$ref": "#/definitions/core/definitions/event_id"
+              "$ref": "#/definitions/refs/definitions/event_id"
             },
             "event_time": {
-              "$ref": "#/definitions/core/definitions/time_integer"
+              "$ref": "#/definitions/refs/definitions/time_integer"
             }
           }
         },
         "reaction_added": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/reaction_added",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "reaction": {
-              "$ref": "#/definitions/core/definitions/emoji_name"
+              "$ref": "#/definitions/refs/definitions/emoji_name"
             },
             "item_user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "reaction_item": {
-              "$ref": "#/definitions/core/definitions/reaction_item"
+              "$ref": "#/definitions/refs/definitions/reaction_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "file_comment_edited": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_comment_edited",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "comment": {
-              "$ref": "#/definitions/core/definitions/comment"
+              "$ref": "#/definitions/refs/definitions/comment"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "reaction_removed": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/reaction_removed",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "reaction": {
-              "$ref": "#/definitions/core/definitions/emoji_name"
+              "$ref": "#/definitions/refs/definitions/emoji_name"
             },
             "item_user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "reaction_item": {
-              "$ref": "#/definitions/core/definitions/reaction_item"
+              "$ref": "#/definitions/refs/definitions/reaction_item"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "member_joined_channel": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/member_joined_channel",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "channel_type": {
-              "type": "string"
+              "$ref": "#/definitions/refs/definitions/channel_type"
             },
             "team": {
-              "$ref": "#/definitions/core/definitions/team_id"
+              "$ref": "#/definitions/refs/definitions/team_id"
             },
             "inviter": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             }
           }
         },
         "file_created": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_created",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "file": {
-              "$ref": "#/definitions/core/definitions/file"
+              "$ref": "#/definitions/refs/definitions/file"
             }
           }
         },
         "file_deleted": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/file_deleted",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "file_id": {
-              "$ref": "#/definitions/core/definitions/file_id"
+              "$ref": "#/definitions/refs/definitions/file_id"
             },
             "event_ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         },
         "message": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/message",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             },
             "user": {
-              "$ref": "#/definitions/core/definitions/user_id"
+              "$ref": "#/definitions/refs/definitions/user_id"
             },
             "text": {
               "type": "string"
             },
             "ts": {
-              "$ref": "#/definitions/core/definitions/timestamp"
+              "$ref": "#/definitions/refs/definitions/timestamp"
             }
           }
         }

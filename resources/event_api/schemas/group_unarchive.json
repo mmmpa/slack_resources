@@ -1,11 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "definitions": {
-    "core": {
+    "refs": {
       "type": "object",
       "definitions": {
         "subscription_type": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "group_unarchive"
+          ]
         },
         "channel_id": {
           "type": "string"
@@ -17,12 +20,13 @@
       "definitions": {
         "group_unarchive": {
           "type": "object",
+          "description": "learn more: https://api.slack.com/events/group_unarchive",
           "properties": {
             "type": {
-              "$ref": "#/definitions/core/definitions/subscription_type"
+              "$ref": "#/definitions/refs/definitions/subscription_type"
             },
             "channel": {
-              "$ref": "#/definitions/core/definitions/channel_id"
+              "$ref": "#/definitions/refs/definitions/channel_id"
             }
           }
         }
