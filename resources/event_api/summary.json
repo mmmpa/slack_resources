@@ -1266,7 +1266,7 @@
             "channel_id": {
               "$ref": "#/definitions/channel_id"
             },
-            "pin_item": {
+            "item": {
               "$ref": "#/definitions/pin_item"
             },
             "has_pins": {
@@ -1716,7 +1716,7 @@
             "channel_id": {
               "$ref": "#/definitions/channel_id"
             },
-            "pin_item": {
+            "item": {
               "$ref": "#/definitions/pin_item"
             },
             "event_ts": {
@@ -3762,7 +3762,7 @@
             "user": {
               "$ref": "#/definitions/user_id"
             },
-            "star_item": {
+            "item": {
               "$ref": "#/definitions/star_item"
             },
             "event_ts": {
@@ -4320,7 +4320,7 @@
             "user": {
               "$ref": "#/definitions/user_id"
             },
-            "star_item": {
+            "item": {
               "$ref": "#/definitions/star_item"
             },
             "event_ts": {
@@ -4572,7 +4572,7 @@
             "item_user": {
               "$ref": "#/definitions/user_id"
             },
-            "reaction_item": {
+            "item": {
               "$ref": "#/definitions/reaction_item"
             },
             "event_ts": {
@@ -4715,7 +4715,7 @@
             "item_user": {
               "$ref": "#/definitions/user_id"
             },
-            "reaction_item": {
+            "item": {
               "$ref": "#/definitions/reaction_item"
             },
             "event_ts": {

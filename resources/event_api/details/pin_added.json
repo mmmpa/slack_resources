@@ -40,7 +40,7 @@
           "channel_id": {
             "$ref": "#/definitions/channel_id"
           },
-          "pin_item": {
+          "item": {
             "$ref": "#/definitions/pin_item"
           },
           "event_ts": {

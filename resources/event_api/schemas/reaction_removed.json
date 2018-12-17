@@ -47,7 +47,7 @@
         "item_user": {
           "$ref": "#/definitions/user_id"
         },
-        "reaction_item": {
+        "item": {
           "$ref": "#/definitions/reaction_item"
         },
         "event_ts": {

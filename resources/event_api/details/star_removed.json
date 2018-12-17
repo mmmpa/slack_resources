@@ -33,7 +33,7 @@
           "user": {
             "$ref": "#/definitions/user_id"
           },
-          "star_item": {
+          "item": {
             "$ref": "#/definitions/star_item"
           },
           "event_ts": {

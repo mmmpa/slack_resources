@@ -51,16 +51,12 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
 
   properties = types.inject({}) do |a, (k, v)|
     if v.is_a?(Hash)
-      k =
-        if k == 'item'
+      def_k =
+        case
+        when k == 'item'
           t = types['type'].split('_').shift
           "#{t}_item"
-        else
-          k
-        end
-
-      def_k =
-        if types['type'] == 'event_callback' && k == 'event'
+        when types['type'] == 'event_callback' && k == 'event'
           "#{v['type']}_event"
         else
           k
@@ -80,9 +76,9 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
         def_string.('subscription_subtype')
       when key == 'event' && 'type'
         { 'const' => v }
-      when key.match(/^reaction_.+/) && 'type'
-        'reaction_item_type'
-
+      when key == 'item' && 'type'
+        t = parent['type'].split('_').shift
+        def_string.("#{t}_#{key}_type")
       when 'type'
         def_string.("#{key}_type")
 
