@@ -378,6 +378,62 @@
     "enterprise_id": {
       "type": "string"
     },
+    "event": {
+      "type": "object",
+      "description": "definition snipped. learn more: ",
+      "properties": {
+      }
+    },
+    "event_callback": {
+      "type": "object",
+      "description": "learn more: ",
+      "properties": {
+        "token": {
+          "$ref": "#/definitions/token"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "api_app_id": {
+          "$ref": "#/definitions/api_app_id"
+        },
+        "event": {
+          "$ref": "#/definitions/event"
+        },
+        "type": {
+          "const": "event_callback"
+        },
+        "authed_users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "event_id": {
+          "$ref": "#/definitions/event_id"
+        },
+        "event_time": {
+          "$ref": "#/definitions/time_integer"
+        }
+      },
+      "example": {
+        "token": "XXYYZZ",
+        "team_id": "TXXXXXXXX",
+        "api_app_id": "AXXXXXXXXX",
+        "event": {
+        },
+        "type": "event_callback",
+        "authed_users": [
+          "UXXXXXXX1",
+          "UXXXXXXX2"
+        ],
+        "event_id": "Ev08MFMKH6",
+        "event_time": 1234567890
+      }
+    },
+    "event_id": {
+      "type": "string"
+    },
     "file": {
       "type": "object",
       "description": "(defined by script)",

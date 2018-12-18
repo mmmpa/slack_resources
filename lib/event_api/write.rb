@@ -33,7 +33,7 @@ class Hash
 end
 
 def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
-  real_resource = response['event'] || response
+  real_resource = response['event'].presence || response
 
   schema, defined, defined_used = to_schema_support(real_resource, url, 'root', preset_schema)
   schema.merge!(example: real_resource)
@@ -57,8 +57,6 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
         when k == 'item'
           t = types['type'].split('_').shift
           "#{t}_item"
-        when types['type'] == 'event_callback' && k == 'event'
-          "#{v['type']}_event"
         else
           k
         end
@@ -236,12 +234,12 @@ def write_event_api_summary
   schema_path = BASE_DIR.join('schemas')
 
   meta = JSON.parse(File.read(BASE_DIR.join('meta.json')))
-  examples = Dir.glob(EXAMPLES_DIR.join('*.json')).map do |f|
+  examples = Dir.glob(EXAMPLES_DIR.join('**/*.json')).map do |f|
     [File.basename(f, '.json'), JSON.parse(File.read(f))]
   end
 
   event_api_pages = examples.map do |type, data|
-    info = meta['subscriptions'][type]
+    info = meta['subscriptions'][type] || {}
     [info['url'], type, data, info['compatibility'], info['scopes']]
   end
 
