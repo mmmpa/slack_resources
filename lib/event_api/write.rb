@@ -271,23 +271,12 @@ def write_event_api_summary
 
     base if defined['pin_item']
 
-    base.
-      protect_merge!(defined).
-      protect_merge!(type => schema)
-    all_schema[type] = schema
-
-    schema_data = {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions" => base.
-        protect_merge!(defined).
-        protect_merge!(type => schema)
-    }
-
     {
       url: url,
       type: type,
       response: response,
-      schema: schema_data,
+      defined: base.protect_merge!(defined),
+      schema: schema,
       compatibility: compatibility,
       scopes: scopes,
     }
@@ -297,9 +286,18 @@ def write_event_api_summary
   all_details.map do |data|
     type = data[:type]
     schema = data[:schema]
+    defined = data.delete(:defined)
 
+    all_schema[type] = schema
 
-    File.write(schema_path.join("#{type}.json").to_s, JSON.pretty_generate(schema))
+    schema_data = {
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "definitions" => defined.protect_merge!(type => schema)
+    }
+
+    data[:schema] = schema_data
+
+    File.write(schema_path.join("#{type}.json").to_s, JSON.pretty_generate(schema_data))
     File.write(detail_path.join("#{type}.json").to_s, JSON.pretty_generate(data))
   end
 
