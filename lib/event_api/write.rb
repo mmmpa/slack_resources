@@ -257,7 +257,7 @@ def write_event_api_summary
   all_defined = JSON.parse(preset.to_json)
   all_schema = {}
 
-  data = event_api_pages.map do |url, type, response, compatibility, scopes|
+  all_details = event_api_pages.map do |url, type, response, compatibility, scopes|
     schema, defined, used = to_schema(response, url, preset)
     schema.merge!(description: "learn more: #{url}")
 
@@ -274,6 +274,7 @@ def write_event_api_summary
     base.
       protect_merge!(defined).
       protect_merge!(type => schema)
+    all_schema[type] = schema
 
     schema_data = {
       "$schema": "http://json-schema.org/draft-07/schema",
@@ -282,9 +283,6 @@ def write_event_api_summary
         protect_merge!(type => schema)
     }
 
-    all_schema[type] = schema
-    File.write(schema_path.join("#{type}.json").to_s, JSON.pretty_generate(schema_data))
-
     {
       url: url,
       type: type,
@@ -292,17 +290,24 @@ def write_event_api_summary
       schema: schema_data,
       compatibility: compatibility,
       scopes: scopes,
-    }.tap do |data|
-      File.write(detail_path.join("#{type}.json").to_s, JSON.pretty_generate(data))
-    end
+    }
   end
 
+
+  all_details.map do |data|
+    type = data[:type]
+    schema = data[:schema]
+
+
+    File.write(schema_path.join("#{type}.json").to_s, JSON.pretty_generate(schema))
+    File.write(detail_path.join("#{type}.json").to_s, JSON.pretty_generate(data))
+  end
 
   File.write(BASE_DIR.join('schema.json').to_s, JSON.pretty_generate({
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions" => all_defined.protect_merge!(all_schema).key_ordered
   }))
-  File.write(BASE_DIR.join('summary.json').to_s, JSON.pretty_generate(data))
+  File.write(BASE_DIR.join('summary.json').to_s, JSON.pretty_generate(all_details))
 end
 
 write_event_api_summary
