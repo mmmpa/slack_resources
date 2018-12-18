@@ -24,3 +24,6 @@ Our JSON schema did not include wrapping meta data.
 }
 ```
 
+## message.foo
+
+`message` events have `channel_type` . They are mapped `message.${channel_type}.json` .
