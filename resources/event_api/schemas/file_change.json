@@ -26,6 +26,13 @@
         "file": {
           "$ref": "#/definitions/file"
         }
+      },
+      "example": {
+        "type": "file_change",
+        "file_id": "F2147483862",
+        "file": {
+          "id": "F2147483862"
+        }
       }
     }
   }

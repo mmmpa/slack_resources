@@ -20,6 +20,11 @@
         "channel": {
           "$ref": "#/definitions/channel_id"
         }
+      },
+      "example": {
+        "type": "im_close",
+        "user": "U024BE7LH",
+        "channel": "D024BE91L"
       }
     }
   }

@@ -25,6 +25,11 @@
           "user": {
             "$ref": "#/definitions/user"
           }
+        },
+        "example": {
+          "type": "team_join",
+          "user": {
+          }
         }
       }
     }

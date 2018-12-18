@@ -21,6 +21,10 @@
           "channel": {
             "$ref": "#/definitions/channel_id"
           }
+        },
+        "example": {
+          "type": "group_left",
+          "channel": "G02ELGNBH"
         }
       }
     }

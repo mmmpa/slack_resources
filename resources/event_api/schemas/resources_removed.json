@@ -1,15 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "token": {
-      "type": "string"
-    },
-    "team_id": {
-      "type": "string"
-    },
-    "api_app_id": {
-      "type": "string"
-    },
     "resource_type": {
       "type": "string"
     },
@@ -80,9 +71,9 @@
         }
       }
     },
-    "resources_removed_event": {
+    "resources_removed": {
       "type": "object",
-      "description": "(defined by script)",
+      "description": "learn more: https://api.slack.com/events/resources_removed",
       "properties": {
         "type": {
           "const": "resources_removed"
@@ -93,45 +84,26 @@
             "$ref": "#/definitions/resource_item"
           }
         }
-      }
-    },
-    "event_id": {
-      "type": "string"
-    },
-    "time_integer": {
-      "type": "number"
-    },
-    "resources_removed": {
-      "type": "object",
-      "description": "learn more: https://api.slack.com/events/resources_removed",
-      "properties": {
-        "token": {
-          "$ref": "#/definitions/token"
-        },
-        "team_id": {
-          "$ref": "#/definitions/team_id"
-        },
-        "api_app_id": {
-          "$ref": "#/definitions/api_app_id"
-        },
-        "event": {
-          "$ref": "#/definitions/resources_removed_event"
-        },
-        "type": {
-          "const": "event_callback"
-        },
-        "authed_teams": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/team_id"
+      },
+      "example": {
+        "type": "resources_removed",
+        "resources": [
+          {
+            "resource": {
+              "type": "im",
+              "grant": {
+                "type": "specific",
+                "resource_id": "DXXXXXXXX"
+              }
+            },
+            "scopes": [
+              "chat:write:user",
+              "im:read",
+              "im:history",
+              "commands"
+            ]
           }
-        },
-        "event_id": {
-          "$ref": "#/definitions/event_id"
-        },
-        "event_time": {
-          "$ref": "#/definitions/time_integer"
-        }
+        ]
       }
     }
   }

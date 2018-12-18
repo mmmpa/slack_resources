@@ -36,6 +36,13 @@
           "file": {
             "$ref": "#/definitions/file"
           }
+        },
+        "example": {
+          "type": "file_public",
+          "file_id": "F2147483862",
+          "file": {
+            "id": "F2147483862"
+          }
         }
       }
     }

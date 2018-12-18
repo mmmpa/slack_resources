@@ -32,6 +32,14 @@
         "file": {
           "$ref": "#/definitions/file"
         }
+      },
+      "example": {
+        "type": "file_comment_deleted",
+        "comment": "Fc67890",
+        "file_id": "F2147483862",
+        "file": {
+          "id": "F2147483862"
+        }
       }
     }
   }

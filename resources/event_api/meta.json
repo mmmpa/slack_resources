@@ -195,21 +195,6 @@
     "team_rename",
     "user_change"
   ],
-  "event_types": [
-    "app_uninstalled",
-    "grid_migration_finished",
-    "grid_migration_started",
-    "link_shared",
-    "message",
-    "resources_added",
-    "resources_removed",
-    "scope_denied",
-    "scope_granted",
-    "tokens_revoked",
-    "user_resource_denied",
-    "user_resource_granted",
-    "user_resource_removed"
-  ],
   "scopes": [
     "channels:read",
     "channels:history",

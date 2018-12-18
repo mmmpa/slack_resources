@@ -81,7 +81,6 @@ def write_response_sample
   types = []
   on_event_api = []
   on_rtm = []
-  event_types = []
   all_scopes = []
   subscriptions = {}
 
@@ -91,8 +90,6 @@ def write_response_sample
     types << type
     on_event_api << type if compatibility.include?('Events API')
     on_rtm << type if compatibility.include?('RTM')
-
-    event_types << response['event']['type'] if response['type'] == 'event_callback'
 
     all_scopes += scopes
 
@@ -108,7 +105,6 @@ def write_response_sample
     types: types.uniq,
     on_event_api: on_event_api.uniq,
     on_rtm: on_rtm.uniq,
-    event_types: event_types.uniq,
     scopes: all_scopes.uniq,
     subscriptions: subscriptions,
   }))

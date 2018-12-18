@@ -24,15 +24,6 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "token": {
-        "type": "string"
-      },
-      "team_id": {
-        "type": "string"
-      },
-      "api_app_id": {
-        "type": "string"
-      },
       "user_id": {
         "type": "string"
       },
@@ -42,9 +33,12 @@
       "channel_id": {
         "type": "string"
       },
-      "message_event": {
+      "channel_type": {
+        "type": "string"
+      },
+      "message.app_home": {
         "type": "object",
-        "description": "(defined by script)",
+        "description": "learn more: https://api.slack.com/events/message.app_home",
         "properties": {
           "type": {
             "const": "message"
@@ -67,48 +61,15 @@
           "channel_type": {
             "type": "string"
           }
-        }
-      },
-      "event_id": {
-        "type": "string"
-      },
-      "time_integer": {
-        "type": "number"
-      },
-      "channel_type": {
-        "type": "string"
-      },
-      "message.app_home": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/message.app_home",
-        "properties": {
-          "token": {
-            "$ref": "#/definitions/token"
-          },
-          "team_id": {
-            "$ref": "#/definitions/team_id"
-          },
-          "api_app_id": {
-            "$ref": "#/definitions/api_app_id"
-          },
-          "event": {
-            "$ref": "#/definitions/message_event"
-          },
-          "type": {
-            "const": "event_callback"
-          },
-          "authed_teams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/team_id"
-            }
-          },
-          "event_id": {
-            "$ref": "#/definitions/event_id"
-          },
-          "event_time": {
-            "$ref": "#/definitions/time_integer"
-          }
+        },
+        "example": {
+          "type": "message",
+          "user": "U061F7AUR",
+          "text": "How many cats did we herd yesterday?",
+          "ts": "1525215129.000001",
+          "channel": "D0PNCRP9N",
+          "event_ts": "1525215129.000001",
+          "channel_type": "app_home"
         }
       }
     }

@@ -14,6 +14,10 @@
         "name": {
           "$ref": "#/definitions/root_name"
         }
+      },
+      "example": {
+        "type": "team_rename",
+        "name": "New Team Name Inc."
       }
     }
   }

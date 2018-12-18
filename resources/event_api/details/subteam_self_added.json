@@ -21,6 +21,10 @@
           "subteam_id": {
             "$ref": "#/definitions/subteam_id"
           }
+        },
+        "example": {
+          "type": "subteam_self_added",
+          "subteam_id": "S0615G0KT"
         }
       }
     }

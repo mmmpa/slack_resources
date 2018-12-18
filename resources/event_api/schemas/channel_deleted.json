@@ -14,6 +14,10 @@
         "channel": {
           "$ref": "#/definitions/channel_id"
         }
+      },
+      "example": {
+        "type": "channel_deleted",
+        "channel": "C024BE91L"
       }
     }
   }

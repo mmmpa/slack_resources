@@ -46,6 +46,14 @@
           "channel": {
             "$ref": "#/definitions/channel"
           }
+        },
+        "example": {
+          "type": "group_rename",
+          "channel": {
+            "id": "G02ELGNBH",
+            "name": "new_name",
+            "created": 1360782804
+          }
         }
       }
     }

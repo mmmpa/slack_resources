@@ -33,7 +33,10 @@ class Hash
 end
 
 def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
-  schema, defined, defined_used = to_schema_support(response, url, 'root', preset_schema)
+  real_resource = response['event'] || response
+
+  schema, defined, defined_used = to_schema_support(real_resource, url, 'root', preset_schema)
+  schema.merge!(example: real_resource)
 
   [schema, defined, defined_used]
 end
@@ -44,8 +47,6 @@ end
 
 def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, defined_used = [], parent = {})
   types = JSON.parse(response.to_json)
-
-  # return key.camelize if response.blank?
 
   def_string = ->(id_key) { id_key.tap { defined.merge!(id_key => { "type" => "string" }) } }
 
@@ -248,10 +249,6 @@ def write_event_api_summary
     'subscription_type' => {
       "type": "string",
       "enum": meta['types'],
-    },
-    'event_type' => {
-      "type": "string",
-      "enum": meta['event_types'],
     },
     'scope' => {
       "type": "string",

@@ -14,6 +14,11 @@
         "domain": {
           "type": "string"
         }
+      },
+      "example": {
+        "type": "team_domain_change",
+        "url": "https://my.slack.com",
+        "domain": "my"
       }
     }
   }
