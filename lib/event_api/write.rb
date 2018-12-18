@@ -33,7 +33,7 @@ class Hash
 end
 
 def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
-  real_resource = response['event'].presence || response
+  real_resource = (response['event'].presence || response).key_ordered
 
   schema, defined, defined_used = to_schema_support(real_resource, url, 'root', preset_schema)
   schema.merge!(example: real_resource)
@@ -46,7 +46,7 @@ def string_k_v(k, v)
 end
 
 def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, defined_used = [], parent = {})
-  types = JSON.parse(response.to_json)
+  types = JSON.parse(response.to_json).key_ordered
 
   def_string = ->(id_key) { id_key.tap { defined.merge!(id_key => { "type" => "string" }) } }
 
