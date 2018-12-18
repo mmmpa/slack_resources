@@ -1039,7 +1039,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "$ref": "#/definitions/channel_type"
+          "type": "string"
         },
         "team": {
           "$ref": "#/definitions/team_id"
@@ -1066,36 +1066,8 @@
         "channel": {
           "$ref": "#/definitions/channel_id"
         },
-        "text": {
-          "type": "string"
-        },
-        "ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "type": {
-          "const": "message"
-        },
-        "user": {
-          "$ref": "#/definitions/user_id"
-        }
-      },
-      "example": {
-        "channel": "C2147483705",
-        "text": "Hello world",
-        "ts": "1355517523.000005",
-        "type": "message",
-        "user": "U2147483697"
-      }
-    },
-    "message.app_home": {
-      "type": "object",
-      "description": "learn more: https://api.slack.com/events/message.app_home",
-      "properties": {
-        "channel": {
-          "$ref": "#/definitions/channel_id"
-        },
         "channel_type": {
-          "type": "string"
+          "$ref": "#/definitions/message_channel_type"
         },
         "event_ts": {
           "$ref": "#/definitions/timestamp"
@@ -1115,7 +1087,7 @@
       },
       "example": {
         "channel": "D0PNCRP9N",
-        "channel_type": "app_home",
+        "channel_type": "app_home|channel|group|mpim|null",
         "event_ts": "1525215129.000001",
         "text": "How many cats did we herd yesterday?",
         "ts": "1525215129.000001",
@@ -1123,149 +1095,15 @@
         "user": "U061F7AUR"
       }
     },
-    "message.channels": {
-      "type": "object",
-      "description": "learn more: https://api.slack.com/events/message.channels",
-      "properties": {
-        "channel": {
-          "$ref": "#/definitions/channel_id"
-        },
-        "channel_type": {
-          "$ref": "#/definitions/channel_type"
-        },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "text": {
-          "type": "string"
-        },
-        "ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "type": {
-          "const": "message"
-        },
-        "user": {
-          "$ref": "#/definitions/user_id"
-        }
-      },
-      "example": {
-        "channel": "C024BE91L",
-        "channel_type": "channel",
-        "event_ts": "1355517523.000005",
-        "text": "Live long and prospect.",
-        "ts": "1355517523.000005",
-        "type": "message",
-        "user": "U2147483697"
-      }
-    },
-    "message.groups": {
-      "type": "object",
-      "description": "learn more: https://api.slack.com/events/message.groups",
-      "properties": {
-        "channel": {
-          "$ref": "#/definitions/channel_id"
-        },
-        "channel_type": {
-          "$ref": "#/definitions/channel_type"
-        },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "text": {
-          "type": "string"
-        },
-        "ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "type": {
-          "const": "message"
-        },
-        "user": {
-          "$ref": "#/definitions/user_id"
-        }
-      },
-      "example": {
-        "channel": "G024BE91L",
-        "channel_type": "group",
-        "event_ts": "1355517523.000005",
-        "text": "One cannot programmatically detect the difference between `message.mpim` and `message.groups`.",
-        "ts": "1355517523.000005",
-        "type": "message",
-        "user": "U2147483697"
-      }
-    },
-    "message.im": {
-      "type": "object",
-      "description": "learn more: https://api.slack.com/events/message.im",
-      "properties": {
-        "channel": {
-          "$ref": "#/definitions/channel_id"
-        },
-        "channel_type": {
-          "$ref": "#/definitions/channel_type"
-        },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "text": {
-          "type": "string"
-        },
-        "ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "type": {
-          "const": "message"
-        },
-        "user": {
-          "$ref": "#/definitions/user_id"
-        }
-      },
-      "example": {
-        "channel": "D024BE91L",
-        "channel_type": "im",
-        "event_ts": "1355517523.000005",
-        "text": "Hello hello can you hear me?",
-        "ts": "1355517523.000005",
-        "type": "message",
-        "user": "U2147483697"
-      }
-    },
-    "message.mpim": {
-      "type": "object",
-      "description": "learn more: https://api.slack.com/events/message.mpim",
-      "properties": {
-        "channel": {
-          "$ref": "#/definitions/channel_id"
-        },
-        "channel_type": {
-          "$ref": "#/definitions/channel_type"
-        },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "text": {
-          "type": "string"
-        },
-        "ts": {
-          "$ref": "#/definitions/timestamp"
-        },
-        "type": {
-          "const": "message"
-        },
-        "user": {
-          "$ref": "#/definitions/user_id"
-        }
-      },
-      "example": {
-        "channel": "G024BE91L",
-        "channel_type": "mpim",
-        "event_ts": "1355517523.000005",
-        "text": "Let's make a pact.",
-        "ts": "1355517523.000005",
-        "type": "message",
-        "user": "U2147483697"
-      }
+    "message_channel_type": {
+      "type": "string",
+      "enum": [
+        "app_home",
+        "channel",
+        "group",
+        "mpim",
+        null
+      ]
     },
     "pin_added": {
       "type": "object",

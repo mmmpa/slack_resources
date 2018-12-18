@@ -2,8 +2,8 @@
   "url": "https://api.slack.com/events/subteam_self_added",
   "type": "subteam_self_added",
   "response": {
-    "type": "subteam_self_added",
-    "subteam_id": "S0615G0KT"
+    "subteam_id": "S0615G0KT",
+    "type": "subteam_self_added"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

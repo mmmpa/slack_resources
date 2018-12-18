@@ -2,9 +2,9 @@
   "url": "https://api.slack.com/events/im_close",
   "type": "im_close",
   "response": {
+    "channel": "D024BE91L",
     "type": "im_close",
-    "user": "U024BE7LH",
-    "channel": "D024BE91L"
+    "user": "U024BE7LH"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

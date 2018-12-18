@@ -2,13 +2,13 @@
   "url": "https://api.slack.com/events/channel_created",
   "type": "channel_created",
   "response": {
-    "type": "channel_created",
     "channel": {
       "id": "C024BE91L",
       "name": "fun",
       "created": 1360782804,
       "creator": "U024BE7LH"
-    }
+    },
+    "type": "channel_created"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

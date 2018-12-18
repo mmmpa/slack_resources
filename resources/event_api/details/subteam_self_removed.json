@@ -2,8 +2,8 @@
   "url": "https://api.slack.com/events/subteam_self_removed",
   "type": "subteam_self_removed",
   "response": {
-    "type": "subteam_self_removed",
-    "subteam_id": "S0615G0KT"
+    "subteam_id": "S0615G0KT",
+    "type": "subteam_self_removed"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

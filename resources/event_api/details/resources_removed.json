@@ -2,35 +2,24 @@
   "url": "https://api.slack.com/events/resources_removed",
   "type": "resources_removed",
   "response": {
-    "token": "XXYYZZ",
-    "team_id": "TXXXXXXXX",
-    "api_app_id": "AXXXXXXXXX",
-    "event": {
-      "type": "resources_removed",
-      "resources": [
-        {
-          "resource": {
-            "type": "im",
-            "grant": {
-              "type": "specific",
-              "resource_id": "DXXXXXXXX"
-            }
-          },
-          "scopes": [
-            "chat:write:user",
-            "im:read",
-            "im:history",
-            "commands"
-          ]
-        }
-      ]
-    },
-    "type": "event_callback",
-    "authed_teams": [
-
+    "resources": [
+      {
+        "resource": {
+          "type": "im",
+          "grant": {
+            "type": "specific",
+            "resource_id": "DXXXXXXXX"
+          }
+        },
+        "scopes": [
+          "chat:write:user",
+          "im:read",
+          "im:history",
+          "commands"
+        ]
+      }
     ],
-    "event_id": "EvXXXXXXXX",
-    "event_time": 1234567890
+    "type": "resources_removed"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

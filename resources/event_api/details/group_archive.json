@@ -2,8 +2,8 @@
   "url": "https://api.slack.com/events/group_archive",
   "type": "group_archive",
   "response": {
-    "type": "group_archive",
-    "channel": "G024BE91L"
+    "channel": "G024BE91L",
+    "type": "group_archive"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

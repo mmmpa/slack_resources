@@ -2,12 +2,12 @@
   "url": "https://api.slack.com/events/emoji_changed",
   "type": "emoji_changed",
   "response": {
-    "type": "emoji_changed",
-    "subtype": "remove",
+    "event_ts": "1361482916.000004",
     "names": [
       "picard_facepalm"
     ],
-    "event_ts": "1361482916.000004"
+    "subtype": "remove",
+    "type": "emoji_changed"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

@@ -2,13 +2,13 @@
   "url": "https://api.slack.com/events/file_comment_edited",
   "type": "file_comment_edited",
   "response": {
-    "type": "file_comment_edited",
     "comment": {
     },
-    "file_id": "F2147483862",
     "file": {
       "id": "F2147483862"
-    }
+    },
+    "file_id": "F2147483862",
+    "type": "file_comment_edited"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

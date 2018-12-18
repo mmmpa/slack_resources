@@ -2,9 +2,9 @@
   "url": "https://api.slack.com/events/file_deleted",
   "type": "file_deleted",
   "response": {
-    "type": "file_deleted",
+    "event_ts": "1361482916.000004",
     "file_id": "F2147483862",
-    "event_ts": "1361482916.000004"
+    "type": "file_deleted"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

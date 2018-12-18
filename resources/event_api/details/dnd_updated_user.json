@@ -2,13 +2,13 @@
   "url": "https://api.slack.com/events/dnd_updated_user",
   "type": "dnd_updated_user",
   "response": {
-    "type": "dnd_updated_user",
-    "user": "U1234",
     "dnd_status": {
       "dnd_enabled": true,
       "next_dnd_start_ts": 1450387800,
       "next_dnd_end_ts": 1450423800
-    }
+    },
+    "type": "dnd_updated_user",
+    "user": "U1234"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

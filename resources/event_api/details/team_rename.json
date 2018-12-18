@@ -2,8 +2,8 @@
   "url": "https://api.slack.com/events/team_rename",
   "type": "team_rename",
   "response": {
-    "type": "team_rename",
-    "name": "New Team Name Inc."
+    "name": "New Team Name Inc.",
+    "type": "team_rename"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

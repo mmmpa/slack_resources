@@ -2,12 +2,12 @@
   "url": "https://api.slack.com/events/member_joined_channel",
   "type": "member_joined_channel",
   "response": {
-    "type": "member_joined_channel",
-    "user": "W06GH7XHN",
     "channel": "C0698JE0H",
     "channel_type": "C",
+    "inviter": "U123456789",
     "team": "T024BE7LD",
-    "inviter": "U123456789"
+    "type": "member_joined_channel",
+    "user": "W06GH7XHN"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

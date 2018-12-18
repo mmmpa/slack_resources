@@ -2,11 +2,11 @@
   "url": "https://api.slack.com/events/file_shared",
   "type": "file_shared",
   "response": {
-    "type": "file_shared",
-    "file_id": "F2147483862",
     "file": {
       "id": "F2147483862"
-    }
+    },
+    "file_id": "F2147483862",
+    "type": "file_shared"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

@@ -2,7 +2,6 @@
   "url": "https://api.slack.com/events/subteam_created",
   "type": "subteam_created",
   "response": {
-    "type": "subteam_created",
     "subteam": {
       "id": "S0615G0KT",
       "team_id": "T060RNRCH",
@@ -27,7 +26,8 @@
         ]
       },
       "user_count": "0"
-    }
+    },
+    "type": "subteam_created"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

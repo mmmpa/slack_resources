@@ -2,23 +2,15 @@
   "url": "https://api.slack.com/events/tokens_revoked",
   "type": "tokens_revoked",
   "response": {
-    "token": "XXYYZZ",
-    "team_id": "TXXXXXXXX",
-    "api_app_id": "AXXXXXXXXX",
-    "event": {
-      "type": "tokens_revoked",
-      "tokens": {
-        "oauth": [
-          "UXXXXXXXX"
-        ],
-        "bot": [
-          "UXXXXXXXX"
-        ]
-      }
+    "tokens": {
+      "oauth": [
+        "UXXXXXXXX"
+      ],
+      "bot": [
+        "UXXXXXXXX"
+      ]
     },
-    "type": "event_callback",
-    "event_id": "EvXXXXXXXX",
-    "event_time": 1234567890
+    "type": "tokens_revoked"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

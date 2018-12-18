@@ -2,11 +2,11 @@
   "url": "https://api.slack.com/events/star_removed",
   "type": "star_removed",
   "response": {
-    "type": "star_removed",
-    "user": "U024BE7LH",
+    "event_ts": "1360782804.083113",
     "item": {
     },
-    "event_ts": "1360782804.083113"
+    "type": "star_removed",
+    "user": "U024BE7LH"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

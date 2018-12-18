@@ -2,37 +2,25 @@
   "url": "https://api.slack.com/events/link_shared",
   "type": "link_shared",
   "response": {
-    "token": "XXYYZZ",
-    "team_id": "TXXXXXXXX",
-    "api_app_id": "AXXXXXXXXX",
-    "event": {
-      "type": "link_shared",
-      "channel": "Cxxxxxx",
-      "user": "Uxxxxxxx",
-      "message_ts": "123456789.9875",
-      "thread_ts": "123456621.1855",
-      "links": [
-        {
-          "domain": "example.com",
-          "url": "https://example.com/12345"
-        },
-        {
-          "domain": "example.com",
-          "url": "https://example.com/67890"
-        },
-        {
-          "domain": "another-example.com",
-          "url": "https://yet.another-example.com/v/abcde"
-        }
-      ]
-    },
-    "type": "event_callback",
-    "authed_users": [
-      "UXXXXXXX1",
-      "UXXXXXXX2"
+    "channel": "Cxxxxxx",
+    "links": [
+      {
+        "domain": "example.com",
+        "url": "https://example.com/12345"
+      },
+      {
+        "domain": "example.com",
+        "url": "https://example.com/67890"
+      },
+      {
+        "domain": "another-example.com",
+        "url": "https://yet.another-example.com/v/abcde"
+      }
     ],
-    "event_id": "Ev08MFMKH6",
-    "event_time": 123456789
+    "message_ts": "123456789.9875",
+    "thread_ts": "123456621.1855",
+    "type": "link_shared",
+    "user": "Uxxxxxxx"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

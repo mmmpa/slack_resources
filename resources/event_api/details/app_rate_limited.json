@@ -2,11 +2,11 @@
   "url": "https://api.slack.com/events/app_rate_limited",
   "type": "app_rate_limited",
   "response": {
-    "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-    "type": "app_rate_limited",
-    "team_id": "T123456",
+    "api_app_id": "A123456",
     "minute_rate_limited": 1518467820,
-    "api_app_id": "A123456"
+    "team_id": "T123456",
+    "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+    "type": "app_rate_limited"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

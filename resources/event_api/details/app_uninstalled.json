@@ -2,15 +2,7 @@
   "url": "https://api.slack.com/events/app_uninstalled",
   "type": "app_uninstalled",
   "response": {
-    "token": "XXYYZZ",
-    "team_id": "TXXXXXXXX",
-    "api_app_id": "AXXXXXXXXX",
-    "event": {
-      "type": "app_uninstalled"
-    },
-    "type": "event_callback",
-    "event_id": "EvXXXXXXXX",
-    "event_time": 1234567890
+    "type": "app_uninstalled"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

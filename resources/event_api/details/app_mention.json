@@ -2,12 +2,12 @@
   "url": "https://api.slack.com/events/app_mention",
   "type": "app_mention",
   "response": {
-    "type": "app_mention",
-    "user": "U061F7AUR",
+    "channel": "C0LAN2Q65",
+    "event_ts": "1515449522000016",
     "text": "<@U0LAN0Z89> is it everything a river should be?",
     "ts": "1515449522.000016",
-    "channel": "C0LAN2Q65",
-    "event_ts": "1515449522000016"
+    "type": "app_mention",
+    "user": "U061F7AUR"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
