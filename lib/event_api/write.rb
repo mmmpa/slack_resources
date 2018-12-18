@@ -318,7 +318,7 @@ def write_event_api_summary
         next a.protect_merge!(k => v)
       end
 
-      a.merge!(v['target'] => v['items'].map{ |s| s ? s : 'null' }.join('|'))
+      a.merge!(v['target'] => v['items'].map { |s| s ? s : 'null' }.join('|'))
     end
 
     {
