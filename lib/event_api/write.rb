@@ -170,7 +170,7 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
     elsif type && type[0..1] == '[]'
       item = type[2..-1]
       if default_type?(item)
-        return a.merge(
+        next a.merge(
           k => {
             "type" => 'array',
             'items' => {
