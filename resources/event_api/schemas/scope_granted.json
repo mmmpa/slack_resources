@@ -1,15 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "token": {
-      "type": "string"
-    },
-    "team_id": {
-      "type": "string"
-    },
-    "api_app_id": {
-      "type": "string"
-    },
     "scope": {
       "type": "string",
       "enum": [
@@ -35,13 +26,10 @@
     "trigger_id": {
       "type": "string"
     },
-    "scope_granted_event": {
+    "scope_granted": {
       "type": "object",
-      "description": "(defined by script)",
+      "description": "learn more: https://api.slack.com/events/scope_granted",
       "properties": {
-        "type": {
-          "const": "scope_granted"
-        },
         "scopes": {
           "type": "array",
           "items": {
@@ -50,46 +38,19 @@
         },
         "trigger_id": {
           "$ref": "#/definitions/trigger_id"
-        }
-      }
-    },
-    "event_id": {
-      "type": "string"
-    },
-    "time_integer": {
-      "type": "number"
-    },
-    "scope_granted": {
-      "type": "object",
-      "description": "learn more: https://api.slack.com/events/scope_granted",
-      "properties": {
-        "token": {
-          "$ref": "#/definitions/token"
-        },
-        "team_id": {
-          "$ref": "#/definitions/team_id"
-        },
-        "api_app_id": {
-          "$ref": "#/definitions/api_app_id"
-        },
-        "event": {
-          "$ref": "#/definitions/scope_granted_event"
         },
         "type": {
-          "const": "event_callback"
-        },
-        "authed_teams": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/team_id"
-          }
-        },
-        "event_id": {
-          "$ref": "#/definitions/event_id"
-        },
-        "event_time": {
-          "$ref": "#/definitions/time_integer"
+          "const": "scope_granted"
         }
+      },
+      "example": {
+        "scopes": [
+          "files:read",
+          "files:write",
+          "chat:write"
+        ],
+        "trigger_id": "241582872337.47445629121.string",
+        "type": "scope_granted"
       }
     }
   }

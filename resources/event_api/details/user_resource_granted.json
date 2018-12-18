@@ -24,18 +24,6 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "token": {
-        "type": "string"
-      },
-      "team_id": {
-        "type": "string"
-      },
-      "api_app_id": {
-        "type": "string"
-      },
-      "user_id": {
-        "type": "string"
-      },
       "scope": {
         "type": "string",
         "enum": [
@@ -61,16 +49,13 @@
       "trigger_id": {
         "type": "string"
       },
-      "user_resource_granted_event": {
+      "user_id": {
+        "type": "string"
+      },
+      "user_resource_granted": {
         "type": "object",
-        "description": "(defined by script)",
+        "description": "learn more: https://api.slack.com/events/user_resource_granted",
         "properties": {
-          "type": {
-            "const": "user_resource_granted"
-          },
-          "user": {
-            "$ref": "#/definitions/user_id"
-          },
           "scopes": {
             "type": "array",
             "items": {
@@ -79,46 +64,22 @@
           },
           "trigger_id": {
             "$ref": "#/definitions/trigger_id"
-          }
-        }
-      },
-      "event_id": {
-        "type": "string"
-      },
-      "time_integer": {
-        "type": "number"
-      },
-      "user_resource_granted": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/user_resource_granted",
-        "properties": {
-          "token": {
-            "$ref": "#/definitions/token"
-          },
-          "team_id": {
-            "$ref": "#/definitions/team_id"
-          },
-          "api_app_id": {
-            "$ref": "#/definitions/api_app_id"
-          },
-          "event": {
-            "$ref": "#/definitions/user_resource_granted_event"
           },
           "type": {
-            "const": "event_callback"
+            "const": "user_resource_granted"
           },
-          "authed_teams": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/team_id"
-            }
-          },
-          "event_id": {
-            "$ref": "#/definitions/event_id"
-          },
-          "event_time": {
-            "$ref": "#/definitions/time_integer"
+          "user": {
+            "$ref": "#/definitions/user_id"
           }
+        },
+        "example": {
+          "scopes": [
+            "reminders:write:user",
+            "reminders:read:user"
+          ],
+          "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
+          "type": "user_resource_granted",
+          "user": "WXXXXXXXX"
         }
       }
     }

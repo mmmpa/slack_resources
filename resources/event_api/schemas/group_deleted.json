@@ -8,12 +8,16 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/group_deleted",
       "properties": {
-        "type": {
-          "const": "group_deleted"
-        },
         "channel": {
           "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_deleted"
         }
+      },
+      "example": {
+        "channel": "G0QN9RGTT",
+        "type": "group_deleted"
       }
     }
   }

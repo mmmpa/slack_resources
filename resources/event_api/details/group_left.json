@@ -15,12 +15,16 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/group_left",
         "properties": {
-          "type": {
-            "const": "group_left"
-          },
           "channel": {
             "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "group_left"
           }
+        },
+        "example": {
+          "channel": "G02ELGNBH",
+          "type": "group_left"
         }
       }
     }

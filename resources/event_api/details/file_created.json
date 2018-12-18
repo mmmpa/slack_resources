@@ -27,15 +27,22 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/file_created",
         "properties": {
-          "type": {
-            "const": "file_created"
+          "file": {
+            "$ref": "#/definitions/file"
           },
           "file_id": {
             "$ref": "#/definitions/file_id"
           },
-          "file": {
-            "$ref": "#/definitions/file"
+          "type": {
+            "const": "file_created"
           }
+        },
+        "example": {
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_created"
         }
       }
     }

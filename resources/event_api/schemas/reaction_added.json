@@ -1,58 +1,70 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "user_id": {
-      "type": "string"
-    },
-    "emoji_name": {
-      "type": "string"
-    },
-    "reaction_item_type": {
+    "timestamp": {
       "type": "string"
     },
     "channel_id": {
       "type": "string"
     },
-    "timestamp": {
+    "reaction_item_type": {
       "type": "string"
     },
     "reaction_item": {
       "type": "object",
       "description": "(defined by script)",
       "properties": {
-        "type": {
-          "$ref": "#/definitions/reaction_item_type"
-        },
         "channel": {
           "$ref": "#/definitions/channel_id"
         },
         "ts": {
           "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "$ref": "#/definitions/reaction_item_type"
         }
       }
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "emoji_name": {
+      "type": "string"
     },
     "reaction_added": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/reaction_added",
       "properties": {
-        "type": {
-          "const": "reaction_added"
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
         },
-        "user": {
+        "item": {
+          "$ref": "#/definitions/reaction_item"
+        },
+        "item_user": {
           "$ref": "#/definitions/user_id"
         },
         "reaction": {
           "$ref": "#/definitions/emoji_name"
         },
-        "item_user": {
+        "type": {
+          "const": "reaction_added"
+        },
+        "user": {
           "$ref": "#/definitions/user_id"
-        },
-        "item": {
-          "$ref": "#/definitions/reaction_item"
-        },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
         }
+      },
+      "example": {
+        "event_ts": "1360782804.083113",
+        "item": {
+          "type": "message",
+          "channel": "C0G9QF9GZ",
+          "ts": "1360782400.498405"
+        },
+        "item_user": "U0G9QF9C6",
+        "reaction": "thumbsup",
+        "type": "reaction_added",
+        "user": "U024BE7LH"
       }
     }
   }

@@ -14,31 +14,38 @@
       "channel_id": {
         "type": "string"
       },
-      "user_id": {
+      "timestamp": {
         "type": "string"
       },
-      "timestamp": {
+      "user_id": {
         "type": "string"
       },
       "message": {
         "type": "object",
         "description": "learn more: https://api.slack.com/events/message",
         "properties": {
-          "type": {
-            "const": "message"
-          },
           "channel": {
             "$ref": "#/definitions/channel_id"
-          },
-          "user": {
-            "$ref": "#/definitions/user_id"
           },
           "text": {
             "type": "string"
           },
           "ts": {
             "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "message"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
           }
+        },
+        "example": {
+          "channel": "C2147483705",
+          "text": "Hello world",
+          "ts": "1355517523.000005",
+          "type": "message",
+          "user": "U2147483697"
         }
       }
     }

@@ -13,15 +13,20 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/team_domain_change",
         "properties": {
+          "domain": {
+            "type": "string"
+          },
           "type": {
             "const": "team_domain_change"
           },
           "url": {
             "type": "string"
-          },
-          "domain": {
-            "type": "string"
           }
+        },
+        "example": {
+          "domain": "my",
+          "type": "team_domain_change",
+          "url": "https://my.slack.com"
         }
       }
     }

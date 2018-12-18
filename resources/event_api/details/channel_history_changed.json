@@ -17,8 +17,8 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/channel_history_changed",
         "properties": {
-          "type": {
-            "const": "channel_history_changed"
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           },
           "latest": {
             "$ref": "#/definitions/timestamp"
@@ -26,9 +26,15 @@
           "ts": {
             "$ref": "#/definitions/timestamp"
           },
-          "event_ts": {
-            "$ref": "#/definitions/timestamp"
+          "type": {
+            "const": "channel_history_changed"
           }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "latest": "1358877455.000010",
+          "ts": "1361482916.000003",
+          "type": "channel_history_changed"
         }
       }
     }

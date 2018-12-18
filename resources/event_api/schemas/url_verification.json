@@ -1,25 +1,30 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "token": {
+    "challenge": {
       "type": "string"
     },
-    "challenge": {
+    "token": {
       "type": "string"
     },
     "url_verification": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/url_verification",
       "properties": {
-        "token": {
-          "$ref": "#/definitions/token"
-        },
         "challenge": {
+          "type": "string"
+        },
+        "token": {
           "type": "string"
         },
         "type": {
           "const": "url_verification"
         }
+      },
+      "example": {
+        "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
+        "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+        "type": "url_verification"
       }
     }
   }

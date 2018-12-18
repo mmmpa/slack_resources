@@ -20,18 +20,26 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/file_comment_deleted",
       "properties": {
-        "type": {
-          "const": "file_comment_deleted"
-        },
         "comment": {
           "$ref": "#/definitions/comment_id"
+        },
+        "file": {
+          "$ref": "#/definitions/file"
         },
         "file_id": {
           "$ref": "#/definitions/file_id"
         },
-        "file": {
-          "$ref": "#/definitions/file"
+        "type": {
+          "const": "file_comment_deleted"
         }
+      },
+      "example": {
+        "comment": "Fc67890",
+        "file": {
+          "id": "F2147483862"
+        },
+        "file_id": "F2147483862",
+        "type": "file_comment_deleted"
       }
     }
   }

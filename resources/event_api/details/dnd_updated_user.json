@@ -13,9 +13,6 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "user_id": {
-        "type": "string"
-      },
       "time_integer": {
         "type": "number"
       },
@@ -26,27 +23,39 @@
           "dnd_enabled": {
             "type": "boolean"
           },
-          "next_dnd_start_ts": {
+          "next_dnd_end_ts": {
             "$ref": "#/definitions/time_integer"
           },
-          "next_dnd_end_ts": {
+          "next_dnd_start_ts": {
             "$ref": "#/definitions/time_integer"
           }
         }
+      },
+      "user_id": {
+        "type": "string"
       },
       "dnd_updated_user": {
         "type": "object",
         "description": "learn more: https://api.slack.com/events/dnd_updated_user",
         "properties": {
+          "dnd_status": {
+            "$ref": "#/definitions/dnd_status"
+          },
           "type": {
             "const": "dnd_updated_user"
           },
           "user": {
             "$ref": "#/definitions/user_id"
-          },
-          "dnd_status": {
-            "$ref": "#/definitions/dnd_status"
           }
+        },
+        "example": {
+          "dnd_status": {
+            "dnd_enabled": true,
+            "next_dnd_start_ts": 1450387800,
+            "next_dnd_end_ts": 1450423800
+          },
+          "type": "dnd_updated_user",
+          "user": "U1234"
         }
       }
     }

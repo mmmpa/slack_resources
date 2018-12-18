@@ -1,24 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "subscription_subtype": {
+    "timestamp": {
       "type": "string"
     },
     "emoji_name": {
       "type": "string"
     },
-    "timestamp": {
+    "subscription_subtype": {
       "type": "string"
     },
     "emoji_changed": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/emoji_changed",
       "properties": {
-        "type": {
-          "const": "emoji_changed"
-        },
-        "subtype": {
-          "$ref": "#/definitions/subscription_subtype"
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
         },
         "names": {
           "type": "array",
@@ -26,9 +23,20 @@
             "$ref": "#/definitions/emoji_name"
           }
         },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
+        "subtype": {
+          "$ref": "#/definitions/subscription_subtype"
+        },
+        "type": {
+          "const": "emoji_changed"
         }
+      },
+      "example": {
+        "event_ts": "1361482916.000004",
+        "names": [
+          "picard_facepalm"
+        ],
+        "subtype": "remove",
+        "type": "emoji_changed"
       }
     }
   }

@@ -17,6 +17,11 @@
         "user": {
           "$ref": "#/definitions/user"
         }
+      },
+      "example": {
+        "type": "user_change",
+        "user": {
+        }
       }
     }
   }

@@ -33,7 +33,10 @@ class Hash
 end
 
 def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
-  schema, defined, defined_used = to_schema_support(response, url, 'root', preset_schema)
+  real_resource = (response['event'].presence || response).key_ordered
+
+  schema, defined, defined_used = to_schema_support(real_resource, url, 'root', preset_schema)
+  schema.merge!(example: real_resource)
 
   [schema, defined, defined_used]
 end
@@ -43,9 +46,7 @@ def string_k_v(k, v)
 end
 
 def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, defined_used = [], parent = {})
-  types = JSON.parse(response.to_json)
-
-  # return key.camelize if response.blank?
+  types = JSON.parse(response.to_json).key_ordered
 
   def_string = ->(id_key) { id_key.tap { defined.merge!(id_key => { "type" => "string" }) } }
 
@@ -56,8 +57,6 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
         when k == 'item'
           t = types['type'].split('_').shift
           "#{t}_item"
-        when types['type'] == 'event_callback' && k == 'event'
-          "#{v['type']}_event"
         else
           k
         end
@@ -171,7 +170,7 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
     elsif type && type[0..1] == '[]'
       item = type[2..-1]
       if default_type?(item)
-        return a.merge(
+        next a.merge(
           k => {
             "type" => 'array',
             'items' => {
@@ -235,12 +234,12 @@ def write_event_api_summary
   schema_path = BASE_DIR.join('schemas')
 
   meta = JSON.parse(File.read(BASE_DIR.join('meta.json')))
-  examples = Dir.glob(EXAMPLES_DIR.join('*.json')).map do |f|
+  examples = Dir.glob(EXAMPLES_DIR.join('**/*.json')).map do |f|
     [File.basename(f, '.json'), JSON.parse(File.read(f))]
   end
 
   event_api_pages = examples.map do |type, data|
-    info = meta['subscriptions'][type]
+    info = meta['subscriptions'][type] || {}
     [info['url'], type, data, info['compatibility'], info['scopes']]
   end
 
@@ -248,10 +247,6 @@ def write_event_api_summary
     'subscription_type' => {
       "type": "string",
       "enum": meta['types'],
-    },
-    'event_type' => {
-      "type": "string",
-      "enum": meta['event_types'],
     },
     'scope' => {
       "type": "string",

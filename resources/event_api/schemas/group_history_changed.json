@@ -8,8 +8,8 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/group_history_changed",
       "properties": {
-        "type": {
-          "const": "group_history_changed"
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
         },
         "latest": {
           "$ref": "#/definitions/timestamp"
@@ -17,9 +17,15 @@
         "ts": {
           "$ref": "#/definitions/timestamp"
         },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
+        "type": {
+          "const": "group_history_changed"
         }
+      },
+      "example": {
+        "event_ts": "1361482916.000004",
+        "latest": "1358877455.000010",
+        "ts": "1361482916.000003",
+        "type": "group_history_changed"
       }
     }
   }
