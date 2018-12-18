@@ -15,16 +15,16 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/channel_left",
         "properties": {
-          "type": {
-            "const": "channel_left"
-          },
           "channel": {
             "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "channel_left"
           }
         },
         "example": {
-          "type": "channel_left",
-          "channel": "C024BE91L"
+          "channel": "C024BE91L",
+          "type": "channel_left"
         }
       }
     }

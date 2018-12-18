@@ -33,18 +33,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subteam_id": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "subteam_name": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
         "auto_type": {
           "type": "string",
           "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
@@ -55,6 +43,15 @@
           ]
         },
         "user_id": {
+          "type": "string"
+        },
+        "time_integer": {
+          "type": "number"
+        },
+        "subteam_id": {
+          "type": "string"
+        },
+        "subteam_name": {
           "type": "string"
         },
         "channel_id": {
@@ -81,6 +78,9 @@
             }
           }
         },
+        "team_id": {
+          "type": "string"
+        },
         "user_count": {
           "type": "string"
         },
@@ -88,17 +88,23 @@
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "id": {
-              "$ref": "#/definitions/subteam_id"
+            "auto_type": {
+              "$ref": "#/definitions/auto_type"
             },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
+            "created_by": {
+              "$ref": "#/definitions/user_id"
             },
-            "is_usergroup": {
-              "type": "boolean"
+            "date_create": {
+              "$ref": "#/definitions/time_integer"
             },
-            "name": {
-              "$ref": "#/definitions/subteam_name"
+            "date_delete": {
+              "$ref": "#/definitions/time_integer"
+            },
+            "date_update": {
+              "$ref": "#/definitions/time_integer"
+            },
+            "deleted_by": {
+              "$ref": "#/definitions/user_id"
             },
             "description": {
               "type": "string"
@@ -106,32 +112,26 @@
             "handle": {
               "type": "string"
             },
+            "id": {
+              "$ref": "#/definitions/subteam_id"
+            },
             "is_external": {
               "type": "boolean"
             },
-            "date_create": {
-              "$ref": "#/definitions/time_integer"
+            "is_usergroup": {
+              "type": "boolean"
             },
-            "date_update": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_delete": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "auto_type": {
-              "$ref": "#/definitions/auto_type"
-            },
-            "created_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "updated_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "deleted_by": {
-              "$ref": "#/definitions/user_id"
+            "name": {
+              "$ref": "#/definitions/subteam_name"
             },
             "prefs": {
               "$ref": "#/definitions/prefs"
+            },
+            "team_id": {
+              "$ref": "#/definitions/team_id"
+            },
+            "updated_by": {
+              "$ref": "#/definitions/user_id"
             },
             "user_count": {
               "$ref": "#/definitions/user_count"
@@ -142,15 +142,14 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/subteam_created",
           "properties": {
-            "type": {
-              "const": "subteam_created"
-            },
             "subteam": {
               "$ref": "#/definitions/subteam"
+            },
+            "type": {
+              "const": "subteam_created"
             }
           },
           "example": {
-            "type": "subteam_created",
             "subteam": {
               "id": "S0615G0KT",
               "team_id": "T060RNRCH",
@@ -175,7 +174,8 @@
                 ]
               },
               "user_count": "0"
-            }
+            },
+            "type": "subteam_created"
           }
         }
       }
@@ -211,40 +211,25 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subteam_id": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
         "user_id": {
           "type": "string"
         },
         "user_count": {
           "type": "string"
         },
+        "time_integer": {
+          "type": "number"
+        },
+        "subteam_id": {
+          "type": "string"
+        },
+        "team_id": {
+          "type": "string"
+        },
         "subteam_members_changed": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/subteam_members_changed",
           "properties": {
-            "type": {
-              "const": "subteam_members_changed"
-            },
-            "subteam_id": {
-              "$ref": "#/definitions/subteam_id"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
-            "date_previous_update": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_update": {
-              "$ref": "#/definitions/time_integer"
-            },
             "added_users": {
               "type": "array",
               "items": {
@@ -254,6 +239,12 @@
             "added_users_count": {
               "$ref": "#/definitions/user_count"
             },
+            "date_previous_update": {
+              "$ref": "#/definitions/time_integer"
+            },
+            "date_update": {
+              "$ref": "#/definitions/time_integer"
+            },
             "removed_users": {
               "type": "array",
               "items": {
@@ -262,24 +253,33 @@
             },
             "removed_users_count": {
               "$ref": "#/definitions/user_count"
+            },
+            "subteam_id": {
+              "$ref": "#/definitions/subteam_id"
+            },
+            "team_id": {
+              "$ref": "#/definitions/team_id"
+            },
+            "type": {
+              "const": "subteam_members_changed"
             }
           },
           "example": {
-            "type": "subteam_members_changed",
-            "subteam_id": "S0614TZR7",
-            "team_id": "T060RNRCH",
-            "date_previous_update": 1446670362,
-            "date_update": 1492906952,
             "added_users": [
               "U060RNRCZ",
               "U060ULRC0",
               "U061309JM"
             ],
             "added_users_count": "3",
+            "date_previous_update": 1446670362,
+            "date_update": 1492906952,
             "removed_users": [
               "U06129G2V"
             ],
-            "removed_users_count": "1"
+            "removed_users_count": "1",
+            "subteam_id": "S0614TZR7",
+            "team_id": "T060RNRCH",
+            "type": "subteam_members_changed"
           }
         }
       }
@@ -306,27 +306,27 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
+        "time_integer": {
+          "type": "number"
+        },
         "channel_id": {
           "type": "string"
         },
         "channel_name": {
           "type": "string"
         },
-        "time_integer": {
-          "type": "number"
-        },
         "channel": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
+            "created": {
+              "$ref": "#/definitions/time_integer"
+            },
             "id": {
               "$ref": "#/definitions/channel_id"
             },
             "name": {
               "$ref": "#/definitions/channel_name"
-            },
-            "created": {
-              "$ref": "#/definitions/time_integer"
             }
           }
         },
@@ -334,20 +334,20 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/channel_rename",
           "properties": {
-            "type": {
-              "const": "channel_rename"
-            },
             "channel": {
               "$ref": "#/definitions/channel"
+            },
+            "type": {
+              "const": "channel_rename"
             }
           },
           "example": {
-            "type": "channel_rename",
             "channel": {
               "id": "C02ELGNBH",
               "name": "new_name",
               "created": 1360782804
-            }
+            },
+            "type": "channel_rename"
           }
         }
       }
@@ -386,10 +386,20 @@
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
         "tokens": {
-          "oauth": {
-            "type": "array",
-            "items": {
-              "type": "string"
+          "type": "object",
+          "description": "(defined by script)",
+          "properties": {
+            "bot": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "oauth": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         },
@@ -397,15 +407,14 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/tokens_revoked",
           "properties": {
-            "type": {
-              "const": "tokens_revoked"
-            },
             "tokens": {
               "$ref": "#/definitions/tokens"
+            },
+            "type": {
+              "const": "tokens_revoked"
             }
           },
           "example": {
-            "type": "tokens_revoked",
             "tokens": {
               "oauth": [
                 "UXXXXXXXX"
@@ -413,7 +422,8 @@
               "bot": [
                 "UXXXXXXXX"
               ]
-            }
+            },
+            "type": "tokens_revoked"
           }
         }
       }
@@ -439,24 +449,24 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
         "timestamp": {
           "type": "string"
         },
-        "channel_id": {
+        "user_id": {
           "type": "string"
         },
         "app_mention": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/app_mention",
           "properties": {
-            "type": {
-              "const": "app_mention"
+            "channel": {
+              "$ref": "#/definitions/channel_id"
             },
-            "user": {
-              "$ref": "#/definitions/user_id"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "text": {
               "type": "string"
@@ -464,20 +474,20 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "channel": {
-              "$ref": "#/definitions/channel_id"
+            "type": {
+              "const": "app_mention"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "app_mention",
-            "user": "U061F7AUR",
+            "channel": "C0LAN2Q65",
+            "event_ts": "1515449522000016",
             "text": "<@U0LAN0Z89> is it everything a river should be?",
             "ts": "1515449522.000016",
-            "channel": "C0LAN2Q65",
-            "event_ts": "1515449522000016"
+            "type": "app_mention",
+            "user": "U061F7AUR"
           }
         }
       }
@@ -518,22 +528,22 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_shared",
           "properties": {
-            "type": {
-              "const": "file_shared"
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_shared"
             }
           },
           "example": {
-            "type": "file_shared",
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_shared"
           }
         }
       }
@@ -567,19 +577,19 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/channel_archive",
           "properties": {
-            "type": {
-              "const": "channel_archive"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "channel_archive"
             },
             "user": {
               "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "channel_archive",
             "channel": "C024BE91L",
+            "type": "channel_archive",
             "user": "U024BE7LH"
           }
         }
@@ -633,18 +643,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subteam_id": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "subteam_name": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
         "auto_type": {
           "type": "string",
           "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
@@ -655,6 +653,15 @@
           ]
         },
         "user_id": {
+          "type": "string"
+        },
+        "time_integer": {
+          "type": "number"
+        },
+        "subteam_id": {
+          "type": "string"
+        },
+        "subteam_name": {
           "type": "string"
         },
         "channel_id": {
@@ -681,6 +688,9 @@
             }
           }
         },
+        "team_id": {
+          "type": "string"
+        },
         "user_count": {
           "type": "string"
         },
@@ -688,17 +698,23 @@
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "id": {
-              "$ref": "#/definitions/subteam_id"
+            "auto_type": {
+              "$ref": "#/definitions/auto_type"
             },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
+            "created_by": {
+              "$ref": "#/definitions/user_id"
             },
-            "is_usergroup": {
-              "type": "boolean"
+            "date_create": {
+              "$ref": "#/definitions/time_integer"
             },
-            "name": {
-              "$ref": "#/definitions/subteam_name"
+            "date_delete": {
+              "$ref": "#/definitions/time_integer"
+            },
+            "date_update": {
+              "$ref": "#/definitions/time_integer"
+            },
+            "deleted_by": {
+              "$ref": "#/definitions/user_id"
             },
             "description": {
               "type": "string"
@@ -706,32 +722,26 @@
             "handle": {
               "type": "string"
             },
+            "id": {
+              "$ref": "#/definitions/subteam_id"
+            },
             "is_external": {
               "type": "boolean"
             },
-            "date_create": {
-              "$ref": "#/definitions/time_integer"
+            "is_usergroup": {
+              "type": "boolean"
             },
-            "date_update": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_delete": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "auto_type": {
-              "$ref": "#/definitions/auto_type"
-            },
-            "created_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "updated_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "deleted_by": {
-              "$ref": "#/definitions/user_id"
+            "name": {
+              "$ref": "#/definitions/subteam_name"
             },
             "prefs": {
               "$ref": "#/definitions/prefs"
+            },
+            "team_id": {
+              "$ref": "#/definitions/team_id"
+            },
+            "updated_by": {
+              "$ref": "#/definitions/user_id"
             },
             "user_count": {
               "$ref": "#/definitions/user_count"
@@ -742,15 +752,14 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/subteam_updated",
           "properties": {
-            "type": {
-              "const": "subteam_updated"
-            },
             "subteam": {
               "$ref": "#/definitions/subteam"
+            },
+            "type": {
+              "const": "subteam_updated"
             }
           },
           "example": {
-            "type": "subteam_updated",
             "subteam": {
               "id": "S0614TZR7",
               "team_id": "T060RNRCH",
@@ -781,7 +790,8 @@
                 "U061309JM"
               ],
               "user_count": "4"
-            }
+            },
+            "type": "subteam_updated"
           }
         }
       }
@@ -805,30 +815,30 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
-        "channel_id": {
+        "user_id": {
           "type": "string"
         },
         "group_open": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_open",
           "properties": {
+            "channel": {
+              "$ref": "#/definitions/channel_id"
+            },
             "type": {
               "const": "group_open"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "channel": {
-              "$ref": "#/definitions/channel_id"
             }
           },
           "example": {
+            "channel": "G024BE91L",
             "type": "group_open",
-            "user": "U024BE7LH",
-            "channel": "G024BE91L"
+            "user": "U024BE7LH"
           }
         }
       }
@@ -856,9 +866,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
         "time_integer": {
           "type": "number"
         },
@@ -869,36 +876,39 @@
             "dnd_enabled": {
               "type": "boolean"
             },
-            "next_dnd_start_ts": {
+            "next_dnd_end_ts": {
               "$ref": "#/definitions/time_integer"
             },
-            "next_dnd_end_ts": {
+            "next_dnd_start_ts": {
               "$ref": "#/definitions/time_integer"
             }
           }
+        },
+        "user_id": {
+          "type": "string"
         },
         "dnd_updated_user": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/dnd_updated_user",
           "properties": {
+            "dnd_status": {
+              "$ref": "#/definitions/dnd_status"
+            },
             "type": {
               "const": "dnd_updated_user"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "dnd_status": {
-              "$ref": "#/definitions/dnd_status"
             }
           },
           "example": {
-            "type": "dnd_updated_user",
-            "user": "U1234",
             "dnd_status": {
               "dnd_enabled": true,
               "next_dnd_start_ts": 1450387800,
               "next_dnd_end_ts": 1450423800
-            }
+            },
+            "type": "dnd_updated_user",
+            "user": "U1234"
           }
         }
       }
@@ -928,16 +938,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/subteam_self_added",
           "properties": {
-            "type": {
-              "const": "subteam_self_added"
-            },
             "subteam_id": {
               "$ref": "#/definitions/subteam_id"
+            },
+            "type": {
+              "const": "subteam_self_added"
             }
           },
           "example": {
-            "type": "subteam_self_added",
-            "subteam_id": "S0615G0KT"
+            "subteam_id": "S0615G0KT",
+            "type": "subteam_self_added"
           }
         }
       }
@@ -971,19 +981,19 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/channel_unarchive",
           "properties": {
-            "type": {
-              "const": "channel_unarchive"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "channel_unarchive"
             },
             "user": {
               "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "channel_unarchive",
             "channel": "C024BE91L",
+            "type": "channel_unarchive",
             "user": "U024BE7LH"
           }
         }
@@ -1052,9 +1062,6 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/scope_granted",
           "properties": {
-            "type": {
-              "const": "scope_granted"
-            },
             "scopes": {
               "type": "array",
               "items": {
@@ -1063,16 +1070,19 @@
             },
             "trigger_id": {
               "$ref": "#/definitions/trigger_id"
+            },
+            "type": {
+              "const": "scope_granted"
             }
           },
           "example": {
-            "type": "scope_granted",
             "scopes": [
               "files:read",
               "files:write",
               "chat:write"
             ],
-            "trigger_id": "241582872337.47445629121.string"
+            "trigger_id": "241582872337.47445629121.string",
+            "type": "scope_granted"
           }
         }
       }
@@ -1110,13 +1120,13 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
         "timestamp": {
           "type": "string"
         },
-        "channel_id": {
+        "user_id": {
           "type": "string"
         },
         "channel_type": {
@@ -1126,11 +1136,14 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/message.app_home",
           "properties": {
-            "type": {
-              "const": "message"
+            "channel": {
+              "$ref": "#/definitions/channel_id"
             },
-            "user": {
-              "$ref": "#/definitions/user_id"
+            "channel_type": {
+              "type": "string"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "text": {
               "type": "string"
@@ -1138,24 +1151,21 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "channel": {
-              "$ref": "#/definitions/channel_id"
+            "type": {
+              "const": "message"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "channel_type": {
-              "type": "string"
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "message",
-            "user": "U061F7AUR",
+            "channel": "D0PNCRP9N",
+            "channel_type": "app_home",
+            "event_ts": "1525215129.000001",
             "text": "How many cats did we herd yesterday?",
             "ts": "1525215129.000001",
-            "channel": "D0PNCRP9N",
-            "event_ts": "1525215129.000001",
-            "channel_type": "app_home"
+            "type": "message",
+            "user": "U061F7AUR"
           }
         }
       }
@@ -1184,16 +1194,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_archive",
           "properties": {
-            "type": {
-              "const": "group_archive"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "group_archive"
             }
           },
           "example": {
-            "type": "group_archive",
-            "channel": "G024BE91L"
+            "channel": "G024BE91L",
+            "type": "group_archive"
           }
         }
       }
@@ -1217,30 +1227,30 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
-        "channel_id": {
+        "user_id": {
           "type": "string"
         },
         "im_open": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/im_open",
           "properties": {
+            "channel": {
+              "$ref": "#/definitions/channel_id"
+            },
             "type": {
               "const": "im_open"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "channel": {
-              "$ref": "#/definitions/channel_id"
             }
           },
           "example": {
+            "channel": "D024BE91L",
             "type": "im_open",
-            "user": "U024BE7LH",
-            "channel": "D024BE91L"
+            "user": "U024BE7LH"
           }
         }
       }
@@ -1268,10 +1278,10 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
-        "channel_id": {
+        "timestamp": {
           "type": "string"
         },
         "pin_item": {
@@ -1280,40 +1290,40 @@
           "properties": {
           }
         },
-        "timestamp": {
+        "user_id": {
           "type": "string"
         },
         "pin_removed": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/pin_removed",
           "properties": {
+            "channel_id": {
+              "$ref": "#/definitions/channel_id"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
+            },
+            "has_pins": {
+              "type": "boolean"
+            },
+            "item": {
+              "$ref": "#/definitions/pin_item"
+            },
             "type": {
               "const": "pin_removed"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "channel_id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "item": {
-              "$ref": "#/definitions/pin_item"
-            },
-            "has_pins": {
-              "type": "boolean"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
             }
           },
           "example": {
-            "type": "pin_removed",
-            "user": "U024BE7LH",
             "channel_id": "C02ELGNBH",
+            "event_ts": "1360782804.083113",
+            "has_pins": false,
             "item": {
             },
-            "has_pins": false,
-            "event_ts": "1360782804.083113"
+            "type": "pin_removed",
+            "user": "U024BE7LH"
           }
         }
       }
@@ -1351,16 +1361,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/grid_migration_finished",
           "properties": {
-            "type": {
-              "const": "grid_migration_finished"
-            },
             "enterprise_id": {
               "$ref": "#/definitions/enterprise_id"
+            },
+            "type": {
+              "const": "grid_migration_finished"
             }
           },
           "example": {
-            "type": "grid_migration_finished",
-            "enterprise_id": "EXXXXXXXX"
+            "enterprise_id": "EXXXXXXXX",
+            "type": "grid_migration_finished"
           }
         }
       }
@@ -1383,20 +1393,20 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "token": {
+        "challenge": {
           "type": "string"
         },
-        "challenge": {
+        "token": {
           "type": "string"
         },
         "url_verification": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/url_verification",
           "properties": {
-            "token": {
+            "challenge": {
               "type": "string"
             },
-            "challenge": {
+            "token": {
               "type": "string"
             },
             "type": {
@@ -1404,8 +1414,8 @@
             }
           },
           "example": {
-            "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
             "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
+            "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
             "type": "url_verification"
           }
         }
@@ -1435,16 +1445,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/team_rename",
           "properties": {
-            "type": {
-              "const": "team_rename"
-            },
             "name": {
               "$ref": "#/definitions/root_name"
+            },
+            "type": {
+              "const": "team_rename"
             }
           },
           "example": {
-            "type": "team_rename",
-            "name": "New Team Name Inc."
+            "name": "New Team Name Inc.",
+            "type": "team_rename"
           }
         }
       }
@@ -1471,27 +1481,27 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
+        "time_integer": {
+          "type": "number"
+        },
         "channel_id": {
           "type": "string"
         },
         "channel_name": {
           "type": "string"
         },
-        "time_integer": {
-          "type": "number"
-        },
         "channel": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
+            "created": {
+              "$ref": "#/definitions/time_integer"
+            },
             "id": {
               "$ref": "#/definitions/channel_id"
             },
             "name": {
               "$ref": "#/definitions/channel_name"
-            },
-            "created": {
-              "$ref": "#/definitions/time_integer"
             }
           }
         },
@@ -1499,20 +1509,20 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_rename",
           "properties": {
-            "type": {
-              "const": "group_rename"
-            },
             "channel": {
               "$ref": "#/definitions/channel"
+            },
+            "type": {
+              "const": "group_rename"
             }
           },
           "example": {
-            "type": "group_rename",
             "channel": {
               "id": "G02ELGNBH",
               "name": "new_name",
               "created": 1360782804
-            }
+            },
+            "type": "group_rename"
           }
         }
       }
@@ -1551,9 +1561,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
         "scope": {
           "type": "string",
           "enum": [
@@ -1579,16 +1586,13 @@
         "trigger_id": {
           "type": "string"
         },
+        "user_id": {
+          "type": "string"
+        },
         "user_resource_denied": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/user_resource_denied",
           "properties": {
-            "type": {
-              "const": "user_resource_denied"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            },
             "scopes": {
               "type": "array",
               "items": {
@@ -1597,16 +1601,22 @@
             },
             "trigger_id": {
               "$ref": "#/definitions/trigger_id"
+            },
+            "type": {
+              "const": "user_resource_denied"
+            },
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "user_resource_denied",
-            "user": "WXXXXXXXX",
             "scopes": [
               "reminders:write:user",
               "reminders:read:user"
             ],
-            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606"
+            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
+            "type": "user_resource_denied",
+            "user": "WXXXXXXXX"
           }
         }
       }
@@ -1635,16 +1645,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/subteam_self_removed",
           "properties": {
-            "type": {
-              "const": "subteam_self_removed"
-            },
             "subteam_id": {
               "$ref": "#/definitions/subteam_id"
+            },
+            "type": {
+              "const": "subteam_self_removed"
             }
           },
           "example": {
-            "type": "subteam_self_removed",
-            "subteam_id": "S0615G0KT"
+            "subteam_id": "S0615G0KT",
+            "type": "subteam_self_removed"
           }
         }
       }
@@ -1671,10 +1681,10 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
-        "channel_id": {
+        "timestamp": {
           "type": "string"
         },
         "pin_item": {
@@ -1683,36 +1693,36 @@
           "properties": {
           }
         },
-        "timestamp": {
+        "user_id": {
           "type": "string"
         },
         "pin_added": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/pin_added",
           "properties": {
+            "channel_id": {
+              "$ref": "#/definitions/channel_id"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
+            },
+            "item": {
+              "$ref": "#/definitions/pin_item"
+            },
             "type": {
               "const": "pin_added"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "channel_id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "item": {
-              "$ref": "#/definitions/pin_item"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
             }
           },
           "example": {
-            "type": "pin_added",
-            "user": "U024BE7LH",
             "channel_id": "C02ELGNBH",
+            "event_ts": "1360782804.083113",
             "item": {
             },
-            "event_ts": "1360782804.083113"
+            "type": "pin_added",
+            "user": "U024BE7LH"
           }
         }
       }
@@ -1777,24 +1787,21 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "subscription_subtype": {
+        "timestamp": {
           "type": "string"
         },
         "emoji_name": {
           "type": "string"
         },
-        "timestamp": {
+        "subscription_subtype": {
           "type": "string"
         },
         "emoji_changed": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/emoji_changed",
           "properties": {
-            "type": {
-              "const": "emoji_changed"
-            },
-            "subtype": {
-              "$ref": "#/definitions/subscription_subtype"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "names": {
               "type": "array",
@@ -1802,17 +1809,20 @@
                 "$ref": "#/definitions/emoji_name"
               }
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "subtype": {
+              "$ref": "#/definitions/subscription_subtype"
+            },
+            "type": {
+              "const": "emoji_changed"
             }
           },
           "example": {
-            "type": "emoji_changed",
-            "subtype": "remove",
+            "event_ts": "1361482916.000004",
             "names": [
               "picard_facepalm"
             ],
-            "event_ts": "1361482916.000004"
+            "subtype": "remove",
+            "type": "emoji_changed"
           }
         }
       }
@@ -1854,22 +1864,22 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_public",
           "properties": {
-            "type": {
-              "const": "file_public"
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_public"
             }
           },
           "example": {
-            "type": "file_public",
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_public"
           }
         }
       }
@@ -1915,26 +1925,26 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_comment_deleted",
           "properties": {
-            "type": {
-              "const": "file_comment_deleted"
-            },
             "comment": {
               "$ref": "#/definitions/comment_id"
+            },
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_comment_deleted"
             }
           },
           "example": {
-            "type": "file_comment_deleted",
             "comment": "Fc67890",
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_comment_deleted"
           }
         }
       }
@@ -1962,30 +1972,30 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_name": {
-          "type": "string"
-        },
         "time_integer": {
           "type": "number"
         },
         "user_id": {
           "type": "string"
         },
+        "channel_id": {
+          "type": "string"
+        },
+        "channel_name": {
+          "type": "string"
+        },
         "channel": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
+            "created": {
+              "$ref": "#/definitions/time_integer"
+            },
             "id": {
               "$ref": "#/definitions/channel_id"
             },
             "name": {
               "$ref": "#/definitions/channel_name"
-            },
-            "created": {
-              "$ref": "#/definitions/time_integer"
             }
           }
         },
@@ -1993,21 +2003,21 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/channel_created",
           "properties": {
-            "type": {
-              "const": "channel_created"
-            },
             "channel": {
               "$ref": "#/definitions/channel"
+            },
+            "type": {
+              "const": "channel_created"
             }
           },
           "example": {
-            "type": "channel_created",
             "channel": {
               "id": "C024BE91L",
               "name": "fun",
               "created": 1360782804,
               "creator": "U024BE7LH"
-            }
+            },
+            "type": "channel_created"
           }
         }
       }
@@ -2033,9 +2043,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
         "channel_id": {
           "type": "string"
         },
@@ -2045,16 +2052,13 @@
         "team_id": {
           "type": "string"
         },
+        "user_id": {
+          "type": "string"
+        },
         "member_left_channel": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/member_left_channel",
           "properties": {
-            "type": {
-              "const": "member_left_channel"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
@@ -2063,14 +2067,20 @@
             },
             "team": {
               "$ref": "#/definitions/team_id"
+            },
+            "type": {
+              "const": "member_left_channel"
+            },
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "member_left_channel",
-            "user": "W06GH7XHN",
             "channel": "C0698JE0H",
             "channel_type": "C",
-            "team": "T024BE7LD"
+            "team": "T024BE7LD",
+            "type": "member_left_channel",
+            "user": "W06GH7XHN"
           }
         }
       }
@@ -2102,20 +2112,20 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/email_domain_changed",
           "properties": {
-            "type": {
-              "const": "email_domain_changed"
-            },
             "email_domain": {
               "type": "string"
             },
             "event_ts": {
               "$ref": "#/definitions/timestamp"
+            },
+            "type": {
+              "const": "email_domain_changed"
             }
           },
           "example": {
-            "type": "email_domain_changed",
             "email_domain": "example.com",
-            "event_ts": "1360782804.083113"
+            "event_ts": "1360782804.083113",
+            "type": "email_domain_changed"
           }
         }
       }
@@ -2157,27 +2167,27 @@
         "channel_id": {
           "type": "string"
         },
-        "user_id": {
+        "channel_type": {
           "type": "string"
         },
         "timestamp": {
           "type": "string"
         },
-        "channel_type": {
+        "user_id": {
           "type": "string"
         },
         "message.im": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/message.im",
           "properties": {
-            "type": {
-              "const": "message"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
-            "user": {
-              "$ref": "#/definitions/user_id"
+            "channel_type": {
+              "$ref": "#/definitions/channel_type"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "text": {
               "type": "string"
@@ -2185,21 +2195,21 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "message"
             },
-            "channel_type": {
-              "$ref": "#/definitions/channel_type"
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "message",
             "channel": "D024BE91L",
-            "user": "U2147483697",
+            "channel_type": "im",
+            "event_ts": "1355517523.000005",
             "text": "Hello hello can you hear me?",
             "ts": "1355517523.000005",
-            "event_ts": "1355517523.000005",
-            "channel_type": "im"
+            "type": "message",
+            "user": "U2147483697"
           }
         }
       }
@@ -2240,22 +2250,22 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_unshared",
           "properties": {
-            "type": {
-              "const": "file_unshared"
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_unshared"
             }
           },
           "example": {
-            "type": "file_unshared",
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_unshared"
           }
         }
       }
@@ -2285,16 +2295,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_deleted",
           "properties": {
-            "type": {
-              "const": "group_deleted"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "group_deleted"
             }
           },
           "example": {
-            "type": "group_deleted",
-            "channel": "G0QN9RGTT"
+            "channel": "G0QN9RGTT",
+            "type": "group_deleted"
           }
         }
       }
@@ -2333,9 +2343,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
         "scope": {
           "type": "string",
           "enum": [
@@ -2361,16 +2368,13 @@
         "trigger_id": {
           "type": "string"
         },
+        "user_id": {
+          "type": "string"
+        },
         "user_resource_granted": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/user_resource_granted",
           "properties": {
-            "type": {
-              "const": "user_resource_granted"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            },
             "scopes": {
               "type": "array",
               "items": {
@@ -2379,16 +2383,22 @@
             },
             "trigger_id": {
               "$ref": "#/definitions/trigger_id"
+            },
+            "type": {
+              "const": "user_resource_granted"
+            },
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "user_resource_granted",
-            "user": "WXXXXXXXX",
             "scopes": [
               "reminders:write:user",
               "reminders:read:user"
             ],
-            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606"
+            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
+            "type": "user_resource_granted",
+            "user": "WXXXXXXXX"
           }
         }
       }
@@ -2420,13 +2430,10 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "token": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
         "api_app_id": {
+          "type": "string"
+        },
+        "user_id": {
           "type": "string"
         },
         "event": {
@@ -2435,33 +2442,24 @@
           "properties": {
           }
         },
-        "user_id": {
-          "type": "string"
-        },
         "event_id": {
           "type": "string"
         },
         "time_integer": {
           "type": "number"
         },
+        "team_id": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
         "event_callback": {
           "type": "object",
           "description": "learn more: ",
           "properties": {
-            "token": {
-              "$ref": "#/definitions/token"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
             "api_app_id": {
               "$ref": "#/definitions/api_app_id"
-            },
-            "event": {
-              "$ref": "#/definitions/event"
-            },
-            "type": {
-              "const": "event_callback"
             },
             "authed_users": {
               "type": "array",
@@ -2469,26 +2467,38 @@
                 "$ref": "#/definitions/user_id"
               }
             },
+            "event": {
+              "$ref": "#/definitions/event"
+            },
             "event_id": {
               "$ref": "#/definitions/event_id"
             },
             "event_time": {
               "$ref": "#/definitions/time_integer"
+            },
+            "team_id": {
+              "$ref": "#/definitions/team_id"
+            },
+            "token": {
+              "$ref": "#/definitions/token"
+            },
+            "type": {
+              "const": "event_callback"
             }
           },
           "example": {
-            "token": "XXYYZZ",
-            "team_id": "TXXXXXXXX",
             "api_app_id": "AXXXXXXXXX",
-            "event": {
-            },
-            "type": "event_callback",
             "authed_users": [
               "UXXXXXXX1",
               "UXXXXXXX2"
             ],
+            "event": {
+            },
             "event_id": "Ev08MFMKH6",
-            "event_time": 1234567890
+            "event_time": 1234567890,
+            "team_id": "TXXXXXXXX",
+            "token": "XXYYZZ",
+            "type": "event_callback"
           }
         }
       }
@@ -2557,16 +2567,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/channel_left",
           "properties": {
-            "type": {
-              "const": "channel_left"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "channel_left"
             }
           },
           "example": {
-            "type": "channel_left",
-            "channel": "C024BE91L"
+            "channel": "C024BE91L",
+            "type": "channel_left"
           }
         }
       }
@@ -2598,8 +2608,8 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/channel_history_changed",
           "properties": {
-            "type": {
-              "const": "channel_history_changed"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "latest": {
               "$ref": "#/definitions/timestamp"
@@ -2607,15 +2617,15 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "channel_history_changed"
             }
           },
           "example": {
-            "type": "channel_history_changed",
+            "event_ts": "1361482916.000004",
             "latest": "1358877455.000010",
             "ts": "1361482916.000003",
-            "event_ts": "1361482916.000004"
+            "type": "channel_history_changed"
           }
         }
       }
@@ -2647,16 +2657,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_left",
           "properties": {
-            "type": {
-              "const": "group_left"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "group_left"
             }
           },
           "example": {
-            "type": "group_left",
-            "channel": "G02ELGNBH"
+            "channel": "G02ELGNBH",
+            "type": "group_left"
           }
         }
       }
@@ -2706,27 +2716,27 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_comment_added",
           "properties": {
-            "type": {
-              "const": "file_comment_added"
-            },
             "comment": {
               "$ref": "#/definitions/comment"
+            },
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_comment_added"
             }
           },
           "example": {
-            "type": "file_comment_added",
             "comment": {
             },
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_comment_added"
           }
         }
       }
@@ -2750,30 +2760,30 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
-        "channel_id": {
+        "user_id": {
           "type": "string"
         },
         "group_close": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_close",
           "properties": {
+            "channel": {
+              "$ref": "#/definitions/channel_id"
+            },
             "type": {
               "const": "group_close"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "channel": {
-              "$ref": "#/definitions/channel_id"
             }
           },
           "example": {
+            "channel": "G024BE91L",
             "type": "group_close",
-            "user": "U024BE7LH",
-            "channel": "G024BE91L"
+            "user": "U024BE7LH"
           }
         }
       }
@@ -2828,12 +2838,6 @@
         "channel_id": {
           "type": "string"
         },
-        "user_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        },
         "link": {
           "type": "object",
           "description": "(defined by script)",
@@ -2846,18 +2850,24 @@
             }
           }
         },
+        "timestamp": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
         "link_shared": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/link_shared",
           "properties": {
-            "type": {
-              "const": "link_shared"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
-            "user": {
-              "$ref": "#/definitions/user_id"
+            "links": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/link"
+              }
             },
             "message_ts": {
               "$ref": "#/definitions/timestamp"
@@ -2865,19 +2875,15 @@
             "thread_ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "links": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/link"
-              }
+            "type": {
+              "const": "link_shared"
+            },
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "link_shared",
             "channel": "Cxxxxxx",
-            "user": "Uxxxxxxx",
-            "message_ts": "123456789.9875",
-            "thread_ts": "123456621.1855",
             "links": [
               {
                 "domain": "example.com",
@@ -2891,7 +2897,11 @@
                 "domain": "another-example.com",
                 "url": "https://yet.another-example.com/v/abcde"
               }
-            ]
+            ],
+            "message_ts": "123456789.9875",
+            "thread_ts": "123456621.1855",
+            "type": "link_shared",
+            "user": "Uxxxxxxx"
           }
         }
       }
@@ -2915,43 +2925,43 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
         "channel": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
+            "created": {
+              "$ref": "#/definitions/time_integer"
+            },
             "id": {
               "$ref": "#/definitions/channel_id"
             },
             "name": {
               "$ref": "#/definitions/channel_name"
-            },
-            "created": {
-              "$ref": "#/definitions/time_integer"
             }
           }
+        },
+        "user_id": {
+          "type": "string"
         },
         "im_created": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/im_created",
           "properties": {
+            "channel": {
+              "$ref": "#/definitions/channel"
+            },
             "type": {
               "const": "im_created"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "channel": {
-              "$ref": "#/definitions/channel"
             }
           },
           "example": {
-            "type": "im_created",
-            "user": "U024BE7LH",
             "channel": {
-            }
+            },
+            "type": "im_created",
+            "user": "U024BE7LH"
           }
         }
       }
@@ -2981,16 +2991,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/channel_deleted",
           "properties": {
-            "type": {
-              "const": "channel_deleted"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "channel_deleted"
             }
           },
           "example": {
-            "type": "channel_deleted",
-            "channel": "C024BE91L"
+            "channel": "C024BE91L",
+            "type": "channel_deleted"
           }
         }
       }
@@ -3032,27 +3042,27 @@
         "channel_id": {
           "type": "string"
         },
-        "user_id": {
+        "channel_type": {
           "type": "string"
         },
         "timestamp": {
           "type": "string"
         },
-        "channel_type": {
+        "user_id": {
           "type": "string"
         },
         "message.channels": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/message.channels",
           "properties": {
-            "type": {
-              "const": "message"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
-            "user": {
-              "$ref": "#/definitions/user_id"
+            "channel_type": {
+              "$ref": "#/definitions/channel_type"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "text": {
               "type": "string"
@@ -3060,21 +3070,21 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "message"
             },
-            "channel_type": {
-              "$ref": "#/definitions/channel_type"
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "message",
             "channel": "C024BE91L",
-            "user": "U2147483697",
+            "channel_type": "channel",
+            "event_ts": "1355517523.000005",
             "text": "Live long and prospect.",
             "ts": "1355517523.000005",
-            "event_ts": "1355517523.000005",
-            "channel_type": "channel"
+            "type": "message",
+            "user": "U2147483697"
           }
         }
       }
@@ -3099,44 +3109,44 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "token": {
-          "type": "string"
-        },
-        "team_id": {
+        "api_app_id": {
           "type": "string"
         },
         "time_integer": {
           "type": "number"
         },
-        "api_app_id": {
+        "team_id": {
+          "type": "string"
+        },
+        "token": {
           "type": "string"
         },
         "app_rate_limited": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/app_rate_limited",
           "properties": {
+            "api_app_id": {
+              "$ref": "#/definitions/api_app_id"
+            },
+            "minute_rate_limited": {
+              "$ref": "#/definitions/time_integer"
+            },
+            "team_id": {
+              "$ref": "#/definitions/team_id"
+            },
             "token": {
               "$ref": "#/definitions/token"
             },
             "type": {
               "const": "app_rate_limited"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
-            "minute_rate_limited": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "api_app_id": {
-              "$ref": "#/definitions/api_app_id"
             }
           },
           "example": {
-            "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-            "type": "app_rate_limited",
-            "team_id": "T123456",
+            "api_app_id": "A123456",
             "minute_rate_limited": 1518467820,
-            "api_app_id": "A123456"
+            "team_id": "T123456",
+            "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+            "type": "app_rate_limited"
           }
         }
       }
@@ -3159,30 +3169,30 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "channel_id": {
           "type": "string"
         },
-        "channel_id": {
+        "user_id": {
           "type": "string"
         },
         "im_close": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/im_close",
           "properties": {
+            "channel": {
+              "$ref": "#/definitions/channel_id"
+            },
             "type": {
               "const": "im_close"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "channel": {
-              "$ref": "#/definitions/channel_id"
             }
           },
           "example": {
+            "channel": "D024BE91L",
             "type": "im_close",
-            "user": "U024BE7LH",
-            "channel": "D024BE91L"
+            "user": "U024BE7LH"
           }
         }
       }
@@ -3232,36 +3242,36 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "resource_type": {
+        "resource_id": {
           "type": "string"
         },
         "grant_type": {
-          "type": "string"
-        },
-        "resource_id": {
           "type": "string"
         },
         "grant": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "type": {
-              "$ref": "#/definitions/grant_type"
-            },
             "resource_id": {
               "$ref": "#/definitions/resource_id"
+            },
+            "type": {
+              "$ref": "#/definitions/grant_type"
             }
           }
+        },
+        "resource_type": {
+          "type": "string"
         },
         "resource": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "type": {
-              "$ref": "#/definitions/resource_type"
-            },
             "grant": {
               "$ref": "#/definitions/grant"
+            },
+            "type": {
+              "$ref": "#/definitions/resource_type"
             }
           }
         },
@@ -3306,18 +3316,17 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/resources_added",
           "properties": {
-            "type": {
-              "const": "resources_added"
-            },
             "resources": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/resource_item"
               }
+            },
+            "type": {
+              "const": "resources_added"
             }
           },
           "example": {
-            "type": "resources_added",
             "resources": [
               {
                 "resource": {
@@ -3334,7 +3343,8 @@
                   "commands"
                 ]
               }
-            ]
+            ],
+            "type": "resources_added"
           }
         }
       }
@@ -3412,30 +3422,30 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "trigger_id": {
           "type": "string"
         },
-        "trigger_id": {
+        "user_id": {
           "type": "string"
         },
         "user_resource_removed": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/user_resource_removed",
           "properties": {
+            "trigger_id": {
+              "$ref": "#/definitions/trigger_id"
+            },
             "type": {
               "const": "user_resource_removed"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "trigger_id": {
-              "$ref": "#/definitions/trigger_id"
             }
           },
           "example": {
+            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
             "type": "user_resource_removed",
-            "user": "WXXXXXXXX",
-            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606"
+            "user": "WXXXXXXXX"
           }
         }
       }
@@ -3466,8 +3476,8 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/im_history_changed",
           "properties": {
-            "type": {
-              "const": "im_history_changed"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "latest": {
               "$ref": "#/definitions/timestamp"
@@ -3475,15 +3485,15 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "im_history_changed"
             }
           },
           "example": {
-            "type": "im_history_changed",
+            "event_ts": "1361482916.000004",
             "latest": "1358877455.000010",
             "ts": "1361482916.000003",
-            "event_ts": "1361482916.000004"
+            "type": "im_history_changed"
           }
         }
       }
@@ -3513,9 +3523,6 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
         "time_integer": {
           "type": "number"
         },
@@ -3526,38 +3533,41 @@
             "dnd_enabled": {
               "type": "boolean"
             },
-            "next_dnd_start_ts": {
+            "next_dnd_end_ts": {
               "$ref": "#/definitions/time_integer"
             },
-            "next_dnd_end_ts": {
+            "next_dnd_start_ts": {
               "$ref": "#/definitions/time_integer"
             }
           }
+        },
+        "user_id": {
+          "type": "string"
         },
         "dnd_updated": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/dnd_updated",
           "properties": {
+            "dnd_status": {
+              "$ref": "#/definitions/dnd_status"
+            },
             "type": {
               "const": "dnd_updated"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "dnd_status": {
-              "$ref": "#/definitions/dnd_status"
             }
           },
           "example": {
-            "type": "dnd_updated",
-            "user": "U1234",
             "dnd_status": {
               "dnd_enabled": true,
               "next_dnd_start_ts": 1450387800,
               "next_dnd_end_ts": 1450423800,
               "snooze_enabled": true,
               "snooze_endtime": 1450373897
-            }
+            },
+            "type": "dnd_updated",
+            "user": "U1234"
           }
         }
       }
@@ -3599,27 +3609,27 @@
         "channel_id": {
           "type": "string"
         },
-        "user_id": {
+        "channel_type": {
           "type": "string"
         },
         "timestamp": {
           "type": "string"
         },
-        "channel_type": {
+        "user_id": {
           "type": "string"
         },
         "message.groups": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/message.groups",
           "properties": {
-            "type": {
-              "const": "message"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
-            "user": {
-              "$ref": "#/definitions/user_id"
+            "channel_type": {
+              "$ref": "#/definitions/channel_type"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "text": {
               "type": "string"
@@ -3627,21 +3637,21 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "message"
             },
-            "channel_type": {
-              "$ref": "#/definitions/channel_type"
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "message",
             "channel": "G024BE91L",
-            "user": "U2147483697",
+            "channel_type": "group",
+            "event_ts": "1355517523.000005",
             "text": "One cannot programmatically detect the difference between `message.mpim` and `message.groups`.",
             "ts": "1355517523.000005",
-            "event_ts": "1355517523.000005",
-            "channel_type": "group"
+            "type": "message",
+            "user": "U2147483697"
           }
         }
       }
@@ -3666,7 +3676,7 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "timestamp": {
           "type": "string"
         },
         "star_item": {
@@ -3675,32 +3685,32 @@
           "properties": {
           }
         },
-        "timestamp": {
+        "user_id": {
           "type": "string"
         },
         "star_added": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/star_added",
           "properties": {
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
+            },
+            "item": {
+              "$ref": "#/definitions/star_item"
+            },
             "type": {
               "const": "star_added"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "item": {
-              "$ref": "#/definitions/star_item"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
             }
           },
           "example": {
-            "type": "star_added",
-            "user": "U024BE7LH",
+            "event_ts": "1360782804.083113",
             "item": {
             },
-            "event_ts": "1360782804.083113"
+            "type": "star_added",
+            "user": "U024BE7LH"
           }
         }
       }
@@ -3732,8 +3742,8 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_history_changed",
           "properties": {
-            "type": {
-              "const": "group_history_changed"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "latest": {
               "$ref": "#/definitions/timestamp"
@@ -3741,15 +3751,15 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "group_history_changed"
             }
           },
           "example": {
-            "type": "group_history_changed",
+            "event_ts": "1361482916.000004",
             "latest": "1358877455.000010",
             "ts": "1361482916.000003",
-            "event_ts": "1361482916.000004"
+            "type": "group_history_changed"
           }
         }
       }
@@ -3799,36 +3809,36 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "resource_type": {
+        "resource_id": {
           "type": "string"
         },
         "grant_type": {
-          "type": "string"
-        },
-        "resource_id": {
           "type": "string"
         },
         "grant": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "type": {
-              "$ref": "#/definitions/grant_type"
-            },
             "resource_id": {
               "$ref": "#/definitions/resource_id"
+            },
+            "type": {
+              "$ref": "#/definitions/grant_type"
             }
           }
+        },
+        "resource_type": {
+          "type": "string"
         },
         "resource": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "type": {
-              "$ref": "#/definitions/resource_type"
-            },
             "grant": {
               "$ref": "#/definitions/grant"
+            },
+            "type": {
+              "$ref": "#/definitions/resource_type"
             }
           }
         },
@@ -3873,18 +3883,17 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/resources_removed",
           "properties": {
-            "type": {
-              "const": "resources_removed"
-            },
             "resources": {
               "type": "array",
               "items": {
                 "$ref": "#/definitions/resource_item"
               }
+            },
+            "type": {
+              "const": "resources_removed"
             }
           },
           "example": {
-            "type": "resources_removed",
             "resources": [
               {
                 "resource": {
@@ -3901,7 +3910,8 @@
                   "commands"
                 ]
               }
-            ]
+            ],
+            "type": "resources_removed"
           }
         }
       }
@@ -3968,9 +3978,6 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/scope_denied",
           "properties": {
-            "type": {
-              "const": "scope_denied"
-            },
             "scopes": {
               "type": "array",
               "items": {
@@ -3979,16 +3986,19 @@
             },
             "trigger_id": {
               "$ref": "#/definitions/trigger_id"
+            },
+            "type": {
+              "const": "scope_denied"
             }
           },
           "example": {
-            "type": "scope_denied",
             "scopes": [
               "files:read",
               "files:write",
               "chat:write"
             ],
-            "trigger_id": "241582872337.47445629121.string"
+            "trigger_id": "241582872337.47445629121.string",
+            "type": "scope_denied"
           }
         }
       }
@@ -4017,16 +4027,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/group_unarchive",
           "properties": {
-            "type": {
-              "const": "group_unarchive"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
+            },
+            "type": {
+              "const": "group_unarchive"
             }
           },
           "example": {
-            "type": "group_unarchive",
-            "channel": "G024BE91L"
+            "channel": "G024BE91L",
+            "type": "group_unarchive"
           }
         }
       }
@@ -4068,27 +4078,27 @@
         "channel_id": {
           "type": "string"
         },
-        "user_id": {
+        "channel_type": {
           "type": "string"
         },
         "timestamp": {
           "type": "string"
         },
-        "channel_type": {
+        "user_id": {
           "type": "string"
         },
         "message.mpim": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/message.mpim",
           "properties": {
-            "type": {
-              "const": "message"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
-            "user": {
-              "$ref": "#/definitions/user_id"
+            "channel_type": {
+              "$ref": "#/definitions/channel_type"
+            },
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "text": {
               "type": "string"
@@ -4096,21 +4106,21 @@
             "ts": {
               "$ref": "#/definitions/timestamp"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "message"
             },
-            "channel_type": {
-              "$ref": "#/definitions/channel_type"
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "message",
             "channel": "G024BE91L",
-            "user": "U2147483697",
+            "channel_type": "mpim",
+            "event_ts": "1355517523.000005",
             "text": "Let's make a pact.",
             "ts": "1355517523.000005",
-            "event_ts": "1355517523.000005",
-            "channel_type": "mpim"
+            "type": "message",
+            "user": "U2147483697"
           }
         }
       }
@@ -4135,7 +4145,7 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
+        "timestamp": {
           "type": "string"
         },
         "star_item": {
@@ -4144,32 +4154,32 @@
           "properties": {
           }
         },
-        "timestamp": {
+        "user_id": {
           "type": "string"
         },
         "star_removed": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/star_removed",
           "properties": {
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
+            },
+            "item": {
+              "$ref": "#/definitions/star_item"
+            },
             "type": {
               "const": "star_removed"
             },
             "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "item": {
-              "$ref": "#/definitions/star_item"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
             }
           },
           "example": {
-            "type": "star_removed",
-            "user": "U024BE7LH",
+            "event_ts": "1360782804.083113",
             "item": {
             },
-            "event_ts": "1360782804.083113"
+            "type": "star_removed",
+            "user": "U024BE7LH"
           }
         }
       }
@@ -4211,22 +4221,22 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_change",
           "properties": {
-            "type": {
-              "const": "file_change"
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_change"
             }
           },
           "example": {
-            "type": "file_change",
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_change"
           }
         }
       }
@@ -4254,20 +4264,20 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/team_domain_change",
           "properties": {
+            "domain": {
+              "type": "string"
+            },
             "type": {
               "const": "team_domain_change"
             },
             "url": {
               "type": "string"
-            },
-            "domain": {
-              "type": "string"
             }
           },
           "example": {
+            "domain": "my",
             "type": "team_domain_change",
-            "url": "https://my.slack.com",
-            "domain": "my"
+            "url": "https://my.slack.com"
           }
         }
       }
@@ -4305,16 +4315,16 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/grid_migration_started",
           "properties": {
-            "type": {
-              "const": "grid_migration_started"
-            },
             "enterprise_id": {
               "$ref": "#/definitions/enterprise_id"
+            },
+            "type": {
+              "const": "grid_migration_started"
             }
           },
           "example": {
-            "type": "grid_migration_started",
-            "enterprise_id": "EXXXXXXXX"
+            "enterprise_id": "EXXXXXXXX",
+            "type": "grid_migration_started"
           }
         }
       }
@@ -4344,70 +4354,70 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
-        "emoji_name": {
-          "type": "string"
-        },
-        "reaction_item_type": {
+        "timestamp": {
           "type": "string"
         },
         "channel_id": {
           "type": "string"
         },
-        "timestamp": {
+        "reaction_item_type": {
           "type": "string"
         },
         "reaction_item": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "type": {
-              "$ref": "#/definitions/reaction_item_type"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
             "ts": {
               "$ref": "#/definitions/timestamp"
+            },
+            "type": {
+              "$ref": "#/definitions/reaction_item_type"
             }
           }
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "emoji_name": {
+          "type": "string"
         },
         "reaction_added": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/reaction_added",
           "properties": {
-            "type": {
-              "const": "reaction_added"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
-            "user": {
+            "item": {
+              "$ref": "#/definitions/reaction_item"
+            },
+            "item_user": {
               "$ref": "#/definitions/user_id"
             },
             "reaction": {
               "$ref": "#/definitions/emoji_name"
             },
-            "item_user": {
+            "type": {
+              "const": "reaction_added"
+            },
+            "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "item": {
-              "$ref": "#/definitions/reaction_item"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
             }
           },
           "example": {
-            "type": "reaction_added",
-            "user": "U024BE7LH",
-            "reaction": "thumbsup",
-            "item_user": "U0G9QF9C6",
+            "event_ts": "1360782804.083113",
             "item": {
               "type": "message",
               "channel": "C0G9QF9GZ",
               "ts": "1360782400.498405"
             },
-            "event_ts": "1360782804.083113"
+            "item_user": "U0G9QF9C6",
+            "reaction": "thumbsup",
+            "type": "reaction_added",
+            "user": "U024BE7LH"
           }
         }
       }
@@ -4457,27 +4467,27 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_comment_edited",
           "properties": {
-            "type": {
-              "const": "file_comment_edited"
-            },
             "comment": {
               "$ref": "#/definitions/comment"
+            },
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_comment_edited"
             }
           },
           "example": {
-            "type": "file_comment_edited",
             "comment": {
             },
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_comment_edited"
           }
         }
       }
@@ -4508,70 +4518,70 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
-        "emoji_name": {
-          "type": "string"
-        },
-        "reaction_item_type": {
+        "timestamp": {
           "type": "string"
         },
         "channel_id": {
           "type": "string"
         },
-        "timestamp": {
+        "reaction_item_type": {
           "type": "string"
         },
         "reaction_item": {
           "type": "object",
           "description": "(defined by script)",
           "properties": {
-            "type": {
-              "$ref": "#/definitions/reaction_item_type"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
             "ts": {
               "$ref": "#/definitions/timestamp"
+            },
+            "type": {
+              "$ref": "#/definitions/reaction_item_type"
             }
           }
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "emoji_name": {
+          "type": "string"
         },
         "reaction_removed": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/reaction_removed",
           "properties": {
-            "type": {
-              "const": "reaction_removed"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
-            "user": {
+            "item": {
+              "$ref": "#/definitions/reaction_item"
+            },
+            "item_user": {
               "$ref": "#/definitions/user_id"
             },
             "reaction": {
               "$ref": "#/definitions/emoji_name"
             },
-            "item_user": {
+            "type": {
+              "const": "reaction_removed"
+            },
+            "user": {
               "$ref": "#/definitions/user_id"
-            },
-            "item": {
-              "$ref": "#/definitions/reaction_item"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
             }
           },
           "example": {
-            "type": "reaction_removed",
-            "user": "U024BE7LH",
-            "reaction": "thumbsup",
-            "item_user": "U0G9QF9C6",
+            "event_ts": "1360782804.083113",
             "item": {
               "type": "message",
               "channel": "C0G9QF9GZ",
               "ts": "1360782400.498405"
             },
-            "event_ts": "1360782804.083113"
+            "item_user": "U0G9QF9C6",
+            "reaction": "thumbsup",
+            "type": "reaction_removed",
+            "user": "U024BE7LH"
           }
         }
       }
@@ -4598,13 +4608,13 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "user_id": {
-          "type": "string"
-        },
         "channel_id": {
           "type": "string"
         },
         "channel_type": {
+          "type": "string"
+        },
+        "user_id": {
           "type": "string"
         },
         "team_id": {
@@ -4614,32 +4624,32 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/member_joined_channel",
           "properties": {
-            "type": {
-              "const": "member_joined_channel"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
             },
             "channel_type": {
               "$ref": "#/definitions/channel_type"
             },
+            "inviter": {
+              "$ref": "#/definitions/user_id"
+            },
             "team": {
               "$ref": "#/definitions/team_id"
             },
-            "inviter": {
+            "type": {
+              "const": "member_joined_channel"
+            },
+            "user": {
               "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "member_joined_channel",
-            "user": "W06GH7XHN",
             "channel": "C0698JE0H",
             "channel_type": "C",
+            "inviter": "U123456789",
             "team": "T024BE7LD",
-            "inviter": "U123456789"
+            "type": "member_joined_channel",
+            "user": "W06GH7XHN"
           }
         }
       }
@@ -4682,22 +4692,22 @@
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_created",
           "properties": {
-            "type": {
-              "const": "file_created"
+            "file": {
+              "$ref": "#/definitions/file"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "file": {
-              "$ref": "#/definitions/file"
+            "type": {
+              "const": "file_created"
             }
           },
           "example": {
-            "type": "file_created",
-            "file_id": "F2147483862",
             "file": {
               "id": "F2147483862"
-            }
+            },
+            "file_id": "F2147483862",
+            "type": "file_created"
           }
         }
       }
@@ -4721,30 +4731,30 @@
     "schema": {
       "$schema": "http://json-schema.org/draft-07/schema",
       "definitions": {
-        "file_id": {
+        "timestamp": {
           "type": "string"
         },
-        "timestamp": {
+        "file_id": {
           "type": "string"
         },
         "file_deleted": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/file_deleted",
           "properties": {
-            "type": {
-              "const": "file_deleted"
+            "event_ts": {
+              "$ref": "#/definitions/timestamp"
             },
             "file_id": {
               "$ref": "#/definitions/file_id"
             },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
+            "type": {
+              "const": "file_deleted"
             }
           },
           "example": {
-            "type": "file_deleted",
+            "event_ts": "1361482916.000004",
             "file_id": "F2147483862",
-            "event_ts": "1361482916.000004"
+            "type": "file_deleted"
           }
         }
       }
@@ -4773,38 +4783,38 @@
         "channel_id": {
           "type": "string"
         },
-        "user_id": {
+        "timestamp": {
           "type": "string"
         },
-        "timestamp": {
+        "user_id": {
           "type": "string"
         },
         "message": {
           "type": "object",
           "description": "learn more: https://api.slack.com/events/message",
           "properties": {
-            "type": {
-              "const": "message"
-            },
             "channel": {
               "$ref": "#/definitions/channel_id"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
             },
             "text": {
               "type": "string"
             },
             "ts": {
               "$ref": "#/definitions/timestamp"
+            },
+            "type": {
+              "const": "message"
+            },
+            "user": {
+              "$ref": "#/definitions/user_id"
             }
           },
           "example": {
-            "type": "message",
             "channel": "C2147483705",
-            "user": "U2147483697",
             "text": "Hello world",
-            "ts": "1355517523.000005"
+            "ts": "1355517523.000005",
+            "type": "message",
+            "user": "U2147483697"
           }
         }
       }

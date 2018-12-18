@@ -17,22 +17,22 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/file_shared",
       "properties": {
-        "type": {
-          "const": "file_shared"
+        "file": {
+          "$ref": "#/definitions/file"
         },
         "file_id": {
           "$ref": "#/definitions/file_id"
         },
-        "file": {
-          "$ref": "#/definitions/file"
+        "type": {
+          "const": "file_shared"
         }
       },
       "example": {
-        "type": "file_shared",
-        "file_id": "F2147483862",
         "file": {
           "id": "F2147483862"
-        }
+        },
+        "file_id": "F2147483862",
+        "type": "file_shared"
       }
     }
   }

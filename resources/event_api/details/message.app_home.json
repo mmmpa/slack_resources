@@ -24,13 +24,13 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "user_id": {
+      "channel_id": {
         "type": "string"
       },
       "timestamp": {
         "type": "string"
       },
-      "channel_id": {
+      "user_id": {
         "type": "string"
       },
       "channel_type": {
@@ -40,11 +40,14 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/message.app_home",
         "properties": {
-          "type": {
-            "const": "message"
+          "channel": {
+            "$ref": "#/definitions/channel_id"
           },
-          "user": {
-            "$ref": "#/definitions/user_id"
+          "channel_type": {
+            "type": "string"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           },
           "text": {
             "type": "string"
@@ -52,24 +55,21 @@
           "ts": {
             "$ref": "#/definitions/timestamp"
           },
-          "channel": {
-            "$ref": "#/definitions/channel_id"
+          "type": {
+            "const": "message"
           },
-          "event_ts": {
-            "$ref": "#/definitions/timestamp"
-          },
-          "channel_type": {
-            "type": "string"
+          "user": {
+            "$ref": "#/definitions/user_id"
           }
         },
         "example": {
-          "type": "message",
-          "user": "U061F7AUR",
+          "channel": "D0PNCRP9N",
+          "channel_type": "app_home",
+          "event_ts": "1525215129.000001",
           "text": "How many cats did we herd yesterday?",
           "ts": "1525215129.000001",
-          "channel": "D0PNCRP9N",
-          "event_ts": "1525215129.000001",
-          "channel_type": "app_home"
+          "type": "message",
+          "user": "U061F7AUR"
         }
       }
     }

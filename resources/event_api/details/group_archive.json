@@ -15,16 +15,16 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/group_archive",
         "properties": {
-          "type": {
-            "const": "group_archive"
-          },
           "channel": {
             "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "group_archive"
           }
         },
         "example": {
-          "type": "group_archive",
-          "channel": "G024BE91L"
+          "channel": "G024BE91L",
+          "type": "group_archive"
         }
       }
     }

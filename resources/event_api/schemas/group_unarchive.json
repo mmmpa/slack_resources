@@ -8,16 +8,16 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/group_unarchive",
       "properties": {
-        "type": {
-          "const": "group_unarchive"
-        },
         "channel": {
           "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_unarchive"
         }
       },
       "example": {
-        "type": "group_unarchive",
-        "channel": "G024BE91L"
+        "channel": "G024BE91L",
+        "type": "group_unarchive"
       }
     }
   }

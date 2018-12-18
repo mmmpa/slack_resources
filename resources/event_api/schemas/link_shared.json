@@ -4,12 +4,6 @@
     "channel_id": {
       "type": "string"
     },
-    "user_id": {
-      "type": "string"
-    },
-    "timestamp": {
-      "type": "string"
-    },
     "link": {
       "type": "object",
       "description": "(defined by script)",
@@ -22,18 +16,24 @@
         }
       }
     },
+    "timestamp": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
     "link_shared": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/link_shared",
       "properties": {
-        "type": {
-          "const": "link_shared"
-        },
         "channel": {
           "$ref": "#/definitions/channel_id"
         },
-        "user": {
-          "$ref": "#/definitions/user_id"
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
         },
         "message_ts": {
           "$ref": "#/definitions/timestamp"
@@ -41,19 +41,15 @@
         "thread_ts": {
           "$ref": "#/definitions/timestamp"
         },
-        "links": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/link"
-          }
+        "type": {
+          "const": "link_shared"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
         }
       },
       "example": {
-        "type": "link_shared",
         "channel": "Cxxxxxx",
-        "user": "Uxxxxxxx",
-        "message_ts": "123456789.9875",
-        "thread_ts": "123456621.1855",
         "links": [
           {
             "domain": "example.com",
@@ -67,7 +63,11 @@
             "domain": "another-example.com",
             "url": "https://yet.another-example.com/v/abcde"
           }
-        ]
+        ],
+        "message_ts": "123456789.9875",
+        "thread_ts": "123456621.1855",
+        "type": "link_shared",
+        "user": "Uxxxxxxx"
       }
     }
   }

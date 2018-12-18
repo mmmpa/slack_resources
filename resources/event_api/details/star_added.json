@@ -11,7 +11,7 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "user_id": {
+      "timestamp": {
         "type": "string"
       },
       "star_item": {
@@ -20,32 +20,32 @@
         "properties": {
         }
       },
-      "timestamp": {
+      "user_id": {
         "type": "string"
       },
       "star_added": {
         "type": "object",
         "description": "learn more: https://api.slack.com/events/star_added",
         "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "item": {
+            "$ref": "#/definitions/star_item"
+          },
           "type": {
             "const": "star_added"
           },
           "user": {
             "$ref": "#/definitions/user_id"
-          },
-          "item": {
-            "$ref": "#/definitions/star_item"
-          },
-          "event_ts": {
-            "$ref": "#/definitions/timestamp"
           }
         },
         "example": {
-          "type": "star_added",
-          "user": "U024BE7LH",
+          "event_ts": "1360782804.083113",
           "item": {
           },
-          "event_ts": "1360782804.083113"
+          "type": "star_added",
+          "user": "U024BE7LH"
         }
       }
     }

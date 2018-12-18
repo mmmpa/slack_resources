@@ -27,27 +27,27 @@
       "channel_id": {
         "type": "string"
       },
-      "user_id": {
+      "channel_type": {
         "type": "string"
       },
       "timestamp": {
         "type": "string"
       },
-      "channel_type": {
+      "user_id": {
         "type": "string"
       },
       "message.channels": {
         "type": "object",
         "description": "learn more: https://api.slack.com/events/message.channels",
         "properties": {
-          "type": {
-            "const": "message"
-          },
           "channel": {
             "$ref": "#/definitions/channel_id"
           },
-          "user": {
-            "$ref": "#/definitions/user_id"
+          "channel_type": {
+            "$ref": "#/definitions/channel_type"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           },
           "text": {
             "type": "string"
@@ -55,21 +55,21 @@
           "ts": {
             "$ref": "#/definitions/timestamp"
           },
-          "event_ts": {
-            "$ref": "#/definitions/timestamp"
+          "type": {
+            "const": "message"
           },
-          "channel_type": {
-            "$ref": "#/definitions/channel_type"
+          "user": {
+            "$ref": "#/definitions/user_id"
           }
         },
         "example": {
-          "type": "message",
           "channel": "C024BE91L",
-          "user": "U2147483697",
+          "channel_type": "channel",
+          "event_ts": "1355517523.000005",
           "text": "Live long and prospect.",
           "ts": "1355517523.000005",
-          "event_ts": "1355517523.000005",
-          "channel_type": "channel"
+          "type": "message",
+          "user": "U2147483697"
         }
       }
     }

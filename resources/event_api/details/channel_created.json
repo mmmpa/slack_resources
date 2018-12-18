@@ -13,30 +13,30 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "channel_id": {
-        "type": "string"
-      },
-      "channel_name": {
-        "type": "string"
-      },
       "time_integer": {
         "type": "number"
       },
       "user_id": {
         "type": "string"
       },
+      "channel_id": {
+        "type": "string"
+      },
+      "channel_name": {
+        "type": "string"
+      },
       "channel": {
         "type": "object",
         "description": "(defined by script)",
         "properties": {
+          "created": {
+            "$ref": "#/definitions/time_integer"
+          },
           "id": {
             "$ref": "#/definitions/channel_id"
           },
           "name": {
             "$ref": "#/definitions/channel_name"
-          },
-          "created": {
-            "$ref": "#/definitions/time_integer"
           }
         }
       },
@@ -44,21 +44,21 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/channel_created",
         "properties": {
-          "type": {
-            "const": "channel_created"
-          },
           "channel": {
             "$ref": "#/definitions/channel"
+          },
+          "type": {
+            "const": "channel_created"
           }
         },
         "example": {
-          "type": "channel_created",
           "channel": {
             "id": "C024BE91L",
             "name": "fun",
             "created": 1360782804,
             "creator": "U024BE7LH"
-          }
+          },
+          "type": "channel_created"
         }
       }
     }

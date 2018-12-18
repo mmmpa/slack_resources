@@ -4,27 +4,27 @@
     "channel_id": {
       "type": "string"
     },
-    "user_id": {
+    "channel_type": {
       "type": "string"
     },
     "timestamp": {
       "type": "string"
     },
-    "channel_type": {
+    "user_id": {
       "type": "string"
     },
     "message.groups": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/message.groups",
       "properties": {
-        "type": {
-          "const": "message"
-        },
         "channel": {
           "$ref": "#/definitions/channel_id"
         },
-        "user": {
-          "$ref": "#/definitions/user_id"
+        "channel_type": {
+          "$ref": "#/definitions/channel_type"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
         },
         "text": {
           "type": "string"
@@ -32,21 +32,21 @@
         "ts": {
           "$ref": "#/definitions/timestamp"
         },
-        "event_ts": {
-          "$ref": "#/definitions/timestamp"
+        "type": {
+          "const": "message"
         },
-        "channel_type": {
-          "$ref": "#/definitions/channel_type"
+        "user": {
+          "$ref": "#/definitions/user_id"
         }
       },
       "example": {
-        "type": "message",
         "channel": "G024BE91L",
-        "user": "U2147483697",
+        "channel_type": "group",
+        "event_ts": "1355517523.000005",
         "text": "One cannot programmatically detect the difference between `message.mpim` and `message.groups`.",
         "ts": "1355517523.000005",
-        "event_ts": "1355517523.000005",
-        "channel_type": "group"
+        "type": "message",
+        "user": "U2147483697"
       }
     }
   }

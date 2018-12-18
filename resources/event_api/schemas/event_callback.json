@@ -1,13 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "token": {
-      "type": "string"
-    },
-    "team_id": {
-      "type": "string"
-    },
     "api_app_id": {
+      "type": "string"
+    },
+    "user_id": {
       "type": "string"
     },
     "event": {
@@ -16,33 +13,24 @@
       "properties": {
       }
     },
-    "user_id": {
-      "type": "string"
-    },
     "event_id": {
       "type": "string"
     },
     "time_integer": {
       "type": "number"
     },
+    "team_id": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
     "event_callback": {
       "type": "object",
       "description": "learn more: ",
       "properties": {
-        "token": {
-          "$ref": "#/definitions/token"
-        },
-        "team_id": {
-          "$ref": "#/definitions/team_id"
-        },
         "api_app_id": {
           "$ref": "#/definitions/api_app_id"
-        },
-        "event": {
-          "$ref": "#/definitions/event"
-        },
-        "type": {
-          "const": "event_callback"
         },
         "authed_users": {
           "type": "array",
@@ -50,26 +38,38 @@
             "$ref": "#/definitions/user_id"
           }
         },
+        "event": {
+          "$ref": "#/definitions/event"
+        },
         "event_id": {
           "$ref": "#/definitions/event_id"
         },
         "event_time": {
           "$ref": "#/definitions/time_integer"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "token": {
+          "$ref": "#/definitions/token"
+        },
+        "type": {
+          "const": "event_callback"
         }
       },
       "example": {
-        "token": "XXYYZZ",
-        "team_id": "TXXXXXXXX",
         "api_app_id": "AXXXXXXXXX",
-        "event": {
-        },
-        "type": "event_callback",
         "authed_users": [
           "UXXXXXXX1",
           "UXXXXXXX2"
         ],
+        "event": {
+        },
         "event_id": "Ev08MFMKH6",
-        "event_time": 1234567890
+        "event_time": 1234567890,
+        "team_id": "TXXXXXXXX",
+        "token": "XXYYZZ",
+        "type": "event_callback"
       }
     }
   }

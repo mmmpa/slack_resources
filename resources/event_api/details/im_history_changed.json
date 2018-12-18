@@ -17,8 +17,8 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/im_history_changed",
         "properties": {
-          "type": {
-            "const": "im_history_changed"
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           },
           "latest": {
             "$ref": "#/definitions/timestamp"
@@ -26,15 +26,15 @@
           "ts": {
             "$ref": "#/definitions/timestamp"
           },
-          "event_ts": {
-            "$ref": "#/definitions/timestamp"
+          "type": {
+            "const": "im_history_changed"
           }
         },
         "example": {
-          "type": "im_history_changed",
+          "event_ts": "1361482916.000004",
           "latest": "1358877455.000010",
           "ts": "1361482916.000003",
-          "event_ts": "1361482916.000004"
+          "type": "im_history_changed"
         }
       }
     }

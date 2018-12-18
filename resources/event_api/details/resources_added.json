@@ -35,36 +35,36 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "resource_type": {
+      "resource_id": {
         "type": "string"
       },
       "grant_type": {
-        "type": "string"
-      },
-      "resource_id": {
         "type": "string"
       },
       "grant": {
         "type": "object",
         "description": "(defined by script)",
         "properties": {
-          "type": {
-            "$ref": "#/definitions/grant_type"
-          },
           "resource_id": {
             "$ref": "#/definitions/resource_id"
+          },
+          "type": {
+            "$ref": "#/definitions/grant_type"
           }
         }
+      },
+      "resource_type": {
+        "type": "string"
       },
       "resource": {
         "type": "object",
         "description": "(defined by script)",
         "properties": {
-          "type": {
-            "$ref": "#/definitions/resource_type"
-          },
           "grant": {
             "$ref": "#/definitions/grant"
+          },
+          "type": {
+            "$ref": "#/definitions/resource_type"
           }
         }
       },
@@ -109,18 +109,17 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/resources_added",
         "properties": {
-          "type": {
-            "const": "resources_added"
-          },
           "resources": {
             "type": "array",
             "items": {
               "$ref": "#/definitions/resource_item"
             }
+          },
+          "type": {
+            "const": "resources_added"
           }
         },
         "example": {
-          "type": "resources_added",
           "resources": [
             {
               "resource": {
@@ -137,7 +136,8 @@
                 "commands"
               ]
             }
-          ]
+          ],
+          "type": "resources_added"
         }
       }
     }

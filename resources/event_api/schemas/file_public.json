@@ -17,22 +17,22 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/file_public",
       "properties": {
-        "type": {
-          "const": "file_public"
+        "file": {
+          "$ref": "#/definitions/file"
         },
         "file_id": {
           "$ref": "#/definitions/file_id"
         },
-        "file": {
-          "$ref": "#/definitions/file"
+        "type": {
+          "const": "file_public"
         }
       },
       "example": {
-        "type": "file_public",
-        "file_id": "F2147483862",
         "file": {
           "id": "F2147483862"
-        }
+        },
+        "file_id": "F2147483862",
+        "type": "file_public"
       }
     }
   }

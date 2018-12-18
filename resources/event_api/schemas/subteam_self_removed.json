@@ -8,16 +8,16 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/subteam_self_removed",
       "properties": {
-        "type": {
-          "const": "subteam_self_removed"
-        },
         "subteam_id": {
           "$ref": "#/definitions/subteam_id"
+        },
+        "type": {
+          "const": "subteam_self_removed"
         }
       },
       "example": {
-        "type": "subteam_self_removed",
-        "subteam_id": "S0615G0KT"
+        "subteam_id": "S0615G0KT",
+        "type": "subteam_self_removed"
       }
     }
   }

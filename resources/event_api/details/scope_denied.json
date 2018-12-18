@@ -53,9 +53,6 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/scope_denied",
         "properties": {
-          "type": {
-            "const": "scope_denied"
-          },
           "scopes": {
             "type": "array",
             "items": {
@@ -64,16 +61,19 @@
           },
           "trigger_id": {
             "$ref": "#/definitions/trigger_id"
+          },
+          "type": {
+            "const": "scope_denied"
           }
         },
         "example": {
-          "type": "scope_denied",
           "scopes": [
             "files:read",
             "files:write",
             "chat:write"
           ],
-          "trigger_id": "241582872337.47445629121.string"
+          "trigger_id": "241582872337.47445629121.string",
+          "type": "scope_denied"
         }
       }
     }

@@ -1,30 +1,30 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "user_id": {
+    "channel_id": {
       "type": "string"
     },
-    "channel_id": {
+    "user_id": {
       "type": "string"
     },
     "im_open": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/im_open",
       "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
         "type": {
           "const": "im_open"
         },
         "user": {
           "$ref": "#/definitions/user_id"
-        },
-        "channel": {
-          "$ref": "#/definitions/channel_id"
         }
       },
       "example": {
+        "channel": "D024BE91L",
         "type": "im_open",
-        "user": "U024BE7LH",
-        "channel": "D024BE91L"
+        "user": "U024BE7LH"
       }
     }
   }

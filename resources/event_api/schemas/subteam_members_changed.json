@@ -1,40 +1,25 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "subteam_id": {
-      "type": "string"
-    },
-    "team_id": {
-      "type": "string"
-    },
-    "time_integer": {
-      "type": "number"
-    },
     "user_id": {
       "type": "string"
     },
     "user_count": {
       "type": "string"
     },
+    "time_integer": {
+      "type": "number"
+    },
+    "subteam_id": {
+      "type": "string"
+    },
+    "team_id": {
+      "type": "string"
+    },
     "subteam_members_changed": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/subteam_members_changed",
       "properties": {
-        "type": {
-          "const": "subteam_members_changed"
-        },
-        "subteam_id": {
-          "$ref": "#/definitions/subteam_id"
-        },
-        "team_id": {
-          "$ref": "#/definitions/team_id"
-        },
-        "date_previous_update": {
-          "$ref": "#/definitions/time_integer"
-        },
-        "date_update": {
-          "$ref": "#/definitions/time_integer"
-        },
         "added_users": {
           "type": "array",
           "items": {
@@ -44,6 +29,12 @@
         "added_users_count": {
           "$ref": "#/definitions/user_count"
         },
+        "date_previous_update": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "date_update": {
+          "$ref": "#/definitions/time_integer"
+        },
         "removed_users": {
           "type": "array",
           "items": {
@@ -52,24 +43,33 @@
         },
         "removed_users_count": {
           "$ref": "#/definitions/user_count"
+        },
+        "subteam_id": {
+          "$ref": "#/definitions/subteam_id"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "type": {
+          "const": "subteam_members_changed"
         }
       },
       "example": {
-        "type": "subteam_members_changed",
-        "subteam_id": "S0614TZR7",
-        "team_id": "T060RNRCH",
-        "date_previous_update": 1446670362,
-        "date_update": 1492906952,
         "added_users": [
           "U060RNRCZ",
           "U060ULRC0",
           "U061309JM"
         ],
         "added_users_count": "3",
+        "date_previous_update": 1446670362,
+        "date_update": 1492906952,
         "removed_users": [
           "U06129G2V"
         ],
-        "removed_users_count": "1"
+        "removed_users_count": "1",
+        "subteam_id": "S0614TZR7",
+        "team_id": "T060RNRCH",
+        "type": "subteam_members_changed"
       }
     }
   }

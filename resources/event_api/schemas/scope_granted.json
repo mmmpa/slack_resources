@@ -30,9 +30,6 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/scope_granted",
       "properties": {
-        "type": {
-          "const": "scope_granted"
-        },
         "scopes": {
           "type": "array",
           "items": {
@@ -41,16 +38,19 @@
         },
         "trigger_id": {
           "$ref": "#/definitions/trigger_id"
+        },
+        "type": {
+          "const": "scope_granted"
         }
       },
       "example": {
-        "type": "scope_granted",
         "scopes": [
           "files:read",
           "files:write",
           "chat:write"
         ],
-        "trigger_id": "241582872337.47445629121.string"
+        "trigger_id": "241582872337.47445629121.string",
+        "type": "scope_granted"
       }
     }
   }

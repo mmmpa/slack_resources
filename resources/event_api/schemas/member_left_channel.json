@@ -1,9 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "user_id": {
-      "type": "string"
-    },
     "channel_id": {
       "type": "string"
     },
@@ -13,16 +10,13 @@
     "team_id": {
       "type": "string"
     },
+    "user_id": {
+      "type": "string"
+    },
     "member_left_channel": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/member_left_channel",
       "properties": {
-        "type": {
-          "const": "member_left_channel"
-        },
-        "user": {
-          "$ref": "#/definitions/user_id"
-        },
         "channel": {
           "$ref": "#/definitions/channel_id"
         },
@@ -31,14 +25,20 @@
         },
         "team": {
           "$ref": "#/definitions/team_id"
+        },
+        "type": {
+          "const": "member_left_channel"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
         }
       },
       "example": {
-        "type": "member_left_channel",
-        "user": "W06GH7XHN",
         "channel": "C0698JE0H",
         "channel_type": "C",
-        "team": "T024BE7LD"
+        "team": "T024BE7LD",
+        "type": "member_left_channel",
+        "user": "W06GH7XHN"
       }
     }
   }

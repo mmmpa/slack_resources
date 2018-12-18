@@ -19,19 +19,19 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/channel_archive",
         "properties": {
-          "type": {
-            "const": "channel_archive"
-          },
           "channel": {
             "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "channel_archive"
           },
           "user": {
             "$ref": "#/definitions/user_id"
           }
         },
         "example": {
-          "type": "channel_archive",
           "channel": "C024BE91L",
+          "type": "channel_archive",
           "user": "U024BE7LH"
         }
       }

@@ -20,30 +20,30 @@
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
-      "user_id": {
+      "trigger_id": {
         "type": "string"
       },
-      "trigger_id": {
+      "user_id": {
         "type": "string"
       },
       "user_resource_removed": {
         "type": "object",
         "description": "learn more: https://api.slack.com/events/user_resource_removed",
         "properties": {
+          "trigger_id": {
+            "$ref": "#/definitions/trigger_id"
+          },
           "type": {
             "const": "user_resource_removed"
           },
           "user": {
             "$ref": "#/definitions/user_id"
-          },
-          "trigger_id": {
-            "$ref": "#/definitions/trigger_id"
           }
         },
         "example": {
+          "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
           "type": "user_resource_removed",
-          "user": "WXXXXXXXX",
-          "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606"
+          "user": "WXXXXXXXX"
         }
       }
     }

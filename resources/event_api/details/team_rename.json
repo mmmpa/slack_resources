@@ -15,16 +15,16 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/team_rename",
         "properties": {
-          "type": {
-            "const": "team_rename"
-          },
           "name": {
             "$ref": "#/definitions/root_name"
+          },
+          "type": {
+            "const": "team_rename"
           }
         },
         "example": {
-          "type": "team_rename",
-          "name": "New Team Name Inc."
+          "name": "New Team Name Inc.",
+          "type": "team_rename"
         }
       }
     }

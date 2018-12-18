@@ -17,22 +17,22 @@
       "type": "object",
       "description": "learn more: https://api.slack.com/events/file_change",
       "properties": {
-        "type": {
-          "const": "file_change"
+        "file": {
+          "$ref": "#/definitions/file"
         },
         "file_id": {
           "$ref": "#/definitions/file_id"
         },
-        "file": {
-          "$ref": "#/definitions/file"
+        "type": {
+          "const": "file_change"
         }
       },
       "example": {
-        "type": "file_change",
-        "file_id": "F2147483862",
         "file": {
           "id": "F2147483862"
-        }
+        },
+        "file_id": "F2147483862",
+        "type": "file_change"
       }
     }
   }

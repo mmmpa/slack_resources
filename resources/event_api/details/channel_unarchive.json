@@ -19,19 +19,19 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/channel_unarchive",
         "properties": {
-          "type": {
-            "const": "channel_unarchive"
-          },
           "channel": {
             "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "channel_unarchive"
           },
           "user": {
             "$ref": "#/definitions/user_id"
           }
         },
         "example": {
-          "type": "channel_unarchive",
           "channel": "C024BE91L",
+          "type": "channel_unarchive",
           "user": "U024BE7LH"
         }
       }

@@ -24,10 +24,20 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
       "tokens": {
-        "oauth": {
-          "type": "array",
-          "items": {
-            "type": "string"
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "bot": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "oauth": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -35,15 +45,14 @@
         "type": "object",
         "description": "learn more: https://api.slack.com/events/tokens_revoked",
         "properties": {
-          "type": {
-            "const": "tokens_revoked"
-          },
           "tokens": {
             "$ref": "#/definitions/tokens"
+          },
+          "type": {
+            "const": "tokens_revoked"
           }
         },
         "example": {
-          "type": "tokens_revoked",
           "tokens": {
             "oauth": [
               "UXXXXXXXX"
@@ -51,7 +60,8 @@
             "bot": [
               "UXXXXXXXX"
             ]
-          }
+          },
+          "type": "tokens_revoked"
         }
       }
     }
