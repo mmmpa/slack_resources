@@ -2,8 +2,8 @@
   "url": "https://api.slack.com/events/group_deleted",
   "type": "group_deleted",
   "response": {
-    "type": "group_deleted",
-    "channel": "G0QN9RGTT"
+    "channel": "G0QN9RGTT",
+    "type": "group_deleted"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

@@ -2,10 +2,10 @@
   "url": "https://api.slack.com/events/channel_history_changed",
   "type": "channel_history_changed",
   "response": {
-    "type": "channel_history_changed",
+    "event_ts": "1361482916.000004",
     "latest": "1358877455.000010",
     "ts": "1361482916.000003",
-    "event_ts": "1361482916.000004"
+    "type": "channel_history_changed"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

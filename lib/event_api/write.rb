@@ -7,6 +7,7 @@ require 'active_support/core_ext/string/inflections'
 
 BASE_DIR = Pathname('./resources/event_api/')
 EXAMPLES_DIR = BASE_DIR.join('examples')
+ADDED_EXAMPLES_DIR = BASE_DIR.join('_added_examples')
 DETAILS_DIR = BASE_DIR.join('details')
 SCHEMAS_DIR = BASE_DIR.join('schemas')
 
@@ -33,10 +34,7 @@ class Hash
 end
 
 def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
-  real_resource = (response['event'].presence || response).key_ordered
-
-  schema, defined, defined_used = to_schema_support(real_resource, url, 'root', preset_schema)
-  schema.merge!(example: real_resource)
+  schema, defined, defined_used = to_schema_support(response, url, 'root', preset_schema)
 
   [schema, defined, defined_used]
 end
@@ -52,6 +50,12 @@ def to_schema_support(response, url, key = 'root', preset = {}, defined = {}, de
 
   properties = types.inject({}) do |a, (k, v)|
     if v.is_a?(Hash)
+      if v['_type'] && v['_type'] == 'enum'
+        def_k = "#{key == 'root' ? types['type'] : key}_#{k}"
+        defined.merge!(def_k => { 'type' => 'string', enum: v['items'] })
+        next a.merge(k => { "$ref" => "#/definitions/#{def_k}" })
+      end
+
       def_k =
         case
         when k == 'item'
@@ -229,16 +233,65 @@ def safe_merge(a, b)
   a
 end
 
-def write_event_api_summary
-  detail_path = BASE_DIR.join('details')
-  schema_path = BASE_DIR.join('schemas')
-
-  meta = JSON.parse(File.read(BASE_DIR.join('meta.json')))
-  examples = Dir.glob(EXAMPLES_DIR.join('**/*.json')).map do |f|
-    [File.basename(f, '.json'), JSON.parse(File.read(f))]
+def prepare_data
+  Dir.glob(ADDED_EXAMPLES_DIR.join('**/*.json')).each do |f|
+    file_name = File.basename(f)
+    FileUtils.copy(f, EXAMPLES_DIR.join(file_name))
   end
 
-  event_api_pages = examples.map do |type, data|
+  raw_examples = Dir.glob(EXAMPLES_DIR.join('**/*.json')).map do |f|
+    example = JSON.parse(File.read(f))
+    [File.basename(f, '.json'), (example['event'].presence || example).key_ordered]
+  end
+
+  raw_keys = Set.new(raw_examples.map(&:first))
+  real_set = Set.new
+  real_type = {}
+  raw_types = raw_examples.inject({}) do |a, (name, v)|
+    type = v['type']
+
+    real_type.protect_merge!(type => JSON.parse(v.to_json))
+
+    unless real_set.include?(type)
+      real_set.add(type)
+      raw_keys.delete(name)
+      next a.merge!(name => v)
+    end
+
+    raw_keys.delete(name) if name != type
+    already = real_type[type]
+
+    keys = (already.keys + v.keys).uniq
+
+    keys.each do |k|
+      vv = v[k]
+      pre_v = already[k]
+
+      if k.match('.*_type')
+        if pre_v.is_a?(Hash) && pre_v['_type'] == 'enum'
+          pre_v['items'] << vv
+        else
+          already[k] = {
+            '_type' => 'enum',
+            'target' => k,
+            'items' => [pre_v],
+          }
+        end
+      else
+        # TODO: nil が許容されている場合は type を or にする
+      end
+    end
+
+    a
+  end
+
+  real_type.select { |k, _| raw_keys.include?(k) }.protect_merge!(raw_types)
+end
+
+def write_event_api_summary
+  meta = JSON.parse(File.read(BASE_DIR.join('meta.json')))
+
+  event_api_pages = prepare_data.map do |type, data|
     info = meta['subscriptions'][type] || {}
     [info['url'], type, data, info['compatibility'], info['scopes']]
   end
@@ -257,7 +310,7 @@ def write_event_api_summary
   all_defined = JSON.parse(preset.to_json)
   all_schema = {}
 
-  data = event_api_pages.map do |url, type, response, compatibility, scopes|
+  all_details = event_api_pages.map do |url, type, response, compatibility, scopes|
     schema, defined, used = to_schema(response, url, preset)
     schema.merge!(description: "learn more: #{url}")
 
@@ -269,40 +322,48 @@ def write_event_api_summary
       pre[pre_key] ? a.protect_merge!(pre_key => pre[pre_key]) : a
     end
 
-    base if defined['pin_item']
+    normalized_response = response.inject({}) do |a, (k, v)|
+      unless (v.is_a?(Hash) && v['_type'] == 'enum')
+        next a.protect_merge!(k => v)
+      end
 
-    base.
-      protect_merge!(defined).
-      protect_merge!(type => schema)
-
-    schema_data = {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions" => base.
-        protect_merge!(defined).
-        protect_merge!(type => schema)
-    }
-
-    all_schema[type] = schema
-    File.write(schema_path.join("#{type}.json").to_s, JSON.pretty_generate(schema_data))
+      a.merge!(v['target'] => v['items'].map { |s| s ? s : 'null' }.join('|'))
+    end
 
     {
       url: url,
       type: type,
-      response: response,
-      schema: schema_data,
+      response: normalized_response,
+      defined: base.protect_merge!(defined),
+      schema: schema.protect_merge!(example: normalized_response),
       compatibility: compatibility,
       scopes: scopes,
-    }.tap do |data|
-      File.write(detail_path.join("#{type}.json").to_s, JSON.pretty_generate(data))
-    end
+    }
   end
 
+  all_details.map do |data|
+    type = data[:type]
+    schema = data[:schema]
+    defined = data.delete(:defined)
+
+    all_schema[type] = schema
+
+    schema_data = {
+      "$schema": "http://json-schema.org/draft-07/schema",
+      "definitions" => defined.protect_merge!(type => schema)
+    }
+
+    data[:schema] = schema_data
+
+    File.write(SCHEMAS_DIR.join("#{type}.json").to_s, JSON.pretty_generate(schema_data))
+    File.write(DETAILS_DIR.join("#{type}.json").to_s, JSON.pretty_generate(data))
+  end
 
   File.write(BASE_DIR.join('schema.json').to_s, JSON.pretty_generate({
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions" => all_defined.protect_merge!(all_schema).key_ordered
   }))
-  File.write(BASE_DIR.join('summary.json').to_s, JSON.pretty_generate(data))
+  File.write(BASE_DIR.join('summary.json').to_s, JSON.pretty_generate(all_details.sort { |a, b | a[:type] <=> b[:type] }))
 end
 
 write_event_api_summary

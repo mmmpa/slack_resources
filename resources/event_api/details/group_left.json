@@ -2,8 +2,8 @@
   "url": "https://api.slack.com/events/group_left",
   "type": "group_left",
   "response": {
-    "type": "group_left",
-    "channel": "G02ELGNBH"
+    "channel": "G02ELGNBH",
+    "type": "group_left"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

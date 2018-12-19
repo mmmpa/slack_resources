@@ -2,7 +2,6 @@
   "url": "https://api.slack.com/events/subteam_updated",
   "type": "subteam_updated",
   "response": {
-    "type": "subteam_updated",
     "subteam": {
       "id": "S0614TZR7",
       "team_id": "T060RNRCH",
@@ -33,7 +32,8 @@
         "U061309JM"
       ],
       "user_count": "4"
-    }
+    },
+    "type": "subteam_updated"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

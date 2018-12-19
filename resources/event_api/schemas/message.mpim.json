@@ -4,14 +4,17 @@
     "channel_id": {
       "type": "string"
     },
-    "channel_type": {
-      "type": "string"
-    },
     "timestamp": {
       "type": "string"
     },
     "user_id": {
       "type": "string"
+    },
+    "message_channel_type": {
+      "type": "string",
+      "enum": [
+        "mpim"
+      ]
     },
     "message.mpim": {
       "type": "object",
@@ -21,7 +24,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "$ref": "#/definitions/channel_type"
+          "$ref": "#/definitions/message_channel_type"
         },
         "event_ts": {
           "$ref": "#/definitions/timestamp"

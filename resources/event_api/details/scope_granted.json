@@ -2,24 +2,13 @@
   "url": "https://api.slack.com/events/scope_granted",
   "type": "scope_granted",
   "response": {
-    "token": "verification-token",
-    "team_id": "T1DD3JH3K",
-    "api_app_id": "A7449NRUL",
-    "event": {
-      "type": "scope_granted",
-      "scopes": [
-        "files:read",
-        "files:write",
-        "chat:write"
-      ],
-      "trigger_id": "241582872337.47445629121.string"
-    },
-    "type": "event_callback",
-    "authed_teams": [
-
+    "scopes": [
+      "files:read",
+      "files:write",
+      "chat:write"
     ],
-    "event_id": "Ev74V2J98E",
-    "event_time": 1505519097
+    "trigger_id": "241582872337.47445629121.string",
+    "type": "scope_granted"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

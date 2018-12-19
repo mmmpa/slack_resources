@@ -2,11 +2,11 @@
   "url": "https://api.slack.com/events/file_public",
   "type": "file_public",
   "response": {
-    "type": "file_public",
-    "file_id": "F2147483862",
     "file": {
       "id": "F2147483862"
-    }
+    },
+    "file_id": "F2147483862",
+    "type": "file_public"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

@@ -2,35 +2,24 @@
   "url": "https://api.slack.com/events/resources_added",
   "type": "resources_added",
   "response": {
-    "token": "XXYYZZ",
-    "team_id": "TXXXXXXXX",
-    "api_app_id": "AXXXXXXXXX",
-    "event": {
-      "type": "resources_added",
-      "resources": [
-        {
-          "resource": {
-            "type": "im",
-            "grant": {
-              "type": "specific",
-              "resource_id": "DXXXXXXXX"
-            }
-          },
-          "scopes": [
-            "chat:write:user",
-            "im:read",
-            "im:history",
-            "commands"
-          ]
-        }
-      ]
-    },
-    "type": "event_callback",
-    "authed_teams": [
-
+    "resources": [
+      {
+        "resource": {
+          "type": "im",
+          "grant": {
+            "type": "specific",
+            "resource_id": "DXXXXXXXX"
+          }
+        },
+        "scopes": [
+          "chat:write:user",
+          "im:read",
+          "im:history",
+          "commands"
+        ]
+      }
     ],
-    "event_id": "EvXXXXXXXX",
-    "event_time": 1234567890
+    "type": "resources_added"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

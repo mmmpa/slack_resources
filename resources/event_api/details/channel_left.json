@@ -2,8 +2,8 @@
   "url": "https://api.slack.com/events/channel_left",
   "type": "channel_left",
   "response": {
-    "type": "channel_left",
-    "channel": "C024BE91L"
+    "channel": "C024BE91L",
+    "type": "channel_left"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",

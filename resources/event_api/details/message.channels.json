@@ -2,24 +2,13 @@
   "url": "https://api.slack.com/events/message.channels",
   "type": "message.channels",
   "response": {
-    "token": "one-long-verification-token",
-    "team_id": "T061EG9R6",
-    "api_app_id": "A0PNCHHK2",
-    "event": {
-      "type": "message",
-      "channel": "C024BE91L",
-      "user": "U2147483697",
-      "text": "Live long and prospect.",
-      "ts": "1355517523.000005",
-      "event_ts": "1355517523.000005",
-      "channel_type": "channel"
-    },
-    "type": "event_callback",
-    "authed_teams": [
-      "T061EG9R6"
-    ],
-    "event_id": "Ev0PV52K21",
-    "event_time": 1355517523
+    "channel": "C024BE91L",
+    "channel_type": "channel",
+    "event_ts": "1355517523.000005",
+    "text": "Live long and prospect.",
+    "ts": "1355517523.000005",
+    "type": "message",
+    "user": "U2147483697"
   },
   "schema": {
     "$schema": "http://json-schema.org/draft-07/schema",
@@ -27,14 +16,17 @@
       "channel_id": {
         "type": "string"
       },
-      "channel_type": {
-        "type": "string"
-      },
       "timestamp": {
         "type": "string"
       },
       "user_id": {
         "type": "string"
+      },
+      "message_channel_type": {
+        "type": "string",
+        "enum": [
+          "channel"
+        ]
       },
       "message.channels": {
         "type": "object",
@@ -44,7 +36,7 @@
             "$ref": "#/definitions/channel_id"
           },
           "channel_type": {
-            "$ref": "#/definitions/channel_type"
+            "$ref": "#/definitions/message_channel_type"
           },
           "event_ts": {
             "$ref": "#/definitions/timestamp"
