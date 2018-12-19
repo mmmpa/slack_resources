@@ -21,11 +21,11 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'activesupport', '~> 5.2'
-  spec.add_development_dependency 'nokogiri', '~> 1.8'
-  spec.add_development_dependency 'rest-client', '~> 2.0'
   spec.add_development_dependency 'bundler', '~> 1.16'
   spec.add_development_dependency 'dotenv', '~> 2.5'
+  spec.add_development_dependency 'nokogiri', '~> 1.8'
   spec.add_development_dependency 'onkcop', '~> 0.53'
   spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rest-client', '~> 2.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
 end

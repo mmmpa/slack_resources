@@ -11,11 +11,9 @@ FileUtils.mkdir_p(EXAMPLES_DIR)
 
 def fetch(url)
   tmp = Pathname('./tmp')
-  path = tmp.join(url.gsub(':', '_').gsub('/', '_')).to_s
+  path = tmp.join(url.tr(':', '_').tr('/', '_')).to_s
 
-  if File.exist?(path)
-    return File.read(path)
-  end
+  return File.read(path) if File.exist?(path)
 
   RestClient.get(url).tap { |data| File.write(path, data) }
 end
@@ -47,33 +45,33 @@ def pick_response(doc)
 end
 
 def pick_compatibility(doc)
-  doc.css('#api_main_content .col.span_2_of_3.small')[0].
-    content.
-    gsub("\t\t", "\t").
-    split("\t").
-    select(&:present?)[1..-1]&.
+  doc.css('#api_main_content .col.span_2_of_3.small')[0]
+     .content
+     .gsub("\t\t", "\t")
+     .split("\t")
+     .select(&:present?)[1..-1]&.
     map(&:chomp) || []
 end
 
 def pick_scopes(doc)
   doc.css('#api_main_content .col.span_1_of_3.small')[0]&.
-    content.
-    gsub("\t\t", "\t").
-    split("\t").
-    select(&:present?)[1..-1]&.
+    content
+     .gsub("\t\t", "\t")
+     .split("\t")
+     .select(&:present?)[1..-1]&.
     map(&:chomp) || []
 end
 
 def parse(json)
-  clean = json.gsub(%r[\{[\s\n]*…[^}]*\},?]m, '{},').gsub(%r[\{[\s\n]*\.\.\.[^}]*\},?]m, '{},').gsub(%{"3"\n}, %{"3",\n})
+  clean = json.gsub(/\{[\s\n]*…[^}]*\},?/m, '{},').gsub(/\{[\s\n]*\.\.\.[^}]*\},?/m, '{},').gsub(%("3"\n), %("3",\n))
   JSON.parse(clean)
-rescue
+rescue StandardError
   force(clean)
 end
 
 def force(clean)
   eval(clean)
-rescue
+rescue StandardError
   raise
 end
 
@@ -101,13 +99,13 @@ def write_response_sample
     File.write(EXAMPLES_DIR.join("#{type}.json"), JSON.pretty_generate(response))
   end
 
-  File.write(BASE_DIR.join("meta.json"), JSON.pretty_generate({
-    types: types.uniq,
-    on_event_api: on_event_api.uniq,
-    on_rtm: on_rtm.uniq,
-    scopes: all_scopes.uniq,
-    subscriptions: subscriptions,
-  }))
+  File.write(BASE_DIR.join('meta.json'), JSON.pretty_generate({
+                                                                types: types.uniq,
+                                                                on_event_api: on_event_api.uniq,
+                                                                on_rtm: on_rtm.uniq,
+                                                                scopes: all_scopes.uniq,
+                                                                subscriptions: subscriptions,
+                                                              }))
 end
 
 write_response_sample
