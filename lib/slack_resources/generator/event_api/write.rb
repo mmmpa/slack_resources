@@ -5,31 +5,37 @@ require 'json'
 require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string/inflections'
 
-class Hash
-  def protect_merge!(b)
-    (b.keys - keys).map do |new_key|
-      self[new_key] = b[new_key]
+module StrongHash
+  refine Hash do
+    def protect_merge!(b)
+      (b.keys - keys).map do |new_key|
+        self[new_key] = b[new_key]
+      end
+
+      self
     end
 
-    self
-  end
-
-  def key_ordered
-    keys.sort.inject({}) do |a, k|
-      a.merge!(k => self[k])
+    def key_ordered
+      keys.sort.inject({}) do |a, k|
+        a.merge!(k => self[k])
+      end
     end
   end
 end
 
 class Writer
+  using StrongHash
+
   def initialize(dir: './tmp')
     @base_dir = Pathname(dir)
     @examples_dir = @base_dir.join('examples')
     @added_examples_dir = @base_dir.join('_added_examples')
     @details_dir = @base_dir.join('details')
     @schemas_dir = @base_dir.join('schemas')
+    @preset_schema = JSON.parse(File.read('lib/schema.json'))
+    @preset_definitions = @preset_schema['definitions']
   end
-  
+
   def execute!
     FileUtils.mkdir_p(@details_dir)
     FileUtils.mkdir_p(@schemas_dir)
@@ -40,10 +46,7 @@ class Writer
 # @base_dir = Pathname('./lib/slack_resources/resources/event_api/')
 
 
-  PRESET_SCHEMA = JSON.parse(File.read('lib/schema.json'))
-  PRESET_DEFINITIONS = PRESET_SCHEMA['definitions']
-
-  def to_schema(response, url, preset_schema = JSON.parse(PRESET_SCHEMA.to_json))
+  def to_schema(response, url, preset_schema = JSON.parse(@preset_schema.to_json))
     schema, defined, defined_used = to_schema_support(response, url, 'root', preset_schema)
 
     [schema, defined, defined_used]
@@ -242,68 +245,24 @@ class Writer
     a
   end
 
-  def prepare_data
-    Dir.glob(@added_examples_dir.join('**/*.json')).each do |f|
-      file_name = File.basename(f)
-      FileUtils.copy(f, @examples_dir.join(file_name))
-    end
+  def prepared_data
+    ExamplePreparation.new(
+      examples_dir: @examples_dir,
+      added_examples_dir: @added_examples_dir,
+    ).execute!
+  end
 
-    raw_examples = Dir.glob(@examples_dir.join('**/*.json')).map do |f|
-      example = JSON.parse(File.read(f))
-      [File.basename(f, '.json'), (example['event'].presence || example).key_ordered]
-    end
-
-    raw_keys = Set.new(raw_examples.map(&:first))
-    real_set = Set.new
-    real_type = {}
-    raw_types = raw_examples.each_with_object({}) do |(name, v), a|
-      type = v['type']
-
-      real_type.protect_merge!(type => JSON.parse(v.to_json))
-
-      unless real_set.include?(type)
-        real_set.add(type)
-        raw_keys.delete(name)
-        next a.merge!(name => v)
-      end
-
-      raw_keys.delete(name) if name != type
-      already = real_type[type]
-
-      keys = (already.keys + v.keys).uniq
-
-      keys.each do |k|
-        vv = v[k]
-        pre_v = already[k]
-
-        if k.match?('.*_type')
-          if pre_v.is_a?(Hash) && pre_v['_type'] == 'enum'
-            pre_v['items'] << vv
-          else
-            already[k] = {
-              '_type' => 'enum',
-              'target' => k,
-              'items' => [pre_v],
-            }
-          end
-        else
-          # TODO: nil が許容されている場合は type を or にする
-        end
-      end
-    end
-
-    real_type.select { |k, _| raw_keys.include?(k) }.protect_merge!(raw_types)
+  def meta
+    @meta ||= JSON.parse(File.read(@base_dir.join('meta.json')))
   end
 
   def write_event_api_summary
-    meta = JSON.parse(File.read(@base_dir.join('meta.json')))
-
-    event_api_pages = prepare_data.map do |type, data|
+    event_api_pages = prepared_data.map do |type, data|
       info = meta['subscriptions'][type] || {}
       [info['url'], type, data, info['compatibility'], info['scopes']]
     end
 
-    preset = PRESET_DEFINITIONS.merge(
+    preset = @preset_definitions.merge(
       'subscription_type' => {
         "type": 'string',
         "enum": meta['types'],
@@ -369,5 +328,72 @@ class Writer
       'definitions' => all_defined.protect_merge!(all_schema).key_ordered,
     }))
     File.write(@base_dir.join('summary.json').to_s, JSON.pretty_generate(all_details.sort_by { |a| a[:type] }))
+  end
+end
+
+class ExamplePreparation
+  using StrongHash
+
+  def initialize(examples_dir:, added_examples_dir:)
+    @added_examples_dir = added_examples_dir
+    @examples_dir = examples_dir
+  end
+
+  def execute!
+    posit_added_examples!
+
+    single_events = Set.new(raw_examples.map(&:first))
+
+    defined = Set.new
+    event_typed_examples = {}
+    alt_typed_examples = {}
+
+    raw_examples.each do |alt_event_type, event_type, example|
+      event_typed_examples.protect_merge!(event_type => JSON.parse(example.to_json))
+
+      next alt_typed_examples.merge!(alt_event_type => example) if defined.add?(event_type)
+
+      single_events.delete(event_type)
+      defined_example = event_typed_examples[event_type]
+
+      Set.new(defined_example.keys + example.keys).each do |k|
+        additional_value = example[k]
+        defined_value = defined_example[k]
+
+        if k.match?('.*_type')
+          if defined_value.is_a?(Hash) && defined_value['_type'] == 'enum'
+            defined_value['items'] << additional_value
+          else
+            defined_example[k] = {
+              '_type' => 'enum',
+              'target' => k,
+              'items' => [defined_value],
+            }
+          end
+        end
+      end
+    end
+
+    alt_typed_examples.select { |k, _| single_events.include?(k) }.protect_merge!(event_typed_examples)
+  end
+
+  private
+
+  def posit_added_examples!
+    Dir.glob(@added_examples_dir.join('**/*.json')).each do |f|
+      file_name = File.basename(f)
+      FileUtils.copy(f, @examples_dir.join(file_name))
+    end
+  end
+
+  def raw_examples
+    @raw_examples ||= Dir.glob(@examples_dir.join('**/*.json')).map do |f|
+      example = JSON.parse(File.read(f))
+      alt_event_type = File.basename(f, '.json')
+      event_body = example['event'].presence || example
+      event_type = event_body['type']
+
+      [alt_event_type, event_type, event_body.key_ordered]
+    end
   end
 end
