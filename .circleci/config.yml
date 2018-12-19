@@ -1,0 +1,22 @@
+version: 2
+jobs:
+  deploy_gem:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby-2.5
+    steps:
+      - checkout
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - deploy_gem:
+          filters:
+            branches:
+              only:
+                - deployment/gem
+          requires:
+            - test
