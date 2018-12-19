@@ -6,6 +6,29 @@ jobs:
       - image: circleci/ruby-2.5
     steps:
       - checkout
+      - run:
+          name: Deployment
+          command: ruby .circleci/gem_deployment.rb $RUBYGEMS_API_KEY
+
+  deploy_gem_minor:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby-2.5
+    steps:
+      - checkout
+      - run:
+          name: Deployment
+          command: ruby .circleci/gem_deployment.rb $RUBYGEMS_API_KEY minor
+
+  deploy_gem_major:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby-2.5
+    steps:
+      - checkout
+      - run:
+          name: Deployment
+          command: ruby .circleci/gem_deployment.rb $RUBYGEMS_API_KEY major
 
 
 workflows:
@@ -18,5 +41,19 @@ workflows:
             branches:
               only:
                 - deployment/gem
+          requires:
+            - test
+      - deploy_gem_minor:
+          filters:
+            branches:
+              only:
+                - deployment/gem_minor
+          requires:
+            - test
+      - deploy_gem_major:
+          filters:
+            branches:
+              only:
+                - deployment/gem_major
           requires:
             - test

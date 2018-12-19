@@ -1,8 +1,11 @@
 class GemDeployment
+  CREDENTIAL_DIR_PATH = '~/.gem/credentials'
+  CREDENTIAL_FILE_PATH = '~/.gem/credentials'
   VERSION_FILE_PATH = './lib/slack_resources/version.rb'
 
-  def initialize(params)
-    @version = params[0]
+  def initialize(api_key = '', version = 'tiny')
+    @api_key = api_key
+    @version = version
   end
 
   def execute!
@@ -13,6 +16,8 @@ class GemDeployment
     tiny += 1 if tiny?
 
     next_version = [major, minor, tiny].join('.')
+
+    `echo "---\n:rubygems_api_key: #{@api_key}\n" > ~/.gem/credentials && chmod 600 ~/.gem/credentials`
 
     File.write(VERSION_FILE_PATH, <<~VER)
       module SlackResources
@@ -41,8 +46,8 @@ class GemDeployment
   end
 
   def tiny?
-    !major? && !minor?
+    @version == 'tiny'
   end
 end
 
-GemDeployment.new(ARGV).execute! if __FILE__ == $0
+GemDeployment.new(*ARGV).execute! if __FILE__ == $0
