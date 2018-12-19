@@ -5,7 +5,7 @@ require 'json'
 require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string/inflections'
 
-BASE_DIR = Pathname('./resources/event_api/')
+BASE_DIR = Pathname('./lib/slack_resources/resources/event_api/')
 EXAMPLES_DIR = BASE_DIR.join('examples')
 ADDED_EXAMPLES_DIR = BASE_DIR.join('_added_examples')
 DETAILS_DIR = BASE_DIR.join('details')

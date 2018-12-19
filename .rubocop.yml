@@ -1,0 +1,96 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - tmp
+
+Rails:
+  Enabled: true
+
+Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 40
+  Exclude:
+  - db/migrate/*.rb
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 250
+  Exclude:
+  - db/migrate/*.rb
+
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/MethodLength:
+  Max: 40
+  Exclude:
+  - db/migrate/*.rb
+
+Metrics/ModuleLength:
+  Max: 150
+
+Metrics/ClassLength:
+  Max: 150
+  Exclude:
+  - db/migrate/*.rb
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/BlockDelimiters:
+  EnforcedStyle: braces_for_chaining
+
+Style/BlockComments:
+  Enabled: false
+
+Style/MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Style/OptionHash:
+  Enabled: true
+
+Style/SymbolArray:
+  Enabled: true
+
+Style/EmptyCaseCondition:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Rails/DynamicFindBy:
+  Whitelist:
+  - find_by_param
+  - find_by_param!
+
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Semicolon:
+  Exclude:
+    - 'spec/**/*'
+Naming/UncommunicativeMethodParamName:
+  MinNameLength: 1
+
+Layout/IndentArray:
+  EnforcedStyle: consistent
