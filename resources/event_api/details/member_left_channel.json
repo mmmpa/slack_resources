@@ -14,13 +14,13 @@
       "channel_id": {
         "type": "string"
       },
+      "channel_type": {
+        "type": "string"
+      },
       "team_id": {
         "type": "string"
       },
       "user_id": {
-        "type": "string"
-      },
-      "channel_type": {
         "type": "string"
       },
       "member_left_channel": {
@@ -31,7 +31,7 @@
             "$ref": "#/definitions/channel_id"
           },
           "channel_type": {
-            "type": "string"
+            "$ref": "#/definitions/channel_type"
           },
           "team": {
             "$ref": "#/definitions/team_id"

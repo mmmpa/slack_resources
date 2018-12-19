@@ -1039,7 +1039,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "type": "string"
+          "$ref": "#/definitions/channel_type"
         },
         "team": {
           "$ref": "#/definitions/team_id"
@@ -1088,6 +1088,42 @@
       "example": {
         "channel": "D0PNCRP9N",
         "channel_type": "app_home|channel|group|mpim|null",
+        "event_ts": "1525215129.000001",
+        "text": "How many cats did we herd yesterday?",
+        "ts": "1525215129.000001",
+        "type": "message",
+        "user": "U061F7AUR"
+      }
+    },
+    "message.app_home": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message.app_home",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "channel_type": {
+          "type": "string"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "D0PNCRP9N",
+        "channel_type": "app_home",
         "event_ts": "1525215129.000001",
         "text": "How many cats did we herd yesterday?",
         "ts": "1525215129.000001",

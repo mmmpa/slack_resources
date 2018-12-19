@@ -241,16 +241,25 @@ def prepare_data
 
   raw_examples = Dir.glob(EXAMPLES_DIR.join('**/*.json')).map do |f|
     example = JSON.parse(File.read(f))
-    (example['event'].presence || example).key_ordered
+    [File.basename(f, '.json'), (example['event'].presence || example).key_ordered]
   end
 
-  raw_examples.inject({}) do |a, v|
+  raw_keys = Set.new(raw_examples.map(&:first))
+  real_set = Set.new
+  real_type = {}
+  raw_types = raw_examples.inject({}) do |a, (name, v)|
     type = v['type']
-    unless a[type]
-      next a.merge!(type => v)
+
+    real_type.protect_merge!(type => JSON.parse(v.to_json))
+
+    unless real_set.include?(type)
+      real_set.add(type)
+      raw_keys.delete(name)
+      next a.merge!(name => v)
     end
 
-    already = a[type]
+    raw_keys.delete(name) if name != type
+    already = real_type[type]
 
     keys = (already.keys + v.keys).uniq
 
@@ -275,11 +284,11 @@ def prepare_data
 
     a
   end
+
+  real_type.select { |k, _| raw_keys.include?(k) }.protect_merge!(raw_types)
 end
 
 def write_event_api_summary
-
-
   meta = JSON.parse(File.read(BASE_DIR.join('meta.json')))
 
   event_api_pages = prepare_data.map do |type, data|
@@ -354,7 +363,7 @@ def write_event_api_summary
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions" => all_defined.protect_merge!(all_schema).key_ordered
   }))
-  File.write(BASE_DIR.join('summary.json').to_s, JSON.pretty_generate(all_details))
+  File.write(BASE_DIR.join('summary.json').to_s, JSON.pretty_generate(all_details.sort { |a, b | a[:type] <=> b[:type] }))
 end
 
 write_event_api_summary
