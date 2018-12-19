@@ -5,26 +5,11 @@ require 'json'
 require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string/inflections'
 
-module StrongHash
-  refine Hash do
-    def protect_merge!(b)
-      (b.keys - keys).map do |new_key|
-        self[new_key] = b[new_key]
-      end
-
-      self
-    end
-
-    def key_ordered
-      keys.sort.inject({}) do |a, k|
-        a.merge!(k => self[k])
-      end
-    end
-  end
-end
+require 'slack_resources/generator/event_api/strong_hash'
+require 'slack_resources/generator/event_api/examples_preparation'
 
 class Writer
-  using StrongHash
+  using SlackResources::Generator::StrongHash
 
   def initialize(dir: './tmp')
     @base_dir = Pathname(dir)
@@ -43,8 +28,7 @@ class Writer
     write_event_api_summary
   end
 
-# @base_dir = Pathname('./lib/slack_resources/resources/event_api/')
-
+  # @base_dir = Pathname('./lib/slack_resources/resources/event_api/')
 
   def to_schema(response, url, preset_schema = JSON.parse(@preset_schema.to_json))
     schema, defined, defined_used = to_schema_support(response, url, 'root', preset_schema)
@@ -246,9 +230,9 @@ class Writer
   end
 
   def prepared_data
-    ExamplePreparation.new(
+    SlackResources::Generator::ExamplePreparation.new(
       examples_dir: @examples_dir,
-      added_examples_dir: @added_examples_dir,
+      added_examples_dir: @added_examples_dir
     ).execute!
   end
 
@@ -331,69 +315,3 @@ class Writer
   end
 end
 
-class ExamplePreparation
-  using StrongHash
-
-  def initialize(examples_dir:, added_examples_dir:)
-    @added_examples_dir = added_examples_dir
-    @examples_dir = examples_dir
-  end
-
-  def execute!
-    posit_added_examples!
-
-    single_events = Set.new(raw_examples.map(&:first))
-
-    defined = Set.new
-    event_typed_examples = {}
-    alt_typed_examples = {}
-
-    raw_examples.each do |alt_event_type, event_type, example|
-      event_typed_examples.protect_merge!(event_type => JSON.parse(example.to_json))
-
-      next alt_typed_examples.merge!(alt_event_type => example) if defined.add?(event_type)
-
-      single_events.delete(event_type)
-      defined_example = event_typed_examples[event_type]
-
-      Set.new(defined_example.keys + example.keys).each do |k|
-        additional_value = example[k]
-        defined_value = defined_example[k]
-
-        if k.match?('.*_type')
-          if defined_value.is_a?(Hash) && defined_value['_type'] == 'enum'
-            defined_value['items'] << additional_value
-          else
-            defined_example[k] = {
-              '_type' => 'enum',
-              'target' => k,
-              'items' => [defined_value],
-            }
-          end
-        end
-      end
-    end
-
-    alt_typed_examples.select { |k, _| single_events.include?(k) }.protect_merge!(event_typed_examples)
-  end
-
-  private
-
-  def posit_added_examples!
-    Dir.glob(@added_examples_dir.join('**/*.json')).each do |f|
-      file_name = File.basename(f)
-      FileUtils.copy(f, @examples_dir.join(file_name))
-    end
-  end
-
-  def raw_examples
-    @raw_examples ||= Dir.glob(@examples_dir.join('**/*.json')).map do |f|
-      example = JSON.parse(File.read(f))
-      alt_event_type = File.basename(f, '.json')
-      event_body = example['event'].presence || example
-      event_type = event_body['type']
-
-      [alt_event_type, event_type, event_body.key_ordered]
-    end
-  end
-end
