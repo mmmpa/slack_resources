@@ -31,9 +31,9 @@ class Writer
 
   # @base_dir = Pathname('./lib/slack_resources/resources/event_api/')
 
-  def to_schema(response, url, preset_schema = JSON.parse(@preset_schema.to_json))
+  def to_schema(example, url, preset_schema = JSON.parse(@preset_schema.to_json))
     schema, defined, defined_used = SlackResources::Generator::ToSchema.new(
-      response: response,
+      example: example,
       url: url,
       preset: preset_schema,
     ).execute!
