@@ -85,7 +85,7 @@ module SlackResources
         @preset = preset
       end
 
-      def execute!
+      def execute! # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
         case
         when root_schema? && type?
           { 'const' => @value }
@@ -95,7 +95,7 @@ module SlackResources
           define_string("#{root_type_prefix}_#{@parent_key}_type")
 
         when string_id?
-          detect_string_id
+          define_string_id
         when ambient?
           define_string("#{@parent_key}_#{@prop_name}")
 
@@ -106,7 +106,7 @@ module SlackResources
           define_string('emoji_name')
 
         when array?
-          detect_array_type
+          define_array_type
 
         when user_count?
           'user_count'
@@ -206,30 +206,26 @@ module SlackResources
         root_type == 'emoji_changed'
       end
 
-      def detect_array_type
+      def define_array_type
         type = ARRAY_PROPERTIES_TYPE_MAP[@prop_name]
         array_type = "[]#{type}"
-        return array_type if default_type?(type)
 
-        if @value.is_a?(Hash)
-          to_child_schema(
-            prop_name: type,
-            example: @value.first,
-            key: @prop_name,
-            parent: @container
-          )
-        else
-          define_string(type)
-        end
+        return array_type if default_type?(type)
+        return define_string(type) && array_type unless @value.is_a?(Hash)
+
+        to_child_schema(
+          prop_name: type,
+          example: @value.first,
+          key: @prop_name,
+          parent: @container
+        )
 
         array_type
       end
 
-      def detect_string_id
+      def define_string_id
         type = STRING_ID_PROPERTIES_MAP[@prop_name] || @prop_name
         define_string(type)
-
-        type
       end
     end
   end

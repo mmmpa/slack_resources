@@ -137,7 +137,7 @@ module SlackResources
         { '$ref' => "#/definitions/#{type}" }
       end
 
-      def to_child_schema(params = {})
+      def to_child_schema(params)
         prop_name = params.delete(:prop_name)
         SlackResources::Generator::ToSchema.new(
           example: @example,

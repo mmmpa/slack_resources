@@ -27,7 +27,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
 
 Metrics/MethodLength:
-  Max: 40
+  Max: 200
   Exclude:
   - db/migrate/*.rb
 
@@ -35,7 +35,7 @@ Metrics/ModuleLength:
   Max: 150
 
 Metrics/ClassLength:
-  Max: 150
+  Max: 300
   Exclude:
   - db/migrate/*.rb
 
@@ -94,3 +94,6 @@ Naming/UncommunicativeMethodParamName:
 
 Layout/IndentArray:
   EnforcedStyle: consistent
+
+Metrics/ParameterLists:
+  Max: 20
