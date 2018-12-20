@@ -19,57 +19,27 @@ module SlackResources
       def execute!
         types = JSON.parse(@example.to_json).key_ordered
 
-        properties = types.inject({}) do |a, (k, v)|
-          next a.merge!(k => ref_to(define_object(k, v, types))) if object?(v)
-          next a.merge!(k => ref_to(define_enum(k, v))) if enum?(v)
-
+        properties = types.inject({}) do |a, (prop_name, v)|
           type = TypeDetection.new(
             parent_key: @key,
             to_schema: self,
-            prop_name: k,
+            prop_name: prop_name,
             value: v,
             container: types,
             preset: @preset
           ).execute!
 
-          if default_type?(type)
-            a.merge(k => { 'type' => type })
-          elsif type.is_a?(Hash)
-            a.merge(k => type)
-          elsif type && type[0..1] == '[]'
-            item = type[2..-1]
-            if default_type?(item)
-              next a.merge(
-                k => {
-                  'type' => 'array',
-                  'items' => {
-                    'type' => item,
-                  },
-                }
-              )
-            else
-              if v.first.is_a?(Hash)
-                to_child_schema(
-                  prop_name: item,
-                  example: v.first,
-                  key: item,
-                  parent: types
-                )
-              elsif v.first.is_a?(String)
-                define_string(item)
-              end
+          @defined_used << type
 
-              @defined_used << item
-            end
-            a.merge(
-              k => {
-                'type' => 'array',
-                'items' => ref_to(item),
-              }
-            )
+          case
+          when TypeDetection.default_type?(type)
+            a.merge(prop_name => { 'type' => type })
+          when detail?(type)
+            a.merge(prop_name => type)
+          when array_type?(type)
+            a.merge(prop_name => define_as_array(type, v, types))
           else
-            @defined_used << type
-            a.merge(k => ref_to(type))
+            a.merge(prop_name => ref_to(type))
           end
         end
 
@@ -85,7 +55,7 @@ module SlackResources
       end
 
       def root_schema?
-        @key == 'root'
+        @root == @example
       end
 
       def root_type
@@ -96,8 +66,41 @@ module SlackResources
         @root_type_prefix ||= root_type.split('_').shift
       end
 
-      def item_schema?
-        @key == 'item'
+      def array_type?(type)
+        type.to_s[0..1] == '[]'
+      end
+
+      def detail?(type)
+        type.is_a?(Hash)
+      end
+
+      def define_as_array(array_type, values, types)
+        type = array_type[2..-1]
+
+        if TypeDetection.default_type?(type)
+          return {
+            'type' => 'array',
+            'items' => {
+              'type' => type,
+            },
+          }
+        end
+
+        if values.first.is_a?(Hash)
+          to_child_schema(
+            prop_name: type,
+            example: values.first,
+            key: type,
+            parent: types
+          )
+        elsif values.first.is_a?(String)
+          define_string(type)
+        end
+
+        {
+          'type' => 'array',
+          'items' => ref_to(type),
+        }
       end
 
       def define_object(k, v, types)
@@ -110,17 +113,7 @@ module SlackResources
           parent: types
         )
 
-        @defined_used << ref_key
-
         ref_key
-      end
-
-      def object?(v)
-        v.is_a?(Hash) && !enum?(v)
-      end
-
-      def enum?(v)
-        v.is_a?(Hash) && v['_type'] == 'enum'
       end
 
       def define_enum(k, v)
@@ -149,11 +142,9 @@ module SlackResources
           parent: @parent,
           root: @root,
           **params
-        ).execute!.tap { |schema,| @defined[prop_name] = schema }
-      end
-
-      def default_type?(type)
-        TypeDetection::DEFAULT_TYPES.include?(type)
+        ).execute!.tap do |schema,|
+          @defined[prop_name] = schema
+        end
       end
     end
   end

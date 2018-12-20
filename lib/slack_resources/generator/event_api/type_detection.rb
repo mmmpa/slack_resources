@@ -74,7 +74,11 @@ module SlackResources
         name
       ])
 
-      delegate :root_schema?, :item_schema?, :define_string, :root_type, :root_type_prefix, to: :@to_schema
+      class << self
+        def default_type?(type)
+          DEFAULT_TYPES.include?(type)
+        end
+      end
 
       def initialize(to_schema:, parent_key:, prop_name:, value:, container:, preset:)
         @parent_key = parent_key
@@ -87,6 +91,10 @@ module SlackResources
 
       def execute! # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
         case
+        when object?
+          ref_to(define_object(@prop_name, @value, @container))
+        when enum?
+          ref_to(define_enum(@prop_name, @value))
         when root_schema? && type?
           { 'const' => @value }
         when root_schema? && sub_type?
@@ -130,6 +138,25 @@ module SlackResources
 
       private
 
+      delegate(
+        :root_schema?,
+        :define_string,
+        :root_type,
+        :root_type_prefix,
+        :define_object,
+        :define_enum,
+        :ref_to,
+        to: :@to_schema
+      )
+
+      def object?
+        @value.is_a?(Hash) && !enum?
+      end
+
+      def enum?
+        @value.is_a?(Hash) && @value['_type'] == 'enum'
+      end
+
       def type?
         @prop_name == 'type'
       end
@@ -140,6 +167,10 @@ module SlackResources
 
       def emoji_alternative?
         @prop_name == 'reaction'
+      end
+
+      def item_schema?
+        @parent_key == 'item'
       end
 
       def ambient?
