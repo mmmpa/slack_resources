@@ -80,9 +80,9 @@ module SlackResources
         end
       end
 
-      def initialize(to_schema:, parent_key:, prop_name:, value:, container:, preset:)
+      def initialize(to_schema_instance:, parent_key:, prop_name:, value:, container:, preset:)
+        @to_schema = to_schema_instance
         @parent_key = parent_key
-        @to_schema = to_schema
         @prop_name = prop_name
         @value = value
         @container = container

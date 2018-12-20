@@ -17,30 +17,31 @@ module SlackResources
       end
 
       def execute!
-        types = JSON.parse(@example.to_json).key_ordered
-
-        properties = types.inject({}) do |a, (prop_name, v)|
+        properties = @example.inject({}) do |a, (prop_name, value)|
           type = TypeDetection.new(
             parent_key: @key,
-            to_schema: self,
+            to_schema_instance: self,
             prop_name: prop_name,
-            value: v,
-            container: types,
+            value: value,
+            container: @example,
             preset: @preset
           ).execute!
 
           @defined_used << type
 
-          case
-          when TypeDetection.default_type?(type)
-            a.merge(prop_name => { 'type' => type })
-          when detail?(type)
-            a.merge(prop_name => type)
-          when array_type?(type)
-            a.merge(prop_name => define_as_array(type, v, types))
-          else
-            a.merge(prop_name => ref_to(type))
-          end
+          definition =
+            case
+            when TypeDetection.default_type?(type)
+              { 'type' => type }
+            when detail?(type)
+              type
+            when array_type?(type)
+              define_as_array(type, value)
+            else
+              ref_to(type)
+            end
+
+          a.merge(prop_name => definition)
         end
 
         [
@@ -74,7 +75,7 @@ module SlackResources
         type.is_a?(Hash)
       end
 
-      def define_as_array(array_type, values, types)
+      def define_as_array(array_type, values)
         type = array_type[2..-1]
 
         if TypeDetection.default_type?(type)
@@ -91,7 +92,7 @@ module SlackResources
             prop_name: type,
             example: values.first,
             key: type,
-            parent: types
+            parent: @example
           )
         elsif values.first.is_a?(String)
           define_string(type)
