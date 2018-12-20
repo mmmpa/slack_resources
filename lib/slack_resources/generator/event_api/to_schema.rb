@@ -49,13 +49,12 @@ module SlackResources
               )
             else
               if v.first.is_a?(Hash)
-                schema, = clone_with(
+                to_child_schema(
+                  prop_name: item,
                   example: v.first,
                   key: item,
                   parent: types
-                ).execute!
-
-                @defined[item] = schema
+                )
               elsif v.first.is_a?(String)
                 define_string(item)
               end
@@ -104,14 +103,14 @@ module SlackResources
       def define_object(k, v, types)
         ref_key = k == 'item' ? "#{root_type_prefix}_item" : k
 
-        schema, = clone_with(
+        to_child_schema(
+          prop_name: ref_key,
           example: v,
           key: k,
           parent: types
-        ).execute!
+        )
 
         @defined_used << ref_key
-        @defined[ref_key] = schema
 
         ref_key
       end
@@ -138,7 +137,8 @@ module SlackResources
         { '$ref' => "#/definitions/#{type}" }
       end
 
-      def clone_with(params = {})
+      def to_child_schema(params = {})
+        prop_name = params.delete(:prop_name)
         SlackResources::Generator::ToSchema.new(
           example: @example,
           url: @url,
@@ -149,7 +149,7 @@ module SlackResources
           parent: @parent,
           root: @root,
           **params
-        )
+        ).execute!.tap { |schema,| @defined[prop_name] = schema }
       end
 
       def default_type?(type)

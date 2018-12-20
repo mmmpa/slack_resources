@@ -87,33 +87,30 @@ module SlackResources
 
       def execute!
         case
-        when root_schema? && @prop_name == 'type'
+        when root_schema? && type?
           { 'const' => @value }
-        when root_schema? && @prop_name == 'subtype'
+        when root_schema? && sub_type?
           define_string('subscription_subtype')
-        when item_schema? && @prop_name == 'type'
+        when item_schema? && type?
           define_string("#{root_type_prefix}_#{@parent_key}_type")
-
-        when ambient?
-          define_string("#{@parent_key}_#{@prop_name}")
-
-        when @container['type'] == 'emoji_changed' && @prop_name == 'names'
-          define_string('emoji_name')
-          '[]emoji_name'
-        when @prop_name == 'reaction'
-          define_string('emoji_name')
-          'emoji_name'
 
         when string_id?
           detect_string_id
+        when ambient?
+          define_string("#{@parent_key}_#{@prop_name}")
+
+        when emoji_list?
+          define_string('emoji_name')
+          '[]emoji_name'
+        when emoji_alternative?
+          define_string('emoji_name')
 
         when array?
           detect_array_type
 
         when user_count?
           'user_count'
-
-        when @value.is_a?(Integer)
+        when time_integer?
           'time_integer'
         when boolean?
           'boolean'
@@ -121,24 +118,36 @@ module SlackResources
           'string'
         when timestamp?
           'timestamp'
+
         when preset_included?
           @prop_name
+
         else
-          if @value.respond_to?(:to_f) && @value == @value.to_f.to_s
-            'timestamp'
-          elsif @value.is_a?(String)
-            define_string(@prop_name)
-            'string'
-          else
-            @value
-          end
+          define_string(@prop_name)
+          'string'
         end
       end
 
       private
 
+      def type?
+        @prop_name == 'type'
+      end
+
+      def sub_type?
+        @prop_name == 'subtype'
+      end
+
+      def emoji_alternative?
+        @prop_name == 'reaction'
+      end
+
       def ambient?
         AMBIENT_PROPERTIES.include?(@prop_name)
+      end
+
+      def time_integer?
+        @value.is_a?(Integer)
       end
 
       def boolean?
@@ -146,11 +155,19 @@ module SlackResources
       end
 
       def timestamp?
-        @prop_name == 'latest' || @prop_name.match(/.+_ts$/)
+        @prop_name == 'latest' || @prop_name.match(/.+_ts$/) || float_string?
+      end
+
+      def float_string?
+        @value.respond_to?(:to_f) && @value == @value.to_f.to_s
       end
 
       def array?
-        ARRAY_PROPERTIES.include?(@prop_name) || (on_tokens_revoked? && TOKENS_REVOKED_ARRAY_PROPERTIES.include?(@prop_name))
+        ARRAY_PROPERTIES.include?(@prop_name) || tokens_revoked_array?
+      end
+
+      def tokens_revoked_array?
+        on_tokens_revoked? && TOKENS_REVOKED_ARRAY_PROPERTIES.include?(@prop_name)
       end
 
       def user_count?
@@ -162,36 +179,11 @@ module SlackResources
       end
 
       def preset_included?
-        !!@preset[@prop_name]
-      end
-
-      def detect_array_type
-        type = ARRAY_PROPERTIES_TYPE_MAP[@prop_name]
-        array_type = "[]#{type}"
-        return array_type if default_type?(type)
-
-        if @value.is_a?(Hash)
-          @defined[type] = clone_with(
-            example: @value.first,
-            key: @prop_name,
-            parent: @container
-          ).execute!
-        else
-          define_string(type)
-        end
-
-        array_type
+        @preset.key?(@prop_name)
       end
 
       def string_id?
         @prop_name.match(/_id$/) || (string_value? && STRING_ID_PROPERTIES.include?(@prop_name))
-      end
-
-      def detect_string_id
-        type = STRING_ID_PROPERTIES_MAP[@prop_name] || @prop_name
-        define_string(type)
-
-        type
       end
 
       def string_value?
@@ -202,8 +194,42 @@ module SlackResources
         DEFAULT_TYPES.include?(type)
       end
 
+      def emoji_list?
+        on_emoji_changed? && @prop_name == 'names'
+      end
+
       def on_tokens_revoked?
         root_type == 'tokens_revoked'
+      end
+
+      def on_emoji_changed?
+        root_type == 'emoji_changed'
+      end
+
+      def detect_array_type
+        type = ARRAY_PROPERTIES_TYPE_MAP[@prop_name]
+        array_type = "[]#{type}"
+        return array_type if default_type?(type)
+
+        if @value.is_a?(Hash)
+          to_child_schema(
+            prop_name: type,
+            example: @value.first,
+            key: @prop_name,
+            parent: @container
+          )
+        else
+          define_string(type)
+        end
+
+        array_type
+      end
+
+      def detect_string_id
+        type = STRING_ID_PROPERTIES_MAP[@prop_name] || @prop_name
+        define_string(type)
+
+        type
       end
     end
   end
