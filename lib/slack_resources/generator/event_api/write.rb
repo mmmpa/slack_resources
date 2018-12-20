@@ -35,9 +35,8 @@ class Writer
     schema, defined, defined_used = SlackResources::Generator::ToSchema.new(
       example: example,
       url: url,
-      preset: preset_schema,
+      preset: preset_schema
     ).execute!
-
 
     [schema, defined, defined_used]
   end
@@ -131,10 +130,9 @@ class Writer
     end
 
     File.write(@base_dir.join('schema.json').to_s, JSON.pretty_generate({
-      "$schema": 'http://json-schema.org/draft-07/schema',
-      'definitions' => all_defined.protect_merge!(all_schema).key_ordered,
-    }))
+                                                                          "$schema": 'http://json-schema.org/draft-07/schema',
+                                                                          'definitions' => all_defined.protect_merge!(all_schema).key_ordered,
+                                                                        }))
     File.write(@base_dir.join('summary.json').to_s, JSON.pretty_generate(all_details.sort_by { |a| a[:type] }))
   end
 end
-

@@ -1,3 +1,5 @@
+require 'active_support/core_ext/hash/keys'
+
 module SlackResources
   module Generator
     class ToSchema
@@ -12,31 +14,57 @@ module SlackResources
         null
       ])
 
-      USER_ID_ARRAY_PROPERTIES = Set.new(['authed_users', 'authed_users', 'users', 'added_users', 'removed_users'])
-      STRING_USER_ID_PROPERTIES = Set.new(%w[
-item_user
-user
-creator
-inviter
-created_by
-updated_by
-deleted_by
-      ])
+      STRING_ID_PROPERTIES_MAP = {
+        item_user: 'user_id',
+        user: 'user_id',
+        creator: 'user_id',
+        inviter: 'user_id',
+        created_by: 'user_id',
+        updated_by: 'user_id',
+        deleted_by: 'user_id',
+        channel: 'channel_id',
+        comment: 'comment_id',
+        team: 'team_id',
+      }.stringify_keys!
+
+      STRING_ID_PROPERTIES = Set.new(STRING_ID_PROPERTIES_MAP.keys)
+
       DIRECT_STRING_PROPERTIES = Set.new(%w[
-email_domain
-text
-description
-handle
-url
-domain
-      ])
-      USER_COUNT_PROPERTIES = Set.new(%w[
-user_count
-added_users_count
-removed_users_count
+        email_domain
+        text
+        description
+        handle
+        url
+        domain
       ])
 
-      def initialize(example:, url:, preset:, key: 'root', defined: {}, defined_used: [], parent: {})
+      USER_COUNT_PROPERTIES = Set.new(%w[
+        user_count
+        added_users_count
+        removed_users_count
+      ])
+
+      ARRAY_PROPERTIES_TYPE_MAP = {
+        authed_users: 'user_id',
+        users: 'user_id',
+        added_users: 'user_id',
+        removed_users: 'user_id',
+        authed_teams: 'team_id',
+        channels: 'channel_id',
+        groups: 'group_id',
+        scopes: 'scope',
+        links: 'link',
+        oauth: 'string',
+        bot: 'string',
+        resources: 'resource_item',
+      }.stringify_keys!
+      TOKENS_REVOKED_ARRAY_PROPERTIES = Set.new(%w[
+        oauth
+        bot
+      ])
+      ARRAY_PROPERTIES = Set.new(ARRAY_PROPERTIES_TYPE_MAP.keys - TOKENS_REVOKED_ARRAY_PROPERTIES.to_a)
+
+      def initialize(example:, url:, preset:, key: 'root', defined: {}, defined_used: [], parent: {}, root: nil)
         @example = JSON.parse(example.to_json).key_ordered
         @url = url
         @preset = preset
@@ -44,19 +72,17 @@ removed_users_count
         @defined = defined
         @defined_used = defined_used
         @parent = parent
+        @root = root || example
       end
 
       def execute!
         types = JSON.parse(@example.to_json).key_ordered
-
-        def_string = ->(id_key) { id_key.tap { @defined.merge!(id_key => { 'type' => 'string' }) } }
 
         properties = types.inject({}) do |a, (k, v)|
           next a.merge!(k => ref_to(define_object(k, v, types))) if object?(v)
           next a.merge!(k => ref_to(define_enum(k, v, types))) if enum?(v)
 
           type = detect_type(k, v, types)
-
 
           if default_type?(type)
             a.merge(k => { 'type' => type })
@@ -78,7 +104,7 @@ removed_users_count
                 schema, = clone_with(
                   example: v.first,
                   key: item,
-                  parent: types,
+                  parent: types
                 ).execute!
 
                 @defined[item] = schema
@@ -117,6 +143,10 @@ removed_users_count
         @key == 'root'
       end
 
+      def root_type
+        @root['type']
+      end
+
       def item_schema?
         @key == 'item'
       end
@@ -134,7 +164,7 @@ removed_users_count
         schema, = clone_with(
           example: v,
           key: k,
-          parent: types,
+          parent: types
         ).execute!
 
         @defined_used << ref_key
@@ -193,58 +223,24 @@ removed_users_count
         when types['type'] == 'team_rename' && 'name'
           'team_name'
 
-        when user_id?(k, v)
-          define_string('user_id')
-        when string_k_v('channel', v)
-          define_string('channel_id')
-        when string_k_v('comment', v)
-          define_string('comment_id')
-        when string_k_v('team', v)
-          define_string('team_id')
+        when string_id?(k, v)
+          detect_string_id(k)
 
-        when user_id_array?(k)
-          define_string('user_id')
-          '[]user_id'
-        when 'authed_teams'
-          define_string('team_id')
-          '[]team_id'
-        when 'channels'
-          define_string('channel_id')
-          '[]channel_id'
-        when 'groups'
-          define_string('group_id')
-          '[]group_id'
-
-        when 'scopes'
-          '[]scope'
-        when 'links'
-          '[]link'
+        when array?(k, v)
+          detect_array_type(k, v, types)
 
         when user_count?(k)
           'user_count'
 
-        when 'resources'
-          @defined['resource_item'] = clone_with(
-            example: v.first,
-            key: k,
-            parent: types,
-          ).execute!
-
-          '[]resource_item'
-
         when v.is_a?(Integer) && k
           'time_integer'
-        when (v == true || v == false) && k
+        when boolean?(k, v)
           'boolean'
         when direct_string?(k)
           'string'
-        when @parent['type'] == 'tokens_revoked' && 'oauth'
-          '[]string'
-        when @parent['type'] == 'tokens_revoked' && 'bot'
-          '[]string'
-        when 'latest', /.+_ts$/
+        when timestamp?(k)
           'timestamp'
-        when @preset[k] && k
+        when preset_included?(k)
           k
         else
           if v.respond_to?(:to_f) && v == v.to_f.to_s
@@ -258,8 +254,20 @@ removed_users_count
         end
       end
 
-      def user_id_array?(k)
-        k if USER_ID_ARRAY_PROPERTIES.include?(k)
+      def boolean?(k, v)
+        k if v == true || v == false
+      end
+
+      def timestamp?(k)
+        k if k == 'latest' || k.match(/.+_ts$/)
+      end
+
+      def array?(k, _v)
+        k if ARRAY_PROPERTIES.include?(k) || (on_tokens_revoked? && TOKENS_REVOKED_ARRAY_PROPERTIES.include?(k))
+      end
+
+      def on_tokens_revoked?
+        root_type == 'tokens_revoked'
       end
 
       def user_count?(k)
@@ -270,8 +278,37 @@ removed_users_count
         k if DIRECT_STRING_PROPERTIES.include?(k)
       end
 
-      def user_id?(k, v)
-        string_k_v(k, v) if STRING_USER_ID_PROPERTIES.include?(k)
+      def preset_included?(k)
+        k if @preset[k]
+      end
+
+      def detect_array_type(k, v, types)
+        type = ARRAY_PROPERTIES_TYPE_MAP[k]
+        array_type = "[]#{type}"
+        return array_type if default_type?(type)
+
+        if v.is_a?(Hash)
+          @defined[type] = clone_with(
+            example: v.first,
+            key: k,
+            parent: types
+          ).execute!
+        else
+          define_string(type)
+        end
+
+        array_type
+      end
+
+      def string_id?(k, v)
+        string_k_v(k, v) if STRING_ID_PROPERTIES.include?(k)
+      end
+
+      def detect_string_id(k)
+        type = STRING_ID_PROPERTIES_MAP[k]
+        define_string(type)
+
+        type
       end
 
       def clone_with(params = {})
@@ -283,7 +320,8 @@ removed_users_count
           defined: @defined,
           defined_used: @defined_used,
           parent: @parent,
-          **params,
+          root: @root,
+          **params
         )
       end
 

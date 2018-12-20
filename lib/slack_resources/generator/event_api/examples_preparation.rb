@@ -26,21 +26,21 @@ module SlackResources
           defined_example = event_typed_examples[event_type]
 
           Set.new(defined_example.keys + example.keys).each do |k|
-            if k.match?('.*_type')
-              defined_value = defined_example[k]
-              additional_value = example[k]
+            next unless k.match?('.*_type')
 
-              if defined_value.is_a?(Hash) && defined_value['_type'] == 'enum'
-                defined_value['items'] << additional_value
-              else
-                defined_example.merge!(
-                  k => {
-                    '_type' => 'enum',
-                    'target' => k,
-                    'items' => [defined_value],
-                  }
-                )
-              end
+            defined_value = defined_example[k]
+            additional_value = example[k]
+
+            if defined_value.is_a?(Hash) && defined_value['_type'] == 'enum'
+              defined_value['items'] << additional_value
+            else
+              defined_example.merge!(
+                k => {
+                  '_type' => 'enum',
+                  'target' => k,
+                  'items' => [defined_value],
+                }
+              )
             end
           end
         end
