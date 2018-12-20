@@ -5,7 +5,7 @@ module SlackResources
     class ToSchema
       using StrongHash
 
-      def initialize(example:, url:, preset:, key: 'root', defined: {}, defined_used: [], parent: {}, root: nil)
+      def initialize(example:, url:, preset:, key: 'root', defined: {}, defined_used: Set.new, parent: {}, root: nil)
         @example = JSON.parse(example.to_json).key_ordered
         @url = url
         @preset = preset
@@ -27,7 +27,7 @@ module SlackResources
             preset: @preset
           ).execute!
 
-          @defined_used << type
+          @defined_used << type if type.is_a?(String)
 
           definition =
             case
@@ -144,6 +144,7 @@ module SlackResources
           root: @root,
           **params
         ).execute!.tap do |schema,|
+          @defined_used << prop_name
           @defined[prop_name] = schema
         end
       end
