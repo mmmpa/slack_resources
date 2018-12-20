@@ -58,11 +58,21 @@ module SlackResources
         bot: 'string',
         resources: 'resource_item',
       }.stringify_keys!
+
       TOKENS_REVOKED_ARRAY_PROPERTIES = Set.new(%w[
         oauth
         bot
       ])
+
       ARRAY_PROPERTIES = Set.new(ARRAY_PROPERTIES_TYPE_MAP.keys - TOKENS_REVOKED_ARRAY_PROPERTIES.to_a)
+
+      BOOLEAN = Set.new([true, false])
+
+      AMBIENT_PROPERTIES = Set.new(%w[
+        id
+        type
+        name
+      ])
 
       def initialize(example:, url:, preset:, key: 'root', defined: {}, defined_used: [], parent: {}, root: nil)
         @example = JSON.parse(example.to_json).key_ordered
@@ -80,7 +90,7 @@ module SlackResources
 
         properties = types.inject({}) do |a, (k, v)|
           next a.merge!(k => ref_to(define_object(k, v, types))) if object?(v)
-          next a.merge!(k => ref_to(define_enum(k, v, types))) if enum?(v)
+          next a.merge!(k => ref_to(define_enum(k, v))) if enum?(v)
 
           type = detect_type(k, v, types)
 
@@ -147,19 +157,20 @@ module SlackResources
         @root['type']
       end
 
+      def root_type_prefix
+        @root_type_prefix ||= root_type.split('_').shift
+      end
+
       def item_schema?
         @key == 'item'
       end
 
+      def on_tokens_revoked?
+        root_type == 'tokens_revoked'
+      end
+
       def define_object(k, v, types)
-        ref_key =
-          case
-          when k == 'item'
-            t = types['type'].split('_').shift
-            "#{t}_item"
-          else
-            k
-          end
+        ref_key = k == 'item' ? "#{root_type_prefix}_item" : k
 
         schema, = clone_with(
           example: v,
@@ -181,8 +192,8 @@ module SlackResources
         v.is_a?(Hash) && v['_type'] == 'enum'
       end
 
-      def define_enum(k, v, types)
-        ref_key = "#{root_schema? ? types['type'] : @key}_#{k}"
+      def define_enum(k, v)
+        ref_key = "#{root_schema? ? root_type : @key}_#{k}"
         @defined[ref_key] = { 'type' => 'string', enum: v['items'] }
         ref_key
       end
@@ -202,17 +213,10 @@ module SlackResources
         when root_schema? && 'subtype'
           define_string('subscription_subtype')
         when item_schema? && 'type'
-          t = @parent['type'].split('_').shift
-          define_string("#{t}_#{@key}_type")
-        when 'type'
-          define_string("#{@key}_type")
+          define_string("#{root_type_prefix}_#{@key}_type")
 
-        when 'name'
-          define_string("#{@key}_name")
-        when 'id'
-          define_string("#{@key}_id")
-        when /.+_id$/
-          define_string(k)
+        when ambient?(k)
+          define_string("#{@key}_#{k}")
 
         when types['type'] == 'emoji_changed' && 'names'
           define_string('emoji_name')
@@ -220,8 +224,6 @@ module SlackResources
         when 'reaction'
           define_string('emoji_name')
           'emoji_name'
-        when types['type'] == 'team_rename' && 'name'
-          'team_name'
 
         when string_id?(k, v)
           detect_string_id(k)
@@ -254,8 +256,12 @@ module SlackResources
         end
       end
 
+      def ambient?(k)
+        k if AMBIENT_PROPERTIES.include?(k)
+      end
+
       def boolean?(k, v)
-        k if v == true || v == false
+        k if BOOLEAN.include?(v)
       end
 
       def timestamp?(k)
@@ -264,10 +270,6 @@ module SlackResources
 
       def array?(k, _v)
         k if ARRAY_PROPERTIES.include?(k) || (on_tokens_revoked? && TOKENS_REVOKED_ARRAY_PROPERTIES.include?(k))
-      end
-
-      def on_tokens_revoked?
-        root_type == 'tokens_revoked'
       end
 
       def user_count?(k)
@@ -301,11 +303,12 @@ module SlackResources
       end
 
       def string_id?(k, v)
+        return k if k.match(/_id$/)
         string_k_v(k, v) if STRING_ID_PROPERTIES.include?(k)
       end
 
       def detect_string_id(k)
-        type = STRING_ID_PROPERTIES_MAP[k]
+        type = STRING_ID_PROPERTIES_MAP[k] || k
         define_string(type)
 
         type
