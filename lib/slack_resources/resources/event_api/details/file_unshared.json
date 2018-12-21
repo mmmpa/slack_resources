@@ -2,6 +2,9 @@
   "url": "https://api.slack.com/events/file_unshared",
   "event": "file_unshared",
   "sub_schemas": {
+    "file_id": {
+      "type": "string"
+    },
     "file": {
       "type": "object",
       "description": "(defined by script)",
@@ -10,9 +13,6 @@
           "$ref": "#/definitions/file_id"
         }
       }
-    },
-    "file_id": {
-      "type": "string"
     },
     "file_unshared": {
       "type": "object",

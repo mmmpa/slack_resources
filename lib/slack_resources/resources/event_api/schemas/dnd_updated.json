@@ -1,6 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
+    "time_integer": {
+      "type": "number"
+    },
     "dnd_status": {
       "type": "object",
       "description": "(defined by script)",

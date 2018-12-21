@@ -17,6 +17,27 @@
         }
       }
     },
+    "resource_id": {
+      "type": "string"
+    },
+    "grant_type": {
+      "type": "string"
+    },
+    "grant": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "resource_id": {
+          "$ref": "#/definitions/resource_id"
+        },
+        "type": {
+          "$ref": "#/definitions/grant_type"
+        }
+      }
+    },
+    "resource_type": {
+      "type": "string"
+    },
     "resource": {
       "type": "object",
       "description": "(defined by script)",

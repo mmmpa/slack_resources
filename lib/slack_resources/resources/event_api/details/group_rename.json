@@ -2,6 +2,15 @@
   "url": "https://api.slack.com/events/group_rename",
   "event": "group_rename",
   "sub_schemas": {
+    "time_integer": {
+      "type": "number"
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "channel_name": {
+      "type": "string"
+    },
     "channel": {
       "type": "object",
       "description": "(defined by script)",

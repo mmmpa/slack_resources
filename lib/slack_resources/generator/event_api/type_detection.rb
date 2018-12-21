@@ -131,9 +131,6 @@ module SlackResources
         when timestamp?
           'timestamp'
 
-        when preset_included?
-          @prop_name
-
         else
           define_default_type(normalized_prop_name, @value, @container, const_type?)
         end
@@ -219,10 +216,6 @@ module SlackResources
 
       def direct_string?
         DIRECT_STRING_PROPERTIES.include?(@prop_name)
-      end
-
-      def preset_included?
-        @preset.key?(@prop_name)
       end
 
       def string_id?

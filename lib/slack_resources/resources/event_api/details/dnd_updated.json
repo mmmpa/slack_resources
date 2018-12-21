@@ -2,6 +2,9 @@
   "url": "https://api.slack.com/events/dnd_updated",
   "event": "dnd_updated",
   "sub_schemas": {
+    "time_integer": {
+      "type": "number"
+    },
     "dnd_status": {
       "type": "object",
       "description": "(defined by script)",

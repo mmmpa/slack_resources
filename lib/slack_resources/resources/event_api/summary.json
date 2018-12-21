@@ -597,6 +597,57 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "auto_type": {
+        "type": "string",
+        "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+        "enum": [
+          "admins",
+          "owners",
+          null
+        ]
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "time_integer": {
+        "type": "number"
+      },
+      "subteam_id": {
+        "type": "string"
+      },
+      "subteam_name": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "prefs": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/channel_id"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/group_id"
+            }
+          }
+        }
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "user_count": {
+        "type": "string"
+      },
       "subteam": {
         "type": "object",
         "description": "(defined by script)",
@@ -1126,6 +1177,15 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "time_integer": {
+        "type": "number"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "channel_name": {
+        "type": "string"
+      },
       "channel": {
         "type": "object",
         "description": "(defined by script)",
@@ -1319,6 +1379,9 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "file_id": {
+        "type": "string"
+      },
       "file": {
         "type": "object",
         "description": "(defined by script)",
@@ -1327,9 +1390,6 @@
             "$ref": "#/definitions/file_id"
           }
         }
-      },
-      "file_id": {
-        "type": "string"
       },
       "file_public": {
         "type": "object",
@@ -1361,6 +1421,9 @@
       "comment_id": {
         "type": "string"
       },
+      "file_id": {
+        "type": "string"
+      },
       "file": {
         "type": "object",
         "description": "(defined by script)",
@@ -1369,9 +1432,6 @@
             "$ref": "#/definitions/file_id"
           }
         }
-      },
-      "file_id": {
-        "type": "string"
       },
       "file_comment_deleted": {
         "type": "object",
@@ -1404,6 +1464,18 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "time_integer": {
+        "type": "number"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "channel_name": {
+        "type": "string"
+      },
       "channel": {
         "type": "object",
         "description": "(defined by script)",
@@ -1565,6 +1637,9 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "file_id": {
+        "type": "string"
+      },
       "file": {
         "type": "object",
         "description": "(defined by script)",
@@ -1573,9 +1648,6 @@
             "$ref": "#/definitions/file_id"
           }
         }
-      },
-      "file_id": {
-        "type": "string"
       },
       "file_unshared": {
         "type": "object",
@@ -1805,6 +1877,9 @@
         "properties": {
         }
       },
+      "file_id": {
+        "type": "string"
+      },
       "file": {
         "type": "object",
         "description": "(defined by script)",
@@ -1813,9 +1888,6 @@
             "$ref": "#/definitions/file_id"
           }
         }
-      },
-      "file_id": {
-        "type": "string"
       },
       "file_comment_added": {
         "type": "object",
@@ -2349,6 +2421,9 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "time_integer": {
+        "type": "number"
+      },
       "dnd_status": {
         "type": "object",
         "description": "(defined by script)",
@@ -2536,6 +2611,27 @@
             }
           }
         }
+      },
+      "resource_id": {
+        "type": "string"
+      },
+      "grant_type": {
+        "type": "string"
+      },
+      "grant": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "resource_id": {
+            "$ref": "#/definitions/resource_id"
+          },
+          "type": {
+            "$ref": "#/definitions/grant_type"
+          }
+        }
+      },
+      "resource_type": {
+        "type": "string"
       },
       "resource": {
         "type": "object",
@@ -2784,6 +2880,9 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "file_id": {
+        "type": "string"
+      },
       "file": {
         "type": "object",
         "description": "(defined by script)",
@@ -2792,9 +2891,6 @@
             "$ref": "#/definitions/file_id"
           }
         }
-      },
-      "file_id": {
-        "type": "string"
       },
       "file_change": {
         "type": "object",
@@ -2949,6 +3045,9 @@
         "properties": {
         }
       },
+      "file_id": {
+        "type": "string"
+      },
       "file": {
         "type": "object",
         "description": "(defined by script)",
@@ -2957,9 +3056,6 @@
             "$ref": "#/definitions/file_id"
           }
         }
-      },
-      "file_id": {
-        "type": "string"
       },
       "file_comment_edited": {
         "type": "object",
@@ -3110,6 +3206,9 @@
   {
     "$schema": "http://json-schema.org/draft-07/schema",
     "definitions": {
+      "file_id": {
+        "type": "string"
+      },
       "file": {
         "type": "object",
         "description": "(defined by script)",
@@ -3118,9 +3217,6 @@
             "$ref": "#/definitions/file_id"
           }
         }
-      },
-      "file_id": {
-        "type": "string"
       },
       "file_created": {
         "type": "object",

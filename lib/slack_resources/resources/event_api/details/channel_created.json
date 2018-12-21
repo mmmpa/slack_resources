@@ -2,6 +2,18 @@
   "url": "https://api.slack.com/events/channel_created",
   "event": "channel_created",
   "sub_schemas": {
+    "time_integer": {
+      "type": "number"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "channel_name": {
+      "type": "string"
+    },
     "channel": {
       "type": "object",
       "description": "(defined by script)",

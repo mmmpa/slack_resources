@@ -11,7 +11,7 @@ RSpec.describe SlackResources::Generator::Writer do
   end
 
   subject(:alt_event_types) { @result.map { |a| a[0] } }
-
+ 
   let(:files) { Dir.glob('./spec/fixtures/write/examples/*.json') + Dir.glob('./spec/fixtures/write/_added_examples/*.json') }
   let(:expected_types) { files.map { |f| File.basename(f, '.json') }.uniq + ['emoji_changed'] }
   let(:all_event_files) { files.map { |f| File.basename(f) } + ['emoji_changed.json'] }

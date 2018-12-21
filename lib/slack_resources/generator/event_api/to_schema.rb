@@ -120,6 +120,10 @@ module SlackResources
       end
 
       def define_special_type(prop_name, value, container, const)
+        @defined_used << prop_name
+
+        return prop_name if @parent[prop_name]
+
         types = value['items'].map { |v| detect_default_type(prop_name, v, container) }.uniq
 
         @defined[prop_name] =
@@ -129,7 +133,6 @@ module SlackResources
             { 'type' => normalize_type(types) }
           end
 
-        @defined_used << prop_name
         prop_name
       end
 
