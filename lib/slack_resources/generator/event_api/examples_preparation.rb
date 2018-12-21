@@ -22,6 +22,8 @@ module SlackResources
 
           next alt_typed_examples.merge!(alt_event_type => JSON.parse(example.to_json)) if defined.add?(event_type)
 
+          alt_typed_examples[alt_event_type] = JSON.parse(example.to_json)
+
           single_events.delete(event_type)
           defined_example = event_typed_examples[event_type]
 

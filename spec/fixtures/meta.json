@@ -1,0 +1,906 @@
+{
+  "types": [
+    "app_mention",
+    "app_rate_limited",
+    "app_uninstalled",
+    "channel_archive",
+    "channel_created",
+    "channel_deleted",
+    "channel_history_changed",
+    "channel_left",
+    "channel_rename",
+    "channel_unarchive",
+    "dnd_updated",
+    "dnd_updated_user",
+    "email_domain_changed",
+    "emoji_changed",
+    "file_change",
+    "file_comment_added",
+    "file_comment_deleted",
+    "file_comment_edited",
+    "file_created",
+    "file_deleted",
+    "file_public",
+    "file_shared",
+    "file_unshared",
+    "grid_migration_finished",
+    "grid_migration_started",
+    "group_archive",
+    "group_close",
+    "group_deleted",
+    "group_history_changed",
+    "group_left",
+    "group_open",
+    "group_rename",
+    "group_unarchive",
+    "im_close",
+    "im_created",
+    "im_history_changed",
+    "im_open",
+    "link_shared",
+    "member_joined_channel",
+    "member_left_channel",
+    "message",
+    "message.app_home",
+    "message.channels",
+    "message.groups",
+    "message.im",
+    "message.mpim",
+    "pin_added",
+    "pin_removed",
+    "reaction_added",
+    "reaction_removed",
+    "resources_added",
+    "resources_removed",
+    "scope_denied",
+    "scope_granted",
+    "star_added",
+    "star_removed",
+    "subteam_created",
+    "subteam_members_changed",
+    "subteam_self_added",
+    "subteam_self_removed",
+    "subteam_updated",
+    "team_domain_change",
+    "team_join",
+    "team_rename",
+    "tokens_revoked",
+    "url_verification",
+    "user_change",
+    "user_resource_denied",
+    "user_resource_granted",
+    "user_resource_removed"
+  ],
+  "on_event_api": [
+    "app_mention",
+    "app_rate_limited",
+    "app_uninstalled",
+    "channel_archive",
+    "channel_created",
+    "channel_deleted",
+    "channel_history_changed",
+    "channel_left",
+    "channel_rename",
+    "channel_unarchive",
+    "dnd_updated",
+    "dnd_updated_user",
+    "email_domain_changed",
+    "emoji_changed",
+    "file_change",
+    "file_comment_added",
+    "file_comment_deleted",
+    "file_comment_edited",
+    "file_created",
+    "file_deleted",
+    "file_public",
+    "file_shared",
+    "file_unshared",
+    "grid_migration_finished",
+    "grid_migration_started",
+    "group_archive",
+    "group_close",
+    "group_deleted",
+    "group_history_changed",
+    "group_left",
+    "group_open",
+    "group_rename",
+    "group_unarchive",
+    "im_close",
+    "im_created",
+    "im_history_changed",
+    "im_open",
+    "link_shared",
+    "member_joined_channel",
+    "member_left_channel",
+    "message",
+    "message.app_home",
+    "message.channels",
+    "message.groups",
+    "message.im",
+    "message.mpim",
+    "pin_added",
+    "pin_removed",
+    "reaction_added",
+    "reaction_removed",
+    "resources_added",
+    "resources_removed",
+    "scope_denied",
+    "scope_granted",
+    "star_added",
+    "star_removed",
+    "subteam_created",
+    "subteam_members_changed",
+    "subteam_self_added",
+    "subteam_self_removed",
+    "subteam_updated",
+    "team_domain_change",
+    "team_join",
+    "team_rename",
+    "tokens_revoked",
+    "url_verification",
+    "user_change",
+    "user_resource_denied",
+    "user_resource_granted",
+    "user_resource_removed"
+  ],
+  "on_rtm": [
+    "channel_archive",
+    "channel_created",
+    "channel_deleted",
+    "channel_history_changed",
+    "channel_left",
+    "channel_rename",
+    "channel_unarchive",
+    "dnd_updated",
+    "dnd_updated_user",
+    "email_domain_changed",
+    "emoji_changed",
+    "file_change",
+    "file_comment_added",
+    "file_comment_deleted",
+    "file_comment_edited",
+    "file_created",
+    "file_deleted",
+    "file_public",
+    "file_shared",
+    "file_unshared",
+    "group_archive",
+    "group_close",
+    "group_deleted",
+    "group_history_changed",
+    "group_left",
+    "group_open",
+    "group_rename",
+    "group_unarchive",
+    "im_close",
+    "im_created",
+    "im_history_changed",
+    "im_open",
+    "member_joined_channel",
+    "member_left_channel",
+    "message",
+    "pin_added",
+    "pin_removed",
+    "reaction_added",
+    "reaction_removed",
+    "star_added",
+    "star_removed",
+    "subteam_created",
+    "subteam_members_changed",
+    "subteam_self_added",
+    "subteam_self_removed",
+    "subteam_updated",
+    "team_domain_change",
+    "team_join",
+    "team_rename",
+    "user_change"
+  ],
+  "scopes": [
+    "channels:read",
+    "channels:history",
+    "groups:history",
+    "mpim:history",
+    "dnd:read",
+    "team:read",
+    "emoji:read",
+    "files:read",
+    "groups:read",
+    "im:read",
+    "im:history",
+    "links:read",
+    "pins:read",
+    "reactions:read",
+    "stars:read",
+    "usergroups:read",
+    "users:read"
+  ],
+  "subscriptions": {
+    "app_mention": {
+      "url": "https://api.slack.com/events/app_mention",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "app_rate_limited": {
+      "url": "https://api.slack.com/events/app_rate_limited",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "app_uninstalled": {
+      "url": "https://api.slack.com/events/app_uninstalled",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "channel_archive": {
+      "url": "https://api.slack.com/events/channel_archive",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read"
+      ]
+    },
+    "channel_created": {
+      "url": "https://api.slack.com/events/channel_created",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read"
+      ]
+    },
+    "channel_deleted": {
+      "url": "https://api.slack.com/events/channel_deleted",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read"
+      ]
+    },
+    "channel_history_changed": {
+      "url": "https://api.slack.com/events/channel_history_changed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:history",
+        "groups:history",
+        "mpim:history"
+      ]
+    },
+    "channel_left": {
+      "url": "https://api.slack.com/events/channel_left",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read"
+      ]
+    },
+    "channel_rename": {
+      "url": "https://api.slack.com/events/channel_rename",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read"
+      ]
+    },
+    "channel_unarchive": {
+      "url": "https://api.slack.com/events/channel_unarchive",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read"
+      ]
+    },
+    "dnd_updated": {
+      "url": "https://api.slack.com/events/dnd_updated",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "dnd:read"
+      ]
+    },
+    "dnd_updated_user": {
+      "url": "https://api.slack.com/events/dnd_updated_user",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "dnd:read"
+      ]
+    },
+    "email_domain_changed": {
+      "url": "https://api.slack.com/events/email_domain_changed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "team:read"
+      ]
+    },
+    "emoji_changed": {
+      "url": "https://api.slack.com/events/emoji_changed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "emoji:read"
+      ]
+    },
+    "file_change": {
+      "url": "https://api.slack.com/events/file_change",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_comment_added": {
+      "url": "https://api.slack.com/events/file_comment_added",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_comment_deleted": {
+      "url": "https://api.slack.com/events/file_comment_deleted",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_comment_edited": {
+      "url": "https://api.slack.com/events/file_comment_edited",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_created": {
+      "url": "https://api.slack.com/events/file_created",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_deleted": {
+      "url": "https://api.slack.com/events/file_deleted",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_public": {
+      "url": "https://api.slack.com/events/file_public",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_shared": {
+      "url": "https://api.slack.com/events/file_shared",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "file_unshared": {
+      "url": "https://api.slack.com/events/file_unshared",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "files:read"
+      ]
+    },
+    "grid_migration_finished": {
+      "url": "https://api.slack.com/events/grid_migration_finished",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "grid_migration_started": {
+      "url": "https://api.slack.com/events/grid_migration_started",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "group_archive": {
+      "url": "https://api.slack.com/events/group_archive",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:read"
+      ]
+    },
+    "group_close": {
+      "url": "https://api.slack.com/events/group_close",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:read"
+      ]
+    },
+    "group_deleted": {
+      "url": "https://api.slack.com/events/group_deleted",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:read"
+      ]
+    },
+    "group_history_changed": {
+      "url": "https://api.slack.com/events/group_history_changed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:history"
+      ]
+    },
+    "group_left": {
+      "url": "https://api.slack.com/events/group_left",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:read"
+      ]
+    },
+    "group_open": {
+      "url": "https://api.slack.com/events/group_open",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:read"
+      ]
+    },
+    "group_rename": {
+      "url": "https://api.slack.com/events/group_rename",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:read"
+      ]
+    },
+    "group_unarchive": {
+      "url": "https://api.slack.com/events/group_unarchive",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "groups:read"
+      ]
+    },
+    "im_close": {
+      "url": "https://api.slack.com/events/im_close",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "im:read"
+      ]
+    },
+    "im_created": {
+      "url": "https://api.slack.com/events/im_created",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "im:read"
+      ]
+    },
+    "im_history_changed": {
+      "url": "https://api.slack.com/events/im_history_changed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "im:history"
+      ]
+    },
+    "im_open": {
+      "url": "https://api.slack.com/events/im_open",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "im:read"
+      ]
+    },
+    "link_shared": {
+      "url": "https://api.slack.com/events/link_shared",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+        "links:read"
+      ]
+    },
+    "member_joined_channel": {
+      "url": "https://api.slack.com/events/member_joined_channel",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read",
+        "groups:read"
+      ]
+    },
+    "member_left_channel": {
+      "url": "https://api.slack.com/events/member_left_channel",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:read",
+        "groups:read"
+      ]
+    },
+    "message": {
+      "url": "https://api.slack.com/events/message",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "channels:history",
+        "groups:history",
+        "im:history",
+        "mpim:history"
+      ]
+    },
+    "message.app_home": {
+      "url": "https://api.slack.com/events/message.app_home",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "message.channels": {
+      "url": "https://api.slack.com/events/message.channels",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+        "channels:history"
+      ]
+    },
+    "message.groups": {
+      "url": "https://api.slack.com/events/message.groups",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+        "groups:history"
+      ]
+    },
+    "message.im": {
+      "url": "https://api.slack.com/events/message.im",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+        "im:history"
+      ]
+    },
+    "message.mpim": {
+      "url": "https://api.slack.com/events/message.mpim",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+        "mpim:history"
+      ]
+    },
+    "pin_added": {
+      "url": "https://api.slack.com/events/pin_added",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "pins:read"
+      ]
+    },
+    "pin_removed": {
+      "url": "https://api.slack.com/events/pin_removed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "pins:read"
+      ]
+    },
+    "reaction_added": {
+      "url": "https://api.slack.com/events/reaction_added",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "reactions:read"
+      ]
+    },
+    "reaction_removed": {
+      "url": "https://api.slack.com/events/reaction_removed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "reactions:read"
+      ]
+    },
+    "resources_added": {
+      "url": "https://api.slack.com/events/resources_added",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "resources_removed": {
+      "url": "https://api.slack.com/events/resources_removed",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "scope_denied": {
+      "url": "https://api.slack.com/events/scope_denied",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "scope_granted": {
+      "url": "https://api.slack.com/events/scope_granted",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "star_added": {
+      "url": "https://api.slack.com/events/star_added",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "stars:read"
+      ]
+    },
+    "star_removed": {
+      "url": "https://api.slack.com/events/star_removed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "stars:read"
+      ]
+    },
+    "subteam_created": {
+      "url": "https://api.slack.com/events/subteam_created",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "usergroups:read"
+      ]
+    },
+    "subteam_members_changed": {
+      "url": "https://api.slack.com/events/subteam_members_changed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "usergroups:read"
+      ]
+    },
+    "subteam_self_added": {
+      "url": "https://api.slack.com/events/subteam_self_added",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "usergroups:read"
+      ]
+    },
+    "subteam_self_removed": {
+      "url": "https://api.slack.com/events/subteam_self_removed",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "usergroups:read"
+      ]
+    },
+    "subteam_updated": {
+      "url": "https://api.slack.com/events/subteam_updated",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "usergroups:read"
+      ]
+    },
+    "team_domain_change": {
+      "url": "https://api.slack.com/events/team_domain_change",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "team:read"
+      ]
+    },
+    "team_join": {
+      "url": "https://api.slack.com/events/team_join",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "users:read"
+      ]
+    },
+    "team_rename": {
+      "url": "https://api.slack.com/events/team_rename",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "team:read"
+      ]
+    },
+    "tokens_revoked": {
+      "url": "https://api.slack.com/events/tokens_revoked",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "url_verification": {
+      "url": "https://api.slack.com/events/url_verification",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "user_change": {
+      "url": "https://api.slack.com/events/user_change",
+      "compatibility": [
+        "RTM",
+        "Events API"
+      ],
+      "scopes": [
+        "users:read"
+      ]
+    },
+    "user_resource_denied": {
+      "url": "https://api.slack.com/events/user_resource_denied",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "user_resource_granted": {
+      "url": "https://api.slack.com/events/user_resource_granted",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    },
+    "user_resource_removed": {
+      "url": "https://api.slack.com/events/user_resource_removed",
+      "compatibility": [
+        "Events API"
+      ],
+      "scopes": [
+
+      ]
+    }
+  }
+}

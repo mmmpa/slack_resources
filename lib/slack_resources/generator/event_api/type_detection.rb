@@ -36,6 +36,7 @@ module SlackResources
         handle
         url
         domain
+        challenge
       ])
 
       USER_COUNT_PROPERTIES = Set.new(%w[
@@ -122,7 +123,7 @@ module SlackResources
           'time_integer'
         when boolean?
           'boolean'
-        when direct_string?
+        when direct_string? || (on_url_verification? && @prop_name == 'token')
           'string'
         when timestamp?
           'timestamp'
@@ -231,6 +232,10 @@ module SlackResources
 
       def on_tokens_revoked?
         root_type == 'tokens_revoked'
+      end
+
+      def on_url_verification?
+        root_type == 'url_verification'
       end
 
       def on_emoji_changed?

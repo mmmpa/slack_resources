@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "definitions": {
+    "time_integer": {
+      "type": "number"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "reaction_item_type": {
+      "type": "string"
+    },
+    "auto_type": {
+      "type": "string",
+      "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+      "enum": [
+        "admins",
+        "owners",
+        null
+      ]
+    },
+    "user_count": {
+      "type": "string"
+    }
+  }
+}

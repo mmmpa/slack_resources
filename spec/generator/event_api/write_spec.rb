@@ -1,15 +1,10 @@
 require 'spec_helper'
 
-RSpec.describe 'write' do
-  it do
-    require './lib/slack_resources/generator/event_api/write.rb'
-    begin
-      File.unlink('./tmp/schema.json')
-    rescue StandardError
-      nil
-    end
-    Writer.new.execute!
+RSpec.describe SlackResources::Generator::Writer do
+  subject(:result) { SlackResources::Generator::Writer.new.execute! }
+  subject(:alt_event_types) { result.map { |a| a[0] } }
 
-    expect(File.read('./tmp/schema.json')).to eq(File.read('./lib/slack_resources/resources/event_api/schema.json'))
-  end
+  let(:meta) { JSON.parse(File.read('./spec/fixtures/meta.json')) }
+
+  it { expect(alt_event_types).to match_array(meta['types'] + ['event_callback']) }
 end

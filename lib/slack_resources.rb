@@ -5,4 +5,5 @@ module SlackResources
   require 'slack_resources/generator/event_api/examples_preparation'
   require 'slack_resources/generator/event_api/to_schema'
   require 'slack_resources/generator/event_api/type_detection'
+  require 'slack_resources/generator/event_api/write'
 end

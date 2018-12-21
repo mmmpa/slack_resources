@@ -1,3 +1,5 @@
+require 'json'
+require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/hash/keys'
 
 module SlackResources
@@ -13,7 +15,7 @@ module SlackResources
         @defined = defined
         @defined_used = defined_used
         @parent = parent
-        @root = root || example
+        @root = root || @example
       end
 
       def execute!
@@ -47,7 +49,7 @@ module SlackResources
         [
           {
             'type' => 'object',
-            description: properties.blank? ? "definition snipped. learn more: #{@url}" : '(defined by script)',
+            'description' => properties.blank? ? "definition snipped. learn more: #{@url}" : '(defined by script)',
             'properties' => properties,
           },
           @defined,
@@ -120,11 +122,15 @@ module SlackResources
       def define_enum(k, v)
         ref_key = "#{root_schema? ? root_type : @key}_#{k}"
         @defined[ref_key] = { 'type' => 'string', enum: v['items'] }
+        @defined_used << ref_key
         ref_key
       end
 
-      def define_string(key)
-        key.tap { @defined.protect_merge!(key => { 'type' => 'string' }) }
+      def define_string(prop_name)
+        prop_name.tap do
+          @defined.protect_merge!(prop_name => { 'type' => 'string' })
+          @defined_used << prop_name
+        end
       end
 
       def ref_to(type)
