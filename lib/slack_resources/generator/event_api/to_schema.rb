@@ -119,17 +119,56 @@ module SlackResources
         ref_key
       end
 
-      def define_enum(k, v)
-        ref_key = "#{root_schema? ? root_type : @key}_#{k}"
-        @defined[ref_key] = { 'type' => 'string', enum: v['items'] }
-        @defined_used << ref_key
-        ref_key
+      def define_special_type(prop_name, value, container, const)
+        types = value['items'].map { |v| detect_default_type(prop_name, v, container) }.uniq
+
+
+        @defined[prop_name] =
+          if const
+            { 'type' => types[0], enum: value['items'] }
+          elsif types.size == 1
+            { 'type' => types[0] }
+          else
+            { 'type' => types.join('|') }
+          end
+
+        @defined_used << prop_name
+        prop_name
       end
 
       def define_string(prop_name)
-        prop_name.tap do
-          @defined.protect_merge!(prop_name => { 'type' => 'string' })
-          @defined_used << prop_name
+        define_default_type(prop_name, 'string', nil)
+      end
+
+      def define_default_type(prop_name, value, container, const = false)
+        @defined.protect_merge!(
+          prop_name => {
+            'type' => detect_default_type(prop_name, value, container, const),
+          }
+        )
+        @defined_used << prop_name
+
+        ref_to(prop_name)
+      end
+
+      def detect_default_type(prop_name, value, container, const = false)
+        if value.is_a?(Hash) && value[TypeDetection::SPECIAL_TYPE] == TypeDetection::MULTIPLE_EXAMPLES
+          return define_special_type(prop_name, value, container, const)
+        end
+
+        case value
+        when Integer
+          'number'
+        when Array
+          'array'
+        when Hash
+          define_object(prop_name, value, container)
+        when true, false
+          'boolean'
+        when nil
+          'null'
+        else
+          'string'
         end
       end
 

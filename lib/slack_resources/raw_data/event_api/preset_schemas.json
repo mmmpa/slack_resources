@@ -21,6 +21,13 @@
     },
     "user_count": {
       "type": "string"
+    },
+    "emoji_changed_subtype": {
+      "type": "string",
+      "enum": [
+        "add",
+        "remove"
+      ]
     }
   }
 }

@@ -18,7 +18,7 @@ module SlackResources
 
         @data_dir = Pathname(data_dir)
         @meta = JSON.parse(File.read(@data_dir.join('meta.json')))
-        @preset_schema = JSON.parse(File.read(@data_dir.join('preset_schema.json')))
+        @preset_schema = JSON.parse(File.read(@data_dir.join('preset_schemas.json')))
         @preset_definitions = @preset_schema['definitions']
 
         @examples_dir = @data_dir.join('examples')
@@ -36,15 +36,11 @@ module SlackResources
         ).execute!
 
         examples_with_metadata = alt_event_type_mapped_examples.map do |alt_event_type, example|
-          info = @meta['subscriptions'][alt_event_type] || {}
+          info = @meta['subscriptions'][alt_event_type] || @meta['subscriptions'][example['type']] || {}
           [info['url'], alt_event_type, example, info['compatibility'], info['scopes']]
         end
 
         all_sub_schemas = @preset_definitions.merge(
-          'subscription_type' => {
-            "type": 'string',
-            "enum": @meta['types'],
-          },
           'scope' => {
             "type": 'string',
             "enum": @meta['scopes'],
@@ -54,6 +50,7 @@ module SlackResources
         main_schemas = {}
 
         all_details = examples_with_metadata.map do |url, alt_event_type, example, compatibility, scopes|
+          raw_example = example.delete('_raw_example')
           schema, new_definition, included_props_names = ToSchema.new(
             example: example,
             url: url,
@@ -66,14 +63,8 @@ module SlackResources
             all_sub_schemas[included_prop] ? a.protect_merge!(included_prop => all_sub_schemas[included_prop]) : a
           end
 
-          normalized_response = example.inject({}) do |a, (k, v)|
-            next a.protect_merge!(k => v) unless v.is_a?(Hash) && v['_type'] == 'enum'
-
-            a.merge!(v['target'] => v['items'].map { |s| s || 'null' }.join('|'))
-          end
-
           schema['description'] = "learn more: #{url}"
-          schema['example'] = normalized_response
+          schema['example'] = raw_example
 
           main_schemas[alt_event_type] = schema
 
@@ -91,7 +82,7 @@ module SlackResources
               "$schema": 'http://json-schema.org/draft-07/schema',
               'definitions' => included_schemas.protect_merge!(alt_event_type => schema),
             },
-            example,
+            raw_example,
           ]
         end
 

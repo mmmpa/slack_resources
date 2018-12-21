@@ -5,6 +5,14 @@ module SlackResources
     class TypeDetection
       using StrongHash
 
+      SPECIAL_TYPE = '_type'.freeze
+      MULTIPLE_EXAMPLES = 'MULTIPLE_EXAMPLES'.freeze
+
+      CONST_TYPES = %w[
+        type
+        subtype
+      ]
+
       DEFAULT_TYPES = Set.new(%w[
         string
         number
@@ -73,6 +81,7 @@ module SlackResources
         id
         type
         name
+        subtype
       ])
 
       class << self
@@ -92,21 +101,13 @@ module SlackResources
 
       def execute! # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
         case
-        when object?
-          ref_to(define_object(@prop_name, @value, @container))
-        when enum?
-          ref_to(define_enum(@prop_name, @value))
-        when root_schema? && type?
+        when root_schema? && constantable?
           { 'const' => @value }
-        when root_schema? && sub_type?
-          define_string('subscription_subtype')
         when item_schema? && type?
           define_string("#{root_type_prefix}_#{@parent_key}_type")
 
         when string_id?
           define_string_id
-        when ambient?
-          define_string("#{@parent_key}_#{@prop_name}")
 
         when emoji_list?
           define_string('emoji_name')
@@ -132,8 +133,7 @@ module SlackResources
           @prop_name
 
         else
-          define_string(@prop_name)
-          'string'
+          define_default_type(normalized_prop_name, @value, @container, const_type?)
         end
       end
 
@@ -144,26 +144,35 @@ module SlackResources
         :define_string,
         :root_type,
         :root_type_prefix,
+        :define_default_type,
         :define_object,
         :define_enum,
         :ref_to,
         to: :@to_schema
       )
 
-      def object?
-        @value.is_a?(Hash) && !enum?
-      end
-
-      def enum?
-        @value.is_a?(Hash) && @value['_type'] == 'enum'
+      def normalized_prop_name
+        if ambient?
+          root_schema? ? "#{root_type_prefix}_#{@prop_name}" : "#{@parent_key}_#{@prop_name}"
+        else
+          @prop_name
+        end
       end
 
       def type?
         @prop_name == 'type'
       end
 
-      def sub_type?
-        @prop_name == 'subtype'
+      def const_type?
+        CONST_TYPES.include?(@prop_name) || @prop_name.match(/_type$/)
+      end
+
+      def string?
+        @value.is_a?(String)
+      end
+
+      def constantable?
+        const_type? && (@value.is_a?(String) || @value.is_a?(Integer))
       end
 
       def emoji_alternative?

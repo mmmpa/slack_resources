@@ -16,29 +16,29 @@ module SlackResources
         alt_typed_examples = {}
 
         raw_examples.each do |alt_event_type, event_type, example|
+          example['_raw_example'] = JSON.parse(example.to_json)
           event_typed_examples.protect_merge!(event_type => example)
+          alt_typed_examples.merge!(alt_event_type => JSON.parse(example.to_json))
 
-          next alt_typed_examples.merge!(alt_event_type => JSON.parse(example.to_json)) if defined.add?(event_type)
-
-          # convert to enum
-
-          alt_typed_examples[alt_event_type] = JSON.parse(example.to_json)
+          next if defined.add?(event_type)
 
           single_events.delete(event_type)
           defined_example = event_typed_examples[event_type]
 
           Set.new(defined_example.keys + example.keys).each do |k|
-            next unless k.match?('.*_type')
+            next if k == '_raw_example'
 
             defined_value = defined_example[k]
             additional_value = example[k]
 
-            if defined_value.is_a?(Hash) && defined_value['_type'] == 'enum'
+            next if defined_value == additional_value
+
+            if defined_value.is_a?(Hash) && defined_value[TypeDetection::SPECIAL_TYPE] == TypeDetection::MULTIPLE_EXAMPLES
               defined_value['items'] << additional_value
             else
               defined_example.merge!(
                 k => {
-                  '_type' => 'enum',
+                  TypeDetection::SPECIAL_TYPE => TypeDetection::MULTIPLE_EXAMPLES,
                   'target' => k,
                   'items' => [defined_value, additional_value],
                 }
