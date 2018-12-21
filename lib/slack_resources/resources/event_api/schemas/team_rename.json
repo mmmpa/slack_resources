@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "team_name": {
+      "type": "string"
+    },
+    "team_rename": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/team_rename",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/team_name"
+        },
+        "type": {
+          "const": "team_rename"
+        }
+      },
+      "example": {
+        "name": "New Team Name Inc.",
+        "type": "team_rename"
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "url": "https://api.slack.com/events/message.im",
+  "event": "message.im",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "message.im": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message.im",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "channel_type": {
+          "const": "im"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "D024BE91L",
+        "channel_type": "im",
+        "event_ts": "1355517523.000005",
+        "text": "Hello hello can you hear me?",
+        "ts": "1355517523.000005",
+        "type": "message",
+        "user": "U2147483697"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/message.im",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "channel_type": {
+        "const": "im"
+      },
+      "event_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "text": {
+        "type": "string"
+      },
+      "ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "type": {
+        "const": "message"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "channel": "D024BE91L",
+      "channel_type": "im",
+      "event_ts": "1355517523.000005",
+      "text": "Hello hello can you hear me?",
+      "ts": "1355517523.000005",
+      "type": "message",
+      "user": "U2147483697"
+    }
+  },
+  "compatibility": [
+    "Events API"
+  ],
+  "scopes": [
+    "im:history"
+  ]
+}

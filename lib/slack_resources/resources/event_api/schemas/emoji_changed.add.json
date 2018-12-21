@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "timestamp": {
+      "type": "string"
+    },
+    "emoji_name": {
+      "type": "string"
+    },
+    "emoji_value": {
+      "type": "string"
+    },
+    "emoji_changed.add": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/emoji_changed",
+      "properties": {
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "name": {
+          "$ref": "#/definitions/emoji_name"
+        },
+        "subtype": {
+          "const": "add"
+        },
+        "type": {
+          "const": "emoji_changed"
+        },
+        "value": {
+          "$ref": "#/definitions/emoji_value"
+        }
+      },
+      "example": {
+        "event_ts": "1361482916.000004",
+        "name": "picard_facepalm",
+        "subtype": "add",
+        "type": "emoji_changed",
+        "value": "https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif"
+      }
+    }
+  }
+}

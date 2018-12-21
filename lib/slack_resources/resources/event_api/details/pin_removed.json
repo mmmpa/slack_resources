@@ -1,0 +1,94 @@
+{
+  "url": "https://api.slack.com/events/pin_removed",
+  "event": "pin_removed",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "pin_item": {
+      "type": "object",
+      "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
+      "properties": {
+      }
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "pin_removed": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/pin_removed",
+      "properties": {
+        "channel_id": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "has_pins": {
+          "type": "boolean"
+        },
+        "item": {
+          "$ref": "#/definitions/pin_item"
+        },
+        "type": {
+          "const": "pin_removed"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel_id": "C02ELGNBH",
+        "event_ts": "1360782804.083113",
+        "has_pins": false,
+        "item": {
+        },
+        "type": "pin_removed",
+        "user": "U024BE7LH"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/pin_removed",
+    "properties": {
+      "channel_id": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "event_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "has_pins": {
+        "type": "boolean"
+      },
+      "item": {
+        "$ref": "#/definitions/pin_item"
+      },
+      "type": {
+        "const": "pin_removed"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "channel_id": "C02ELGNBH",
+      "event_ts": "1360782804.083113",
+      "has_pins": false,
+      "item": {
+      },
+      "type": "pin_removed",
+      "user": "U024BE7LH"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "pins:read"
+  ]
+}

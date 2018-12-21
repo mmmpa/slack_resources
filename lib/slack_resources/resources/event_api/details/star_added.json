@@ -1,0 +1,75 @@
+{
+  "url": "https://api.slack.com/events/star_added",
+  "event": "star_added",
+  "sub_schemas": {
+    "timestamp": {
+      "type": "string"
+    },
+    "star_item": {
+      "type": "object",
+      "description": "definition snipped. learn more: https://api.slack.com/events/star_added",
+      "properties": {
+      }
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "star_added": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/star_added",
+      "properties": {
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "item": {
+          "$ref": "#/definitions/star_item"
+        },
+        "type": {
+          "const": "star_added"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "event_ts": "1360782804.083113",
+        "item": {
+        },
+        "type": "star_added",
+        "user": "U024BE7LH"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/star_added",
+    "properties": {
+      "event_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "item": {
+        "$ref": "#/definitions/star_item"
+      },
+      "type": {
+        "const": "star_added"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "event_ts": "1360782804.083113",
+      "item": {
+      },
+      "type": "star_added",
+      "user": "U024BE7LH"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "stars:read"
+  ]
+}

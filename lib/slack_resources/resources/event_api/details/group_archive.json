@@ -1,0 +1,48 @@
+{
+  "url": "https://api.slack.com/events/group_archive",
+  "event": "group_archive",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "group_archive": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/group_archive",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_archive"
+        }
+      },
+      "example": {
+        "channel": "G024BE91L",
+        "type": "group_archive"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/group_archive",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "type": {
+        "const": "group_archive"
+      }
+    },
+    "example": {
+      "channel": "G024BE91L",
+      "type": "group_archive"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "groups:read"
+  ]
+}

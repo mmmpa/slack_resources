@@ -1,0 +1,52 @@
+{
+  "url": "https://api.slack.com/events/url_verification",
+  "event": "url_verification",
+  "sub_schemas": {
+    "url_verification": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/url_verification",
+      "properties": {
+        "challenge": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "type": {
+          "const": "url_verification"
+        }
+      },
+      "example": {
+        "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
+        "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+        "type": "url_verification"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/url_verification",
+    "properties": {
+      "challenge": {
+        "type": "string"
+      },
+      "token": {
+        "type": "string"
+      },
+      "type": {
+        "const": "url_verification"
+      }
+    },
+    "example": {
+      "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
+      "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+      "type": "url_verification"
+    }
+  },
+  "compatibility": [
+    "Events API"
+  ],
+  "scopes": [
+
+  ]
+}

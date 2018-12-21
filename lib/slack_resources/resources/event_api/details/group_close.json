@@ -1,0 +1,59 @@
+{
+  "url": "https://api.slack.com/events/group_close",
+  "event": "group_close",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "group_close": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/group_close",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_close"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "G024BE91L",
+        "type": "group_close",
+        "user": "U024BE7LH"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/group_close",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "type": {
+        "const": "group_close"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "channel": "G024BE91L",
+      "type": "group_close",
+      "user": "U024BE7LH"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "groups:read"
+  ]
+}

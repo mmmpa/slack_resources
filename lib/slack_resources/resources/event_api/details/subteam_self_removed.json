@@ -1,0 +1,48 @@
+{
+  "url": "https://api.slack.com/events/subteam_self_removed",
+  "event": "subteam_self_removed",
+  "sub_schemas": {
+    "subteam_id": {
+      "type": "string"
+    },
+    "subteam_self_removed": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/subteam_self_removed",
+      "properties": {
+        "subteam_id": {
+          "$ref": "#/definitions/subteam_id"
+        },
+        "type": {
+          "const": "subteam_self_removed"
+        }
+      },
+      "example": {
+        "subteam_id": "S0615G0KT",
+        "type": "subteam_self_removed"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/subteam_self_removed",
+    "properties": {
+      "subteam_id": {
+        "$ref": "#/definitions/subteam_id"
+      },
+      "type": {
+        "const": "subteam_self_removed"
+      }
+    },
+    "example": {
+      "subteam_id": "S0615G0KT",
+      "type": "subteam_self_removed"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "usergroups:read"
+  ]
+}

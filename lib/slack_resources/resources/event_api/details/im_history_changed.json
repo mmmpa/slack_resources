@@ -1,0 +1,64 @@
+{
+  "url": "https://api.slack.com/events/im_history_changed",
+  "event": "im_history_changed",
+  "sub_schemas": {
+    "timestamp": {
+      "type": "string"
+    },
+    "im_history_changed": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/im_history_changed",
+      "properties": {
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "latest": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "im_history_changed"
+        }
+      },
+      "example": {
+        "event_ts": "1361482916.000004",
+        "latest": "1358877455.000010",
+        "ts": "1361482916.000003",
+        "type": "im_history_changed"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/im_history_changed",
+    "properties": {
+      "event_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "latest": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "type": {
+        "const": "im_history_changed"
+      }
+    },
+    "example": {
+      "event_ts": "1361482916.000004",
+      "latest": "1358877455.000010",
+      "ts": "1361482916.000003",
+      "type": "im_history_changed"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "im:history"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "url": "https://api.slack.com/events/user_change",
+  "event": "user_change",
+  "sub_schemas": {
+    "user": {
+      "type": "object",
+      "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
+      "properties": {
+      }
+    },
+    "user_change": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/user_change",
+      "properties": {
+        "type": {
+          "const": "user_change"
+        },
+        "user": {
+          "$ref": "#/definitions/user"
+        }
+      },
+      "example": {
+        "type": "user_change",
+        "user": {
+        }
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/user_change",
+    "properties": {
+      "type": {
+        "const": "user_change"
+      },
+      "user": {
+        "$ref": "#/definitions/user"
+      }
+    },
+    "example": {
+      "type": "user_change",
+      "user": {
+      }
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "users:read"
+  ]
+}

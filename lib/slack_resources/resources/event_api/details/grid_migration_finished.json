@@ -1,0 +1,47 @@
+{
+  "url": "https://api.slack.com/events/grid_migration_finished",
+  "event": "grid_migration_finished",
+  "sub_schemas": {
+    "enterprise_id": {
+      "type": "string"
+    },
+    "grid_migration_finished": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/grid_migration_finished",
+      "properties": {
+        "enterprise_id": {
+          "$ref": "#/definitions/enterprise_id"
+        },
+        "type": {
+          "const": "grid_migration_finished"
+        }
+      },
+      "example": {
+        "enterprise_id": "EXXXXXXXX",
+        "type": "grid_migration_finished"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/grid_migration_finished",
+    "properties": {
+      "enterprise_id": {
+        "$ref": "#/definitions/enterprise_id"
+      },
+      "type": {
+        "const": "grid_migration_finished"
+      }
+    },
+    "example": {
+      "enterprise_id": "EXXXXXXXX",
+      "type": "grid_migration_finished"
+    }
+  },
+  "compatibility": [
+    "Events API"
+  ],
+  "scopes": [
+
+  ]
+}

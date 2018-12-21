@@ -1,0 +1,53 @@
+{
+  "url": "https://api.slack.com/events/team_domain_change",
+  "event": "team_domain_change",
+  "sub_schemas": {
+    "team_domain_change": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/team_domain_change",
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "type": {
+          "const": "team_domain_change"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "domain": "my",
+        "type": "team_domain_change",
+        "url": "https://my.slack.com"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/team_domain_change",
+    "properties": {
+      "domain": {
+        "type": "string"
+      },
+      "type": {
+        "const": "team_domain_change"
+      },
+      "url": {
+        "type": "string"
+      }
+    },
+    "example": {
+      "domain": "my",
+      "type": "team_domain_change",
+      "url": "https://my.slack.com"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "team:read"
+  ]
+}

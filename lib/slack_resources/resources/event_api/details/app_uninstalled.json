@@ -1,0 +1,36 @@
+{
+  "url": "https://api.slack.com/events/app_uninstalled",
+  "event": "app_uninstalled",
+  "sub_schemas": {
+    "app_uninstalled": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/app_uninstalled",
+      "properties": {
+        "type": {
+          "const": "app_uninstalled"
+        }
+      },
+      "example": {
+        "type": "app_uninstalled"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/app_uninstalled",
+    "properties": {
+      "type": {
+        "const": "app_uninstalled"
+      }
+    },
+    "example": {
+      "type": "app_uninstalled"
+    }
+  },
+  "compatibility": [
+    "Events API"
+  ],
+  "scopes": [
+
+  ]
+}

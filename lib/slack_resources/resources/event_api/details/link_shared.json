@@ -1,0 +1,129 @@
+{
+  "url": "https://api.slack.com/events/link_shared",
+  "event": "link_shared",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "link": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "link_shared": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/link_shared",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/link"
+          }
+        },
+        "message_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "thread_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "link_shared"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "Cxxxxxx",
+        "links": [
+          {
+            "domain": "example.com",
+            "url": "https://example.com/12345"
+          },
+          {
+            "domain": "example.com",
+            "url": "https://example.com/67890"
+          },
+          {
+            "domain": "another-example.com",
+            "url": "https://yet.another-example.com/v/abcde"
+          }
+        ],
+        "message_ts": "123456789.9875",
+        "thread_ts": "123456621.1855",
+        "type": "link_shared",
+        "user": "Uxxxxxxx"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/link_shared",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "links": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/link"
+        }
+      },
+      "message_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "thread_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "type": {
+        "const": "link_shared"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "channel": "Cxxxxxx",
+      "links": [
+        {
+          "domain": "example.com",
+          "url": "https://example.com/12345"
+        },
+        {
+          "domain": "example.com",
+          "url": "https://example.com/67890"
+        },
+        {
+          "domain": "another-example.com",
+          "url": "https://yet.another-example.com/v/abcde"
+        }
+      ],
+      "message_ts": "123456789.9875",
+      "thread_ts": "123456621.1855",
+      "type": "link_shared",
+      "user": "Uxxxxxxx"
+    }
+  },
+  "compatibility": [
+    "Events API"
+  ],
+  "scopes": [
+    "links:read"
+  ]
+}

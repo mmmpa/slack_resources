@@ -1,0 +1,48 @@
+{
+  "url": "https://api.slack.com/events/channel_left",
+  "event": "channel_left",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "channel_left": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/channel_left",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "channel_left"
+        }
+      },
+      "example": {
+        "channel": "C024BE91L",
+        "type": "channel_left"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/channel_left",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "type": {
+        "const": "channel_left"
+      }
+    },
+    "example": {
+      "channel": "C024BE91L",
+      "type": "channel_left"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "channels:read"
+  ]
+}

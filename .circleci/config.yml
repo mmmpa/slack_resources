@@ -1,0 +1,72 @@
+version: 2
+jobs:
+  test:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby:2.5.1
+    steps:
+      - checkout
+      - run:
+          name: Test
+          command: bundle && bundle exec rspec -cfd
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+  deploy_gem:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby-2.5.1
+    steps:
+      - checkout
+      - run:
+          name: Deployment
+          command: ruby .circleci/gem_deployment.rb $RUBYGEMS_API_KEY
+
+  deploy_gem_minor:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby-2.5.1
+    steps:
+      - checkout
+      - run:
+          name: Deployment
+          command: ruby .circleci/gem_deployment.rb $RUBYGEMS_API_KEY minor
+
+  deploy_gem_major:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby-2.5.1
+    steps:
+      - checkout
+      - run:
+          name: Deployment
+          command: ruby .circleci/gem_deployment.rb $RUBYGEMS_API_KEY major
+
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
+      - deploy_gem:
+          filters:
+            branches:
+              only:
+                - deployment/gem
+          requires:
+            - test
+      - deploy_gem_minor:
+          filters:
+            branches:
+              only:
+                - deployment/gem_minor
+          requires:
+            - test
+      - deploy_gem_major:
+          filters:
+            branches:
+              only:
+                - deployment/gem_major
+          requires:
+            - test

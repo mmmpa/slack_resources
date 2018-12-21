@@ -1,0 +1,53 @@
+{
+  "url": "https://api.slack.com/events/team_join",
+  "event": "team_join",
+  "sub_schemas": {
+    "user": {
+      "type": "object",
+      "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
+      "properties": {
+      }
+    },
+    "team_join": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/team_join",
+      "properties": {
+        "type": {
+          "const": "team_join"
+        },
+        "user": {
+          "$ref": "#/definitions/user"
+        }
+      },
+      "example": {
+        "type": "team_join",
+        "user": {
+        }
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/team_join",
+    "properties": {
+      "type": {
+        "const": "team_join"
+      },
+      "user": {
+        "$ref": "#/definitions/user"
+      }
+    },
+    "example": {
+      "type": "team_join",
+      "user": {
+      }
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "users:read"
+  ]
+}

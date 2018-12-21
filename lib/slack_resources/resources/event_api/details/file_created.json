@@ -1,0 +1,69 @@
+{
+  "url": "https://api.slack.com/events/file_created",
+  "event": "file_created",
+  "sub_schemas": {
+    "file_id": {
+      "type": "string"
+    },
+    "file": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/file_id"
+        }
+      }
+    },
+    "file_created": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/file_created",
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/file"
+        },
+        "file_id": {
+          "$ref": "#/definitions/file_id"
+        },
+        "type": {
+          "const": "file_created"
+        }
+      },
+      "example": {
+        "file": {
+          "id": "F2147483862"
+        },
+        "file_id": "F2147483862",
+        "type": "file_created"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/file_created",
+    "properties": {
+      "file": {
+        "$ref": "#/definitions/file"
+      },
+      "file_id": {
+        "$ref": "#/definitions/file_id"
+      },
+      "type": {
+        "const": "file_created"
+      }
+    },
+    "example": {
+      "file": {
+        "id": "F2147483862"
+      },
+      "file_id": "F2147483862",
+      "type": "file_created"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "files:read"
+  ]
+}

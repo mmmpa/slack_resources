@@ -1,0 +1,56 @@
+{
+  "url": "https://api.slack.com/events/email_domain_changed",
+  "event": "email_domain_changed",
+  "sub_schemas": {
+    "timestamp": {
+      "type": "string"
+    },
+    "email_domain_changed": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/email_domain_changed",
+      "properties": {
+        "email_domain": {
+          "type": "string"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "email_domain_changed"
+        }
+      },
+      "example": {
+        "email_domain": "example.com",
+        "event_ts": "1360782804.083113",
+        "type": "email_domain_changed"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/email_domain_changed",
+    "properties": {
+      "email_domain": {
+        "type": "string"
+      },
+      "event_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "type": {
+        "const": "email_domain_changed"
+      }
+    },
+    "example": {
+      "email_domain": "example.com",
+      "event_ts": "1360782804.083113",
+      "type": "email_domain_changed"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "team:read"
+  ]
+}

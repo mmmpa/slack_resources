@@ -1,0 +1,59 @@
+{
+  "url": "https://api.slack.com/events/im_open",
+  "event": "im_open",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "im_open": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/im_open",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "im_open"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "D024BE91L",
+        "type": "im_open",
+        "user": "U024BE7LH"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/im_open",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "type": {
+        "const": "im_open"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "channel": "D024BE91L",
+      "type": "im_open",
+      "user": "U024BE7LH"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "im:read"
+  ]
+}

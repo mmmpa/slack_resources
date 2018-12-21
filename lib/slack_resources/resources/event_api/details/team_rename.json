@@ -1,0 +1,48 @@
+{
+  "url": "https://api.slack.com/events/team_rename",
+  "event": "team_rename",
+  "sub_schemas": {
+    "team_name": {
+      "type": "string"
+    },
+    "team_rename": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/team_rename",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/team_name"
+        },
+        "type": {
+          "const": "team_rename"
+        }
+      },
+      "example": {
+        "name": "New Team Name Inc.",
+        "type": "team_rename"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/team_rename",
+    "properties": {
+      "name": {
+        "$ref": "#/definitions/team_name"
+      },
+      "type": {
+        "const": "team_rename"
+      }
+    },
+    "example": {
+      "name": "New Team Name Inc.",
+      "type": "team_rename"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "team:read"
+  ]
+}

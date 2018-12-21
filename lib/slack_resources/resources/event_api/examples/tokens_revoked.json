@@ -1,0 +1,11 @@
+{
+  "tokens": {
+    "oauth": [
+      "UXXXXXXXX"
+    ],
+    "bot": [
+      "UXXXXXXXX"
+    ]
+  },
+  "type": "tokens_revoked"
+}

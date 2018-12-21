@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "channel": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "created": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "id": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "name": {
+          "$ref": "#/definitions/channel_name"
+        }
+      }
+    },
+    "channel_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "app_home",
+        "im",
+        "channel",
+        "group",
+        "mpim",
+        null
+      ]
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "ts": {
+      "type": "string"
+    },
+    "user": {
+      "type": "object",
+      "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
+      "properties": {
+      }
+    },
+    "message": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel"
+        },
+        "channel_type": {
+          "$ref": "#/definitions/channel_type"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/ts"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user"
+        }
+      },
+      "example": {
+        "channel": "D0PNCRP9N",
+        "channel_type": "app_home",
+        "event_ts": "1525215129.000001",
+        "text": "How many cats did we herd yesterday?",
+        "ts": "1525215129.000001",
+        "type": "message",
+        "user": "U061F7AUR"
+      }
+    }
+  }
+}

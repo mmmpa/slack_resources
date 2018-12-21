@@ -1,0 +1,73 @@
+{
+  "url": "https://api.slack.com/events/im_created",
+  "event": "im_created",
+  "sub_schemas": {
+    "channel": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "created": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "id": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "name": {
+          "$ref": "#/definitions/channel_name"
+        }
+      }
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "im_created": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/im_created",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel"
+        },
+        "type": {
+          "const": "im_created"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": {
+        },
+        "type": "im_created",
+        "user": "U024BE7LH"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/im_created",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel"
+      },
+      "type": {
+        "const": "im_created"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "channel": {
+      },
+      "type": "im_created",
+      "user": "U024BE7LH"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "im:read"
+  ]
+}

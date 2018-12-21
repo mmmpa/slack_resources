@@ -1,0 +1,59 @@
+{
+  "url": "https://api.slack.com/events/channel_archive",
+  "event": "channel_archive",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "channel_archive": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/channel_archive",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "channel_archive"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "C024BE91L",
+        "type": "channel_archive",
+        "user": "U024BE7LH"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/channel_archive",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "type": {
+        "const": "channel_archive"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "channel": "C024BE91L",
+      "type": "channel_archive",
+      "user": "U024BE7LH"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "channels:read"
+  ]
+}

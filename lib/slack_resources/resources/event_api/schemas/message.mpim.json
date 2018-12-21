@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "channel_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "message.mpim": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message.mpim",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "channel_type": {
+          "const": "mpim"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "G024BE91L",
+        "channel_type": "mpim",
+        "event_ts": "1355517523.000005",
+        "text": "Let's make a pact.",
+        "ts": "1355517523.000005",
+        "type": "message",
+        "user": "U2147483697"
+      }
+    }
+  }
+}

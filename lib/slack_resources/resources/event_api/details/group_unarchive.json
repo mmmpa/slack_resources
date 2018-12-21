@@ -1,0 +1,48 @@
+{
+  "url": "https://api.slack.com/events/group_unarchive",
+  "event": "group_unarchive",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "group_unarchive": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/group_unarchive",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_unarchive"
+        }
+      },
+      "example": {
+        "channel": "G024BE91L",
+        "type": "group_unarchive"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/group_unarchive",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
+      },
+      "type": {
+        "const": "group_unarchive"
+      }
+    },
+    "example": {
+      "channel": "G024BE91L",
+      "type": "group_unarchive"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "groups:read"
+  ]
+}
