@@ -1,87 +1,108 @@
 {
   "url": "https://api.slack.com/events/reaction_removed",
-  "type": "reaction_removed",
-  "response": {
-    "event_ts": "1360782804.083113",
-    "item": {
-      "type": "message",
-      "channel": "C0G9QF9GZ",
-      "ts": "1360782400.498405"
+  "event": "reaction_removed",
+  "sub_schemas": {
+    "timestamp": {
+      "type": "string"
     },
-    "item_user": "U0G9QF9C6",
-    "reaction": "thumbsup",
-    "type": "reaction_removed",
-    "user": "U024BE7LH"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "timestamp": {
-        "type": "string"
-      },
-      "channel_id": {
-        "type": "string"
-      },
-      "reaction_item_type": {
-        "type": "string"
-      },
-      "reaction_item": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "channel": {
-            "$ref": "#/definitions/channel_id"
-          },
-          "ts": {
-            "$ref": "#/definitions/timestamp"
-          },
-          "type": {
-            "$ref": "#/definitions/reaction_item_type"
-          }
-        }
-      },
-      "user_id": {
-        "type": "string"
-      },
-      "emoji_name": {
-        "type": "string"
-      },
-      "reaction_removed": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/reaction_removed",
-        "properties": {
-          "event_ts": {
-            "$ref": "#/definitions/timestamp"
-          },
-          "item": {
-            "$ref": "#/definitions/reaction_item"
-          },
-          "item_user": {
-            "$ref": "#/definitions/user_id"
-          },
-          "reaction": {
-            "$ref": "#/definitions/emoji_name"
-          },
-          "type": {
-            "const": "reaction_removed"
-          },
-          "user": {
-            "$ref": "#/definitions/user_id"
-          }
+    "channel_id": {
+      "type": "string"
+    },
+    "reaction_item_type": {
+      "type": "string"
+    },
+    "reaction_item": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
         },
-        "example": {
-          "event_ts": "1360782804.083113",
-          "item": {
-            "type": "message",
-            "channel": "C0G9QF9GZ",
-            "ts": "1360782400.498405"
-          },
-          "item_user": "U0G9QF9C6",
-          "reaction": "thumbsup",
-          "type": "reaction_removed",
-          "user": "U024BE7LH"
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "$ref": "#/definitions/reaction_item_type"
         }
       }
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "emoji_name": {
+      "type": "string"
+    },
+    "reaction_removed": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/reaction_removed",
+      "properties": {
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "item": {
+          "$ref": "#/definitions/reaction_item"
+        },
+        "item_user": {
+          "$ref": "#/definitions/user_id"
+        },
+        "reaction": {
+          "$ref": "#/definitions/emoji_name"
+        },
+        "type": {
+          "const": "reaction_removed"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "event_ts": "1360782804.083113",
+        "item": {
+          "type": "message",
+          "channel": "C0G9QF9GZ",
+          "ts": "1360782400.498405"
+        },
+        "item_user": "U0G9QF9C6",
+        "reaction": "thumbsup",
+        "type": "reaction_removed",
+        "user": "U024BE7LH"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/reaction_removed",
+    "properties": {
+      "event_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "item": {
+        "$ref": "#/definitions/reaction_item"
+      },
+      "item_user": {
+        "$ref": "#/definitions/user_id"
+      },
+      "reaction": {
+        "$ref": "#/definitions/emoji_name"
+      },
+      "type": {
+        "const": "reaction_removed"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "event_ts": "1360782804.083113",
+      "item": {
+        "type": "message",
+        "channel": "C0G9QF9GZ",
+        "ts": "1360782400.498405"
+      },
+      "item_user": "U0G9QF9C6",
+      "reaction": "thumbsup",
+      "type": "reaction_removed",
+      "user": "U024BE7LH"
     }
   },
   "compatibility": [

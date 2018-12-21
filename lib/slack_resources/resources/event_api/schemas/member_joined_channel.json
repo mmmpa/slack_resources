@@ -4,9 +4,6 @@
     "channel_id": {
       "type": "string"
     },
-    "channel_type": {
-      "type": "string"
-    },
     "user_id": {
       "type": "string"
     },
@@ -21,7 +18,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "$ref": "#/definitions/channel_type"
+          "const": "C"
         },
         "inviter": {
           "$ref": "#/definitions/user_id"

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
-    "root_name": {
+    "team_name": {
       "type": "string"
     },
     "team_rename": {
@@ -9,7 +9,7 @@
       "description": "learn more: https://api.slack.com/events/team_rename",
       "properties": {
         "name": {
-          "$ref": "#/definitions/root_name"
+          "$ref": "#/definitions/team_name"
         },
         "type": {
           "const": "team_rename"

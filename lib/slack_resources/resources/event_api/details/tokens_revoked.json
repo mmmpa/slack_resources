@@ -1,61 +1,70 @@
 {
   "url": "https://api.slack.com/events/tokens_revoked",
-  "type": "tokens_revoked",
-  "response": {
+  "event": "tokens_revoked",
+  "sub_schemas": {
     "tokens": {
-      "oauth": [
-        "UXXXXXXXX"
-      ],
-      "bot": [
-        "UXXXXXXXX"
-      ]
-    },
-    "type": "tokens_revoked"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "tokens": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "bot": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "oauth": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "tokens_revoked": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/tokens_revoked",
-        "properties": {
-          "tokens": {
-            "$ref": "#/definitions/tokens"
-          },
-          "type": {
-            "const": "tokens_revoked"
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "bot": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         },
-        "example": {
-          "tokens": {
-            "oauth": [
-              "UXXXXXXXX"
-            ],
-            "bot": [
-              "UXXXXXXXX"
-            ]
-          },
-          "type": "tokens_revoked"
+        "oauth": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
+    },
+    "tokens_revoked": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/tokens_revoked",
+      "properties": {
+        "tokens": {
+          "$ref": "#/definitions/tokens"
+        },
+        "type": {
+          "const": "tokens_revoked"
+        }
+      },
+      "example": {
+        "tokens": {
+          "oauth": [
+            "UXXXXXXXX"
+          ],
+          "bot": [
+            "UXXXXXXXX"
+          ]
+        },
+        "type": "tokens_revoked"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/tokens_revoked",
+    "properties": {
+      "tokens": {
+        "$ref": "#/definitions/tokens"
+      },
+      "type": {
+        "const": "tokens_revoked"
+      }
+    },
+    "example": {
+      "tokens": {
+        "oauth": [
+          "UXXXXXXXX"
+        ],
+        "bot": [
+          "UXXXXXXXX"
+        ]
+      },
+      "type": "tokens_revoked"
     }
   },
   "compatibility": [

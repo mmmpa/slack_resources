@@ -1,61 +1,70 @@
 {
   "url": "https://api.slack.com/events/channel_rename",
-  "type": "channel_rename",
-  "response": {
-    "channel": {
-      "id": "C02ELGNBH",
-      "name": "new_name",
-      "created": 1360782804
+  "event": "channel_rename",
+  "sub_schemas": {
+    "time_integer": {
+      "type": "number"
     },
-    "type": "channel_rename"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "time_integer": {
-        "type": "number"
-      },
-      "channel_id": {
-        "type": "string"
-      },
-      "channel_name": {
-        "type": "string"
-      },
-      "channel": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "created": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "id": {
-            "$ref": "#/definitions/channel_id"
-          },
-          "name": {
-            "$ref": "#/definitions/channel_name"
-          }
-        }
-      },
-      "channel_rename": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/channel_rename",
-        "properties": {
-          "channel": {
-            "$ref": "#/definitions/channel"
-          },
-          "type": {
-            "const": "channel_rename"
-          }
+    "channel_id": {
+      "type": "string"
+    },
+    "channel_name": {
+      "type": "string"
+    },
+    "channel": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "created": {
+          "$ref": "#/definitions/time_integer"
         },
-        "example": {
-          "channel": {
-            "id": "C02ELGNBH",
-            "name": "new_name",
-            "created": 1360782804
-          },
-          "type": "channel_rename"
+        "id": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "name": {
+          "$ref": "#/definitions/channel_name"
         }
       }
+    },
+    "channel_rename": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/channel_rename",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel"
+        },
+        "type": {
+          "const": "channel_rename"
+        }
+      },
+      "example": {
+        "channel": {
+          "id": "C02ELGNBH",
+          "name": "new_name",
+          "created": 1360782804
+        },
+        "type": "channel_rename"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/channel_rename",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel"
+      },
+      "type": {
+        "const": "channel_rename"
+      }
+    },
+    "example": {
+      "channel": {
+        "id": "C02ELGNBH",
+        "name": "new_name",
+        "created": 1360782804
+      },
+      "type": "channel_rename"
     }
   },
   "compatibility": [

@@ -1,6 +1,21 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "definitions": {
+    "resource_item": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "resource": {
+          "$ref": "#/definitions/resource"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/scope"
+          }
+        }
+      }
+    },
     "resource_id": {
       "type": "string"
     },
@@ -55,21 +70,6 @@
         "usergroups:read",
         "users:read"
       ]
-    },
-    "resource_item": {
-      "type": "object",
-      "description": "(defined by script)",
-      "properties": {
-        "resource": {
-          "$ref": "#/definitions/resource"
-        },
-        "scopes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/scope"
-          }
-        }
-      }
     },
     "resources_added": {
       "type": "object",

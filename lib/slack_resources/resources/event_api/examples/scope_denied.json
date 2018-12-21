@@ -1,0 +1,9 @@
+{
+  "scopes": [
+    "files:read",
+    "files:write",
+    "chat:write"
+  ],
+  "trigger_id": "241582872337.47445629121.string",
+  "type": "scope_denied"
+}

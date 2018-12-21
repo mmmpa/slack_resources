@@ -1,56 +1,74 @@
 {
   "url": "https://api.slack.com/events/app_rate_limited",
-  "type": "app_rate_limited",
-  "response": {
-    "api_app_id": "A123456",
-    "minute_rate_limited": 1518467820,
-    "team_id": "T123456",
-    "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-    "type": "app_rate_limited"
+  "event": "app_rate_limited",
+  "sub_schemas": {
+    "api_app_id": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "team_id": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "app_rate_limited": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/app_rate_limited",
+      "properties": {
+        "api_app_id": {
+          "$ref": "#/definitions/api_app_id"
+        },
+        "minute_rate_limited": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "token": {
+          "$ref": "#/definitions/token"
+        },
+        "type": {
+          "const": "app_rate_limited"
+        }
+      },
+      "example": {
+        "api_app_id": "A123456",
+        "minute_rate_limited": 1518467820,
+        "team_id": "T123456",
+        "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+        "type": "app_rate_limited"
+      }
+    }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/app_rate_limited",
+    "properties": {
       "api_app_id": {
-        "type": "string"
+        "$ref": "#/definitions/api_app_id"
       },
-      "time_integer": {
-        "type": "number"
+      "minute_rate_limited": {
+        "$ref": "#/definitions/time_integer"
       },
       "team_id": {
-        "type": "string"
+        "$ref": "#/definitions/team_id"
       },
       "token": {
-        "type": "string"
+        "$ref": "#/definitions/token"
       },
-      "app_rate_limited": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/app_rate_limited",
-        "properties": {
-          "api_app_id": {
-            "$ref": "#/definitions/api_app_id"
-          },
-          "minute_rate_limited": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "team_id": {
-            "$ref": "#/definitions/team_id"
-          },
-          "token": {
-            "$ref": "#/definitions/token"
-          },
-          "type": {
-            "const": "app_rate_limited"
-          }
-        },
-        "example": {
-          "api_app_id": "A123456",
-          "minute_rate_limited": 1518467820,
-          "team_id": "T123456",
-          "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-          "type": "app_rate_limited"
-        }
+      "type": {
+        "const": "app_rate_limited"
       }
+    },
+    "example": {
+      "api_app_id": "A123456",
+      "minute_rate_limited": 1518467820,
+      "team_id": "T123456",
+      "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+      "type": "app_rate_limited"
     }
   },
   "compatibility": [

@@ -1,32 +1,41 @@
 {
   "url": "https://api.slack.com/events/group_left",
-  "type": "group_left",
-  "response": {
-    "channel": "G02ELGNBH",
-    "type": "group_left"
+  "event": "group_left",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "group_left": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/group_left",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_left"
+        }
+      },
+      "example": {
+        "channel": "G02ELGNBH",
+        "type": "group_left"
+      }
+    }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "channel_id": {
-        "type": "string"
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/group_left",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
       },
-      "group_left": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/group_left",
-        "properties": {
-          "channel": {
-            "$ref": "#/definitions/channel_id"
-          },
-          "type": {
-            "const": "group_left"
-          }
-        },
-        "example": {
-          "channel": "G02ELGNBH",
-          "type": "group_left"
-        }
+      "type": {
+        "const": "group_left"
       }
+    },
+    "example": {
+      "channel": "G02ELGNBH",
+      "type": "group_left"
     }
   },
   "compatibility": [

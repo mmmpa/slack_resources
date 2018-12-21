@@ -4,9 +4,6 @@
     "comment_id": {
       "type": "string"
     },
-    "file_id": {
-      "type": "string"
-    },
     "file": {
       "type": "object",
       "description": "(defined by script)",
@@ -15,6 +12,9 @@
           "$ref": "#/definitions/file_id"
         }
       }
+    },
+    "file_id": {
+      "type": "string"
     },
     "file_comment_deleted": {
       "type": "object",

@@ -1,32 +1,41 @@
 {
   "url": "https://api.slack.com/events/subteam_self_added",
-  "type": "subteam_self_added",
-  "response": {
-    "subteam_id": "S0615G0KT",
-    "type": "subteam_self_added"
+  "event": "subteam_self_added",
+  "sub_schemas": {
+    "subteam_id": {
+      "type": "string"
+    },
+    "subteam_self_added": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/subteam_self_added",
+      "properties": {
+        "subteam_id": {
+          "$ref": "#/definitions/subteam_id"
+        },
+        "type": {
+          "const": "subteam_self_added"
+        }
+      },
+      "example": {
+        "subteam_id": "S0615G0KT",
+        "type": "subteam_self_added"
+      }
+    }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/subteam_self_added",
+    "properties": {
       "subteam_id": {
-        "type": "string"
+        "$ref": "#/definitions/subteam_id"
       },
-      "subteam_self_added": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/subteam_self_added",
-        "properties": {
-          "subteam_id": {
-            "$ref": "#/definitions/subteam_id"
-          },
-          "type": {
-            "const": "subteam_self_added"
-          }
-        },
-        "example": {
-          "subteam_id": "S0615G0KT",
-          "type": "subteam_self_added"
-        }
+      "type": {
+        "const": "subteam_self_added"
       }
+    },
+    "example": {
+      "subteam_id": "S0615G0KT",
+      "type": "subteam_self_added"
     }
   },
   "compatibility": [

@@ -1,134 +1,146 @@
 {
   "url": "https://api.slack.com/events/resources_added",
-  "type": "resources_added",
-  "response": {
-    "resources": [
-      {
+  "event": "resources_added",
+  "sub_schemas": {
+    "resource_item": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
         "resource": {
-          "type": "im",
-          "grant": {
-            "type": "specific",
-            "resource_id": "DXXXXXXXX"
+          "$ref": "#/definitions/resource"
+        },
+        "scopes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/scope"
+          }
+        }
+      }
+    },
+    "resource_id": {
+      "type": "string"
+    },
+    "grant_type": {
+      "type": "string"
+    },
+    "grant": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "resource_id": {
+          "$ref": "#/definitions/resource_id"
+        },
+        "type": {
+          "$ref": "#/definitions/grant_type"
+        }
+      }
+    },
+    "resource_type": {
+      "type": "string"
+    },
+    "resource": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "grant": {
+          "$ref": "#/definitions/grant"
+        },
+        "type": {
+          "$ref": "#/definitions/resource_type"
+        }
+      }
+    },
+    "scope": {
+      "type": "string",
+      "enum": [
+        "channels:read",
+        "channels:history",
+        "groups:history",
+        "mpim:history",
+        "dnd:read",
+        "team:read",
+        "emoji:read",
+        "files:read",
+        "groups:read",
+        "im:read",
+        "im:history",
+        "links:read",
+        "pins:read",
+        "reactions:read",
+        "stars:read",
+        "usergroups:read",
+        "users:read"
+      ]
+    },
+    "resources_added": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/resources_added",
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/resource_item"
           }
         },
-        "scopes": [
-          "chat:write:user",
-          "im:read",
-          "im:history",
-          "commands"
-        ]
+        "type": {
+          "const": "resources_added"
+        }
+      },
+      "example": {
+        "resources": [
+          {
+            "resource": {
+              "type": "im",
+              "grant": {
+                "type": "specific",
+                "resource_id": "DXXXXXXXX"
+              }
+            },
+            "scopes": [
+              "chat:write:user",
+              "im:read",
+              "im:history",
+              "commands"
+            ]
+          }
+        ],
+        "type": "resources_added"
       }
-    ],
-    "type": "resources_added"
+    }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "resource_id": {
-        "type": "string"
-      },
-      "grant_type": {
-        "type": "string"
-      },
-      "grant": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "resource_id": {
-            "$ref": "#/definitions/resource_id"
-          },
-          "type": {
-            "$ref": "#/definitions/grant_type"
-          }
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/resources_added",
+    "properties": {
+      "resources": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/resource_item"
         }
       },
-      "resource_type": {
-        "type": "string"
-      },
-      "resource": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "grant": {
-            "$ref": "#/definitions/grant"
-          },
-          "type": {
-            "$ref": "#/definitions/resource_type"
-          }
-        }
-      },
-      "scope": {
-        "type": "string",
-        "enum": [
-          "channels:read",
-          "channels:history",
-          "groups:history",
-          "mpim:history",
-          "dnd:read",
-          "team:read",
-          "emoji:read",
-          "files:read",
-          "groups:read",
-          "im:read",
-          "im:history",
-          "links:read",
-          "pins:read",
-          "reactions:read",
-          "stars:read",
-          "usergroups:read",
-          "users:read"
-        ]
-      },
-      "resource_item": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "resource": {
-            "$ref": "#/definitions/resource"
-          },
-          "scopes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/scope"
-            }
-          }
-        }
-      },
-      "resources_added": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/resources_added",
-        "properties": {
-          "resources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/resource_item"
-            }
-          },
-          "type": {
-            "const": "resources_added"
-          }
-        },
-        "example": {
-          "resources": [
-            {
-              "resource": {
-                "type": "im",
-                "grant": {
-                  "type": "specific",
-                  "resource_id": "DXXXXXXXX"
-                }
-              },
-              "scopes": [
-                "chat:write:user",
-                "im:read",
-                "im:history",
-                "commands"
-              ]
-            }
-          ],
-          "type": "resources_added"
-        }
+      "type": {
+        "const": "resources_added"
       }
+    },
+    "example": {
+      "resources": [
+        {
+          "resource": {
+            "type": "im",
+            "grant": {
+              "type": "specific",
+              "resource_id": "DXXXXXXXX"
+            }
+          },
+          "scopes": [
+            "chat:write:user",
+            "im:read",
+            "im:history",
+            "commands"
+          ]
+        }
+      ],
+      "type": "resources_added"
     }
   },
   "compatibility": [

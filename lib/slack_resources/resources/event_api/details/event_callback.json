@@ -1,94 +1,124 @@
 {
   "url": null,
-  "type": "event_callback",
-  "response": {
-    "api_app_id": "AXXXXXXXXX",
-    "authed_users": [
-      "UXXXXXXX1",
-      "UXXXXXXX2"
-    ],
-    "event": {
+  "event": "event_callback",
+  "sub_schemas": {
+    "api_app_id": {
+      "type": "string"
     },
-    "event_id": "Ev08MFMKH6",
-    "event_time": 1234567890,
-    "team_id": "TXXXXXXXX",
-    "token": "XXYYZZ",
-    "type": "event_callback"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "api_app_id": {
-        "type": "string"
-      },
-      "user_id": {
-        "type": "string"
-      },
-      "event": {
-        "type": "object",
-        "description": "definition snipped. learn more: ",
-        "properties": {
-        }
-      },
-      "event_id": {
-        "type": "string"
-      },
-      "time_integer": {
-        "type": "number"
-      },
-      "team_id": {
-        "type": "string"
-      },
-      "token": {
-        "type": "string"
-      },
-      "event_callback": {
-        "type": "object",
-        "description": "learn more: ",
-        "properties": {
-          "api_app_id": {
-            "$ref": "#/definitions/api_app_id"
-          },
-          "authed_users": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "event": {
-            "$ref": "#/definitions/event"
-          },
-          "event_id": {
-            "$ref": "#/definitions/event_id"
-          },
-          "event_time": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "team_id": {
-            "$ref": "#/definitions/team_id"
-          },
-          "token": {
-            "$ref": "#/definitions/token"
-          },
-          "type": {
-            "const": "event_callback"
+    "user_id": {
+      "type": "string"
+    },
+    "event": {
+      "type": "object",
+      "description": "definition snipped. learn more: ",
+      "properties": {
+      }
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "team_id": {
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    },
+    "event_callback": {
+      "type": "object",
+      "description": "learn more: ",
+      "properties": {
+        "api_app_id": {
+          "$ref": "#/definitions/api_app_id"
+        },
+        "authed_users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/user_id"
           }
         },
-        "example": {
-          "api_app_id": "AXXXXXXXXX",
-          "authed_users": [
-            "UXXXXXXX1",
-            "UXXXXXXX2"
-          ],
-          "event": {
-          },
-          "event_id": "Ev08MFMKH6",
-          "event_time": 1234567890,
-          "team_id": "TXXXXXXXX",
-          "token": "XXYYZZ",
-          "type": "event_callback"
+        "event": {
+          "$ref": "#/definitions/event"
+        },
+        "event_id": {
+          "$ref": "#/definitions/event_id"
+        },
+        "event_time": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "token": {
+          "$ref": "#/definitions/token"
+        },
+        "type": {
+          "const": "event_callback"
         }
+      },
+      "example": {
+        "api_app_id": "AXXXXXXXXX",
+        "authed_users": [
+          "UXXXXXXX1",
+          "UXXXXXXX2"
+        ],
+        "event": {
+        },
+        "event_id": "Ev08MFMKH6",
+        "event_time": 1234567890,
+        "team_id": "TXXXXXXXX",
+        "token": "XXYYZZ",
+        "type": "event_callback"
       }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: ",
+    "properties": {
+      "api_app_id": {
+        "$ref": "#/definitions/api_app_id"
+      },
+      "authed_users": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "event": {
+        "$ref": "#/definitions/event"
+      },
+      "event_id": {
+        "$ref": "#/definitions/event_id"
+      },
+      "event_time": {
+        "$ref": "#/definitions/time_integer"
+      },
+      "team_id": {
+        "$ref": "#/definitions/team_id"
+      },
+      "token": {
+        "$ref": "#/definitions/token"
+      },
+      "type": {
+        "const": "event_callback"
+      }
+    },
+    "example": {
+      "api_app_id": "AXXXXXXXXX",
+      "authed_users": [
+        "UXXXXXXX1",
+        "UXXXXXXX2"
+      ],
+      "event": {
+      },
+      "event_id": "Ev08MFMKH6",
+      "event_time": 1234567890,
+      "team_id": "TXXXXXXXX",
+      "token": "XXYYZZ",
+      "type": "event_callback"
     }
   },
   "compatibility": null,

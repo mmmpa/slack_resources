@@ -1,50 +1,62 @@
 {
   "url": "https://api.slack.com/events/file_unshared",
-  "type": "file_unshared",
-  "response": {
+  "event": "file_unshared",
+  "sub_schemas": {
     "file": {
-      "id": "F2147483862"
-    },
-    "file_id": "F2147483862",
-    "type": "file_unshared"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "file_id": {
-        "type": "string"
-      },
-      "file": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "id": {
-            "$ref": "#/definitions/file_id"
-          }
-        }
-      },
-      "file_unshared": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/file_unshared",
-        "properties": {
-          "file": {
-            "$ref": "#/definitions/file"
-          },
-          "file_id": {
-            "$ref": "#/definitions/file_id"
-          },
-          "type": {
-            "const": "file_unshared"
-          }
-        },
-        "example": {
-          "file": {
-            "id": "F2147483862"
-          },
-          "file_id": "F2147483862",
-          "type": "file_unshared"
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "id": {
+          "$ref": "#/definitions/file_id"
         }
       }
+    },
+    "file_id": {
+      "type": "string"
+    },
+    "file_unshared": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/file_unshared",
+      "properties": {
+        "file": {
+          "$ref": "#/definitions/file"
+        },
+        "file_id": {
+          "$ref": "#/definitions/file_id"
+        },
+        "type": {
+          "const": "file_unshared"
+        }
+      },
+      "example": {
+        "file": {
+          "id": "F2147483862"
+        },
+        "file_id": "F2147483862",
+        "type": "file_unshared"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/file_unshared",
+    "properties": {
+      "file": {
+        "$ref": "#/definitions/file"
+      },
+      "file_id": {
+        "$ref": "#/definitions/file_id"
+      },
+      "type": {
+        "const": "file_unshared"
+      }
+    },
+    "example": {
+      "file": {
+        "id": "F2147483862"
+      },
+      "file_id": "F2147483862",
+      "type": "file_unshared"
     }
   },
   "compatibility": [

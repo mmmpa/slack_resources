@@ -85,9 +85,6 @@
         null
       ]
     },
-    "challenge": {
-      "type": "string"
-    },
     "channel": {
       "type": "object",
       "description": "(defined by script)",
@@ -227,7 +224,18 @@
       }
     },
     "channel_type": {
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "app_home",
+        "im",
+        "channel",
+        "group",
+        "mpim",
+        null
+      ]
     },
     "channel_unarchive": {
       "type": "object",
@@ -350,6 +358,9 @@
         "event_ts": {
           "$ref": "#/definitions/timestamp"
         },
+        "name": {
+          "$ref": "#/definitions/emoji_name"
+        },
         "names": {
           "type": "array",
           "items": {
@@ -357,7 +368,66 @@
           }
         },
         "subtype": {
-          "$ref": "#/definitions/subscription_subtype"
+          "$ref": "#/definitions/emoji_subtype"
+        },
+        "type": {
+          "const": "emoji_changed"
+        },
+        "value": {
+          "$ref": "#/definitions/emoji_value"
+        }
+      },
+      "example": {
+        "event_ts": "1361482916.000004",
+        "name": "picard_facepalm",
+        "subtype": "add",
+        "type": "emoji_changed",
+        "value": "https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif"
+      }
+    },
+    "emoji_changed.add": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/emoji_changed",
+      "properties": {
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "name": {
+          "$ref": "#/definitions/emoji_name"
+        },
+        "subtype": {
+          "const": "add"
+        },
+        "type": {
+          "const": "emoji_changed"
+        },
+        "value": {
+          "$ref": "#/definitions/emoji_value"
+        }
+      },
+      "example": {
+        "event_ts": "1361482916.000004",
+        "name": "picard_facepalm",
+        "subtype": "add",
+        "type": "emoji_changed",
+        "value": "https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif"
+      }
+    },
+    "emoji_changed.remove": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/emoji_changed",
+      "properties": {
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "names": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/emoji_name"
+          }
+        },
+        "subtype": {
+          "const": "remove"
         },
         "type": {
           "const": "emoji_changed"
@@ -372,8 +442,31 @@
         "type": "emoji_changed"
       }
     },
+    "emoji_changed_subtype": {
+      "type": "string",
+      "enum": [
+        "add",
+        "remove"
+      ]
+    },
     "emoji_name": {
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "emoji_subtype": {
+      "type": "string",
+      "enum": [
+        "add",
+        "remove"
+      ]
+    },
+    "emoji_value": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "enterprise_id": {
       "type": "string"
@@ -1007,7 +1100,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "$ref": "#/definitions/channel_type"
+          "const": "C"
         },
         "inviter": {
           "$ref": "#/definitions/user_id"
@@ -1039,7 +1132,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "$ref": "#/definitions/channel_type"
+          "const": "C"
         },
         "team": {
           "$ref": "#/definitions/team_id"
@@ -1064,10 +1157,10 @@
       "description": "learn more: https://api.slack.com/events/message",
       "properties": {
         "channel": {
-          "$ref": "#/definitions/channel_id"
+          "$ref": "#/definitions/channel"
         },
         "channel_type": {
-          "$ref": "#/definitions/message_channel_type"
+          "$ref": "#/definitions/channel_type"
         },
         "event_ts": {
           "$ref": "#/definitions/timestamp"
@@ -1076,18 +1169,18 @@
           "type": "string"
         },
         "ts": {
-          "$ref": "#/definitions/timestamp"
+          "$ref": "#/definitions/ts"
         },
         "type": {
           "const": "message"
         },
         "user": {
-          "$ref": "#/definitions/user_id"
+          "$ref": "#/definitions/user"
         }
       },
       "example": {
         "channel": "D0PNCRP9N",
-        "channel_type": "app_home|channel|group|mpim|null",
+        "channel_type": "app_home",
         "event_ts": "1525215129.000001",
         "text": "How many cats did we herd yesterday?",
         "ts": "1525215129.000001",
@@ -1103,7 +1196,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "type": "string"
+          "const": "app_home"
         },
         "event_ts": {
           "$ref": "#/definitions/timestamp"
@@ -1131,15 +1224,149 @@
         "user": "U061F7AUR"
       }
     },
-    "message_channel_type": {
-      "type": "string",
-      "enum": [
-        "app_home",
-        "channel",
-        "group",
-        "mpim",
-        null
-      ]
+    "message.channels": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message.channels",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "channel_type": {
+          "const": "channel"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "C024BE91L",
+        "channel_type": "channel",
+        "event_ts": "1355517523.000005",
+        "text": "Live long and prospect.",
+        "ts": "1355517523.000005",
+        "type": "message",
+        "user": "U2147483697"
+      }
+    },
+    "message.groups": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message.groups",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "channel_type": {
+          "const": "group"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "G024BE91L",
+        "channel_type": "group",
+        "event_ts": "1355517523.000005",
+        "text": "One cannot programmatically detect the difference between `message.mpim` and `message.groups`.",
+        "ts": "1355517523.000005",
+        "type": "message",
+        "user": "U2147483697"
+      }
+    },
+    "message.im": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message.im",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "channel_type": {
+          "const": "im"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "D024BE91L",
+        "channel_type": "im",
+        "event_ts": "1355517523.000005",
+        "text": "Hello hello can you hear me?",
+        "ts": "1355517523.000005",
+        "type": "message",
+        "user": "U2147483697"
+      }
+    },
+    "message.mpim": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/message.mpim",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "channel_type": {
+          "const": "mpim"
+        },
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "text": {
+          "type": "string"
+        },
+        "ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "type": {
+          "const": "message"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "G024BE91L",
+        "channel_type": "mpim",
+        "event_ts": "1355517523.000005",
+        "text": "Let's make a pact.",
+        "ts": "1355517523.000005",
+        "type": "message",
+        "user": "U2147483697"
+      }
     },
     "pin_added": {
       "type": "object",
@@ -1420,9 +1647,6 @@
         "type": "resources_removed"
       }
     },
-    "root_name": {
-      "type": "string"
-    },
     "scope": {
       "type": "string",
       "enum": [
@@ -1554,84 +1778,6 @@
         "type": "star_removed",
         "user": "U024BE7LH"
       }
-    },
-    "subscription_subtype": {
-      "type": "string"
-    },
-    "subscription_type": {
-      "type": "string",
-      "enum": [
-        "app_mention",
-        "app_rate_limited",
-        "app_uninstalled",
-        "channel_archive",
-        "channel_created",
-        "channel_deleted",
-        "channel_history_changed",
-        "channel_left",
-        "channel_rename",
-        "channel_unarchive",
-        "dnd_updated",
-        "dnd_updated_user",
-        "email_domain_changed",
-        "emoji_changed",
-        "file_change",
-        "file_comment_added",
-        "file_comment_deleted",
-        "file_comment_edited",
-        "file_created",
-        "file_deleted",
-        "file_public",
-        "file_shared",
-        "file_unshared",
-        "grid_migration_finished",
-        "grid_migration_started",
-        "group_archive",
-        "group_close",
-        "group_deleted",
-        "group_history_changed",
-        "group_left",
-        "group_open",
-        "group_rename",
-        "group_unarchive",
-        "im_close",
-        "im_created",
-        "im_history_changed",
-        "im_open",
-        "link_shared",
-        "member_joined_channel",
-        "member_left_channel",
-        "message",
-        "message.app_home",
-        "message.channels",
-        "message.groups",
-        "message.im",
-        "message.mpim",
-        "pin_added",
-        "pin_removed",
-        "reaction_added",
-        "reaction_removed",
-        "resources_added",
-        "resources_removed",
-        "scope_denied",
-        "scope_granted",
-        "star_added",
-        "star_removed",
-        "subteam_created",
-        "subteam_members_changed",
-        "subteam_self_added",
-        "subteam_self_removed",
-        "subteam_updated",
-        "team_domain_change",
-        "team_join",
-        "team_rename",
-        "tokens_revoked",
-        "url_verification",
-        "user_change",
-        "user_resource_denied",
-        "user_resource_granted",
-        "user_resource_removed"
-      ]
     },
     "subteam": {
       "type": "object",
@@ -1907,12 +2053,15 @@
         }
       }
     },
+    "team_name": {
+      "type": "string"
+    },
     "team_rename": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/team_rename",
       "properties": {
         "name": {
-          "$ref": "#/definitions/root_name"
+          "$ref": "#/definitions/team_name"
         },
         "type": {
           "const": "team_rename"
@@ -1974,6 +2123,9 @@
       }
     },
     "trigger_id": {
+      "type": "string"
+    },
+    "ts": {
       "type": "string"
     },
     "url_verification": {

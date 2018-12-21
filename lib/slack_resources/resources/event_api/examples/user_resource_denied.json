@@ -1,0 +1,9 @@
+{
+  "scopes": [
+    "reminders:write:user",
+    "reminders:read:user"
+  ],
+  "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
+  "type": "user_resource_denied",
+  "user": "WXXXXXXXX"
+}

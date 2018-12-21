@@ -1,32 +1,41 @@
 {
   "url": "https://api.slack.com/events/group_deleted",
-  "type": "group_deleted",
-  "response": {
-    "channel": "G0QN9RGTT",
-    "type": "group_deleted"
+  "event": "group_deleted",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "group_deleted": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/group_deleted",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_deleted"
+        }
+      },
+      "example": {
+        "channel": "G0QN9RGTT",
+        "type": "group_deleted"
+      }
+    }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "channel_id": {
-        "type": "string"
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/group_deleted",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
       },
-      "group_deleted": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/group_deleted",
-        "properties": {
-          "channel": {
-            "$ref": "#/definitions/channel_id"
-          },
-          "type": {
-            "const": "group_deleted"
-          }
-        },
-        "example": {
-          "channel": "G0QN9RGTT",
-          "type": "group_deleted"
-        }
+      "type": {
+        "const": "group_deleted"
       }
+    },
+    "example": {
+      "channel": "G0QN9RGTT",
+      "type": "group_deleted"
     }
   },
   "compatibility": [

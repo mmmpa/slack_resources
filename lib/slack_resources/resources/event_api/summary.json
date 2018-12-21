@@ -1,4389 +1,3323 @@
 [
   {
-    "url": "https://api.slack.com/events/app_mention",
-    "type": "app_mention",
-    "response": {
-      "channel": "C0LAN2Q65",
-      "event_ts": "1515449522000016",
-      "text": "<@U0LAN0Z89> is it everything a river should be?",
-      "ts": "1515449522.000016",
-      "type": "app_mention",
-      "user": "U061F7AUR"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "app_mention": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/app_mention",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "text": {
-              "type": "string"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "app_mention"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "C0LAN2Q65",
-            "event_ts": "1515449522000016",
-            "text": "<@U0LAN0Z89> is it everything a river should be?",
-            "ts": "1515449522.000016",
-            "type": "app_mention",
-            "user": "U061F7AUR"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/app_rate_limited",
-    "type": "app_rate_limited",
-    "response": {
-      "api_app_id": "A123456",
-      "minute_rate_limited": 1518467820,
-      "team_id": "T123456",
-      "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-      "type": "app_rate_limited"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "api_app_id": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "token": {
-          "type": "string"
-        },
-        "app_rate_limited": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/app_rate_limited",
-          "properties": {
-            "api_app_id": {
-              "$ref": "#/definitions/api_app_id"
-            },
-            "minute_rate_limited": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
-            "token": {
-              "$ref": "#/definitions/token"
-            },
-            "type": {
-              "const": "app_rate_limited"
-            }
-          },
-          "example": {
-            "api_app_id": "A123456",
-            "minute_rate_limited": 1518467820,
-            "team_id": "T123456",
-            "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-            "type": "app_rate_limited"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/app_uninstalled",
-    "type": "app_uninstalled",
-    "response": {
-      "type": "app_uninstalled"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "app_uninstalled": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/app_uninstalled",
-          "properties": {
-            "type": {
-              "const": "app_uninstalled"
-            }
-          },
-          "example": {
-            "type": "app_uninstalled"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/channel_archive",
-    "type": "channel_archive",
-    "response": {
-      "channel": "C024BE91L",
-      "type": "channel_archive",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "channel_archive": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_archive",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "channel_archive"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "C024BE91L",
-            "type": "channel_archive",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/channel_created",
-    "type": "channel_created",
-    "response": {
-      "channel": {
-        "id": "C024BE91L",
-        "name": "fun",
-        "created": 1360782804,
-        "creator": "U024BE7LH"
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
       },
-      "type": "channel_created"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "time_integer": {
-          "type": "number"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_name": {
-          "type": "string"
-        },
-        "channel": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "created": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "name": {
-              "$ref": "#/definitions/channel_name"
-            }
-          }
-        },
-        "channel_created": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_created",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel"
-            },
-            "type": {
-              "const": "channel_created"
-            }
-          },
-          "example": {
-            "channel": {
-              "id": "C024BE91L",
-              "name": "fun",
-              "created": 1360782804,
-              "creator": "U024BE7LH"
-            },
-            "type": "channel_created"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/channel_deleted",
-    "type": "channel_deleted",
-    "response": {
-      "channel": "C024BE91L",
-      "type": "channel_deleted"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_deleted": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_deleted",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "channel_deleted"
-            }
-          },
-          "example": {
-            "channel": "C024BE91L",
-            "type": "channel_deleted"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/channel_history_changed",
-    "type": "channel_history_changed",
-    "response": {
-      "event_ts": "1361482916.000004",
-      "latest": "1358877455.000010",
-      "ts": "1361482916.000003",
-      "type": "channel_history_changed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "channel_history_changed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_history_changed",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "latest": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "channel_history_changed"
-            }
-          },
-          "example": {
-            "event_ts": "1361482916.000004",
-            "latest": "1358877455.000010",
-            "ts": "1361482916.000003",
-            "type": "channel_history_changed"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:history",
-      "groups:history",
-      "mpim:history"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/channel_left",
-    "type": "channel_left",
-    "response": {
-      "channel": "C024BE91L",
-      "type": "channel_left"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_left": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_left",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "channel_left"
-            }
-          },
-          "example": {
-            "channel": "C024BE91L",
-            "type": "channel_left"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/channel_rename",
-    "type": "channel_rename",
-    "response": {
-      "channel": {
-        "id": "C02ELGNBH",
-        "name": "new_name",
-        "created": 1360782804
+      "emoji_name": {
+        "type": "string"
       },
-      "type": "channel_rename"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "time_integer": {
-          "type": "number"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_name": {
-          "type": "string"
-        },
-        "channel": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "created": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "name": {
-              "$ref": "#/definitions/channel_name"
-            }
-          }
-        },
-        "channel_rename": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_rename",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel"
-            },
-            "type": {
-              "const": "channel_rename"
-            }
-          },
-          "example": {
-            "channel": {
-              "id": "C02ELGNBH",
-              "name": "new_name",
-              "created": 1360782804
-            },
-            "type": "channel_rename"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/channel_unarchive",
-    "type": "channel_unarchive",
-    "response": {
-      "channel": "C024BE91L",
-      "type": "channel_unarchive",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "channel_unarchive": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/channel_unarchive",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "channel_unarchive"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "C024BE91L",
-            "type": "channel_unarchive",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/dnd_updated",
-    "type": "dnd_updated",
-    "response": {
-      "dnd_status": {
-        "dnd_enabled": true,
-        "next_dnd_start_ts": 1450387800,
-        "next_dnd_end_ts": 1450423800,
-        "snooze_enabled": true,
-        "snooze_endtime": 1450373897
+      "emoji_value": {
+        "type": "string"
       },
-      "type": "dnd_updated",
-      "user": "U1234"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "time_integer": {
-          "type": "number"
-        },
-        "dnd_status": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "dnd_enabled": {
-              "type": "boolean"
-            },
-            "next_dnd_end_ts": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "next_dnd_start_ts": {
-              "$ref": "#/definitions/time_integer"
-            }
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "dnd_updated": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/dnd_updated",
-          "properties": {
-            "dnd_status": {
-              "$ref": "#/definitions/dnd_status"
-            },
-            "type": {
-              "const": "dnd_updated"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
+      "emoji_changed.add": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/emoji_changed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
           },
-          "example": {
-            "dnd_status": {
-              "dnd_enabled": true,
-              "next_dnd_start_ts": 1450387800,
-              "next_dnd_end_ts": 1450423800,
-              "snooze_enabled": true,
-              "snooze_endtime": 1450373897
-            },
-            "type": "dnd_updated",
-            "user": "U1234"
+          "name": {
+            "$ref": "#/definitions/emoji_name"
+          },
+          "subtype": {
+            "const": "add"
+          },
+          "type": {
+            "const": "emoji_changed"
+          },
+          "value": {
+            "$ref": "#/definitions/emoji_value"
           }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "name": "picard_facepalm",
+          "subtype": "add",
+          "type": "emoji_changed",
+          "value": "https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif"
         }
       }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "dnd:read"
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/dnd_updated_user",
-    "type": "dnd_updated_user",
-    "response": {
-      "dnd_status": {
-        "dnd_enabled": true,
-        "next_dnd_start_ts": 1450387800,
-        "next_dnd_end_ts": 1450423800
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
       },
-      "type": "dnd_updated_user",
-      "user": "U1234"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "time_integer": {
-          "type": "number"
-        },
-        "dnd_status": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "dnd_enabled": {
-              "type": "boolean"
-            },
-            "next_dnd_end_ts": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "next_dnd_start_ts": {
-              "$ref": "#/definitions/time_integer"
-            }
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "dnd_updated_user": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/dnd_updated_user",
-          "properties": {
-            "dnd_status": {
-              "$ref": "#/definitions/dnd_status"
-            },
-            "type": {
-              "const": "dnd_updated_user"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
+      "emoji_name": {
+        "type": "string"
+      },
+      "emoji_changed.remove": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/emoji_changed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/emoji_name"
             }
           },
-          "example": {
-            "dnd_status": {
-              "dnd_enabled": true,
-              "next_dnd_start_ts": 1450387800,
-              "next_dnd_end_ts": 1450423800
-            },
-            "type": "dnd_updated_user",
-            "user": "U1234"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "dnd:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/email_domain_changed",
-    "type": "email_domain_changed",
-    "response": {
-      "email_domain": "example.com",
-      "event_ts": "1360782804.083113",
-      "type": "email_domain_changed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "email_domain_changed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/email_domain_changed",
-          "properties": {
-            "email_domain": {
-              "type": "string"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "email_domain_changed"
-            }
+          "subtype": {
+            "const": "remove"
           },
-          "example": {
-            "email_domain": "example.com",
-            "event_ts": "1360782804.083113",
-            "type": "email_domain_changed"
+          "type": {
+            "const": "emoji_changed"
           }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "names": [
+            "picard_facepalm"
+          ],
+          "subtype": "remove",
+          "type": "emoji_changed"
         }
       }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "team:read"
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/emoji_changed",
-    "type": "emoji_changed",
-    "response": {
-      "event_ts": "1361482916.000004",
-      "names": [
-        "picard_facepalm"
-      ],
-      "subtype": "remove",
-      "type": "emoji_changed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "emoji_name": {
-          "type": "string"
-        },
-        "subscription_subtype": {
-          "type": "string"
-        },
-        "emoji_changed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/emoji_changed",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "names": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/emoji_name"
-              }
-            },
-            "subtype": {
-              "$ref": "#/definitions/subscription_subtype"
-            },
-            "type": {
-              "const": "emoji_changed"
-            }
-          },
-          "example": {
-            "event_ts": "1361482916.000004",
-            "names": [
-              "picard_facepalm"
-            ],
-            "subtype": "remove",
-            "type": "emoji_changed"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "emoji:read"
-    ]
-  },
-  {
-    "url": null,
-    "type": "event_callback",
-    "response": {
-      "api_app_id": "AXXXXXXXXX",
-      "authed_users": [
-        "UXXXXXXX1",
-        "UXXXXXXX2"
-      ],
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "api_app_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
       "event": {
+        "type": "object",
+        "description": "definition snipped. learn more: ",
+        "properties": {
+        }
       },
-      "event_id": "Ev08MFMKH6",
-      "event_time": 1234567890,
-      "team_id": "TXXXXXXXX",
-      "token": "XXYYZZ",
-      "type": "event_callback"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "api_app_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "event": {
-          "type": "object",
-          "description": "definition snipped. learn more: ",
-          "properties": {
-          }
-        },
-        "event_id": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "token": {
-          "type": "string"
-        },
-        "event_callback": {
-          "type": "object",
-          "description": "learn more: ",
-          "properties": {
-            "api_app_id": {
-              "$ref": "#/definitions/api_app_id"
-            },
-            "authed_users": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/user_id"
-              }
-            },
-            "event": {
-              "$ref": "#/definitions/event"
-            },
-            "event_id": {
-              "$ref": "#/definitions/event_id"
-            },
-            "event_time": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
-            "token": {
-              "$ref": "#/definitions/token"
-            },
-            "type": {
-              "const": "event_callback"
-            }
-          },
-          "example": {
-            "api_app_id": "AXXXXXXXXX",
-            "authed_users": [
-              "UXXXXXXX1",
-              "UXXXXXXX2"
-            ],
-            "event": {
-            },
-            "event_id": "Ev08MFMKH6",
-            "event_time": 1234567890,
-            "team_id": "TXXXXXXXX",
-            "token": "XXYYZZ",
-            "type": "event_callback"
-          }
-        }
-      }
-    },
-    "compatibility": null,
-    "scopes": null
-  },
-  {
-    "url": "https://api.slack.com/events/file_change",
-    "type": "file_change",
-    "response": {
-      "file": {
-        "id": "F2147483862"
+      "event_id": {
+        "type": "string"
       },
-      "file_id": "F2147483862",
-      "type": "file_change"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_change": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_change",
-          "properties": {
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_change"
-            }
-          },
-          "example": {
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_change"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_comment_added",
-    "type": "file_comment_added",
-    "response": {
-      "comment": {
+      "time_integer": {
+        "type": "number"
       },
-      "file": {
-        "id": "F2147483862"
+      "team_id": {
+        "type": "string"
       },
-      "file_id": "F2147483862",
-      "type": "file_comment_added"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "comment": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/file_comment_added",
-          "properties": {
-          }
-        },
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_comment_added": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_comment_added",
-          "properties": {
-            "comment": {
-              "$ref": "#/definitions/comment"
-            },
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_comment_added"
-            }
-          },
-          "example": {
-            "comment": {
-            },
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_comment_added"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_comment_deleted",
-    "type": "file_comment_deleted",
-    "response": {
-      "comment": "Fc67890",
-      "file": {
-        "id": "F2147483862"
+      "token": {
+        "type": "string"
       },
-      "file_id": "F2147483862",
-      "type": "file_comment_deleted"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "comment_id": {
-          "type": "string"
-        },
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_comment_deleted": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_comment_deleted",
-          "properties": {
-            "comment": {
-              "$ref": "#/definitions/comment_id"
-            },
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_comment_deleted"
-            }
+      "event_callback": {
+        "type": "object",
+        "description": "learn more: ",
+        "properties": {
+          "api_app_id": {
+            "$ref": "#/definitions/api_app_id"
           },
-          "example": {
-            "comment": "Fc67890",
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_comment_deleted"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_comment_edited",
-    "type": "file_comment_edited",
-    "response": {
-      "comment": {
-      },
-      "file": {
-        "id": "F2147483862"
-      },
-      "file_id": "F2147483862",
-      "type": "file_comment_edited"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "comment": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/file_comment_added",
-          "properties": {
-          }
-        },
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_comment_edited": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_comment_edited",
-          "properties": {
-            "comment": {
-              "$ref": "#/definitions/comment"
-            },
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_comment_edited"
-            }
-          },
-          "example": {
-            "comment": {
-            },
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_comment_edited"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_created",
-    "type": "file_created",
-    "response": {
-      "file": {
-        "id": "F2147483862"
-      },
-      "file_id": "F2147483862",
-      "type": "file_created"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_created": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_created",
-          "properties": {
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_created"
-            }
-          },
-          "example": {
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_created"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_deleted",
-    "type": "file_deleted",
-    "response": {
-      "event_ts": "1361482916.000004",
-      "file_id": "F2147483862",
-      "type": "file_deleted"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "file_id": {
-          "type": "string"
-        },
-        "file_deleted": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_deleted",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_deleted"
-            }
-          },
-          "example": {
-            "event_ts": "1361482916.000004",
-            "file_id": "F2147483862",
-            "type": "file_deleted"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_public",
-    "type": "file_public",
-    "response": {
-      "file": {
-        "id": "F2147483862"
-      },
-      "file_id": "F2147483862",
-      "type": "file_public"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_public": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_public",
-          "properties": {
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_public"
-            }
-          },
-          "example": {
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_public"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_shared",
-    "type": "file_shared",
-    "response": {
-      "file": {
-        "id": "F2147483862"
-      },
-      "file_id": "F2147483862",
-      "type": "file_shared"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_shared": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_shared",
-          "properties": {
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_shared"
-            }
-          },
-          "example": {
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_shared"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/file_unshared",
-    "type": "file_unshared",
-    "response": {
-      "file": {
-        "id": "F2147483862"
-      },
-      "file_id": "F2147483862",
-      "type": "file_unshared"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "file_id": {
-          "type": "string"
-        },
-        "file": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "id": {
-              "$ref": "#/definitions/file_id"
-            }
-          }
-        },
-        "file_unshared": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/file_unshared",
-          "properties": {
-            "file": {
-              "$ref": "#/definitions/file"
-            },
-            "file_id": {
-              "$ref": "#/definitions/file_id"
-            },
-            "type": {
-              "const": "file_unshared"
-            }
-          },
-          "example": {
-            "file": {
-              "id": "F2147483862"
-            },
-            "file_id": "F2147483862",
-            "type": "file_unshared"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "files:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/grid_migration_finished",
-    "type": "grid_migration_finished",
-    "response": {
-      "enterprise_id": "EXXXXXXXX",
-      "type": "grid_migration_finished"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "enterprise_id": {
-          "type": "string"
-        },
-        "grid_migration_finished": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/grid_migration_finished",
-          "properties": {
-            "enterprise_id": {
-              "$ref": "#/definitions/enterprise_id"
-            },
-            "type": {
-              "const": "grid_migration_finished"
-            }
-          },
-          "example": {
-            "enterprise_id": "EXXXXXXXX",
-            "type": "grid_migration_finished"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/grid_migration_started",
-    "type": "grid_migration_started",
-    "response": {
-      "enterprise_id": "EXXXXXXXX",
-      "type": "grid_migration_started"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "enterprise_id": {
-          "type": "string"
-        },
-        "grid_migration_started": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/grid_migration_started",
-          "properties": {
-            "enterprise_id": {
-              "$ref": "#/definitions/enterprise_id"
-            },
-            "type": {
-              "const": "grid_migration_started"
-            }
-          },
-          "example": {
-            "enterprise_id": "EXXXXXXXX",
-            "type": "grid_migration_started"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_archive",
-    "type": "group_archive",
-    "response": {
-      "channel": "G024BE91L",
-      "type": "group_archive"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "group_archive": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_archive",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "group_archive"
-            }
-          },
-          "example": {
-            "channel": "G024BE91L",
-            "type": "group_archive"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_close",
-    "type": "group_close",
-    "response": {
-      "channel": "G024BE91L",
-      "type": "group_close",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "group_close": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_close",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "group_close"
-            },
-            "user": {
+          "authed_users": {
+            "type": "array",
+            "items": {
               "$ref": "#/definitions/user_id"
             }
           },
-          "example": {
-            "channel": "G024BE91L",
-            "type": "group_close",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_deleted",
-    "type": "group_deleted",
-    "response": {
-      "channel": "G0QN9RGTT",
-      "type": "group_deleted"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "group_deleted": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_deleted",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "group_deleted"
-            }
+          "event": {
+            "$ref": "#/definitions/event"
           },
-          "example": {
-            "channel": "G0QN9RGTT",
-            "type": "group_deleted"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_history_changed",
-    "type": "group_history_changed",
-    "response": {
-      "event_ts": "1361482916.000004",
-      "latest": "1358877455.000010",
-      "ts": "1361482916.000003",
-      "type": "group_history_changed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "group_history_changed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_history_changed",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "latest": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "group_history_changed"
-            }
+          "event_id": {
+            "$ref": "#/definitions/event_id"
           },
-          "example": {
-            "event_ts": "1361482916.000004",
-            "latest": "1358877455.000010",
-            "ts": "1361482916.000003",
-            "type": "group_history_changed"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:history"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_left",
-    "type": "group_left",
-    "response": {
-      "channel": "G02ELGNBH",
-      "type": "group_left"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "group_left": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_left",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "group_left"
-            }
+          "event_time": {
+            "$ref": "#/definitions/time_integer"
           },
-          "example": {
-            "channel": "G02ELGNBH",
-            "type": "group_left"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_open",
-    "type": "group_open",
-    "response": {
-      "channel": "G024BE91L",
-      "type": "group_open",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "group_open": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_open",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "group_open"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
+          "team_id": {
+            "$ref": "#/definitions/team_id"
           },
-          "example": {
-            "channel": "G024BE91L",
-            "type": "group_open",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_rename",
-    "type": "group_rename",
-    "response": {
-      "channel": {
-        "id": "G02ELGNBH",
-        "name": "new_name",
-        "created": 1360782804
-      },
-      "type": "group_rename"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "time_integer": {
-          "type": "number"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_name": {
-          "type": "string"
-        },
-        "channel": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "created": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "name": {
-              "$ref": "#/definitions/channel_name"
-            }
-          }
-        },
-        "group_rename": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_rename",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel"
-            },
-            "type": {
-              "const": "group_rename"
-            }
+          "token": {
+            "$ref": "#/definitions/token"
           },
-          "example": {
-            "channel": {
-              "id": "G02ELGNBH",
-              "name": "new_name",
-              "created": 1360782804
-            },
-            "type": "group_rename"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/group_unarchive",
-    "type": "group_unarchive",
-    "response": {
-      "channel": "G024BE91L",
-      "type": "group_unarchive"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "group_unarchive": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/group_unarchive",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "group_unarchive"
-            }
-          },
-          "example": {
-            "channel": "G024BE91L",
-            "type": "group_unarchive"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/im_close",
-    "type": "im_close",
-    "response": {
-      "channel": "D024BE91L",
-      "type": "im_close",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "im_close": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/im_close",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "im_close"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "D024BE91L",
-            "type": "im_close",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "im:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/im_created",
-    "type": "im_created",
-    "response": {
-      "channel": {
-      },
-      "type": "im_created",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "created": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "name": {
-              "$ref": "#/definitions/channel_name"
-            }
+          "type": {
+            "const": "event_callback"
           }
         },
-        "user_id": {
-          "type": "string"
-        },
-        "im_created": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/im_created",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel"
-            },
-            "type": {
-              "const": "im_created"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": {
-            },
-            "type": "im_created",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "im:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/im_history_changed",
-    "type": "im_history_changed",
-    "response": {
-      "event_ts": "1361482916.000004",
-      "latest": "1358877455.000010",
-      "ts": "1361482916.000003",
-      "type": "im_history_changed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "im_history_changed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/im_history_changed",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "latest": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "im_history_changed"
-            }
-          },
-          "example": {
-            "event_ts": "1361482916.000004",
-            "latest": "1358877455.000010",
-            "ts": "1361482916.000003",
-            "type": "im_history_changed"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "im:history"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/im_open",
-    "type": "im_open",
-    "response": {
-      "channel": "D024BE91L",
-      "type": "im_open",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "im_open": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/im_open",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "type": {
-              "const": "im_open"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "D024BE91L",
-            "type": "im_open",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "im:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/link_shared",
-    "type": "link_shared",
-    "response": {
-      "channel": "Cxxxxxx",
-      "links": [
-        {
-          "domain": "example.com",
-          "url": "https://example.com/12345"
-        },
-        {
-          "domain": "example.com",
-          "url": "https://example.com/67890"
-        },
-        {
-          "domain": "another-example.com",
-          "url": "https://yet.another-example.com/v/abcde"
-        }
-      ],
-      "message_ts": "123456789.9875",
-      "thread_ts": "123456621.1855",
-      "type": "link_shared",
-      "user": "Uxxxxxxx"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "link": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "domain": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            }
-          }
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "link_shared": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/link_shared",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "links": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/link"
-              }
-            },
-            "message_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "thread_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "link_shared"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "Cxxxxxx",
-            "links": [
-              {
-                "domain": "example.com",
-                "url": "https://example.com/12345"
-              },
-              {
-                "domain": "example.com",
-                "url": "https://example.com/67890"
-              },
-              {
-                "domain": "another-example.com",
-                "url": "https://yet.another-example.com/v/abcde"
-              }
-            ],
-            "message_ts": "123456789.9875",
-            "thread_ts": "123456621.1855",
-            "type": "link_shared",
-            "user": "Uxxxxxxx"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-      "links:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/member_joined_channel",
-    "type": "member_joined_channel",
-    "response": {
-      "channel": "C0698JE0H",
-      "channel_type": "C",
-      "inviter": "U123456789",
-      "team": "T024BE7LD",
-      "type": "member_joined_channel",
-      "user": "W06GH7XHN"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_type": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "member_joined_channel": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/member_joined_channel",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "channel_type": {
-              "$ref": "#/definitions/channel_type"
-            },
-            "inviter": {
-              "$ref": "#/definitions/user_id"
-            },
-            "team": {
-              "$ref": "#/definitions/team_id"
-            },
-            "type": {
-              "const": "member_joined_channel"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "C0698JE0H",
-            "channel_type": "C",
-            "inviter": "U123456789",
-            "team": "T024BE7LD",
-            "type": "member_joined_channel",
-            "user": "W06GH7XHN"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read",
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/member_left_channel",
-    "type": "member_left_channel",
-    "response": {
-      "channel": "C0698JE0H",
-      "channel_type": "C",
-      "team": "T024BE7LD",
-      "type": "member_left_channel",
-      "user": "W06GH7XHN"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "channel_type": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "member_left_channel": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/member_left_channel",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "channel_type": {
-              "$ref": "#/definitions/channel_type"
-            },
-            "team": {
-              "$ref": "#/definitions/team_id"
-            },
-            "type": {
-              "const": "member_left_channel"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "C0698JE0H",
-            "channel_type": "C",
-            "team": "T024BE7LD",
-            "type": "member_left_channel",
-            "user": "W06GH7XHN"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:read",
-      "groups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/message",
-    "type": "message",
-    "response": {
-      "channel": "D0PNCRP9N",
-      "channel_type": "app_home|channel|group|mpim|null",
-      "event_ts": "1525215129.000001",
-      "text": "How many cats did we herd yesterday?",
-      "ts": "1525215129.000001",
-      "type": "message",
-      "user": "U061F7AUR"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "message_channel_type": {
-          "type": "string",
-          "enum": [
-            "app_home",
-            "channel",
-            "group",
-            "mpim",
-            null
-          ]
-        },
-        "message": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/message",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "channel_type": {
-              "$ref": "#/definitions/message_channel_type"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "text": {
-              "type": "string"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "message"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "D0PNCRP9N",
-            "channel_type": "app_home|channel|group|mpim|null",
-            "event_ts": "1525215129.000001",
-            "text": "How many cats did we herd yesterday?",
-            "ts": "1525215129.000001",
-            "type": "message",
-            "user": "U061F7AUR"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "channels:history",
-      "groups:history",
-      "im:history",
-      "mpim:history"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/message.app_home",
-    "type": "message.app_home",
-    "response": {
-      "channel": "D0PNCRP9N",
-      "channel_type": "app_home",
-      "event_ts": "1525215129.000001",
-      "text": "How many cats did we herd yesterday?",
-      "ts": "1525215129.000001",
-      "type": "message",
-      "user": "U061F7AUR"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "channel_type": {
-          "type": "string"
-        },
-        "message.app_home": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/message.app_home",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "channel_type": {
-              "type": "string"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "text": {
-              "type": "string"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "const": "message"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel": "D0PNCRP9N",
-            "channel_type": "app_home",
-            "event_ts": "1525215129.000001",
-            "text": "How many cats did we herd yesterday?",
-            "ts": "1525215129.000001",
-            "type": "message",
-            "user": "U061F7AUR"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/pin_added",
-    "type": "pin_added",
-    "response": {
-      "channel_id": "C02ELGNBH",
-      "event_ts": "1360782804.083113",
-      "item": {
-      },
-      "type": "pin_added",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "pin_item": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
-          "properties": {
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "pin_added": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/pin_added",
-          "properties": {
-            "channel_id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "item": {
-              "$ref": "#/definitions/pin_item"
-            },
-            "type": {
-              "const": "pin_added"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel_id": "C02ELGNBH",
-            "event_ts": "1360782804.083113",
-            "item": {
-            },
-            "type": "pin_added",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "pins:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/pin_removed",
-    "type": "pin_removed",
-    "response": {
-      "channel_id": "C02ELGNBH",
-      "event_ts": "1360782804.083113",
-      "has_pins": false,
-      "item": {
-      },
-      "type": "pin_removed",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "channel_id": {
-          "type": "string"
-        },
-        "timestamp": {
-          "type": "string"
-        },
-        "pin_item": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
-          "properties": {
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "pin_removed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/pin_removed",
-          "properties": {
-            "channel_id": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "has_pins": {
-              "type": "boolean"
-            },
-            "item": {
-              "$ref": "#/definitions/pin_item"
-            },
-            "type": {
-              "const": "pin_removed"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "channel_id": "C02ELGNBH",
-            "event_ts": "1360782804.083113",
-            "has_pins": false,
-            "item": {
-            },
-            "type": "pin_removed",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "pins:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/reaction_added",
-    "type": "reaction_added",
-    "response": {
-      "event_ts": "1360782804.083113",
-      "item": {
-        "type": "message",
-        "channel": "C0G9QF9GZ",
-        "ts": "1360782400.498405"
-      },
-      "item_user": "U0G9QF9C6",
-      "reaction": "thumbsup",
-      "type": "reaction_added",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "reaction_item_type": {
-          "type": "string"
-        },
-        "reaction_item": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "$ref": "#/definitions/reaction_item_type"
-            }
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "emoji_name": {
-          "type": "string"
-        },
-        "reaction_added": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/reaction_added",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "item": {
-              "$ref": "#/definitions/reaction_item"
-            },
-            "item_user": {
-              "$ref": "#/definitions/user_id"
-            },
-            "reaction": {
-              "$ref": "#/definitions/emoji_name"
-            },
-            "type": {
-              "const": "reaction_added"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "event_ts": "1360782804.083113",
-            "item": {
-              "type": "message",
-              "channel": "C0G9QF9GZ",
-              "ts": "1360782400.498405"
-            },
-            "item_user": "U0G9QF9C6",
-            "reaction": "thumbsup",
-            "type": "reaction_added",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "reactions:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/reaction_removed",
-    "type": "reaction_removed",
-    "response": {
-      "event_ts": "1360782804.083113",
-      "item": {
-        "type": "message",
-        "channel": "C0G9QF9GZ",
-        "ts": "1360782400.498405"
-      },
-      "item_user": "U0G9QF9C6",
-      "reaction": "thumbsup",
-      "type": "reaction_removed",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "reaction_item_type": {
-          "type": "string"
-        },
-        "reaction_item": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "channel": {
-              "$ref": "#/definitions/channel_id"
-            },
-            "ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "type": {
-              "$ref": "#/definitions/reaction_item_type"
-            }
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "emoji_name": {
-          "type": "string"
-        },
-        "reaction_removed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/reaction_removed",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "item": {
-              "$ref": "#/definitions/reaction_item"
-            },
-            "item_user": {
-              "$ref": "#/definitions/user_id"
-            },
-            "reaction": {
-              "$ref": "#/definitions/emoji_name"
-            },
-            "type": {
-              "const": "reaction_removed"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "event_ts": "1360782804.083113",
-            "item": {
-              "type": "message",
-              "channel": "C0G9QF9GZ",
-              "ts": "1360782400.498405"
-            },
-            "item_user": "U0G9QF9C6",
-            "reaction": "thumbsup",
-            "type": "reaction_removed",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "reactions:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/resources_added",
-    "type": "resources_added",
-    "response": {
-      "resources": [
-        {
-          "resource": {
-            "type": "im",
-            "grant": {
-              "type": "specific",
-              "resource_id": "DXXXXXXXX"
-            }
-          },
-          "scopes": [
-            "chat:write:user",
-            "im:read",
-            "im:history",
-            "commands"
-          ]
-        }
-      ],
-      "type": "resources_added"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "resource_id": {
-          "type": "string"
-        },
-        "grant_type": {
-          "type": "string"
-        },
-        "grant": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "resource_id": {
-              "$ref": "#/definitions/resource_id"
-            },
-            "type": {
-              "$ref": "#/definitions/grant_type"
-            }
-          }
-        },
-        "resource_type": {
-          "type": "string"
-        },
-        "resource": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "grant": {
-              "$ref": "#/definitions/grant"
-            },
-            "type": {
-              "$ref": "#/definitions/resource_type"
-            }
-          }
-        },
-        "scope": {
-          "type": "string",
-          "enum": [
-            "channels:read",
-            "channels:history",
-            "groups:history",
-            "mpim:history",
-            "dnd:read",
-            "team:read",
-            "emoji:read",
-            "files:read",
-            "groups:read",
-            "im:read",
-            "im:history",
-            "links:read",
-            "pins:read",
-            "reactions:read",
-            "stars:read",
-            "usergroups:read",
-            "users:read"
-          ]
-        },
-        "resource_item": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "resource": {
-              "$ref": "#/definitions/resource"
-            },
-            "scopes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/scope"
-              }
-            }
-          }
-        },
-        "resources_added": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/resources_added",
-          "properties": {
-            "resources": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/resource_item"
-              }
-            },
-            "type": {
-              "const": "resources_added"
-            }
-          },
-          "example": {
-            "resources": [
-              {
-                "resource": {
-                  "type": "im",
-                  "grant": {
-                    "type": "specific",
-                    "resource_id": "DXXXXXXXX"
-                  }
-                },
-                "scopes": [
-                  "chat:write:user",
-                  "im:read",
-                  "im:history",
-                  "commands"
-                ]
-              }
-            ],
-            "type": "resources_added"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/resources_removed",
-    "type": "resources_removed",
-    "response": {
-      "resources": [
-        {
-          "resource": {
-            "type": "im",
-            "grant": {
-              "type": "specific",
-              "resource_id": "DXXXXXXXX"
-            }
-          },
-          "scopes": [
-            "chat:write:user",
-            "im:read",
-            "im:history",
-            "commands"
-          ]
-        }
-      ],
-      "type": "resources_removed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "resource_id": {
-          "type": "string"
-        },
-        "grant_type": {
-          "type": "string"
-        },
-        "grant": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "resource_id": {
-              "$ref": "#/definitions/resource_id"
-            },
-            "type": {
-              "$ref": "#/definitions/grant_type"
-            }
-          }
-        },
-        "resource_type": {
-          "type": "string"
-        },
-        "resource": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "grant": {
-              "$ref": "#/definitions/grant"
-            },
-            "type": {
-              "$ref": "#/definitions/resource_type"
-            }
-          }
-        },
-        "scope": {
-          "type": "string",
-          "enum": [
-            "channels:read",
-            "channels:history",
-            "groups:history",
-            "mpim:history",
-            "dnd:read",
-            "team:read",
-            "emoji:read",
-            "files:read",
-            "groups:read",
-            "im:read",
-            "im:history",
-            "links:read",
-            "pins:read",
-            "reactions:read",
-            "stars:read",
-            "usergroups:read",
-            "users:read"
-          ]
-        },
-        "resource_item": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "resource": {
-              "$ref": "#/definitions/resource"
-            },
-            "scopes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/scope"
-              }
-            }
-          }
-        },
-        "resources_removed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/resources_removed",
-          "properties": {
-            "resources": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/resource_item"
-              }
-            },
-            "type": {
-              "const": "resources_removed"
-            }
-          },
-          "example": {
-            "resources": [
-              {
-                "resource": {
-                  "type": "im",
-                  "grant": {
-                    "type": "specific",
-                    "resource_id": "DXXXXXXXX"
-                  }
-                },
-                "scopes": [
-                  "chat:write:user",
-                  "im:read",
-                  "im:history",
-                  "commands"
-                ]
-              }
-            ],
-            "type": "resources_removed"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/scope_denied",
-    "type": "scope_denied",
-    "response": {
-      "scopes": [
-        "files:read",
-        "files:write",
-        "chat:write"
-      ],
-      "trigger_id": "241582872337.47445629121.string",
-      "type": "scope_denied"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "scope": {
-          "type": "string",
-          "enum": [
-            "channels:read",
-            "channels:history",
-            "groups:history",
-            "mpim:history",
-            "dnd:read",
-            "team:read",
-            "emoji:read",
-            "files:read",
-            "groups:read",
-            "im:read",
-            "im:history",
-            "links:read",
-            "pins:read",
-            "reactions:read",
-            "stars:read",
-            "usergroups:read",
-            "users:read"
-          ]
-        },
-        "trigger_id": {
-          "type": "string"
-        },
-        "scope_denied": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/scope_denied",
-          "properties": {
-            "scopes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/scope"
-              }
-            },
-            "trigger_id": {
-              "$ref": "#/definitions/trigger_id"
-            },
-            "type": {
-              "const": "scope_denied"
-            }
-          },
-          "example": {
-            "scopes": [
-              "files:read",
-              "files:write",
-              "chat:write"
-            ],
-            "trigger_id": "241582872337.47445629121.string",
-            "type": "scope_denied"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/scope_granted",
-    "type": "scope_granted",
-    "response": {
-      "scopes": [
-        "files:read",
-        "files:write",
-        "chat:write"
-      ],
-      "trigger_id": "241582872337.47445629121.string",
-      "type": "scope_granted"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "scope": {
-          "type": "string",
-          "enum": [
-            "channels:read",
-            "channels:history",
-            "groups:history",
-            "mpim:history",
-            "dnd:read",
-            "team:read",
-            "emoji:read",
-            "files:read",
-            "groups:read",
-            "im:read",
-            "im:history",
-            "links:read",
-            "pins:read",
-            "reactions:read",
-            "stars:read",
-            "usergroups:read",
-            "users:read"
-          ]
-        },
-        "trigger_id": {
-          "type": "string"
-        },
-        "scope_granted": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/scope_granted",
-          "properties": {
-            "scopes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/scope"
-              }
-            },
-            "trigger_id": {
-              "$ref": "#/definitions/trigger_id"
-            },
-            "type": {
-              "const": "scope_granted"
-            }
-          },
-          "example": {
-            "scopes": [
-              "files:read",
-              "files:write",
-              "chat:write"
-            ],
-            "trigger_id": "241582872337.47445629121.string",
-            "type": "scope_granted"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/star_added",
-    "type": "star_added",
-    "response": {
-      "event_ts": "1360782804.083113",
-      "item": {
-      },
-      "type": "star_added",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "star_item": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/star_added",
-          "properties": {
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "star_added": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/star_added",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "item": {
-              "$ref": "#/definitions/star_item"
-            },
-            "type": {
-              "const": "star_added"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "event_ts": "1360782804.083113",
-            "item": {
-            },
-            "type": "star_added",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "stars:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/star_removed",
-    "type": "star_removed",
-    "response": {
-      "event_ts": "1360782804.083113",
-      "item": {
-      },
-      "type": "star_removed",
-      "user": "U024BE7LH"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "timestamp": {
-          "type": "string"
-        },
-        "star_item": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/star_added",
-          "properties": {
-          }
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "star_removed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/star_removed",
-          "properties": {
-            "event_ts": {
-              "$ref": "#/definitions/timestamp"
-            },
-            "item": {
-              "$ref": "#/definitions/star_item"
-            },
-            "type": {
-              "const": "star_removed"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "event_ts": "1360782804.083113",
-            "item": {
-            },
-            "type": "star_removed",
-            "user": "U024BE7LH"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "stars:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/subteam_created",
-    "type": "subteam_created",
-    "response": {
-      "subteam": {
-        "id": "S0615G0KT",
-        "team_id": "T060RNRCH",
-        "is_usergroup": true,
-        "name": "Marketing Team",
-        "description": "Marketing gurus, PR experts and product advocates.",
-        "handle": "marketing-team",
-        "is_external": false,
-        "date_create": 1446746793,
-        "date_update": 1446746793,
-        "date_delete": 0,
-        "auto_type": null,
-        "created_by": "U060RNRCZ",
-        "updated_by": "U060RNRCZ",
-        "deleted_by": null,
-        "prefs": {
-          "channels": [
-
+        "example": {
+          "api_app_id": "AXXXXXXXXX",
+          "authed_users": [
+            "UXXXXXXX1",
+            "UXXXXXXX2"
           ],
-          "groups": [
-
-          ]
-        },
-        "user_count": "0"
-      },
-      "type": "subteam_created"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "auto_type": {
-          "type": "string",
-          "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
-          "enum": [
-            "admins",
-            "owners",
-            null
-          ]
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
-        "subteam_id": {
-          "type": "string"
-        },
-        "subteam_name": {
-          "type": "string"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "group_id": {
-          "type": "string"
-        },
-        "prefs": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "channels": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/channel_id"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/group_id"
-              }
-            }
-          }
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "user_count": {
-          "type": "string"
-        },
-        "subteam": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "auto_type": {
-              "$ref": "#/definitions/auto_type"
-            },
-            "created_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "date_create": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_delete": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_update": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "deleted_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "description": {
-              "type": "string"
-            },
-            "handle": {
-              "type": "string"
-            },
-            "id": {
-              "$ref": "#/definitions/subteam_id"
-            },
-            "is_external": {
-              "type": "boolean"
-            },
-            "is_usergroup": {
-              "type": "boolean"
-            },
-            "name": {
-              "$ref": "#/definitions/subteam_name"
-            },
-            "prefs": {
-              "$ref": "#/definitions/prefs"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
-            "updated_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "user_count": {
-              "$ref": "#/definitions/user_count"
-            }
-          }
-        },
-        "subteam_created": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/subteam_created",
-          "properties": {
-            "subteam": {
-              "$ref": "#/definitions/subteam"
-            },
-            "type": {
-              "const": "subteam_created"
-            }
+          "event": {
           },
-          "example": {
-            "subteam": {
-              "id": "S0615G0KT",
-              "team_id": "T060RNRCH",
-              "is_usergroup": true,
-              "name": "Marketing Team",
-              "description": "Marketing gurus, PR experts and product advocates.",
-              "handle": "marketing-team",
-              "is_external": false,
-              "date_create": 1446746793,
-              "date_update": 1446746793,
-              "date_delete": 0,
-              "auto_type": null,
-              "created_by": "U060RNRCZ",
-              "updated_by": "U060RNRCZ",
-              "deleted_by": null,
-              "prefs": {
-                "channels": [
-
-                ],
-                "groups": [
-
-                ]
-              },
-              "user_count": "0"
-            },
-            "type": "subteam_created"
-          }
+          "event_id": "Ev08MFMKH6",
+          "event_time": 1234567890,
+          "team_id": "TXXXXXXXX",
+          "token": "XXYYZZ",
+          "type": "event_callback"
         }
       }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "usergroups:read"
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/subteam_members_changed",
-    "type": "subteam_members_changed",
-    "response": {
-      "added_users": [
-        "U060RNRCZ",
-        "U060ULRC0",
-        "U061309JM"
-      ],
-      "added_users_count": "3",
-      "date_previous_update": 1446670362,
-      "date_update": 1492906952,
-      "removed_users": [
-        "U06129G2V"
-      ],
-      "removed_users_count": "1",
-      "subteam_id": "S0614TZR7",
-      "team_id": "T060RNRCH",
-      "type": "subteam_members_changed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "user_id": {
-          "type": "string"
-        },
-        "user_count": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
-        "subteam_id": {
-          "type": "string"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "subteam_members_changed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/subteam_members_changed",
-          "properties": {
-            "added_users": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/user_id"
-              }
-            },
-            "added_users_count": {
-              "$ref": "#/definitions/user_count"
-            },
-            "date_previous_update": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_update": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "removed_users": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/user_id"
-              }
-            },
-            "removed_users_count": {
-              "$ref": "#/definitions/user_count"
-            },
-            "subteam_id": {
-              "$ref": "#/definitions/subteam_id"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
-            "type": {
-              "const": "subteam_members_changed"
-            }
-          },
-          "example": {
-            "added_users": [
-              "U060RNRCZ",
-              "U060ULRC0",
-              "U061309JM"
-            ],
-            "added_users_count": "3",
-            "date_previous_update": 1446670362,
-            "date_update": 1492906952,
-            "removed_users": [
-              "U06129G2V"
-            ],
-            "removed_users_count": "1",
-            "subteam_id": "S0614TZR7",
-            "team_id": "T060RNRCH",
-            "type": "subteam_members_changed"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "usergroups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/subteam_self_added",
-    "type": "subteam_self_added",
-    "response": {
-      "subteam_id": "S0615G0KT",
-      "type": "subteam_self_added"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "subteam_id": {
-          "type": "string"
-        },
-        "subteam_self_added": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/subteam_self_added",
-          "properties": {
-            "subteam_id": {
-              "$ref": "#/definitions/subteam_id"
-            },
-            "type": {
-              "const": "subteam_self_added"
-            }
-          },
-          "example": {
-            "subteam_id": "S0615G0KT",
-            "type": "subteam_self_added"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "usergroups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/subteam_self_removed",
-    "type": "subteam_self_removed",
-    "response": {
-      "subteam_id": "S0615G0KT",
-      "type": "subteam_self_removed"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "subteam_id": {
-          "type": "string"
-        },
-        "subteam_self_removed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/subteam_self_removed",
-          "properties": {
-            "subteam_id": {
-              "$ref": "#/definitions/subteam_id"
-            },
-            "type": {
-              "const": "subteam_self_removed"
-            }
-          },
-          "example": {
-            "subteam_id": "S0615G0KT",
-            "type": "subteam_self_removed"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "usergroups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/subteam_updated",
-    "type": "subteam_updated",
-    "response": {
-      "subteam": {
-        "id": "S0614TZR7",
-        "team_id": "T060RNRCH",
-        "is_usergroup": true,
-        "name": "Team Admins",
-        "description": "A group of all Administrators on your team.",
-        "handle": "admins",
-        "is_external": false,
-        "date_create": 1446598059,
-        "date_update": 1446670362,
-        "date_delete": 0,
-        "auto_type": "admin",
-        "created_by": "USLACKBOT",
-        "updated_by": "U060RNRCZ",
-        "deleted_by": null,
-        "prefs": {
-          "channels": [
-
-          ],
-          "groups": [
-
-          ]
-        },
-        "users": [
-          "U060RNRCZ",
-          "U060ULRC0",
-          "U06129G2V",
-          "U061309JM"
-        ],
-        "user_count": "4"
-      },
-      "type": "subteam_updated"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "auto_type": {
-          "type": "string",
-          "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
-          "enum": [
-            "admins",
-            "owners",
-            null
-          ]
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "time_integer": {
-          "type": "number"
-        },
-        "subteam_id": {
-          "type": "string"
-        },
-        "subteam_name": {
-          "type": "string"
-        },
-        "channel_id": {
-          "type": "string"
-        },
-        "group_id": {
-          "type": "string"
-        },
-        "prefs": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "channels": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/channel_id"
-              }
-            },
-            "groups": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/group_id"
-              }
-            }
-          }
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "user_count": {
-          "type": "string"
-        },
-        "subteam": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "auto_type": {
-              "$ref": "#/definitions/auto_type"
-            },
-            "created_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "date_create": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_delete": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "date_update": {
-              "$ref": "#/definitions/time_integer"
-            },
-            "deleted_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "description": {
-              "type": "string"
-            },
-            "handle": {
-              "type": "string"
-            },
-            "id": {
-              "$ref": "#/definitions/subteam_id"
-            },
-            "is_external": {
-              "type": "boolean"
-            },
-            "is_usergroup": {
-              "type": "boolean"
-            },
-            "name": {
-              "$ref": "#/definitions/subteam_name"
-            },
-            "prefs": {
-              "$ref": "#/definitions/prefs"
-            },
-            "team_id": {
-              "$ref": "#/definitions/team_id"
-            },
-            "updated_by": {
-              "$ref": "#/definitions/user_id"
-            },
-            "user_count": {
-              "$ref": "#/definitions/user_count"
-            }
-          }
-        },
-        "subteam_updated": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/subteam_updated",
-          "properties": {
-            "subteam": {
-              "$ref": "#/definitions/subteam"
-            },
-            "type": {
-              "const": "subteam_updated"
-            }
-          },
-          "example": {
-            "subteam": {
-              "id": "S0614TZR7",
-              "team_id": "T060RNRCH",
-              "is_usergroup": true,
-              "name": "Team Admins",
-              "description": "A group of all Administrators on your team.",
-              "handle": "admins",
-              "is_external": false,
-              "date_create": 1446598059,
-              "date_update": 1446670362,
-              "date_delete": 0,
-              "auto_type": "admin",
-              "created_by": "USLACKBOT",
-              "updated_by": "U060RNRCZ",
-              "deleted_by": null,
-              "prefs": {
-                "channels": [
-
-                ],
-                "groups": [
-
-                ]
-              },
-              "users": [
-                "U060RNRCZ",
-                "U060ULRC0",
-                "U06129G2V",
-                "U061309JM"
-              ],
-              "user_count": "4"
-            },
-            "type": "subteam_updated"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "usergroups:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/team_domain_change",
-    "type": "team_domain_change",
-    "response": {
-      "domain": "my",
-      "type": "team_domain_change",
-      "url": "https://my.slack.com"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "team_domain_change": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/team_domain_change",
-          "properties": {
-            "domain": {
-              "type": "string"
-            },
-            "type": {
-              "const": "team_domain_change"
-            },
-            "url": {
-              "type": "string"
-            }
-          },
-          "example": {
-            "domain": "my",
-            "type": "team_domain_change",
-            "url": "https://my.slack.com"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "team:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/team_join",
-    "type": "team_join",
-    "response": {
-      "type": "team_join",
-      "user": {
-      }
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "user": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
-          "properties": {
-          }
-        },
-        "team_join": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/team_join",
-          "properties": {
-            "type": {
-              "const": "team_join"
-            },
-            "user": {
-              "$ref": "#/definitions/user"
-            }
-          },
-          "example": {
-            "type": "team_join",
-            "user": {
-            }
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "users:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/team_rename",
-    "type": "team_rename",
-    "response": {
-      "name": "New Team Name Inc.",
-      "type": "team_rename"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "root_name": {
-          "type": "string"
-        },
-        "team_rename": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/team_rename",
-          "properties": {
-            "name": {
-              "$ref": "#/definitions/root_name"
-            },
-            "type": {
-              "const": "team_rename"
-            }
-          },
-          "example": {
-            "name": "New Team Name Inc.",
-            "type": "team_rename"
-          }
-        }
-      }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "team:read"
-    ]
-  },
-  {
-    "url": "https://api.slack.com/events/tokens_revoked",
-    "type": "tokens_revoked",
-    "response": {
-      "tokens": {
-        "oauth": [
-          "UXXXXXXXX"
-        ],
-        "bot": [
-          "UXXXXXXXX"
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "auto_type": {
+        "type": "string",
+        "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+        "enum": [
+          "admins",
+          "owners",
+          null
         ]
       },
-      "type": "tokens_revoked"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "tokens": {
-          "type": "object",
-          "description": "(defined by script)",
-          "properties": {
-            "bot": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "oauth": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        },
-        "tokens_revoked": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/tokens_revoked",
-          "properties": {
-            "tokens": {
-              "$ref": "#/definitions/tokens"
-            },
-            "type": {
-              "const": "tokens_revoked"
+      "user_id": {
+        "type": "string"
+      },
+      "time_integer": {
+        "type": "number"
+      },
+      "subteam_id": {
+        "type": "string"
+      },
+      "subteam_name": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "group_id": {
+        "type": "string"
+      },
+      "prefs": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "channels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/channel_id"
             }
           },
-          "example": {
-            "tokens": {
-              "oauth": [
-                "UXXXXXXXX"
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/group_id"
+            }
+          }
+        }
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "user_count": {
+        "type": "string"
+      },
+      "subteam": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "auto_type": {
+            "$ref": "#/definitions/auto_type"
+          },
+          "created_by": {
+            "$ref": "#/definitions/user_id"
+          },
+          "date_create": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "date_delete": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "date_update": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "deleted_by": {
+            "$ref": "#/definitions/user_id"
+          },
+          "description": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "id": {
+            "$ref": "#/definitions/subteam_id"
+          },
+          "is_external": {
+            "type": "boolean"
+          },
+          "is_usergroup": {
+            "type": "boolean"
+          },
+          "name": {
+            "$ref": "#/definitions/subteam_name"
+          },
+          "prefs": {
+            "$ref": "#/definitions/prefs"
+          },
+          "team_id": {
+            "$ref": "#/definitions/team_id"
+          },
+          "updated_by": {
+            "$ref": "#/definitions/user_id"
+          },
+          "user_count": {
+            "$ref": "#/definitions/user_count"
+          }
+        }
+      },
+      "subteam_created": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/subteam_created",
+        "properties": {
+          "subteam": {
+            "$ref": "#/definitions/subteam"
+          },
+          "type": {
+            "const": "subteam_created"
+          }
+        },
+        "example": {
+          "subteam": {
+            "id": "S0615G0KT",
+            "team_id": "T060RNRCH",
+            "is_usergroup": true,
+            "name": "Marketing Team",
+            "description": "Marketing gurus, PR experts and product advocates.",
+            "handle": "marketing-team",
+            "is_external": false,
+            "date_create": 1446746793,
+            "date_update": 1446746793,
+            "date_delete": 0,
+            "auto_type": null,
+            "created_by": "U060RNRCZ",
+            "updated_by": "U060RNRCZ",
+            "deleted_by": null,
+            "prefs": {
+              "channels": [
+
               ],
-              "bot": [
-                "UXXXXXXXX"
+              "groups": [
+
               ]
             },
-            "type": "tokens_revoked"
-          }
+            "user_count": "0"
+          },
+          "type": "subteam_created"
         }
       }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/url_verification",
-    "type": "url_verification",
-    "response": {
-      "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
-      "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-      "type": "url_verification"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "challenge": {
-          "type": "string"
-        },
-        "token": {
-          "type": "string"
-        },
-        "url_verification": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/url_verification",
-          "properties": {
-            "challenge": {
-              "type": "string"
-            },
-            "token": {
-              "type": "string"
-            },
-            "type": {
-              "const": "url_verification"
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "user_id": {
+        "type": "string"
+      },
+      "user_count": {
+        "type": "string"
+      },
+      "time_integer": {
+        "type": "number"
+      },
+      "subteam_id": {
+        "type": "string"
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "subteam_members_changed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/subteam_members_changed",
+        "properties": {
+          "added_users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/user_id"
             }
           },
-          "example": {
-            "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
-            "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
-            "type": "url_verification"
+          "added_users_count": {
+            "$ref": "#/definitions/user_count"
+          },
+          "date_previous_update": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "date_update": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "removed_users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/user_id"
+            }
+          },
+          "removed_users_count": {
+            "$ref": "#/definitions/user_count"
+          },
+          "subteam_id": {
+            "$ref": "#/definitions/subteam_id"
+          },
+          "team_id": {
+            "$ref": "#/definitions/team_id"
+          },
+          "type": {
+            "const": "subteam_members_changed"
           }
+        },
+        "example": {
+          "added_users": [
+            "U060RNRCZ",
+            "U060ULRC0",
+            "U061309JM"
+          ],
+          "added_users_count": "3",
+          "date_previous_update": 1446670362,
+          "date_update": 1492906952,
+          "removed_users": [
+            "U06129G2V"
+          ],
+          "removed_users_count": "1",
+          "subteam_id": "S0614TZR7",
+          "team_id": "T060RNRCH",
+          "type": "subteam_members_changed"
         }
       }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/user_change",
-    "type": "user_change",
-    "response": {
-      "type": "user_change",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "time_integer": {
+        "type": "number"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "channel_name": {
+        "type": "string"
+      },
+      "channel": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "created": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "name": {
+            "$ref": "#/definitions/channel_name"
+          }
+        }
+      },
+      "channel_rename": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/channel_rename",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel"
+          },
+          "type": {
+            "const": "channel_rename"
+          }
+        },
+        "example": {
+          "channel": {
+            "id": "C02ELGNBH",
+            "name": "new_name",
+            "created": 1360782804
+          },
+          "type": "channel_rename"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "tokens": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "bot": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "oauth": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "tokens_revoked": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/tokens_revoked",
+        "properties": {
+          "tokens": {
+            "$ref": "#/definitions/tokens"
+          },
+          "type": {
+            "const": "tokens_revoked"
+          }
+        },
+        "example": {
+          "tokens": {
+            "oauth": [
+              "UXXXXXXXX"
+            ],
+            "bot": [
+              "UXXXXXXXX"
+            ]
+          },
+          "type": "tokens_revoked"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "app_mention": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/app_mention",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "app_mention"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "C0LAN2Q65",
+          "event_ts": "1515449522000016",
+          "text": "<@U0LAN0Z89> is it everything a river should be?",
+          "ts": "1515449522.000016",
+          "type": "app_mention",
+          "user": "U061F7AUR"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "file_id": {
+        "type": "string"
+      },
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_shared": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_shared",
+        "properties": {
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_shared"
+          }
+        },
+        "example": {
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_shared"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "channel_archive": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/channel_archive",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "channel_archive"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "C024BE91L",
+          "type": "channel_archive",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "subteam": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "auto_type": {
+            "$ref": "#/definitions/auto_type"
+          },
+          "created_by": {
+            "$ref": "#/definitions/user_id"
+          },
+          "date_create": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "date_delete": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "date_update": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "deleted_by": {
+            "$ref": "#/definitions/user_id"
+          },
+          "description": {
+            "type": "string"
+          },
+          "handle": {
+            "type": "string"
+          },
+          "id": {
+            "$ref": "#/definitions/subteam_id"
+          },
+          "is_external": {
+            "type": "boolean"
+          },
+          "is_usergroup": {
+            "type": "boolean"
+          },
+          "name": {
+            "$ref": "#/definitions/subteam_name"
+          },
+          "prefs": {
+            "$ref": "#/definitions/prefs"
+          },
+          "team_id": {
+            "$ref": "#/definitions/team_id"
+          },
+          "updated_by": {
+            "$ref": "#/definitions/user_id"
+          },
+          "user_count": {
+            "$ref": "#/definitions/user_count"
+          }
+        }
+      },
+      "subteam_updated": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/subteam_updated",
+        "properties": {
+          "subteam": {
+            "$ref": "#/definitions/subteam"
+          },
+          "type": {
+            "const": "subteam_updated"
+          }
+        },
+        "example": {
+          "subteam": {
+            "id": "S0614TZR7",
+            "team_id": "T060RNRCH",
+            "is_usergroup": true,
+            "name": "Team Admins",
+            "description": "A group of all Administrators on your team.",
+            "handle": "admins",
+            "is_external": false,
+            "date_create": 1446598059,
+            "date_update": 1446670362,
+            "date_delete": 0,
+            "auto_type": "admin",
+            "created_by": "USLACKBOT",
+            "updated_by": "U060RNRCZ",
+            "deleted_by": null,
+            "prefs": {
+              "channels": [
+
+              ],
+              "groups": [
+
+              ]
+            },
+            "users": [
+              "U060RNRCZ",
+              "U060ULRC0",
+              "U06129G2V",
+              "U061309JM"
+            ],
+            "user_count": "4"
+          },
+          "type": "subteam_updated"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "group_open": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_open",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "group_open"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "G024BE91L",
+          "type": "group_open",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "time_integer": {
+        "type": "number"
+      },
+      "dnd_status": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "dnd_enabled": {
+            "type": "boolean"
+          },
+          "next_dnd_end_ts": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "next_dnd_start_ts": {
+            "$ref": "#/definitions/time_integer"
+          }
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "dnd_updated_user": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/dnd_updated_user",
+        "properties": {
+          "dnd_status": {
+            "$ref": "#/definitions/dnd_status"
+          },
+          "type": {
+            "const": "dnd_updated_user"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "dnd_status": {
+            "dnd_enabled": true,
+            "next_dnd_start_ts": 1450387800,
+            "next_dnd_end_ts": 1450423800
+          },
+          "type": "dnd_updated_user",
+          "user": "U1234"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "subteam_id": {
+        "type": "string"
+      },
+      "subteam_self_added": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/subteam_self_added",
+        "properties": {
+          "subteam_id": {
+            "$ref": "#/definitions/subteam_id"
+          },
+          "type": {
+            "const": "subteam_self_added"
+          }
+        },
+        "example": {
+          "subteam_id": "S0615G0KT",
+          "type": "subteam_self_added"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "channel_unarchive": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/channel_unarchive",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "channel_unarchive"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "C024BE91L",
+          "type": "channel_unarchive",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "scope": {
+        "type": "string",
+        "enum": [
+          "channels:read",
+          "channels:history",
+          "groups:history",
+          "mpim:history",
+          "dnd:read",
+          "team:read",
+          "emoji:read",
+          "files:read",
+          "groups:read",
+          "im:read",
+          "im:history",
+          "links:read",
+          "pins:read",
+          "reactions:read",
+          "stars:read",
+          "usergroups:read",
+          "users:read"
+        ]
+      },
+      "trigger_id": {
+        "type": "string"
+      },
+      "scope_granted": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/scope_granted",
+        "properties": {
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/scope"
+            }
+          },
+          "trigger_id": {
+            "$ref": "#/definitions/trigger_id"
+          },
+          "type": {
+            "const": "scope_granted"
+          }
+        },
+        "example": {
+          "scopes": [
+            "files:read",
+            "files:write",
+            "chat:write"
+          ],
+          "trigger_id": "241582872337.47445629121.string",
+          "type": "scope_granted"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "message.app_home": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/message.app_home",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "channel_type": {
+            "const": "app_home"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "message"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "D0PNCRP9N",
+          "channel_type": "app_home",
+          "event_ts": "1525215129.000001",
+          "text": "How many cats did we herd yesterday?",
+          "ts": "1525215129.000001",
+          "type": "message",
+          "user": "U061F7AUR"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "group_archive": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_archive",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "group_archive"
+          }
+        },
+        "example": {
+          "channel": "G024BE91L",
+          "type": "group_archive"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "im_open": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/im_open",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "im_open"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "D024BE91L",
+          "type": "im_open",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "pin_item": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
+        "properties": {
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "pin_removed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/pin_removed",
+        "properties": {
+          "channel_id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "has_pins": {
+            "type": "boolean"
+          },
+          "item": {
+            "$ref": "#/definitions/pin_item"
+          },
+          "type": {
+            "const": "pin_removed"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel_id": "C02ELGNBH",
+          "event_ts": "1360782804.083113",
+          "has_pins": false,
+          "item": {
+          },
+          "type": "pin_removed",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "enterprise_id": {
+        "type": "string"
+      },
+      "grid_migration_finished": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/grid_migration_finished",
+        "properties": {
+          "enterprise_id": {
+            "$ref": "#/definitions/enterprise_id"
+          },
+          "type": {
+            "const": "grid_migration_finished"
+          }
+        },
+        "example": {
+          "enterprise_id": "EXXXXXXXX",
+          "type": "grid_migration_finished"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "url_verification": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/url_verification",
+        "properties": {
+          "challenge": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "type": {
+            "const": "url_verification"
+          }
+        },
+        "example": {
+          "challenge": "3eZbrw1aBm2rZgRNFdxV2595E9CY3gmdALWMmHkvFXO7tYXAYM8P",
+          "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+          "type": "url_verification"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "team_name": {
+        "type": "string"
+      },
+      "team_rename": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/team_rename",
+        "properties": {
+          "name": {
+            "$ref": "#/definitions/team_name"
+          },
+          "type": {
+            "const": "team_rename"
+          }
+        },
+        "example": {
+          "name": "New Team Name Inc.",
+          "type": "team_rename"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "created": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "name": {
+            "$ref": "#/definitions/channel_name"
+          }
+        }
+      },
+      "group_rename": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_rename",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel"
+          },
+          "type": {
+            "const": "group_rename"
+          }
+        },
+        "example": {
+          "channel": {
+            "id": "G02ELGNBH",
+            "name": "new_name",
+            "created": 1360782804
+          },
+          "type": "group_rename"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "scope": {
+        "type": "string",
+        "enum": [
+          "channels:read",
+          "channels:history",
+          "groups:history",
+          "mpim:history",
+          "dnd:read",
+          "team:read",
+          "emoji:read",
+          "files:read",
+          "groups:read",
+          "im:read",
+          "im:history",
+          "links:read",
+          "pins:read",
+          "reactions:read",
+          "stars:read",
+          "usergroups:read",
+          "users:read"
+        ]
+      },
+      "trigger_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "user_resource_denied": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/user_resource_denied",
+        "properties": {
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/scope"
+            }
+          },
+          "trigger_id": {
+            "$ref": "#/definitions/trigger_id"
+          },
+          "type": {
+            "const": "user_resource_denied"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "scopes": [
+            "reminders:write:user",
+            "reminders:read:user"
+          ],
+          "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
+          "type": "user_resource_denied",
+          "user": "WXXXXXXXX"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "subteam_id": {
+        "type": "string"
+      },
+      "subteam_self_removed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/subteam_self_removed",
+        "properties": {
+          "subteam_id": {
+            "$ref": "#/definitions/subteam_id"
+          },
+          "type": {
+            "const": "subteam_self_removed"
+          }
+        },
+        "example": {
+          "subteam_id": "S0615G0KT",
+          "type": "subteam_self_removed"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "pin_item": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/pin_removed",
+        "properties": {
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "pin_added": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/pin_added",
+        "properties": {
+          "channel_id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "item": {
+            "$ref": "#/definitions/pin_item"
+          },
+          "type": {
+            "const": "pin_added"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel_id": "C02ELGNBH",
+          "event_ts": "1360782804.083113",
+          "item": {
+          },
+          "type": "pin_added",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "app_uninstalled": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/app_uninstalled",
+        "properties": {
+          "type": {
+            "const": "app_uninstalled"
+          }
+        },
+        "example": {
+          "type": "app_uninstalled"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_public": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_public",
+        "properties": {
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_public"
+          }
+        },
+        "example": {
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_public"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "comment_id": {
+        "type": "string"
+      },
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_comment_deleted": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_comment_deleted",
+        "properties": {
+          "comment": {
+            "$ref": "#/definitions/comment_id"
+          },
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_comment_deleted"
+          }
+        },
+        "example": {
+          "comment": "Fc67890",
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_comment_deleted"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "created": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "name": {
+            "$ref": "#/definitions/channel_name"
+          }
+        }
+      },
+      "channel_created": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/channel_created",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel"
+          },
+          "type": {
+            "const": "channel_created"
+          }
+        },
+        "example": {
+          "channel": {
+            "id": "C024BE91L",
+            "name": "fun",
+            "created": 1360782804,
+            "creator": "U024BE7LH"
+          },
+          "type": "channel_created"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "member_left_channel": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/member_left_channel",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "channel_type": {
+            "const": "C"
+          },
+          "team": {
+            "$ref": "#/definitions/team_id"
+          },
+          "type": {
+            "const": "member_left_channel"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "C0698JE0H",
+          "channel_type": "C",
+          "team": "T024BE7LD",
+          "type": "member_left_channel",
+          "user": "W06GH7XHN"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "email_domain_changed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/email_domain_changed",
+        "properties": {
+          "email_domain": {
+            "type": "string"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "email_domain_changed"
+          }
+        },
+        "example": {
+          "email_domain": "example.com",
+          "event_ts": "1360782804.083113",
+          "type": "email_domain_changed"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "message.im": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/message.im",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "channel_type": {
+            "const": "im"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "message"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "D024BE91L",
+          "channel_type": "im",
+          "event_ts": "1355517523.000005",
+          "text": "Hello hello can you hear me?",
+          "ts": "1355517523.000005",
+          "type": "message",
+          "user": "U2147483697"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_unshared": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_unshared",
+        "properties": {
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_unshared"
+          }
+        },
+        "example": {
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_unshared"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "group_deleted": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_deleted",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "group_deleted"
+          }
+        },
+        "example": {
+          "channel": "G0QN9RGTT",
+          "type": "group_deleted"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "scope": {
+        "type": "string",
+        "enum": [
+          "channels:read",
+          "channels:history",
+          "groups:history",
+          "mpim:history",
+          "dnd:read",
+          "team:read",
+          "emoji:read",
+          "files:read",
+          "groups:read",
+          "im:read",
+          "im:history",
+          "links:read",
+          "pins:read",
+          "reactions:read",
+          "stars:read",
+          "usergroups:read",
+          "users:read"
+        ]
+      },
+      "trigger_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "user_resource_granted": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/user_resource_granted",
+        "properties": {
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/scope"
+            }
+          },
+          "trigger_id": {
+            "$ref": "#/definitions/trigger_id"
+          },
+          "type": {
+            "const": "user_resource_granted"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "scopes": [
+            "reminders:write:user",
+            "reminders:read:user"
+          ],
+          "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
+          "type": "user_resource_granted",
+          "user": "WXXXXXXXX"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
       "user": {
-      }
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "user": {
-          "type": "object",
-          "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
-          "properties": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
+        "properties": {
+        }
+      },
+      "user_change": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/user_change",
+        "properties": {
+          "type": {
+            "const": "user_change"
+          },
+          "user": {
+            "$ref": "#/definitions/user"
           }
         },
-        "user_change": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/user_change",
-          "properties": {
-            "type": {
-              "const": "user_change"
-            },
-            "user": {
-              "$ref": "#/definitions/user"
-            }
-          },
-          "example": {
-            "type": "user_change",
-            "user": {
-            }
+        "example": {
+          "type": "user_change",
+          "user": {
           }
         }
       }
-    },
-    "compatibility": [
-      "RTM",
-      "Events API"
-    ],
-    "scopes": [
-      "users:read"
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/user_resource_denied",
-    "type": "user_resource_denied",
-    "response": {
-      "scopes": [
-        "reminders:write:user",
-        "reminders:read:user"
-      ],
-      "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
-      "type": "user_resource_denied",
-      "user": "WXXXXXXXX"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "scope": {
-          "type": "string",
-          "enum": [
-            "channels:read",
-            "channels:history",
-            "groups:history",
-            "mpim:history",
-            "dnd:read",
-            "team:read",
-            "emoji:read",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "channel_left": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/channel_left",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "channel_left"
+          }
+        },
+        "example": {
+          "channel": "C024BE91L",
+          "type": "channel_left"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "channel_history_changed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/channel_history_changed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "latest": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "channel_history_changed"
+          }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "latest": "1358877455.000010",
+          "ts": "1361482916.000003",
+          "type": "channel_history_changed"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "group_left": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_left",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "group_left"
+          }
+        },
+        "example": {
+          "channel": "G02ELGNBH",
+          "type": "group_left"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "comment": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/file_comment_added",
+        "properties": {
+        }
+      },
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_comment_added": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_comment_added",
+        "properties": {
+          "comment": {
+            "$ref": "#/definitions/comment"
+          },
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_comment_added"
+          }
+        },
+        "example": {
+          "comment": {
+          },
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_comment_added"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "group_close": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_close",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "group_close"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "G024BE91L",
+          "type": "group_close",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "link": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "link_shared": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/link_shared",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/link"
+            }
+          },
+          "message_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "thread_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "link_shared"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "Cxxxxxx",
+          "links": [
+            {
+              "domain": "example.com",
+              "url": "https://example.com/12345"
+            },
+            {
+              "domain": "example.com",
+              "url": "https://example.com/67890"
+            },
+            {
+              "domain": "another-example.com",
+              "url": "https://yet.another-example.com/v/abcde"
+            }
+          ],
+          "message_ts": "123456789.9875",
+          "thread_ts": "123456621.1855",
+          "type": "link_shared",
+          "user": "Uxxxxxxx"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "created": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "name": {
+            "$ref": "#/definitions/channel_name"
+          }
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "im_created": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/im_created",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel"
+          },
+          "type": {
+            "const": "im_created"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": {
+          },
+          "type": "im_created",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "channel_deleted": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/channel_deleted",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "channel_deleted"
+          }
+        },
+        "example": {
+          "channel": "C024BE91L",
+          "type": "channel_deleted"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "message.channels": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/message.channels",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "channel_type": {
+            "const": "channel"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "message"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "C024BE91L",
+          "channel_type": "channel",
+          "event_ts": "1355517523.000005",
+          "text": "Live long and prospect.",
+          "ts": "1355517523.000005",
+          "type": "message",
+          "user": "U2147483697"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "api_app_id": {
+        "type": "string"
+      },
+      "time_integer": {
+        "type": "number"
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "token": {
+        "type": "string"
+      },
+      "app_rate_limited": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/app_rate_limited",
+        "properties": {
+          "api_app_id": {
+            "$ref": "#/definitions/api_app_id"
+          },
+          "minute_rate_limited": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "team_id": {
+            "$ref": "#/definitions/team_id"
+          },
+          "token": {
+            "$ref": "#/definitions/token"
+          },
+          "type": {
+            "const": "app_rate_limited"
+          }
+        },
+        "example": {
+          "api_app_id": "A123456",
+          "minute_rate_limited": 1518467820,
+          "team_id": "T123456",
+          "token": "Jhj5dZrVaK7ZwHHjRyZWjbDl",
+          "type": "app_rate_limited"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "im_close": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/im_close",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "type": {
+            "const": "im_close"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "D024BE91L",
+          "type": "im_close",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "resource_item": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "resource": {
+            "$ref": "#/definitions/resource"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/scope"
+            }
+          }
+        }
+      },
+      "resource_id": {
+        "type": "string"
+      },
+      "grant_type": {
+        "type": "string"
+      },
+      "grant": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "resource_id": {
+            "$ref": "#/definitions/resource_id"
+          },
+          "type": {
+            "$ref": "#/definitions/grant_type"
+          }
+        }
+      },
+      "resource_type": {
+        "type": "string"
+      },
+      "resource": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "grant": {
+            "$ref": "#/definitions/grant"
+          },
+          "type": {
+            "$ref": "#/definitions/resource_type"
+          }
+        }
+      },
+      "scope": {
+        "type": "string",
+        "enum": [
+          "channels:read",
+          "channels:history",
+          "groups:history",
+          "mpim:history",
+          "dnd:read",
+          "team:read",
+          "emoji:read",
+          "files:read",
+          "groups:read",
+          "im:read",
+          "im:history",
+          "links:read",
+          "pins:read",
+          "reactions:read",
+          "stars:read",
+          "usergroups:read",
+          "users:read"
+        ]
+      },
+      "resources_added": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/resources_added",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/resource_item"
+            }
+          },
+          "type": {
+            "const": "resources_added"
+          }
+        },
+        "example": {
+          "resources": [
+            {
+              "resource": {
+                "type": "im",
+                "grant": {
+                  "type": "specific",
+                  "resource_id": "DXXXXXXXX"
+                }
+              },
+              "scopes": [
+                "chat:write:user",
+                "im:read",
+                "im:history",
+                "commands"
+              ]
+            }
+          ],
+          "type": "resources_added"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "user": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
+        "properties": {
+        }
+      },
+      "team_join": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/team_join",
+        "properties": {
+          "type": {
+            "const": "team_join"
+          },
+          "user": {
+            "$ref": "#/definitions/user"
+          }
+        },
+        "example": {
+          "type": "team_join",
+          "user": {
+          }
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "trigger_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "user_resource_removed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/user_resource_removed",
+        "properties": {
+          "trigger_id": {
+            "$ref": "#/definitions/trigger_id"
+          },
+          "type": {
+            "const": "user_resource_removed"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
+          "type": "user_resource_removed",
+          "user": "WXXXXXXXX"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "im_history_changed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/im_history_changed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "latest": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "im_history_changed"
+          }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "latest": "1358877455.000010",
+          "ts": "1361482916.000003",
+          "type": "im_history_changed"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "dnd_status": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "dnd_enabled": {
+            "type": "boolean"
+          },
+          "next_dnd_end_ts": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "next_dnd_start_ts": {
+            "$ref": "#/definitions/time_integer"
+          }
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "dnd_updated": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/dnd_updated",
+        "properties": {
+          "dnd_status": {
+            "$ref": "#/definitions/dnd_status"
+          },
+          "type": {
+            "const": "dnd_updated"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "dnd_status": {
+            "dnd_enabled": true,
+            "next_dnd_start_ts": 1450387800,
+            "next_dnd_end_ts": 1450423800,
+            "snooze_enabled": true,
+            "snooze_endtime": 1450373897
+          },
+          "type": "dnd_updated",
+          "user": "U1234"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "message.groups": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/message.groups",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "channel_type": {
+            "const": "group"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "message"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "G024BE91L",
+          "channel_type": "group",
+          "event_ts": "1355517523.000005",
+          "text": "One cannot programmatically detect the difference between `message.mpim` and `message.groups`.",
+          "ts": "1355517523.000005",
+          "type": "message",
+          "user": "U2147483697"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "star_item": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/star_added",
+        "properties": {
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "star_added": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/star_added",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "item": {
+            "$ref": "#/definitions/star_item"
+          },
+          "type": {
+            "const": "star_added"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "event_ts": "1360782804.083113",
+          "item": {
+          },
+          "type": "star_added",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "group_history_changed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_history_changed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "latest": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "group_history_changed"
+          }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "latest": "1358877455.000010",
+          "ts": "1361482916.000003",
+          "type": "group_history_changed"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "resource_item": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "resource": {
+            "$ref": "#/definitions/resource"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/scope"
+            }
+          }
+        }
+      },
+      "resource": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "grant": {
+            "$ref": "#/definitions/grant"
+          },
+          "type": {
+            "$ref": "#/definitions/resource_type"
+          }
+        }
+      },
+      "scope": {
+        "type": "string",
+        "enum": [
+          "channels:read",
+          "channels:history",
+          "groups:history",
+          "mpim:history",
+          "dnd:read",
+          "team:read",
+          "emoji:read",
+          "files:read",
+          "groups:read",
+          "im:read",
+          "im:history",
+          "links:read",
+          "pins:read",
+          "reactions:read",
+          "stars:read",
+          "usergroups:read",
+          "users:read"
+        ]
+      },
+      "resources_removed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/resources_removed",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/resource_item"
+            }
+          },
+          "type": {
+            "const": "resources_removed"
+          }
+        },
+        "example": {
+          "resources": [
+            {
+              "resource": {
+                "type": "im",
+                "grant": {
+                  "type": "specific",
+                  "resource_id": "DXXXXXXXX"
+                }
+              },
+              "scopes": [
+                "chat:write:user",
+                "im:read",
+                "im:history",
+                "commands"
+              ]
+            }
+          ],
+          "type": "resources_removed"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "scope": {
+        "type": "string",
+        "enum": [
+          "channels:read",
+          "channels:history",
+          "groups:history",
+          "mpim:history",
+          "dnd:read",
+          "team:read",
+          "emoji:read",
+          "files:read",
+          "groups:read",
+          "im:read",
+          "im:history",
+          "links:read",
+          "pins:read",
+          "reactions:read",
+          "stars:read",
+          "usergroups:read",
+          "users:read"
+        ]
+      },
+      "trigger_id": {
+        "type": "string"
+      },
+      "scope_denied": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/scope_denied",
+        "properties": {
+          "scopes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/scope"
+            }
+          },
+          "trigger_id": {
+            "$ref": "#/definitions/trigger_id"
+          },
+          "type": {
+            "const": "scope_denied"
+          }
+        },
+        "example": {
+          "scopes": [
             "files:read",
-            "groups:read",
-            "im:read",
-            "im:history",
-            "links:read",
-            "pins:read",
-            "reactions:read",
-            "stars:read",
-            "usergroups:read",
-            "users:read"
-          ]
-        },
-        "trigger_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "user_resource_denied": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/user_resource_denied",
-          "properties": {
-            "scopes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/scope"
-              }
-            },
-            "trigger_id": {
-              "$ref": "#/definitions/trigger_id"
-            },
-            "type": {
-              "const": "user_resource_denied"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
-          },
-          "example": {
-            "scopes": [
-              "reminders:write:user",
-              "reminders:read:user"
-            ],
-            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
-            "type": "user_resource_denied",
-            "user": "WXXXXXXXX"
-          }
+            "files:write",
+            "chat:write"
+          ],
+          "trigger_id": "241582872337.47445629121.string",
+          "type": "scope_denied"
         }
       }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/user_resource_granted",
-    "type": "user_resource_granted",
-    "response": {
-      "scopes": [
-        "reminders:write:user",
-        "reminders:read:user"
-      ],
-      "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
-      "type": "user_resource_granted",
-      "user": "WXXXXXXXX"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "scope": {
-          "type": "string",
-          "enum": [
-            "channels:read",
-            "channels:history",
-            "groups:history",
-            "mpim:history",
-            "dnd:read",
-            "team:read",
-            "emoji:read",
-            "files:read",
-            "groups:read",
-            "im:read",
-            "im:history",
-            "links:read",
-            "pins:read",
-            "reactions:read",
-            "stars:read",
-            "usergroups:read",
-            "users:read"
-          ]
-        },
-        "trigger_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "user_resource_granted": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/user_resource_granted",
-          "properties": {
-            "scopes": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/scope"
-              }
-            },
-            "trigger_id": {
-              "$ref": "#/definitions/trigger_id"
-            },
-            "type": {
-              "const": "user_resource_granted"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "group_unarchive": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/group_unarchive",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
           },
-          "example": {
-            "scopes": [
-              "reminders:write:user",
-              "reminders:read:user"
-            ],
-            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
-            "type": "user_resource_granted",
-            "user": "WXXXXXXXX"
+          "type": {
+            "const": "group_unarchive"
           }
+        },
+        "example": {
+          "channel": "G024BE91L",
+          "type": "group_unarchive"
         }
       }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
+    }
   },
   {
-    "url": "https://api.slack.com/events/user_resource_removed",
-    "type": "user_resource_removed",
-    "response": {
-      "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
-      "type": "user_resource_removed",
-      "user": "WXXXXXXXX"
-    },
-    "schema": {
-      "$schema": "http://json-schema.org/draft-07/schema",
-      "definitions": {
-        "trigger_id": {
-          "type": "string"
-        },
-        "user_id": {
-          "type": "string"
-        },
-        "user_resource_removed": {
-          "type": "object",
-          "description": "learn more: https://api.slack.com/events/user_resource_removed",
-          "properties": {
-            "trigger_id": {
-              "$ref": "#/definitions/trigger_id"
-            },
-            "type": {
-              "const": "user_resource_removed"
-            },
-            "user": {
-              "$ref": "#/definitions/user_id"
-            }
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "message.mpim": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/message.mpim",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
           },
-          "example": {
-            "trigger_id": "27082968880.6048553856.5eb9c671f75c636135fdb6bb9e87b606",
-            "type": "user_resource_removed",
-            "user": "WXXXXXXXX"
+          "channel_type": {
+            "const": "mpim"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "const": "message"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
           }
+        },
+        "example": {
+          "channel": "G024BE91L",
+          "channel_type": "mpim",
+          "event_ts": "1355517523.000005",
+          "text": "Let's make a pact.",
+          "ts": "1355517523.000005",
+          "type": "message",
+          "user": "U2147483697"
         }
       }
-    },
-    "compatibility": [
-      "Events API"
-    ],
-    "scopes": [
-
-    ]
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "star_item": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/star_added",
+        "properties": {
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "star_removed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/star_removed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "item": {
+            "$ref": "#/definitions/star_item"
+          },
+          "type": {
+            "const": "star_removed"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "event_ts": "1360782804.083113",
+          "item": {
+          },
+          "type": "star_removed",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_change": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_change",
+        "properties": {
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_change"
+          }
+        },
+        "example": {
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_change"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "team_domain_change": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/team_domain_change",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "type": {
+            "const": "team_domain_change"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "domain": "my",
+          "type": "team_domain_change",
+          "url": "https://my.slack.com"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "enterprise_id": {
+        "type": "string"
+      },
+      "grid_migration_started": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/grid_migration_started",
+        "properties": {
+          "enterprise_id": {
+            "$ref": "#/definitions/enterprise_id"
+          },
+          "type": {
+            "const": "grid_migration_started"
+          }
+        },
+        "example": {
+          "enterprise_id": "EXXXXXXXX",
+          "type": "grid_migration_started"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "reaction_item_type": {
+        "type": "string"
+      },
+      "reaction_item": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "$ref": "#/definitions/reaction_item_type"
+          }
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "emoji_name": {
+        "type": "string"
+      },
+      "reaction_added": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/reaction_added",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "item": {
+            "$ref": "#/definitions/reaction_item"
+          },
+          "item_user": {
+            "$ref": "#/definitions/user_id"
+          },
+          "reaction": {
+            "$ref": "#/definitions/emoji_name"
+          },
+          "type": {
+            "const": "reaction_added"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "event_ts": "1360782804.083113",
+          "item": {
+            "type": "message",
+            "channel": "C0G9QF9GZ",
+            "ts": "1360782400.498405"
+          },
+          "item_user": "U0G9QF9C6",
+          "reaction": "thumbsup",
+          "type": "reaction_added",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "comment": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/file_comment_added",
+        "properties": {
+        }
+      },
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_comment_edited": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_comment_edited",
+        "properties": {
+          "comment": {
+            "$ref": "#/definitions/comment"
+          },
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_comment_edited"
+          }
+        },
+        "example": {
+          "comment": {
+          },
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_comment_edited"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "channel_id": {
+        "type": "string"
+      },
+      "reaction_item_type": {
+        "type": "string"
+      },
+      "reaction_item": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "type": {
+            "$ref": "#/definitions/reaction_item_type"
+          }
+        }
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "emoji_name": {
+        "type": "string"
+      },
+      "reaction_removed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/reaction_removed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "item": {
+            "$ref": "#/definitions/reaction_item"
+          },
+          "item_user": {
+            "$ref": "#/definitions/user_id"
+          },
+          "reaction": {
+            "$ref": "#/definitions/emoji_name"
+          },
+          "type": {
+            "const": "reaction_removed"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "event_ts": "1360782804.083113",
+          "item": {
+            "type": "message",
+            "channel": "C0G9QF9GZ",
+            "ts": "1360782400.498405"
+          },
+          "item_user": "U0G9QF9C6",
+          "reaction": "thumbsup",
+          "type": "reaction_removed",
+          "user": "U024BE7LH"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel_id": {
+        "type": "string"
+      },
+      "user_id": {
+        "type": "string"
+      },
+      "team_id": {
+        "type": "string"
+      },
+      "member_joined_channel": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/member_joined_channel",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "channel_type": {
+            "const": "C"
+          },
+          "inviter": {
+            "$ref": "#/definitions/user_id"
+          },
+          "team": {
+            "$ref": "#/definitions/team_id"
+          },
+          "type": {
+            "const": "member_joined_channel"
+          },
+          "user": {
+            "$ref": "#/definitions/user_id"
+          }
+        },
+        "example": {
+          "channel": "C0698JE0H",
+          "channel_type": "C",
+          "inviter": "U123456789",
+          "team": "T024BE7LD",
+          "type": "member_joined_channel",
+          "user": "W06GH7XHN"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "file": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "id": {
+            "$ref": "#/definitions/file_id"
+          }
+        }
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_created": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_created",
+        "properties": {
+          "file": {
+            "$ref": "#/definitions/file"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_created"
+          }
+        },
+        "example": {
+          "file": {
+            "id": "F2147483862"
+          },
+          "file_id": "F2147483862",
+          "type": "file_created"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "file_id": {
+        "type": "string"
+      },
+      "file_deleted": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/file_deleted",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "file_id": {
+            "$ref": "#/definitions/file_id"
+          },
+          "type": {
+            "const": "file_deleted"
+          }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "file_id": "F2147483862",
+          "type": "file_deleted"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "timestamp": {
+        "type": "string"
+      },
+      "emoji_name": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "emoji_subtype": {
+        "type": "string",
+        "enum": [
+          "add",
+          "remove"
+        ]
+      },
+      "emoji_value": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "emoji_changed": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/emoji_changed",
+        "properties": {
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "name": {
+            "$ref": "#/definitions/emoji_name"
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/emoji_name"
+            }
+          },
+          "subtype": {
+            "$ref": "#/definitions/emoji_subtype"
+          },
+          "type": {
+            "const": "emoji_changed"
+          },
+          "value": {
+            "$ref": "#/definitions/emoji_value"
+          }
+        },
+        "example": {
+          "event_ts": "1361482916.000004",
+          "name": "picard_facepalm",
+          "subtype": "add",
+          "type": "emoji_changed",
+          "value": "https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif"
+        }
+      }
+    }
+  },
+  {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "definitions": {
+      "channel": {
+        "type": "object",
+        "description": "(defined by script)",
+        "properties": {
+          "created": {
+            "$ref": "#/definitions/time_integer"
+          },
+          "id": {
+            "$ref": "#/definitions/channel_id"
+          },
+          "name": {
+            "$ref": "#/definitions/channel_name"
+          }
+        }
+      },
+      "channel_type": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "enum": [
+          "app_home",
+          "im",
+          "channel",
+          "group",
+          "mpim",
+          null
+        ]
+      },
+      "timestamp": {
+        "type": "string"
+      },
+      "ts": {
+        "type": "string"
+      },
+      "user": {
+        "type": "object",
+        "description": "definition snipped. learn more: https://api.slack.com/events/user_change",
+        "properties": {
+        }
+      },
+      "message": {
+        "type": "object",
+        "description": "learn more: https://api.slack.com/events/message",
+        "properties": {
+          "channel": {
+            "$ref": "#/definitions/channel"
+          },
+          "channel_type": {
+            "$ref": "#/definitions/channel_type"
+          },
+          "event_ts": {
+            "$ref": "#/definitions/timestamp"
+          },
+          "text": {
+            "type": "string"
+          },
+          "ts": {
+            "$ref": "#/definitions/ts"
+          },
+          "type": {
+            "const": "message"
+          },
+          "user": {
+            "$ref": "#/definitions/user"
+          }
+        },
+        "example": {
+          "channel": "D0PNCRP9N",
+          "channel_type": "app_home",
+          "event_ts": "1525215129.000001",
+          "text": "How many cats did we herd yesterday?",
+          "ts": "1525215129.000001",
+          "type": "message",
+          "user": "U061F7AUR"
+        }
+      }
+    }
   }
 ]

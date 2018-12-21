@@ -1,40 +1,52 @@
 {
   "url": "https://api.slack.com/events/channel_unarchive",
-  "type": "channel_unarchive",
-  "response": {
-    "channel": "C024BE91L",
-    "type": "channel_unarchive",
-    "user": "U024BE7LH"
+  "event": "channel_unarchive",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "channel_unarchive": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/channel_unarchive",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "channel_unarchive"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "channel": "C024BE91L",
+        "type": "channel_unarchive",
+        "user": "U024BE7LH"
+      }
+    }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "channel_id": {
-        "type": "string"
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/channel_unarchive",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
       },
-      "user_id": {
-        "type": "string"
+      "type": {
+        "const": "channel_unarchive"
       },
-      "channel_unarchive": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/channel_unarchive",
-        "properties": {
-          "channel": {
-            "$ref": "#/definitions/channel_id"
-          },
-          "type": {
-            "const": "channel_unarchive"
-          },
-          "user": {
-            "$ref": "#/definitions/user_id"
-          }
-        },
-        "example": {
-          "channel": "C024BE91L",
-          "type": "channel_unarchive",
-          "user": "U024BE7LH"
-        }
+      "user": {
+        "$ref": "#/definitions/user_id"
       }
+    },
+    "example": {
+      "channel": "C024BE91L",
+      "type": "channel_unarchive",
+      "user": "U024BE7LH"
     }
   },
   "compatibility": [

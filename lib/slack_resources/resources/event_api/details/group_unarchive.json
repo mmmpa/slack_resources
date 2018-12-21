@@ -1,32 +1,41 @@
 {
   "url": "https://api.slack.com/events/group_unarchive",
-  "type": "group_unarchive",
-  "response": {
-    "channel": "G024BE91L",
-    "type": "group_unarchive"
+  "event": "group_unarchive",
+  "sub_schemas": {
+    "channel_id": {
+      "type": "string"
+    },
+    "group_unarchive": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/group_unarchive",
+      "properties": {
+        "channel": {
+          "$ref": "#/definitions/channel_id"
+        },
+        "type": {
+          "const": "group_unarchive"
+        }
+      },
+      "example": {
+        "channel": "G024BE91L",
+        "type": "group_unarchive"
+      }
+    }
   },
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "channel_id": {
-        "type": "string"
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/group_unarchive",
+    "properties": {
+      "channel": {
+        "$ref": "#/definitions/channel_id"
       },
-      "group_unarchive": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/group_unarchive",
-        "properties": {
-          "channel": {
-            "$ref": "#/definitions/channel_id"
-          },
-          "type": {
-            "const": "group_unarchive"
-          }
-        },
-        "example": {
-          "channel": "G024BE91L",
-          "type": "group_unarchive"
-        }
+      "type": {
+        "const": "group_unarchive"
       }
+    },
+    "example": {
+      "channel": "G024BE91L",
+      "type": "group_unarchive"
     }
   },
   "compatibility": [

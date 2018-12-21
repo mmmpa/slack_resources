@@ -1,67 +1,76 @@
 {
   "url": "https://api.slack.com/events/dnd_updated",
-  "type": "dnd_updated",
-  "response": {
+  "event": "dnd_updated",
+  "sub_schemas": {
     "dnd_status": {
-      "dnd_enabled": true,
-      "next_dnd_start_ts": 1450387800,
-      "next_dnd_end_ts": 1450423800,
-      "snooze_enabled": true,
-      "snooze_endtime": 1450373897
-    },
-    "type": "dnd_updated",
-    "user": "U1234"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "time_integer": {
-        "type": "number"
-      },
-      "dnd_status": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "dnd_enabled": {
-            "type": "boolean"
-          },
-          "next_dnd_end_ts": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "next_dnd_start_ts": {
-            "$ref": "#/definitions/time_integer"
-          }
-        }
-      },
-      "user_id": {
-        "type": "string"
-      },
-      "dnd_updated": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/dnd_updated",
-        "properties": {
-          "dnd_status": {
-            "$ref": "#/definitions/dnd_status"
-          },
-          "type": {
-            "const": "dnd_updated"
-          },
-          "user": {
-            "$ref": "#/definitions/user_id"
-          }
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "dnd_enabled": {
+          "type": "boolean"
         },
-        "example": {
-          "dnd_status": {
-            "dnd_enabled": true,
-            "next_dnd_start_ts": 1450387800,
-            "next_dnd_end_ts": 1450423800,
-            "snooze_enabled": true,
-            "snooze_endtime": 1450373897
-          },
-          "type": "dnd_updated",
-          "user": "U1234"
+        "next_dnd_end_ts": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "next_dnd_start_ts": {
+          "$ref": "#/definitions/time_integer"
         }
       }
+    },
+    "user_id": {
+      "type": "string"
+    },
+    "dnd_updated": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/dnd_updated",
+      "properties": {
+        "dnd_status": {
+          "$ref": "#/definitions/dnd_status"
+        },
+        "type": {
+          "const": "dnd_updated"
+        },
+        "user": {
+          "$ref": "#/definitions/user_id"
+        }
+      },
+      "example": {
+        "dnd_status": {
+          "dnd_enabled": true,
+          "next_dnd_start_ts": 1450387800,
+          "next_dnd_end_ts": 1450423800,
+          "snooze_enabled": true,
+          "snooze_endtime": 1450373897
+        },
+        "type": "dnd_updated",
+        "user": "U1234"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/dnd_updated",
+    "properties": {
+      "dnd_status": {
+        "$ref": "#/definitions/dnd_status"
+      },
+      "type": {
+        "const": "dnd_updated"
+      },
+      "user": {
+        "$ref": "#/definitions/user_id"
+      }
+    },
+    "example": {
+      "dnd_status": {
+        "dnd_enabled": true,
+        "next_dnd_start_ts": 1450387800,
+        "next_dnd_end_ts": 1450423800,
+        "snooze_enabled": true,
+        "snooze_endtime": 1450373897
+      },
+      "type": "dnd_updated",
+      "user": "U1234"
     }
   },
   "compatibility": [

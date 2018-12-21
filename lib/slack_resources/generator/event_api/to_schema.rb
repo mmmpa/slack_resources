@@ -124,7 +124,7 @@ module SlackResources
 
         @defined[prop_name] =
           if const
-            { 'type' => normalize_type(types), enum: value['items'] }
+            { 'type' => normalize_type(types), enum: value['items'].uniq }
           else
             { 'type' => normalize_type(types) }
           end

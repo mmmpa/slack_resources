@@ -10,9 +10,6 @@
     "user_id": {
       "type": "string"
     },
-    "channel_type": {
-      "type": "string"
-    },
     "message.app_home": {
       "type": "object",
       "description": "learn more: https://api.slack.com/events/message.app_home",
@@ -21,7 +18,7 @@
           "$ref": "#/definitions/channel_id"
         },
         "channel_type": {
-          "type": "string"
+          "const": "app_home"
         },
         "event_ts": {
           "$ref": "#/definitions/timestamp"

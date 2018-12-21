@@ -83,6 +83,7 @@ module SlackResources
         name
         subtype
         value
+        item
       ])
 
       class << self

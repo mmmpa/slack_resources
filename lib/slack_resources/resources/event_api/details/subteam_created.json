@@ -1,182 +1,191 @@
 {
   "url": "https://api.slack.com/events/subteam_created",
-  "type": "subteam_created",
-  "response": {
-    "subteam": {
-      "id": "S0615G0KT",
-      "team_id": "T060RNRCH",
-      "is_usergroup": true,
-      "name": "Marketing Team",
-      "description": "Marketing gurus, PR experts and product advocates.",
-      "handle": "marketing-team",
-      "is_external": false,
-      "date_create": 1446746793,
-      "date_update": 1446746793,
-      "date_delete": 0,
-      "auto_type": null,
-      "created_by": "U060RNRCZ",
-      "updated_by": "U060RNRCZ",
-      "deleted_by": null,
-      "prefs": {
-        "channels": [
-
-        ],
-        "groups": [
-
-        ]
-      },
-      "user_count": "0"
+  "event": "subteam_created",
+  "sub_schemas": {
+    "auto_type": {
+      "type": "string",
+      "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
+      "enum": [
+        "admins",
+        "owners",
+        null
+      ]
     },
-    "type": "subteam_created"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "auto_type": {
-        "type": "string",
-        "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
-        "enum": [
-          "admins",
-          "owners",
-          null
-        ]
-      },
-      "user_id": {
-        "type": "string"
-      },
-      "time_integer": {
-        "type": "number"
-      },
-      "subteam_id": {
-        "type": "string"
-      },
-      "subteam_name": {
-        "type": "string"
-      },
-      "channel_id": {
-        "type": "string"
-      },
-      "group_id": {
-        "type": "string"
-      },
-      "prefs": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "channels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/channel_id"
-            }
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/group_id"
-            }
-          }
-        }
-      },
-      "team_id": {
-        "type": "string"
-      },
-      "user_count": {
-        "type": "string"
-      },
-      "subteam": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "auto_type": {
-            "$ref": "#/definitions/auto_type"
-          },
-          "created_by": {
-            "$ref": "#/definitions/user_id"
-          },
-          "date_create": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "date_delete": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "date_update": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "deleted_by": {
-            "$ref": "#/definitions/user_id"
-          },
-          "description": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
-          "id": {
-            "$ref": "#/definitions/subteam_id"
-          },
-          "is_external": {
-            "type": "boolean"
-          },
-          "is_usergroup": {
-            "type": "boolean"
-          },
-          "name": {
-            "$ref": "#/definitions/subteam_name"
-          },
-          "prefs": {
-            "$ref": "#/definitions/prefs"
-          },
-          "team_id": {
-            "$ref": "#/definitions/team_id"
-          },
-          "updated_by": {
-            "$ref": "#/definitions/user_id"
-          },
-          "user_count": {
-            "$ref": "#/definitions/user_count"
-          }
-        }
-      },
-      "subteam_created": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/subteam_created",
-        "properties": {
-          "subteam": {
-            "$ref": "#/definitions/subteam"
-          },
-          "type": {
-            "const": "subteam_created"
+    "user_id": {
+      "type": "string"
+    },
+    "time_integer": {
+      "type": "number"
+    },
+    "subteam_id": {
+      "type": "string"
+    },
+    "subteam_name": {
+      "type": "string"
+    },
+    "channel_id": {
+      "type": "string"
+    },
+    "group_id": {
+      "type": "string"
+    },
+    "prefs": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/channel_id"
           }
         },
-        "example": {
-          "subteam": {
-            "id": "S0615G0KT",
-            "team_id": "T060RNRCH",
-            "is_usergroup": true,
-            "name": "Marketing Team",
-            "description": "Marketing gurus, PR experts and product advocates.",
-            "handle": "marketing-team",
-            "is_external": false,
-            "date_create": 1446746793,
-            "date_update": 1446746793,
-            "date_delete": 0,
-            "auto_type": null,
-            "created_by": "U060RNRCZ",
-            "updated_by": "U060RNRCZ",
-            "deleted_by": null,
-            "prefs": {
-              "channels": [
-
-              ],
-              "groups": [
-
-              ]
-            },
-            "user_count": "0"
-          },
-          "type": "subteam_created"
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/group_id"
+          }
         }
       }
+    },
+    "team_id": {
+      "type": "string"
+    },
+    "user_count": {
+      "type": "string"
+    },
+    "subteam": {
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "auto_type": {
+          "$ref": "#/definitions/auto_type"
+        },
+        "created_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "date_create": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "date_delete": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "date_update": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "deleted_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/definitions/subteam_id"
+        },
+        "is_external": {
+          "type": "boolean"
+        },
+        "is_usergroup": {
+          "type": "boolean"
+        },
+        "name": {
+          "$ref": "#/definitions/subteam_name"
+        },
+        "prefs": {
+          "$ref": "#/definitions/prefs"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "updated_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "user_count": {
+          "$ref": "#/definitions/user_count"
+        }
+      }
+    },
+    "subteam_created": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/subteam_created",
+      "properties": {
+        "subteam": {
+          "$ref": "#/definitions/subteam"
+        },
+        "type": {
+          "const": "subteam_created"
+        }
+      },
+      "example": {
+        "subteam": {
+          "id": "S0615G0KT",
+          "team_id": "T060RNRCH",
+          "is_usergroup": true,
+          "name": "Marketing Team",
+          "description": "Marketing gurus, PR experts and product advocates.",
+          "handle": "marketing-team",
+          "is_external": false,
+          "date_create": 1446746793,
+          "date_update": 1446746793,
+          "date_delete": 0,
+          "auto_type": null,
+          "created_by": "U060RNRCZ",
+          "updated_by": "U060RNRCZ",
+          "deleted_by": null,
+          "prefs": {
+            "channels": [
+
+            ],
+            "groups": [
+
+            ]
+          },
+          "user_count": "0"
+        },
+        "type": "subteam_created"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/subteam_created",
+    "properties": {
+      "subteam": {
+        "$ref": "#/definitions/subteam"
+      },
+      "type": {
+        "const": "subteam_created"
+      }
+    },
+    "example": {
+      "subteam": {
+        "id": "S0615G0KT",
+        "team_id": "T060RNRCH",
+        "is_usergroup": true,
+        "name": "Marketing Team",
+        "description": "Marketing gurus, PR experts and product advocates.",
+        "handle": "marketing-team",
+        "is_external": false,
+        "date_create": 1446746793,
+        "date_update": 1446746793,
+        "date_delete": 0,
+        "auto_type": null,
+        "created_by": "U060RNRCZ",
+        "updated_by": "U060RNRCZ",
+        "deleted_by": null,
+        "prefs": {
+          "channels": [
+
+          ],
+          "groups": [
+
+          ]
+        },
+        "user_count": "0"
+      },
+      "type": "subteam_created"
     }
   },
   "compatibility": [

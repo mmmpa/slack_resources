@@ -1,194 +1,152 @@
 {
   "url": "https://api.slack.com/events/subteam_updated",
-  "type": "subteam_updated",
-  "response": {
+  "event": "subteam_updated",
+  "sub_schemas": {
     "subteam": {
-      "id": "S0614TZR7",
-      "team_id": "T060RNRCH",
-      "is_usergroup": true,
-      "name": "Team Admins",
-      "description": "A group of all Administrators on your team.",
-      "handle": "admins",
-      "is_external": false,
-      "date_create": 1446598059,
-      "date_update": 1446670362,
-      "date_delete": 0,
-      "auto_type": "admin",
-      "created_by": "USLACKBOT",
-      "updated_by": "U060RNRCZ",
-      "deleted_by": null,
-      "prefs": {
-        "channels": [
-
-        ],
-        "groups": [
-
-        ]
-      },
-      "users": [
-        "U060RNRCZ",
-        "U060ULRC0",
-        "U06129G2V",
-        "U061309JM"
-      ],
-      "user_count": "4"
-    },
-    "type": "subteam_updated"
-  },
-  "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "definitions": {
-      "auto_type": {
-        "type": "string",
-        "description": "The auto_type parameter can be admins for a Workspace Admins group, owners for a Workspace Owners group or null for a custom group.",
-        "enum": [
-          "admins",
-          "owners",
-          null
-        ]
-      },
-      "user_id": {
-        "type": "string"
-      },
-      "time_integer": {
-        "type": "number"
-      },
-      "subteam_id": {
-        "type": "string"
-      },
-      "subteam_name": {
-        "type": "string"
-      },
-      "channel_id": {
-        "type": "string"
-      },
-      "group_id": {
-        "type": "string"
-      },
-      "prefs": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "channels": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/channel_id"
-            }
-          },
-          "groups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/group_id"
-            }
-          }
-        }
-      },
-      "team_id": {
-        "type": "string"
-      },
-      "user_count": {
-        "type": "string"
-      },
-      "subteam": {
-        "type": "object",
-        "description": "(defined by script)",
-        "properties": {
-          "auto_type": {
-            "$ref": "#/definitions/auto_type"
-          },
-          "created_by": {
-            "$ref": "#/definitions/user_id"
-          },
-          "date_create": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "date_delete": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "date_update": {
-            "$ref": "#/definitions/time_integer"
-          },
-          "deleted_by": {
-            "$ref": "#/definitions/user_id"
-          },
-          "description": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
-          "id": {
-            "$ref": "#/definitions/subteam_id"
-          },
-          "is_external": {
-            "type": "boolean"
-          },
-          "is_usergroup": {
-            "type": "boolean"
-          },
-          "name": {
-            "$ref": "#/definitions/subteam_name"
-          },
-          "prefs": {
-            "$ref": "#/definitions/prefs"
-          },
-          "team_id": {
-            "$ref": "#/definitions/team_id"
-          },
-          "updated_by": {
-            "$ref": "#/definitions/user_id"
-          },
-          "user_count": {
-            "$ref": "#/definitions/user_count"
-          }
-        }
-      },
-      "subteam_updated": {
-        "type": "object",
-        "description": "learn more: https://api.slack.com/events/subteam_updated",
-        "properties": {
-          "subteam": {
-            "$ref": "#/definitions/subteam"
-          },
-          "type": {
-            "const": "subteam_updated"
-          }
+      "type": "object",
+      "description": "(defined by script)",
+      "properties": {
+        "auto_type": {
+          "$ref": "#/definitions/auto_type"
         },
-        "example": {
-          "subteam": {
-            "id": "S0614TZR7",
-            "team_id": "T060RNRCH",
-            "is_usergroup": true,
-            "name": "Team Admins",
-            "description": "A group of all Administrators on your team.",
-            "handle": "admins",
-            "is_external": false,
-            "date_create": 1446598059,
-            "date_update": 1446670362,
-            "date_delete": 0,
-            "auto_type": "admin",
-            "created_by": "USLACKBOT",
-            "updated_by": "U060RNRCZ",
-            "deleted_by": null,
-            "prefs": {
-              "channels": [
-
-              ],
-              "groups": [
-
-              ]
-            },
-            "users": [
-              "U060RNRCZ",
-              "U060ULRC0",
-              "U06129G2V",
-              "U061309JM"
-            ],
-            "user_count": "4"
-          },
-          "type": "subteam_updated"
+        "created_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "date_create": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "date_delete": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "date_update": {
+          "$ref": "#/definitions/time_integer"
+        },
+        "deleted_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "description": {
+          "type": "string"
+        },
+        "handle": {
+          "type": "string"
+        },
+        "id": {
+          "$ref": "#/definitions/subteam_id"
+        },
+        "is_external": {
+          "type": "boolean"
+        },
+        "is_usergroup": {
+          "type": "boolean"
+        },
+        "name": {
+          "$ref": "#/definitions/subteam_name"
+        },
+        "prefs": {
+          "$ref": "#/definitions/prefs"
+        },
+        "team_id": {
+          "$ref": "#/definitions/team_id"
+        },
+        "updated_by": {
+          "$ref": "#/definitions/user_id"
+        },
+        "user_count": {
+          "$ref": "#/definitions/user_count"
         }
       }
+    },
+    "subteam_updated": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/subteam_updated",
+      "properties": {
+        "subteam": {
+          "$ref": "#/definitions/subteam"
+        },
+        "type": {
+          "const": "subteam_updated"
+        }
+      },
+      "example": {
+        "subteam": {
+          "id": "S0614TZR7",
+          "team_id": "T060RNRCH",
+          "is_usergroup": true,
+          "name": "Team Admins",
+          "description": "A group of all Administrators on your team.",
+          "handle": "admins",
+          "is_external": false,
+          "date_create": 1446598059,
+          "date_update": 1446670362,
+          "date_delete": 0,
+          "auto_type": "admin",
+          "created_by": "USLACKBOT",
+          "updated_by": "U060RNRCZ",
+          "deleted_by": null,
+          "prefs": {
+            "channels": [
+
+            ],
+            "groups": [
+
+            ]
+          },
+          "users": [
+            "U060RNRCZ",
+            "U060ULRC0",
+            "U06129G2V",
+            "U061309JM"
+          ],
+          "user_count": "4"
+        },
+        "type": "subteam_updated"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/subteam_updated",
+    "properties": {
+      "subteam": {
+        "$ref": "#/definitions/subteam"
+      },
+      "type": {
+        "const": "subteam_updated"
+      }
+    },
+    "example": {
+      "subteam": {
+        "id": "S0614TZR7",
+        "team_id": "T060RNRCH",
+        "is_usergroup": true,
+        "name": "Team Admins",
+        "description": "A group of all Administrators on your team.",
+        "handle": "admins",
+        "is_external": false,
+        "date_create": 1446598059,
+        "date_update": 1446670362,
+        "date_delete": 0,
+        "auto_type": "admin",
+        "created_by": "USLACKBOT",
+        "updated_by": "U060RNRCZ",
+        "deleted_by": null,
+        "prefs": {
+          "channels": [
+
+          ],
+          "groups": [
+
+          ]
+        },
+        "users": [
+          "U060RNRCZ",
+          "U060ULRC0",
+          "U06129G2V",
+          "U061309JM"
+        ],
+        "user_count": "4"
+      },
+      "type": "subteam_updated"
     }
   },
   "compatibility": [

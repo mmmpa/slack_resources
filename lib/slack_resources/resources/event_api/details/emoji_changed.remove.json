@@ -1,0 +1,77 @@
+{
+  "url": "https://api.slack.com/events/emoji_changed",
+  "event": "emoji_changed.remove",
+  "sub_schemas": {
+    "timestamp": {
+      "type": "string"
+    },
+    "emoji_name": {
+      "type": "string"
+    },
+    "emoji_changed.remove": {
+      "type": "object",
+      "description": "learn more: https://api.slack.com/events/emoji_changed",
+      "properties": {
+        "event_ts": {
+          "$ref": "#/definitions/timestamp"
+        },
+        "names": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/emoji_name"
+          }
+        },
+        "subtype": {
+          "const": "remove"
+        },
+        "type": {
+          "const": "emoji_changed"
+        }
+      },
+      "example": {
+        "event_ts": "1361482916.000004",
+        "names": [
+          "picard_facepalm"
+        ],
+        "subtype": "remove",
+        "type": "emoji_changed"
+      }
+    }
+  },
+  "schema": {
+    "type": "object",
+    "description": "learn more: https://api.slack.com/events/emoji_changed",
+    "properties": {
+      "event_ts": {
+        "$ref": "#/definitions/timestamp"
+      },
+      "names": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/emoji_name"
+        }
+      },
+      "subtype": {
+        "const": "remove"
+      },
+      "type": {
+        "const": "emoji_changed"
+      }
+    },
+    "example": {
+      "event_ts": "1361482916.000004",
+      "names": [
+        "picard_facepalm"
+      ],
+      "subtype": "remove",
+      "type": "emoji_changed"
+    }
+  },
+  "compatibility": [
+    "RTM",
+    "Events API"
+  ],
+  "scopes": [
+    "emoji:read"
+  ]
+}

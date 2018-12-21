@@ -5,10 +5,23 @@
       "type": "string"
     },
     "emoji_name": {
-      "type": "string"
+      "type": [
+        "string",
+        "null"
+      ]
     },
-    "subscription_subtype": {
-      "type": "string"
+    "emoji_subtype": {
+      "type": "string",
+      "enum": [
+        "add",
+        "remove"
+      ]
+    },
+    "emoji_value": {
+      "type": [
+        "string",
+        "null"
+      ]
     },
     "emoji_changed": {
       "type": "object",
@@ -17,6 +30,9 @@
         "event_ts": {
           "$ref": "#/definitions/timestamp"
         },
+        "name": {
+          "$ref": "#/definitions/emoji_name"
+        },
         "names": {
           "type": "array",
           "items": {
@@ -24,19 +40,21 @@
           }
         },
         "subtype": {
-          "$ref": "#/definitions/subscription_subtype"
+          "$ref": "#/definitions/emoji_subtype"
         },
         "type": {
           "const": "emoji_changed"
+        },
+        "value": {
+          "$ref": "#/definitions/emoji_value"
         }
       },
       "example": {
         "event_ts": "1361482916.000004",
-        "names": [
-          "picard_facepalm"
-        ],
-        "subtype": "remove",
-        "type": "emoji_changed"
+        "name": "picard_facepalm",
+        "subtype": "add",
+        "type": "emoji_changed",
+        "value": "https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif"
       }
     }
   }

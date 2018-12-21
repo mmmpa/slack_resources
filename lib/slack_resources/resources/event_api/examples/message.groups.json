@@ -1,0 +1,9 @@
+{
+  "channel": "G024BE91L",
+  "channel_type": "group",
+  "event_ts": "1355517523.000005",
+  "text": "One cannot programmatically detect the difference between `message.mpim` and `message.groups`.",
+  "ts": "1355517523.000005",
+  "type": "message",
+  "user": "U2147483697"
+}
