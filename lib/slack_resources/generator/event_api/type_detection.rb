@@ -11,7 +11,7 @@ module SlackResources
       CONST_TYPES = %w[
         type
         subtype
-      ]
+      ].freeze
 
       DEFAULT_TYPES = Set.new(%w[
         string
@@ -82,6 +82,7 @@ module SlackResources
         type
         name
         subtype
+        value
       ])
 
       class << self

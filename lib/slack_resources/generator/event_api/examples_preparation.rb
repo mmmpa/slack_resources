@@ -18,7 +18,7 @@ module SlackResources
         raw_examples.each do |alt_event_type, event_type, example|
           example['_raw_example'] = JSON.parse(example.to_json)
           event_typed_examples.protect_merge!(event_type => example)
-          alt_typed_examples.merge!(alt_event_type => JSON.parse(example.to_json))
+          alt_typed_examples[alt_event_type] = JSON.parse(example.to_json)
 
           next if defined.add?(event_type)
 

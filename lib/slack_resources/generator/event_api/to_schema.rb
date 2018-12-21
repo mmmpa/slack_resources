@@ -122,18 +122,19 @@ module SlackResources
       def define_special_type(prop_name, value, container, const)
         types = value['items'].map { |v| detect_default_type(prop_name, v, container) }.uniq
 
-
         @defined[prop_name] =
           if const
-            { 'type' => types[0], enum: value['items'] }
-          elsif types.size == 1
-            { 'type' => types[0] }
+            { 'type' => normalize_type(types), enum: value['items'] }
           else
-            { 'type' => types.join('|') }
+            { 'type' => normalize_type(types) }
           end
 
         @defined_used << prop_name
         prop_name
+      end
+
+      def normalize_type(types)
+        types.size == 1 ? types[0] : types
       end
 
       def define_string(prop_name)
@@ -152,9 +153,7 @@ module SlackResources
       end
 
       def detect_default_type(prop_name, value, container, const = false)
-        if value.is_a?(Hash) && value[TypeDetection::SPECIAL_TYPE] == TypeDetection::MULTIPLE_EXAMPLES
-          return define_special_type(prop_name, value, container, const)
-        end
+        return define_special_type(prop_name, value, container, const) if value.is_a?(Hash) && value[TypeDetection::SPECIAL_TYPE] == TypeDetection::MULTIPLE_EXAMPLES
 
         case value
         when Integer
