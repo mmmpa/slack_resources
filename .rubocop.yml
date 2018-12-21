@@ -98,3 +98,6 @@ Layout/IndentArray:
 
 Metrics/ParameterLists:
   Max: 20
+
+Style/RescueModifier:
+  Enabled: false

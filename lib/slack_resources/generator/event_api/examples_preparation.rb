@@ -9,8 +9,6 @@ module SlackResources
       end
 
       def execute!
-        posit_added_examples!
-
         single_events = Set.new(raw_examples.map(&:first))
 
         defined = Set.new
@@ -21,6 +19,8 @@ module SlackResources
           event_typed_examples.protect_merge!(event_type => example)
 
           next alt_typed_examples.merge!(alt_event_type => JSON.parse(example.to_json)) if defined.add?(event_type)
+
+          # convert to enum
 
           alt_typed_examples[alt_event_type] = JSON.parse(example.to_json)
 
@@ -40,7 +40,7 @@ module SlackResources
                 k => {
                   '_type' => 'enum',
                   'target' => k,
-                  'items' => [defined_value],
+                  'items' => [defined_value, additional_value],
                 }
               )
             end
@@ -52,15 +52,12 @@ module SlackResources
 
       private
 
-      def posit_added_examples!
-        Dir.glob(@added_examples_dir.join('**/*.json')).each do |f|
-          file_name = File.basename(f)
-          FileUtils.copy(f, @examples_dir.join(file_name))
-        end
+      def all_files
+        Dir.glob(@added_examples_dir.join('**/*.json')) + Dir.glob(@examples_dir.join('**/*.json'))
       end
 
       def raw_examples
-        @raw_examples ||= Dir.glob(@examples_dir.join('**/*.json')).map do |f|
+        @raw_examples ||= all_files.map do |f|
           example = JSON.parse(File.read(f))
           alt_event_type = File.basename(f, '.json')
           event_body = example['event'].presence || example

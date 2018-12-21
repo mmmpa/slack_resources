@@ -10,34 +10,55 @@ module SlackResources
     class Writer
       using StrongHash
 
-      def initialize(output_dir: './tmp', data_dir: './spec/fixtures')
+      def initialize(output_dir:, data_dir:)
         @output_dir = Pathname(output_dir)
-        @details_dir = @output_dir.join('details')
-        @schemas_dir = @output_dir.join('schemas')
+        @details_output_dir = @output_dir.join('details')
+        @schemas_output_dir = @output_dir.join('schemas')
+        @example_output_dir = @output_dir.join('examples')
 
         @data_dir = Pathname(data_dir)
-        @examples_dir = @data_dir.join('examples')
         @meta = JSON.parse(File.read(@data_dir.join('meta.json')))
         @preset_schema = JSON.parse(File.read(@data_dir.join('preset_schema.json')))
         @preset_definitions = @preset_schema['definitions']
+
+        @examples_dir = @data_dir.join('examples')
         @added_examples_dir = @data_dir.join('_added_examples')
       end
 
       def execute!
-        FileUtils.mkdir_p(@details_dir)
-        FileUtils.mkdir_p(@schemas_dir)
+        FileUtils.mkdir_p(@details_output_dir)
+        FileUtils.mkdir_p(@schemas_output_dir)
+        FileUtils.mkdir_p(@example_output_dir)
 
-        all_sub_schemas = prepare_definitions
+        alt_event_type_mapped_examples = ExamplePreparation.new(
+          examples_dir: @examples_dir,
+          added_examples_dir: @added_examples_dir
+        ).execute!
+
+        examples_with_metadata = alt_event_type_mapped_examples.map do |alt_event_type, example|
+          info = @meta['subscriptions'][alt_event_type] || {}
+          [info['url'], alt_event_type, example, info['compatibility'], info['scopes']]
+        end
+
+        all_sub_schemas = @preset_definitions.merge(
+          'subscription_type' => {
+            "type": 'string',
+            "enum": @meta['types'],
+          },
+          'scope' => {
+            "type": 'string',
+            "enum": @meta['scopes'],
+          }
+        )
+
         main_schemas = {}
 
-        all_details = combine_data(prepared_data).map do |url, alt_event_type, example, compatibility, scopes|
+        all_details = examples_with_metadata.map do |url, alt_event_type, example, compatibility, scopes|
           schema, new_definition, included_props_names = ToSchema.new(
             example: example,
             url: url,
             preset: all_sub_schemas
           ).execute!
-
-          schema['description'] = "learn more: #{url}"
 
           all_sub_schemas.protect_merge!(new_definition)
 
@@ -51,7 +72,8 @@ module SlackResources
             a.merge!(v['target'] => v['items'].map { |s| s || 'null' }.join('|'))
           end
 
-          schema.protect_merge!(example: normalized_response)
+          schema['description'] = "learn more: #{url}"
+          schema['example'] = normalized_response
 
           main_schemas[alt_event_type] = schema
 
@@ -69,6 +91,7 @@ module SlackResources
               "$schema": 'http://json-schema.org/draft-07/schema',
               'definitions' => included_schemas.protect_merge!(alt_event_type => schema),
             },
+            example,
           ]
         end
 
@@ -84,9 +107,10 @@ module SlackResources
       private
 
       def write_each_data_json!(all_details)
-        all_details.each do |alt_event_type, data, single_schema|
-          File.write(@details_dir.join("#{alt_event_type}.json").to_s, JSON.pretty_generate(data))
-          File.write(@schemas_dir.join("#{alt_event_type}.json").to_s, JSON.pretty_generate(single_schema))
+        all_details.each do |alt_event_type, data, single_schema, example|
+          File.write(@details_output_dir.join("#{alt_event_type}.json").to_s, JSON.pretty_generate(data))
+          File.write(@example_output_dir.join("#{alt_event_type}.json").to_s, JSON.pretty_generate(example))
+          File.write(@schemas_output_dir.join("#{alt_event_type}.json").to_s, JSON.pretty_generate(single_schema))
         end
       end
 
@@ -102,33 +126,6 @@ module SlackResources
 
       def write_summary!(data)
         File.write(@output_dir.join('summary.json').to_s, JSON.pretty_generate(data.sort_by { |a| a[:type] }))
-      end
-
-      def prepared_data
-        ExamplePreparation.new(
-          examples_dir: @examples_dir,
-          added_examples_dir: @added_examples_dir
-        ).execute!
-      end
-
-      def combine_data(examples)
-        examples.map do |alt_event_type, example|
-          info = @meta['subscriptions'][alt_event_type] || {}
-          [info['url'], alt_event_type, example, info['compatibility'], info['scopes']]
-        end
-      end
-
-      def prepare_definitions
-        @preset_definitions.merge(
-          'subscription_type' => {
-            "type": 'string',
-            "enum": @meta['types'],
-          },
-          'scope' => {
-            "type": 'string',
-            "enum": @meta['scopes'],
-          }
-        )
       end
     end
   end
