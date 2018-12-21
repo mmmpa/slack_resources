@@ -8,7 +8,7 @@ module SlackResources
         @examples_dir = examples_dir
       end
 
-      def execute!
+      def execute! # rubocop:disable Metrics/AbcSize
         single_events = Set.new(raw_examples.map(&:first))
 
         defined = Set.new

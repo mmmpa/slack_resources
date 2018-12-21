@@ -9,6 +9,9 @@ jobs:
       - run:
           name: Test
           command: bundle && bundle exec rspec -cfd
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop
 
   deploy_gem:
     parallelism: 1
