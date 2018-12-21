@@ -1,9 +1,19 @@
 version: 2
 jobs:
+  test:
+    parallelism: 1
+    docker:
+      - image: circleci/ruby:2.5.1
+    steps:
+      - checkout
+      - run:
+          name: Test
+          command: bundle && bundle exec rspec -cfd
+
   deploy_gem:
     parallelism: 1
     docker:
-      - image: circleci/ruby-2.5
+      - image: circleci/ruby-2.5.1
     steps:
       - checkout
       - run:
@@ -13,7 +23,7 @@ jobs:
   deploy_gem_minor:
     parallelism: 1
     docker:
-      - image: circleci/ruby-2.5
+      - image: circleci/ruby-2.5.1
     steps:
       - checkout
       - run:
@@ -23,7 +33,7 @@ jobs:
   deploy_gem_major:
     parallelism: 1
     docker:
-      - image: circleci/ruby-2.5
+      - image: circleci/ruby-2.5.1
     steps:
       - checkout
       - run:
