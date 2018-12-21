@@ -34,13 +34,13 @@ module SlackResources
             next if defined_value == additional_value
 
             if defined_value.is_a?(Hash) && defined_value[TypeDetection::SPECIAL_TYPE] == TypeDetection::MULTIPLE_EXAMPLES
-              defined_value['items'] << additional_value
+              (defined_value['items'] << additional_value).sort! { |a, b| a.to_s <=> b.to_s }
             else
               defined_example.merge!(
                 k => {
                   TypeDetection::SPECIAL_TYPE => TypeDetection::MULTIPLE_EXAMPLES,
                   'target' => k,
-                  'items' => [defined_value, additional_value],
+                  'items' => [defined_value, additional_value].sort! { |a, b| a.to_s <=> b.to_s },
                 }
               )
             end

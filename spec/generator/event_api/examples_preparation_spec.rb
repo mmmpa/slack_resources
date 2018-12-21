@@ -42,7 +42,7 @@ RSpec.describe SlackResources::Generator::ExamplePreparation do
         is_expected.to eq(
           special_type_key => multiple_type_value,
           'target' => 'channel_type',
-          'items' => ['im', 'mpim', nil]
+          'items' => [nil, 'im', 'mpim']
         )
       }
     end
@@ -55,12 +55,12 @@ RSpec.describe SlackResources::Generator::ExamplePreparation do
           'name' => {
             special_type_key => multiple_type_value,
             'target' => 'name',
-            'items' => ['picard_facepalm', nil],
+            'items' => [nil, 'picard_facepalm'],
           },
           'value' => {
             special_type_key => multiple_type_value,
             'target' => 'value',
-            'items' => ['https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif', nil],
+            'items' => [nil, 'https://my.slack.com/emoji/picard_facepalm/db8e287430eaa459.gif'],
           },
           'names' => {
             special_type_key => multiple_type_value,
