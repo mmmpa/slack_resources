@@ -225,16 +225,16 @@
     },
     "channel_type": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ],
       "enum": [
+        null,
         "app_home",
-        "im",
         "channel",
         "group",
-        "mpim",
-        null
+        "im",
+        "mpim"
       ]
     },
     "channel_unarchive": {
@@ -451,8 +451,8 @@
     },
     "emoji_name": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ]
     },
     "emoji_subtype": {
@@ -464,8 +464,8 @@
     },
     "emoji_value": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ]
     },
     "enterprise_id": {
