@@ -3,6 +3,7 @@ AllCops:
   Exclude:
     - tmp
     - lib/slack_resources/generator/event_api/fetch.rb
+    - vendor/**/*
 
 Rails:
   Enabled: true

@@ -6,9 +6,24 @@ jobs:
       - image: circleci/ruby:2.5.1
     steps:
       - checkout
+
+      - restore_cache:
+          keys:
+            - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - rails-demo-bundle-v2-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install --path vendor/bundle
+
+      - save_cache:
+          key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
       - run:
           name: Test
-          command: bundle && bundle exec rspec -cfd
+          command: bundle exec rspec -cfd
       - run:
           name: Rubocop
           command: bundle exec rubocop
@@ -16,7 +31,7 @@ jobs:
   deploy_gem:
     parallelism: 1
     docker:
-      - image: circleci/ruby-2.5.1
+      - image: circleci/ruby:2.5.1
     steps:
       - checkout
       - run:
@@ -26,7 +41,7 @@ jobs:
   deploy_gem_minor:
     parallelism: 1
     docker:
-      - image: circleci/ruby-2.5.1
+      - image: circleci/ruby:2.5.1
     steps:
       - checkout
       - run:
@@ -36,7 +51,7 @@ jobs:
   deploy_gem_major:
     parallelism: 1
     docker:
-      - image: circleci/ruby-2.5.1
+      - image: circleci/ruby:2.5.1
     steps:
       - checkout
       - run:
