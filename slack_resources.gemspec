@@ -1,7 +1,7 @@
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-HAS_VERSION = File.exist?('./lib/slack_resources/version')
+HAS_VERSION = File.exist?('./lib/slack_resources/version.rb')
 require 'slack_resources/version' if HAS_VERSION
 
 Gem::Specification.new do |spec|
