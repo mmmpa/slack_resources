@@ -88,7 +88,7 @@ module SlackResources
 
         write_each_data_json!(all_details)
         write_all_schemas_json!(all_sub_schemas, main_schemas)
-        write_summary!(all_details.map { |d| d[2] })
+        write_summary!(all_details.map { |d| d[1] })
 
         all_details
       end
