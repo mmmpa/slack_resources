@@ -18,16 +18,16 @@
     },
     "channel_type": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ],
       "enum": [
+        null,
         "app_home",
-        "im",
         "channel",
         "group",
-        "mpim",
-        null
+        "im",
+        "mpim"
       ]
     },
     "timestamp": {

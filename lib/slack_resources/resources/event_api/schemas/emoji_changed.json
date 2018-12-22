@@ -6,8 +6,8 @@
     },
     "emoji_name": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ]
     },
     "emoji_subtype": {
@@ -19,8 +19,8 @@
     },
     "emoji_value": {
       "type": [
-        "string",
-        "null"
+        "null",
+        "string"
       ]
     },
     "emoji_changed": {
