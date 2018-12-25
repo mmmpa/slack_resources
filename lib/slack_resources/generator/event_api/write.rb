@@ -1,5 +1,4 @@
 require 'pathname'
-require 'rest-client'
 require 'nokogiri'
 require 'json'
 require 'active_support/core_ext/object/blank'
