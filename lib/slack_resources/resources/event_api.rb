@@ -13,15 +13,15 @@ module SlackResources
 
       class << self
         def detail(name)
-          File.read(DETAILS_PATH.join("#{name}.json"))
+          JSON.parse(File.read(DETAILS_PATH.join("#{name}.json")))
         end
 
         def example(name)
-          File.read(EXAMPLES_PATH.join("#{name}.json"))
+          JSON.parse(File.read(EXAMPLES_PATH.join("#{name}.json")))
         end
 
         def schema(name)
-          File.read(SCHEMAS_PATH.join("#{name}.json"))
+          JSON.parse(File.read(SCHEMAS_PATH.join("#{name}.json")))
         end
 
         def event_types
