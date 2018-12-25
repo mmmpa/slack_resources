@@ -6,8 +6,8 @@ RSpec.describe SlackResources::Resources::EventApi do
 
   10.times do
     it { expect(event_api.event_types).to be_present }
-    it { expect(event_api.details(event)).to be_present }
+    it { expect(event_api.detail(event)).to be_present }
     it { expect(event_api.example(event)).to be_present }
-    it { expect(event_api.schemas(event)).to be_present }
+    it { expect(event_api.schema(event)).to be_present }
   end
 end

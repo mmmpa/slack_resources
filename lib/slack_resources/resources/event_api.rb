@@ -1,4 +1,5 @@
 require 'pathname'
+require 'json'
 
 module SlackResources
   module Resources
@@ -11,7 +12,7 @@ module SlackResources
       SCHEMAS_PATH = BASE_PATH.join('schemas')
 
       class << self
-        def details(name)
+        def detail(name)
           File.read(DETAILS_PATH.join("#{name}.json"))
         end
 
@@ -19,7 +20,7 @@ module SlackResources
           File.read(EXAMPLES_PATH.join("#{name}.json"))
         end
 
-        def schemas(name)
+        def schema(name)
           File.read(SCHEMAS_PATH.join("#{name}.json"))
         end
 
