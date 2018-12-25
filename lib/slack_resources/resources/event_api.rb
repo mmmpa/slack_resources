@@ -24,6 +24,10 @@ module SlackResources
           JSON.parse(File.read(SCHEMAS_PATH.join("#{name}.json")))
         end
 
+        def schemas
+          JSON.parse(File.read(BASE_PATH.join('schemas.json')))
+        end
+
         def event_types
           summary_file.map { |h| h['event'] }
         end

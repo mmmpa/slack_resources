@@ -24,6 +24,8 @@ module SlackResources
       end
 
       def execute!
+        FileUtils.rm_r(@output_dir) rescue nil
+
         FileUtils.mkdir_p(@details_output_dir)
         FileUtils.mkdir_p(@schemas_output_dir)
         FileUtils.mkdir_p(@example_output_dir)
@@ -105,7 +107,7 @@ module SlackResources
 
       def write_all_schemas_json!(all_sub_schemas, main_schemas)
         File.write(
-          @output_dir.join('schema.json').to_s,
+          @output_dir.join('schemas.json').to_s,
           JSON.pretty_generate(
             "$schema": 'http://json-schema.org/draft-07/schema',
             'definitions' => all_sub_schemas.protect_merge!(main_schemas).key_ordered
